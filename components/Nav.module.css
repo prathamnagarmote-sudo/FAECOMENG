@@ -31,10 +31,41 @@
 }
 
 /* ── Logo ────────────────────────────────────────────────────── */
-.logo {
+.logoContainer {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoImage {
+  flex-shrink: 0;
+}
+
+.logoTextGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logoTitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 800;
+  color: #0F1238;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+}
+
+.logoSubline {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 500;
+  color: #6B7280;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 /* ── Desktop Links ───────────────────────────────────────────── */

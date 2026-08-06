@@ -46,15 +46,20 @@ export default function Nav() {
       >
         <div className={styles.inner}>
           {/* Logo + Tagline */}
-          <Link href="/" className={styles.logo} aria-label="FAECOM INC homepage">
+          <Link href="/" className={styles.logoContainer} aria-label="FAECOM INC homepage">
             <Image
               src="/images/logo.png"
               alt="FAECOM INC."
-              width={180}
-              height={44}
+              width={42}
+              height={42}
               priority
-              style={{ objectFit: 'contain', width: 'auto', height: '44px' }}
+              className={styles.logoImage}
+              style={{ objectFit: 'contain', width: 'auto', height: '42px' }}
             />
+            <div className={styles.logoTextGroup}>
+              <span className={styles.logoTitle}>FAECOM INC</span>
+              <span className={styles.logoSubline}>We bring success stories for your future!</span>
+            </div>
           </Link>
 
           {/* Desktop Links */}
