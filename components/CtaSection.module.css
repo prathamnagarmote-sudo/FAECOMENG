@@ -1,0 +1,77 @@
+/* CTA Section — Full bleed cinematic dark with orange overlay */
+.cta {
+  position: relative;
+  overflow: hidden;
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #0E0F20;
+}
+
+.bg {
+  position: absolute; inset: 0;
+  filter: brightness(.22) saturate(.3);
+  transition: filter .6s;
+}
+.cta:hover .bg { filter: brightness(.28) saturate(.35); }
+
+.overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(14,15,32,.96) 0%, rgba(14,15,32,.72) 50%, rgba(14,15,32,.96) 100%);
+}
+
+/* Subtle orange geometric grid */
+.grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(229,90,36,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(229,90,36,.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* Orange radial glow at center */
+.grid::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(229,90,36,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.body {
+  position: relative; z-index: 2;
+  padding: var(--pad) var(--gutter);
+  max-width: 860px;
+}
+
+.h2 {
+  font-family: var(--font-bold);
+  font-size: clamp(52px, 8.5vw, 110px);
+  font-weight: 900;
+  line-height: .92;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin: 24px 0 20px;
+}
+.h2 em { font-style: normal; color: var(--orange); }
+
+.sub {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255,255,255,.6);
+  line-height: 1.85;
+  max-width: 480px;
+  margin: 0 auto 52px;
+}
+
+.acts {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

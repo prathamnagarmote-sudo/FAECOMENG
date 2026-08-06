@@ -1,0 +1,224 @@
+/* ══════════════════════════════════════════════════════════════
+   FAECOM — Standard Full-Width Navbar (reference-matched)
+   Dark navy background · logo left · links center · CTA right
+══════════════════════════════════════════════════════════════ */
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
+}
+
+.scrolled {
+  background: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ── Logo ────────────────────────────────────────────────────── */
+.logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Desktop Links ───────────────────────────────────────────── */
+.links {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  list-style: none;
+}
+
+.linkItem { position: relative; }
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #222222;
+  white-space: nowrap;
+  transition: color 0.25s;
+  position: relative;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-expo);
+}
+
+.link:hover { color: var(--accent); }
+.link:hover::after { transform: scaleX(1); }
+
+.active { color: var(--primary) !important; font-weight: 700; }
+.active::after { transform: scaleX(1) !important; background: var(--primary) !important; }
+
+.chevron {
+  opacity: 0.6;
+  margin-top: 1px;
+  transition: transform 0.25s;
+}
+.link:hover .chevron { transform: rotate(180deg); }
+
+/* ── Right side ──────────────────────────────────────────────── */
+.right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* CTA Button — filled dark purple */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--primary);
+  color: #FFF;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 16px rgba(33, 20, 95, 0.25);
+}
+.cta:hover {
+  background: var(--accent);
+  box-shadow: 0 4px 20px rgba(255, 107, 44, 0.40);
+}
+
+/* Mobile Burger */
+.burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 6px;
+  border: 1px solid var(--gray-200);
+  color: var(--text);
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+.burger:hover { border-color: var(--accent); color: var(--accent); background: var(--gray-50); }
+
+/* ── Mobile Overlay ──────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: #08091A;
+  display: flex;
+  flex-direction: column;
+  padding: 40px clamp(20px, 5vw, 60px);
+  overflow-y: auto;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 24px; right: 24px;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.80);
+  transition: border-color 0.3s, color 0.3s;
+}
+.closeBtn:hover { border-color: var(--accent); color: var(--accent); }
+
+.overlayLogo { margin-bottom: 48px; }
+
+.overlayLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.overlayLink {
+  display: block;
+  padding: 18px 0;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.70);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: color 0.3s, padding-left 0.3s;
+}
+.overlayLink:hover { color: #FFF; padding-left: 12px; }
+
+.overlayCtaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  background: var(--accent);
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+.overlayCtaLink:hover { background: var(--accent-deep); }
+
+.overlayContact {
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.overlayContact a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  transition: color 0.3s;
+}
+.overlayContact a:hover { color: var(--accent); }
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .links { display: none; }
+  .cta   { display: none; }
+  .burger { display: flex; }
+}
+
+@media (max-width: 640px) {
+  .inner { height: 60px; }
+}

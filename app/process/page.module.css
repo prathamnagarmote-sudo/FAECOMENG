@@ -1,0 +1,23 @@
+.steps{padding:var(--pad) var(--gutter);background:#FFFFFF;}
+.stepsHdr{text-align:center;max-width:600px;margin:0 auto 80px;}
+.stepsH2{font-family:var(--font-display);font-size:clamp(38px,5vw,64px);font-weight:300;letter-spacing:-.022em;margin-top:18px;line-height:1.08;}
+.procTrack{position:relative;display:grid;grid-template-columns:repeat(5,1fr);}
+.procLine{position:absolute;top:55px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--orange-border) 20%,var(--orange-border) 80%,transparent);}
+.procStep{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 14px;position:relative;}
+.procIcon{position:relative;}
+.procSn{position:absolute;top:-10px;right:-4px;font-family:var(--font-mono);font-size:10px;color:var(--orange);background:#FFFFFF;padding:2px 8px;z-index:2;letter-spacing:.1em;}
+.procTitle{font-family:var(--font-display);font-size:22px;font-weight:400;margin-bottom:10px;color:var(--dark);margin-top:22px;}
+.procDesc{font-size:13px;font-weight:300;color:var(--gray-500);line-height:1.7;}
+.detail{padding:var(--pad) var(--gutter);background:var(--gray-50);border-top:1px solid var(--gray-100);}
+.detailHdr{margin-bottom:60px;}
+.detailIntro{font-size:14px;font-weight:300;line-height:1.85;color:var(--gray-500);max-width:480px;margin-top:18px;}
+.detailGrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.detailCard{padding:44px 40px;background:#FFFFFF;border:1px solid var(--gray-100);}
+.detailPh{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--orange);text-transform:uppercase;}
+.detailTitle{font-family:var(--font-display);font-size:28px;font-weight:400;margin:12px 0 14px;}
+.detailDesc{font-size:14px;font-weight:300;line-height:1.85;color:var(--gray-500);}
+.why{padding:var(--pad) var(--gutter);background:#FFFFFF;}
+.whyHdr{margin-bottom:60px;}
+.whyGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+@media(max-width:900px){.procTrack{grid-template-columns:1fr 1fr;gap:40px;}.procLine{display:none;}.detailGrid{grid-template-columns:1fr;}.whyGrid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.procTrack{grid-template-columns:1fr;}.whyGrid{grid-template-columns:1fr;}}

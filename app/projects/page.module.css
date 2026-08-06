@@ -1,0 +1,5 @@
+.gallery{padding:var(--pad) var(--gutter);background:#FFFFFF;}
+.masonry{columns:3;column-gap:14px;}
+.projCard,.bpCard{break-inside:avoid;margin-bottom:14px;}
+@media(max-width:900px){.masonry{columns:2;}}
+@media(max-width:600px){.masonry{columns:1;}}

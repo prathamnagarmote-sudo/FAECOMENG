@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&display=swap');
+
+/* ─────────────────────────────────────────────────────────────
+   FAECOM INC — Design System
+   Brand: Architecture + BIM + Structural + MEP
+   Feel: Apple · Porsche · Zaha Hadid · Foster + Partners
+───────────────────────────────────────────────────────────── */
+
+/* ── DESIGN TOKENS ─────────────────────────────────────────── */
+:root {
+  /* Brand Colors */
+  --primary:       #21145F;
+  --primary-mid:   #2C237A;
+  --primary-light: rgba(33, 20, 95, 0.08);
+  --primary-border:rgba(33, 20, 95, 0.18);
+
+  --accent:        #FF6B2C;
+  --accent-deep:   #E55A1E;
+  --accent-light:  rgba(255, 107, 44, 0.10);
+  --accent-border: rgba(255, 107, 44, 0.22);
+
+  --bg:            #F7F7F5;
+  --surface:       #FFFFFF;
+  --text:          #111111;
+  --muted:         #6B7280;
+
+  /* Dark surface (hero, footer) */
+  --dark:          #0A0A14;
+  --dark-mid:      #0F1020;
+
+  /* Neutrals */
+  --gray-50:       #F7F7F5;
+  --gray-100:      #EFEFED;
+  --gray-200:      #E0E0DC;
+  --gray-300:      #C4C4BE;
+  --gray-500:      #6B7280;
+  --gray-700:      #3D3D40;
+
+  /* Borders */
+  --border:        rgba(0, 0, 0, 0.06);
+  --border-mid:    rgba(0, 0, 0, 0.10);
+
+  /* Typography */
+  --font-display:  'Cormorant Garamond', Georgia, serif;
+  --font-body:     'Manrope', system-ui, -apple-system, sans-serif;
+  --font-mono:     'SF Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Spacing */
+  --pad:    clamp(80px, 10vw, 140px);
+  --gutter: clamp(24px, 6vw, 96px);
+  --max-w:  1360px;
+
+  /* Easing */
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-circ:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Premium Shadows */
+  --shadow-xs: 0 1px 4px rgba(0,0,0,0.05);
+  --shadow-sm: 0 4px 16px rgba(0,0,0,0.07);
+  --shadow-md: 0 8px 32px rgba(0,0,0,0.09);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.11);
+  --shadow-xl: 0 40px 100px rgba(0,0,0,0.13);
+
+  /* Primary shadows */
+  --shadow-primary: 0 8px 40px rgba(33, 20, 95, 0.20);
+  --shadow-accent:  0 8px 36px rgba(255, 107, 44, 0.30);
+}
+
+/* ── RESET ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+a   { color: inherit; text-decoration: none; }
+button { border: none; background: none; font-family: inherit; cursor: pointer; }
+svg { display: block; }
+
+/* ── SECTION LABEL ──────────────────────────────────────────── */
+.lbl {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.lbl::before {
+  content: '';
+  width: 28px; height: 1.5px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.lbl-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+.lbl-primary::before {
+  content: '';
+  width: 28px; height: 1.5px;
+  background: var(--primary);
+  flex-shrink: 0;
+}
+
+.lbl-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: rgba(255, 107, 44, 0.85);
+  text-transform: uppercase;
+}
+.lbl-light::before {
+  content: '';
+  width: 28px; height: 1.5px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ── CURSOR ─────────────────────────────────────────────────── */
+.cursor-dot, .cursor-ring { display: none !important; }
+
+/* ── PREMIUM BUTTONS ─────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--primary);
+  color: #FFF;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  padding: 18px 38px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s var(--ease-expo), box-shadow 0.4s;
+  box-shadow: var(--shadow-primary);
+}
+.btn-primary::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--accent);
+  transform: translateX(-101%);
+  transition: transform 0.4s var(--ease-expo);
+}
+.btn-primary:hover::before  { transform: translateX(0); }
+.btn-primary:hover          { box-shadow: var(--shadow-accent); }
+.btn-primary > *            { position: relative; z-index: 1; }
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--accent);
+  color: #FFF;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  padding: 18px 38px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s var(--ease-expo), box-shadow 0.4s;
+  box-shadow: var(--shadow-accent);
+}
+.btn-accent::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--accent-deep);
+  transform: translateX(-101%);
+  transition: transform 0.4s var(--ease-expo);
+}
+.btn-accent:hover::before { transform: translateX(0); }
+.btn-accent > *            { position: relative; z-index: 1; }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  padding: 17px 38px;
+  border: 1.5px solid var(--gray-300);
+  transition: border-color 0.35s, color 0.35s, background 0.35s;
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+.btn-outline-w {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  color: rgba(255,255,255,0.80);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  padding: 17px 38px;
+  border: 1.5px solid rgba(255,255,255,0.20);
+  transition: border-color 0.35s, color 0.35s, background 0.35s;
+}
+.btn-outline-w:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(255, 107, 44, 0.08);
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 3px;
+  border-bottom: 1.5px solid var(--gray-200);
+  transition: color 0.3s, border-color 0.3s;
+}
+.link-arrow:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ── DIVIDERS ────────────────────────────────────────────────── */
+.divider {
+  width: 100%; height: 1px;
+  background: var(--border);
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 1200px) { :root { --gutter: 56px; } }
+@media (max-width: 900px)  { :root { --gutter: 32px; } }
+@media (max-width: 640px)  { :root { --gutter: 20px; } }
+
+/* ── HIDE SCROLLBAR (Lenis handles it) ──────────────────────── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }

@@ -1,0 +1,29 @@
+.cli{padding:var(--pad) var(--gutter);background:#FFFFFF;}
+.cliHdr{text-align:center;margin-bottom:56px;}
+.cliH2{font-family:var(--font-display);font-size:clamp(30px,4vw,52px);font-weight:300;letter-spacing:-.02em;margin-top:16px;}
+.cliGrid{display:flex;flex-wrap:wrap;border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);}
+.cliItem{flex:1 0 20%;}
+.test{padding:var(--pad) var(--gutter);background:var(--gray-50);border-top:1px solid var(--gray-100);}
+.testHdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;flex-wrap:wrap;gap:24px;}
+.testH2{font-family:var(--font-display);font-size:clamp(36px,4.5vw,60px);font-weight:300;letter-spacing:-.02em;margin-top:18px;}
+.testCtl{display:flex;gap:10px;}
+.tbtn{width:48px;height:48px;border:1px solid var(--gray-200);display:flex;align-items:center;justify-content:center;color:var(--dark);cursor:pointer;transition:all .3s;}
+.tbtn:hover{border-color:var(--orange);background:var(--orange);color:#fff;}
+.testCard{display:grid;grid-template-columns:260px 1fr;gap:70px;align-items:center;}
+.testAuthor{}
+.testCo{font-family:var(--font-mono);font-size:10px;letter-spacing:.25em;color:var(--orange);text-transform:uppercase;margin-bottom:12px;}
+.testName{font-family:var(--font-display);font-size:26px;font-weight:400;margin-bottom:5px;}
+.testRole{font-size:13px;font-weight:300;color:var(--gray-500);margin-bottom:18px;}
+.testStars{display:flex;gap:3px;}
+.testQBody{border-left:1px solid var(--orange-border);padding-left:60px;}
+.testDots{display:flex;justify-content:center;gap:8px;margin-top:52px;}
+.contact{padding:var(--pad) var(--gutter);background:#FFFFFF;display:grid;grid-template-columns:1fr 1fr;gap:clamp(60px,8vw,120px);}
+.contactHdr{}
+.contactDesc{font-size:14px;font-weight:300;line-height:1.85;color:var(--gray-500);margin-bottom:36px;}
+.formFields{display:flex;flex-direction:column;gap:0;}
+.field{background:transparent;border:none;border-bottom:1px solid var(--gray-200);padding:14px 0;font-family:var(--font-body);font-size:14px;font-weight:300;outline:none;width:100%;margin-bottom:4px;color:var(--dark);transition:border-color .3s;}
+.field::placeholder{color:var(--gray-300);}
+.field:focus{border-bottom-color:var(--orange);}
+.formActs{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px;}
+@media(max-width:900px){.testCard{grid-template-columns:1fr;gap:36px;}.testQBody{border-left:none;padding-left:0;border-top:1px solid var(--orange-border);padding-top:34px;}.contact{grid-template-columns:1fr;}.cliItem{flex:1 0 33%;}}
+@media(max-width:600px){.cliItem{flex:1 0 50%;}.formActs{flex-direction:column;}}
