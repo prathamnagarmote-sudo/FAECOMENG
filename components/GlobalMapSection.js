@@ -1,4 +1,6 @@
 import styles from './GlobalMapSection.module.css';
+import { StaggerContainer, FadeUp } from './Animations';
+import CountUpStat from './CountUpStat';
 
 const IMPACT_STATS = [
   { val: '1000+', label: 'PROJECTS DELIVERED', desc: 'Residential, Commercial & Industrial' },
@@ -21,29 +23,37 @@ export default function GlobalMapSection() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <span className="lbl-dk">Worldwide Presence</span>
-          <h2 className={styles.title}>Global Engineering Work</h2>
-          <p className={styles.subtitle}>
-            Our structural engineering expertise spans multiple continents, delivering innovative, code-compliant solutions worldwide.
-          </p>
-        </div>
+        <StaggerContainer className={styles.header}>
+          <FadeUp>
+            <span className="lbl-dk">Worldwide Presence</span>
+          </FadeUp>
+          <FadeUp>
+            <h2 className={styles.title}>Global Engineering Work</h2>
+          </FadeUp>
+          <FadeUp>
+            <p className={styles.subtitle}>
+              Our structural engineering expertise spans multiple continents, delivering innovative, code-compliant solutions worldwide.
+            </p>
+          </FadeUp>
+        </StaggerContainer>
 
         {/* Global Stats Ribbon */}
-        <div className={styles.statsRibbon}>
+        <StaggerContainer className={styles.statsRibbon} delayOrder={1}>
           {IMPACT_STATS.map((s) => (
-            <div key={s.label} className={styles.statCell}>
-              <div className={styles.statVal}>{s.val}</div>
+            <FadeUp key={s.label} className={styles.statCell}>
+              <div className={styles.statVal}>
+                <CountUpStat value={s.val.replace(/[^0-9]/g, '')} suffix={s.val.replace(/[0-9]/g, '')} />
+              </div>
               <div className={styles.statLabel}>{s.label}</div>
               <div className={styles.statDesc}>{s.desc}</div>
-            </div>
+            </FadeUp>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Global Footprint Grid */}
-        <div className={styles.locationGrid}>
+        <StaggerContainer className={styles.locationGrid} delayOrder={2}>
           {LOCATIONS.map((loc) => (
-            <div key={loc.country} className={styles.locCard}>
+            <FadeUp key={loc.country} className={styles.locCard}>
               <div className={styles.locIcon}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20">
                   <circle cx="12" cy="12" r="10"/>
@@ -54,9 +64,9 @@ export default function GlobalMapSection() {
                 <h4 className={styles.locCountry}>{loc.country}</h4>
                 <p className={styles.locDesc}>{loc.desc}</p>
               </div>
-            </div>
+            </FadeUp>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

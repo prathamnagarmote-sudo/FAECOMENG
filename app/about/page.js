@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import PageHero from '@/components/PageHero';
 import CtaSection from '@/components/CtaSection';
 import LeadershipSection from '@/components/LeadershipSection';
 import PEStampingSection from '@/components/PEStampingSection';
 import GlobalMapSection from '@/components/GlobalMapSection';
+import { Building2, Globe, ShieldCheck, Users, Store, Building, Home, Briefcase, Factory } from 'lucide-react';
+import { StaggerContainer, FadeUp, ScaleIn, ParallaxImage } from '@/components/Animations';
 import styles from './page.module.css';
 
 export const metadata = { title: 'About FAECOM INC.' };
@@ -21,46 +22,150 @@ const WHY = [
 export default function About() {
   return (
     <>
-      <PageHero
-        label="About FAECOM"
-        title="Engineering the"
-        titleEm="Built World"
-        subtitle="Over 25 years of precision, passion, and world-class structural engineering delivered across 5 continents."
-      />
-      <div className="divider" />
-
-      {/* Story */}
-      <section className={styles.story}>
-        <div className={styles.storyImg}>
-          <div className={styles.storyImgFr} />
-          <Image
-            src="/images/about_building.png"
-            alt="FAECOM building"
-            width={600}
-            height={800}
-            style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(.88)" }}
+      <section className={styles.aboutHero}>
+        <ParallaxImage className={styles.aboutHeroBg} offset={100}>
+          <Image 
+            src="/images/about_hero_shared.jpg" 
+            alt="FAECOM Architectural Design" 
+            fill 
+            style={{ objectFit: 'cover', objectPosition: 'center' }} 
+            priority
             quality={90}
           />
-          <div className={styles.storyTag}>Established 2004</div>
+        </ParallaxImage>
+        <div className={styles.aboutHeroOverlay} />
+        <StaggerContainer className={styles.aboutHeroContent}>
+          <FadeUp>
+            <span className={styles.aboutHeroLabel}>INNOVATION • PRECISION • PERFORMANCE</span>
+          </FadeUp>
+          <FadeUp>
+            <h1 className={styles.aboutHeroTitle}>
+              Designing the Future. <br />
+              <em>Engineering the Impossible.</em>
+            </h1>
+          </FadeUp>
+          <FadeUp>
+            <p className={styles.aboutHeroSubtitle}>
+              At FAECOM, engineering is more than calculations—it's the foundation of visionary architecture. Through advanced structural design, BIM integration, Light Gauge Steel, ICF, Timber, and multidisciplinary collaboration, we deliver intelligent, sustainable, and high-performance solutions that transform ambitious concepts into enduring landmarks.
+            </p>
+          </FadeUp>
+        </StaggerContainer>
+      </section>
+      <div className="divider" />
+
+      {/* Who We Are */}
+      <section className={styles.whoWeAre}>
+        <div className={styles.whoWeAreBg}>
+          <Image src="/images/who_we_are.png" alt="Background Texture" fill style={{ objectFit: "cover" }} quality={90} priority />
+          <div className={styles.whoWeAreOverlay} />
         </div>
 
-        <div className={styles.storyContent}>
-          <span className="lbl">Our Story</span>
-          <h2 className={styles.storyH2}>
-            Over 25 Years of<br />
-            <em>Engineering</em><br />
-            Excellence
-          </h2>
-          <p className={styles.storyP}>
-            FAECOM INC. is a multidisciplinary engineering firm providing reliable and cost-effective Insulated Concrete Form (ICF) solutions, Structural, Architectural, MEP, and BIM Design, along with Structural Drawings, Design Calculations, Engineering Review & Stamp, and Detailing.
-          </p>
-          <p className={styles.storyP}>
-            We help Architects, Contractors, Fabricators, Developers, and Owners deliver practical, code-compliant, and efficient engineering solutions across Retail Spaces, Hotels, Mixed-Use Developments, Multifamily Residential, Commercial Offices, Senior Living, and Industrial Projects.
-          </p>
-          <p className={styles.storyP}>
-            From concept to construction, we provide structural design, structural drawings, design calculations, engineering review & stamp, hybrid design, prescriptive tables, modular structural design & detailing, steel staircases, and specialized solutions for light gauge steel, timber, wood, concrete, steel, precast, and ICF structures.
-          </p>
+        <div className={styles.whoWeAreInner}>
+          <div className={styles.whoColumns}>
+            <StaggerContainer className={styles.whoLeft}>
+              <FadeUp className={styles.whoLblContainer}>
+                <span className={styles.whoLbl}>Who We Are</span>
+                <span className={styles.whoLblLine} />
+              </FadeUp>
+              <FadeUp>
+                <p className={styles.whoText}>
+                  FAECOM INC is a multidisciplinary engineering firm providing reliable and cost-effective Insulated Concrete Form (ICF) solutions, Structural, Architectural, MEP, and BIM Design, along with Structural Drawings, Design Calculations, Engineering Review & Stamp, and Detailing.
+                </p>
+              </FadeUp>
+              <FadeUp>
+                <p className={styles.whoText}>
+                  We help Architects, Contractors, Fabricators, Developers, and Owners deliver practical, code-compliant, and efficient engineering solutions.
+                </p>
+              </FadeUp>
+            </StaggerContainer>
+
+            <StaggerContainer className={styles.whoGrid} delayOrder={1}>
+              {/* Item 1 */}
+              <FadeUp className={styles.whoGridItem}>
+                <Building2 className={styles.whoIcon} size={36} strokeWidth={1.5} />
+                <div className={styles.whoItemContent}>
+                  <h3 className={styles.whoItemTitle}>Multidisciplinary<br/>Expertise</h3>
+                  <p className={styles.whoItemDesc}>End-to-end engineering solutions under one roof.</p>
+                </div>
+              </FadeUp>
+              
+              {/* Item 2 */}
+              <FadeUp className={styles.whoGridItem}>
+                <Globe className={styles.whoIcon} size={36} strokeWidth={1.5} />
+                <div className={styles.whoItemContent}>
+                  <h3 className={styles.whoItemTitle}>Global<br/>Experience</h3>
+                  <p className={styles.whoItemDesc}>Serving clients across multiple countries.</p>
+                </div>
+              </FadeUp>
+
+              {/* Item 3 */}
+              <FadeUp className={styles.whoGridItem}>
+                <ShieldCheck className={styles.whoIcon} size={36} strokeWidth={1.5} />
+                <div className={styles.whoItemContent}>
+                  <h3 className={styles.whoItemTitle}>Quality &<br/>Compliance</h3>
+                  <p className={styles.whoItemDesc}>Code-compliant designs with industry standards.</p>
+                </div>
+              </FadeUp>
+
+              {/* Item 4 */}
+              <FadeUp className={styles.whoGridItem}>
+                <Users className={styles.whoIcon} size={36} strokeWidth={1.5} />
+                <div className={styles.whoItemContent}>
+                  <h3 className={styles.whoItemTitle}>Client<br/>Focused</h3>
+                  <p className={styles.whoItemDesc}>Practical, efficient and cost-effective solutions.</p>
+                </div>
+              </FadeUp>
+            </StaggerContainer>
+          </div>
         </div>
+      </section>
+
+      <div className="divider" />
+
+      {/* Industries We Serve */}
+      <section className={styles.industries}>
+        <StaggerContainer className={styles.industriesContent}>
+          <FadeUp>
+            <h2 className={styles.industriesH2}>Industries We Serve</h2>
+            <div className={styles.whoLblLine} style={{ margin: '0 auto 48px auto' }} />
+          </FadeUp>
+          <FadeUp>
+            <div className={styles.indGrid}>
+              <div className={styles.indCard}>
+                <Store className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <span className={styles.indTitle}>Retail<br/>Spaces</span>
+              </div>
+              <div className={styles.indCard}>
+                <Building2 className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <span className={styles.indTitle}>Hotels</span>
+              </div>
+              <div className={styles.indCard}>
+                <Building className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <span className={styles.indTitle}>Mixed-Use<br/>Developments</span>
+              </div>
+              <div className={styles.indCard}>
+                <Home className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <span className={styles.indTitle}>Multifamily<br/>Residential</span>
+              </div>
+              <div className={styles.indCard}>
+                <Briefcase className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <span className={styles.indTitle}>Commercial<br/>Offices</span>
+              </div>
+              <div className={styles.indCard}>
+                <Factory className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <span className={styles.indTitle}>Industrial<br/>Projects</span>
+              </div>
+            </div>
+          </FadeUp>
+          
+          <FadeUp>
+            <div className={styles.indSubImages}>
+              <Image src="/images/project_commercial.png" width={400} height={250} alt="Commercial Project" className={styles.indSubImg} />
+              <Image src="/images/project_industrial.png" width={400} height={250} alt="Industrial Project" className={styles.indSubImg} />
+              <Image src="/images/project_residential.png" width={400} height={250} alt="Residential Project" className={styles.indSubImg} />
+            </div>
+          </FadeUp>
+        </StaggerContainer>
       </section>
 
       <div className="divider" />
@@ -76,22 +181,28 @@ export default function About() {
 
       {/* Why Choose Us */}
       <section className={styles.why}>
-        <div className={styles.whyHdr}>
+        <StaggerContainer className={styles.whyHdr}>
           <div>
-            <span className="lbl">Why FAECOM</span>
-            <h2 className="sec-h2">
-              Built on <em>Trust</em>,<br />
-              Driven by<br />
-              Precision
-            </h2>
+            <FadeUp>
+              <span className="lbl">Why FAECOM</span>
+            </FadeUp>
+            <FadeUp>
+              <h2 className="sec-h2">
+                Built on <em>Trust</em>,<br />
+                Driven by<br />
+                Precision
+              </h2>
+            </FadeUp>
           </div>
-          <p className={styles.whyIntro}>
-            We are more than engineers. We are partners in your project success — from the first line on the blueprint to the final bolt on site.
-          </p>
-        </div>
-        <div className={styles.whyGrid}>
+          <FadeUp>
+            <p className={styles.whyIntro}>
+              We are more than engineers. We are partners in your project success — from the first line on the blueprint to the final bolt on site.
+            </p>
+          </FadeUp>
+        </StaggerContainer>
+        <StaggerContainer className={styles.whyGrid} delayOrder={1}>
           {WHY.map(w => (
-            <div key={w.n} className="why-card">
+            <FadeUp key={w.n} className="why-card">
               <div className="why-card-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="24" height="24">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -100,9 +211,9 @@ export default function About() {
               <span className="why-card-num">{w.n}</span>
               <h3 className="why-card-title">{w.title}</h3>
               <p className="why-card-desc">{w.desc}</p>
-            </div>
+            </FadeUp>
           ))}
-        </div>
+        </StaggerContainer>
       </section>
 
       <div className="divider" />
