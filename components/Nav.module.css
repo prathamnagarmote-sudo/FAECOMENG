@@ -3,33 +3,21 @@
    Dark navy background · logo left · links center · CTA right
 ══════════════════════════════════════════════════════════════ */
 
-@keyframes navSlideDown {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-    filter: blur(8px);
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-    filter: blur(0);
-  }
-}
-
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: var(--primary); /* Navy blue overlay */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
-  animation: navSlideDown 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .scrolled {
-  background: var(--primary-mid);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  border-bottom-color: rgba(255, 255, 255, 0.05);
+  background: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
 }
 
 .inner {
@@ -102,33 +90,30 @@
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
+  color: #222222;
   white-space: nowrap;
-  transition: color 0.3s, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: color 0.25s;
   position: relative;
 }
 
 .link::after {
   content: '';
   position: absolute;
-  bottom: 0px;
+  bottom: 2px;
   left: 14px;
   right: 14px;
   height: 2px;
   background: var(--accent);
   transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-expo);
 }
 
-.link:hover { 
-  color: var(--accent); 
-  transform: translateY(-3px); 
-}
+.link:hover { color: var(--accent); }
 .link:hover::after { transform: scaleX(1); }
 
-.active { color: var(--accent) !important; font-weight: 700; }
-.active::after { transform: scaleX(1) !important; background: var(--accent) !important; }
+.active { color: var(--primary) !important; font-weight: 700; }
+.active::after { transform: scaleX(1) !important; background: var(--primary) !important; }
 
 /* ── Mega Menu Dropdown ──────────────────────────────────────── */
 .hasDropdown {
@@ -242,7 +227,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: var(--accent);
+  background: var(--primary);
   color: #FFF;
   font-family: var(--font-body);
   font-size: 12px;
@@ -252,13 +237,12 @@
   padding: 11px 22px;
   border-radius: 4px;
   white-space: nowrap;
-  transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
-  box-shadow: 0 4px 16px rgba(255, 107, 44, 0.25);
+  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 16px rgba(33, 20, 95, 0.25);
 }
 .cta:hover {
-  background: var(--accent-deep);
+  background: var(--accent);
   box-shadow: 0 4px 20px rgba(255, 107, 44, 0.40);
-  transform: translateY(-2px);
 }
 
 /* Mobile Burger */
@@ -268,11 +252,11 @@
   justify-content: center;
   width: 40px; height: 40px;
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #FFFFFF;
+  border: 1px solid var(--gray-200);
+  color: var(--text);
   transition: border-color 0.3s, color 0.3s, background 0.3s;
 }
-.burger:hover { border-color: var(--accent); color: var(--accent); background: rgba(255, 255, 255, 0.05); }
+.burger:hover { border-color: var(--accent); color: var(--accent); background: var(--gray-50); }
 
 /* ── Mobile Overlay ──────────────────────────────────────────── */
 .overlay {
