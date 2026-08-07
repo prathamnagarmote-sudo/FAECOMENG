@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionValue, animate, useSpring } from 'framer-motion';
-import { ArrowUpRight, ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, ChevronDown, Mail, Phone, MapPin } from 'lucide-react';
 import styles from './page.module.css';
 
 /* ── Lazy-load heavy 3D scene ────────────────────────────────── */
@@ -289,6 +289,147 @@ const PROCESS = [
   { n: '05', name: 'Handover', desc: 'Comprehensive documentation and post-project support.' },
 ];
 
+const SOFTWARE_CATEGORIES = [
+  {
+    title: '3D BIM & STRUCTURAL DETAILING',
+    logos: [
+      { name: 'Tekla Structures', img: '/images/software/tekla_structures.png' },
+      { name: 'SDS2', img: '/images/software/sds2.png' },
+      { name: 'Autodesk Revit', img: '/images/software/autodesk_revit.png' },
+      { name: 'MiTek', img: '/images/software/mitek.png' },
+      { name: 'StrucSoft', img: '/images/software/strucsoft.png' },
+    ],
+  },
+  {
+    title: 'STRUCTURAL ANALYSIS & DESIGN',
+    logos: [
+      { name: 'Tekla Tedds', img: '/images/software/tekla_tedds.png' },
+      { name: 'RISA', img: '/images/software/risa.png' },
+      { name: 'STAAD.Pro', img: '/images/software/staad_pro.png' },
+      { name: 'SAP2000', img: '/images/software/sap2000.png' },
+      { name: 'IES', img: '/images/software/ies.png' },
+      { name: 'SkyCiv', img: '/images/software/skyciv.png' },
+      { name: 'FORTEWEB', img: '/images/software/forteweb.png' },
+      { name: 'ENERCALC', img: '/images/software/enercalc.png' },
+      { name: 'StructurePoint', img: '/images/software/structurepoint.png' },
+    ],
+  },
+  {
+    title: 'CONNECTION DESIGN & STRUCTURAL ANALYSIS',
+    logos: [
+      { name: 'IDEA StatiCa', img: '/images/software/idea_statica.png' },
+      { name: 'SIMPSON Strong-Tie', img: '/images/software/simpson_strong_tie.png' },
+      { name: 'HILTI', img: '/images/software/hilti.png' },
+    ],
+  },
+  {
+    title: 'COLD-FORMED STEEL DESIGN',
+    logos: [
+      { name: 'FRAMECAD', img: '/images/software/framecad.png' },
+      { name: 'AISI BuildUsingSteel', img: '/images/software/aisi.png' },
+      { name: 'BC CALC', img: '/images/software/bccalc.png' },
+      { name: 'CFS', img: '/images/software/cfs.png' },
+    ],
+  },
+];
+
+const PE_LICENSED_STATES = [
+  ['Texas', 'Georgia', 'Florida', 'California', 'New York', 'New Jersey', 'Illinois', 'Washington', 'Washington D.C.', 'Massachusetts', 'Arizona', 'Michigan'],
+  ['Indiana', 'Iowa', 'Nevada', 'Tennessee', 'Ohio', 'Colorado', 'Virginia', 'Maryland', 'Utah', 'Pennsylvania', 'N/S-Carolina', 'N/S-Dakota'],
+];
+
+const PE_STATS = [
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B2C" strokeWidth="2" width="24" height="24">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4" />
+      </svg>
+    ),
+    title: '25+',
+    hasAccentBar: true,
+    subtitle: 'States Licensed',
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B2C" strokeWidth="2" width="24" height="24">
+        <path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8zM19 8v6M22 11h-6" />
+      </svg>
+    ),
+    title: '100+',
+    subtitle: 'Licensed PE Professionals',
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B2C" strokeWidth="2" width="24" height="24">
+        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M16 13H8M16 17H8M10 9H8" />
+      </svg>
+    ),
+    title: '100%',
+    subtitle: 'Compliance & Reliability',
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B2C" strokeWidth="2" width="24" height="24">
+        <path d="M11 15h2a2 2 0 100-4h-3c-.6 0-1.1.2-1.4.6L3 17m8-2l4-4m2.6 1.4L21 9M18 12l-4-4m-2 6l-3.3-3.3" />
+      </svg>
+    ),
+    title: 'Trusted',
+    subtitle: 'Across Government, Commercial & Industrial',
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B2C" strokeWidth="2" width="24" height="24">
+        <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+      </svg>
+    ),
+    title: 'Delivering',
+    subtitle: 'Engineering Excellence Nationwide',
+  },
+];
+
+const GLOBAL_HUBS = [
+  {
+    id: 'usa',
+    country: 'USA',
+    flag: '🇺🇸',
+    role: 'Primary Engineering Hub',
+    codes: ['AISC', 'IBC', 'ACI', 'ASCE 7'],
+    desc: 'Full-service structural, MEP & BIM engineering for high-rise, commercial, and industrial facilities across 25+ licensed states.',
+  },
+  {
+    id: 'canada',
+    country: 'CANADA',
+    flag: '🇨🇦',
+    role: 'Structural & Cold-Formed Steel',
+    codes: ['NBC', 'CSA S16', 'CSA A23.3'],
+    desc: 'Advanced LGS detailing, timber structure design, and BIM coordination compliant with Canadian National Building Codes.',
+  },
+  {
+    id: 'uk',
+    country: 'UNITED KINGDOM',
+    flag: '🇬🇧',
+    role: 'BIM & Structural Detailing',
+    codes: ['Eurocodes', 'BS EN 1993', 'BSI'],
+    desc: 'Third-party peer reviews, complex steel connections, and Level 2 BIM modeling for commercial developments across Europe.',
+  },
+  {
+    id: 'dubai',
+    country: 'DUBAI (UAE)',
+    flag: '🇦🇪',
+    role: 'High-Rise & Mega Infrastructure',
+    codes: ['Dubai Building Code', 'AISC', 'Eurocodes'],
+    desc: 'Specialized structural engineering and rebar detailing for landmark skyscrapers, residential towers, and hospitality projects.',
+  },
+  {
+    id: 'australia',
+    country: 'AUSTRALIA',
+    flag: '🇦🇺',
+    role: 'Residential & Light Gauge Steel',
+    codes: ['AS/NZS 1170', 'AS 4100', 'NCC'],
+    desc: 'Cold-formed steel framing, residential structural calculations, and 3D Tekla detailing compliant with Australian Standards.',
+  },
+];
+
 /* ═══════════════════════════════════════════════════════════════
    HOME PAGE
 ═══════════════════════════════════════════════════════════════ */
@@ -311,6 +452,51 @@ export default function Home() {
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     mouseX.set(x);
     mouseY.set(y);
+  };
+
+  // PE Stamping 3D Tilt Motion
+  const peMouseX = useMotionValue(0);
+  const peMouseY = useMotionValue(0);
+  const peTiltX = useSpring(useTransform(peMouseY, [-0.5, 0.5], [6, -6]), { stiffness: 70, damping: 20 });
+  const peTiltY = useSpring(useTransform(peMouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 70, damping: 20 });
+  const peMapDepthX = useSpring(useTransform(peMouseX, [-0.5, 0.5], [-12, 12]), { stiffness: 80, damping: 20 });
+
+  const handlePeMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    peMouseX.set(x);
+    peMouseY.set(y);
+  };
+
+  // Global Engineering Work 3D Motion
+  const globalMouseX = useMotionValue(0);
+  const globalMouseY = useMotionValue(0);
+  const globalTiltX = useSpring(useTransform(globalMouseY, [-0.5, 0.5], [6, -6]), { stiffness: 70, damping: 20 });
+  const globalTiltY = useSpring(useTransform(globalMouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 70, damping: 20 });
+  const globalMapDepthX = useSpring(useTransform(globalMouseX, [-0.5, 0.5], [-10, 10]), { stiffness: 80, damping: 20 });
+
+  const handleGlobalMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    globalMouseX.set(x);
+    globalMouseY.set(y);
+  };
+
+  // Contact Form State
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: 'Structural Engineering',
+    message: '',
+  });
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormSubmitted(true);
   };
 
   const { scrollYProgress } = useScroll({
@@ -802,24 +988,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 5. PROCESS ═══════════════════════════════════════════ */}
-      <section className={styles.procSection} aria-label="Our Process">
-        <div className={styles.procInner}>
-          <FadeUp className={styles.procHeader}>
-            <span className="lbl-light">Our Process</span>
-            <h2 className={styles.procH2}>
-              How we bring<br /><em>ideas to life</em>
-            </h2>
+      {/* ══ 4. SOFTWARE WE USE — Engineering Tech Stack ═════════ */}
+      <section className={styles.softSection} aria-label="Software We Use">
+        <div className={styles.softInner}>
+          {/* Header */}
+          <FadeUp className={styles.softHeader}>
+            <div className={styles.softHeaderLeft}>
+              <span className={styles.softEyebrow}>ENGINEERING TECH STACK</span>
+              <h2 className={styles.softH2}>
+                Software We Use.
+                <br />
+                <em>Uncompromising Accuracy.</em>
+              </h2>
+              <p className={styles.softSubline}>
+                We leverage world-class BIM, structural analysis, and detailing software suites to guarantee code compliance, constructability, and clash-free delivery.
+              </p>
+            </div>
+            <div className={styles.softStatusBadge}>
+              <span className={styles.softStatusDot} />
+              <span>LICENSED ENTERPRISE SUITES</span>
+            </div>
           </FadeUp>
 
-          <div className={styles.procGrid}>
-            {PROCESS.map((ps, i) => (
-              <FadeUp key={ps.n} delay={i * 0.08}>
-                <div className={styles.procStep}>
-                  <div className={styles.procNum}>{ps.n}</div>
-                  <div className={styles.procBar} />
-                  <h3 className={styles.procName}>{ps.name}</h3>
-                  <p className={styles.procDesc}>{ps.desc}</p>
+          {/* Categorized 21 Software Logos Grid */}
+          <div className={styles.softGroupContainer}>
+            {SOFTWARE_CATEGORIES.map((group, groupIdx) => (
+              <FadeUp key={group.title} delay={groupIdx * 0.08}>
+                <div className={styles.softCategoryBlock}>
+                  <h3 className={styles.softCategoryTitle}>{group.title}</h3>
+                  <div className={styles.softLogoRow}>
+                    {group.logos.map((soft, i) => (
+                      <div key={soft.name} className={styles.softLogoCard}>
+                        <div className={styles.softLogoImgWrap}>
+                          <Image
+                            src={soft.img}
+                            alt={soft.name}
+                            fill
+                            quality={90}
+                            sizes="180px"
+                            style={{ objectFit: 'contain' }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </FadeUp>
             ))}
@@ -827,51 +1039,398 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 6. STATS RIBBON ══════════════════════════════════════ */}
-      <section className={styles.ribbonSection} aria-label="Company Statistics">
-        <Stagger className={styles.ribbonGrid}>
-          {STATS.map((st) => (
-            <motion.div key={st.label} variants={itemV} className={styles.ribbonCell}>
-              <div className={styles.ribbonVal}>{st.val}</div>
-              <div className={styles.ribbonLbl}>{st.label}</div>
-            </motion.div>
-          ))}
-        </Stagger>
+      {/* ══ 4.5 PE STAMPING & APPROVAL ═══════════════════════════ */}
+      <section
+        className={styles.peSection}
+        aria-label="PE Stamping & Approval"
+        onMouseMove={handlePeMouseMove}
+      >
+        {/* Background CAD Blueprint Grid & Corner Geometric Overlays */}
+        <div className={styles.peCadGridOverlay} />
+        <div className={styles.peBgShapeTopLeft} />
+        <div className={styles.peBgBlueprintTopRight} />
+
+        <div className={styles.peInner}>
+          {/* Header */}
+          <FadeUp className={styles.peHeader}>
+            <span className={styles.peEyebrow}>PE STAMPING & APPROVAL</span>
+            <h2 className={styles.peH2}>
+              Licensed to Engineer.
+              <br />
+              Trusted <span className={styles.peOrangeText}>Across the Nation.</span>
+            </h2>
+            <p className={styles.peSubline}>
+              FAECOM INC holds Professional Engineer (PE) licenses across multiple states, ensuring compliance, credibility, and confidence in every project we deliver.
+            </p>
+          </FadeUp>
+
+          {/* Main Visual Content (12-Column Grid: 7 cols Map + 5 cols Licensed States Panel) */}
+          <motion.div
+            className={styles.peGrid}
+            style={{ rotateX: peTiltX, rotateY: peTiltY, transformStyle: 'preserve-3d' }}
+          >
+            {/* Left: US Pin Map (7 Columns ~60%) */}
+            <FadeUp delay={0.1} className={styles.peMapWrap}>
+              <motion.div className={styles.peMapCardContainer} style={{ x: peMapDepthX }}>
+                <div className={styles.peMapFadedGrid} />
+                <div className={styles.peMapRadialGlow} />
+                <div className={styles.peMapImgBox}>
+                  <Image
+                    src="/images/transparent_pin_map.png"
+                    alt="FAECOM PE Licensed States Map"
+                    fill
+                    quality={95}
+                    priority
+                    sizes="(max-width: 900px) 100vw, 58vw"
+                    style={{ objectFit: 'contain' }}
+                  />
+                </div>
+              </motion.div>
+            </FadeUp>
+
+            {/* Right: PE LICENSED IN Card (5 Columns ~40%) */}
+            <FadeUp delay={0.2} className={styles.peCardWrap}>
+              <div className={styles.peCard}>
+                {/* Header Badge */}
+                <div className={styles.peCardHeaderBadge}>
+                  <div className={styles.peStampIconBox}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B2C" strokeWidth="2.2" width="20" height="20">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4" />
+                    </svg>
+                  </div>
+                  <span className={styles.peCardBadgeText}>PE LICENSED IN</span>
+                </div>
+
+                {/* 2 Equal Columns State List */}
+                <div className={styles.peStateGrid}>
+                  {PE_LICENSED_STATES.map((col, cIdx) => (
+                    <ul key={cIdx} className={styles.peStateList}>
+                      {col.map((state) => (
+                        <li key={state} className={styles.peStateItem}>
+                          <span className={styles.peStateDot}>•</span>
+                          <span className={styles.peStateName}>{state}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
+                </div>
+              </div>
+            </FadeUp>
+          </motion.div>
+
+          {/* Bottom Floating Metrics Bar (5 Equal Columns) */}
+          <FadeUp delay={0.3}>
+            <div className={styles.peRibbonStrip}>
+              {PE_STATS.map((st, i) => (
+                <div key={i} className={styles.peRibbonCell}>
+                  <div className={styles.peRibbonIconBox}>{st.icon}</div>
+                  <div className={styles.peRibbonMeta}>
+                    <h4 className={styles.peRibbonVal}>{st.title}</h4>
+                    {st.hasAccentBar && <div className={styles.peStatAccentBar} />}
+                    <p className={styles.peRibbonLbl}>{st.subtitle}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FadeUp>
+        </div>
       </section>
 
-      {/* ══ 7. CTA SECTION ═══════════════════════════════════════ */}
-      <section className={styles.ctaSection} aria-label="Start a project">
-        <FadeUp className={styles.ctaInner}>
-          <div className={styles.ctaImageWrap}>
-            <Image
-              src="/images/cta_building.png"
-              alt="FAECOM premium architectural project"
-              fill quality={80}
-              sizes="100vw"
-              style={{ objectFit: 'cover', filter: 'brightness(0.3) saturate(0.5)' }}
-            />
-          </div>
-          <div className={styles.ctaContent}>
-            <span className="lbl-light">Ready to Build?</span>
-            <h2 className={styles.ctaH2}>
-              Let's create something<br /><em>extraordinary together</em>
+      {/* ══ 4.6 GLOBAL ENGINEERING WORK — 3D Interactive World Showcase ══ */}
+      <section
+        className={styles.globalSection}
+        aria-label="Global Engineering Work"
+        onMouseMove={handleGlobalMouseMove}
+      >
+        {/* Background Architectural Atmosphere */}
+        <div className={styles.globalCadGridOverlay} />
+        <div className={styles.globalRadialGlowBg} />
+
+        <div className={styles.globalInner}>
+          {/* Header */}
+          <FadeUp className={styles.globalHeader}>
+            <span className={styles.globalEyebrow}>GLOBAL REACH & IMPACT</span>
+            <h2 className={styles.globalH2}>
+              Global Engineering Work.
+              <br />
+              <span className={styles.globalOrangeText}>Engineering</span> Without Borders.
             </h2>
-            <p className={styles.ctaDesc}>
-              From concept to completion — FAECOM delivers world-class engineering
-              that stands the test of time.
+            <p className={styles.globalSubline}>
+              Our engineering expertise spans multiple continents, delivering code-compliant, clash-free structural &amp; MEP solutions for marquee developments worldwide.
             </p>
-            <div className={styles.ctaActions}>
-              <Link href="/clients" className={styles.ctaBtnPrimary}>
-                <span>Let's Build Together</span>
-                <ArrowUpRight size={16} strokeWidth={2} />
-              </Link>
-              <Link href="/projects" className={styles.ctaBtnGhost}>
-                <span>See Our Work</span>
-                <ArrowRight size={14} strokeWidth={1.5} />
-              </Link>
-            </div>
+          </FadeUp>
+
+          {/* Main 3D World Map Interactive Stage */}
+          <motion.div
+            className={styles.globalStage}
+            style={{ rotateX: globalTiltX, rotateY: globalTiltY, transformStyle: 'preserve-3d' }}
+          >
+            <motion.div className={styles.globalMapWrap} style={{ x: globalMapDepthX }}>
+              {/* World Map Transparent Asset */}
+              <div className={styles.globalMapImgBox}>
+                <Image
+                  src="/images/global_map_transparent.png"
+                  alt="FAECOM Global Engineering Work Map"
+                  fill
+                  quality={95}
+                  priority
+                  sizes="(max-width: 1200px) 100vw, 85vw"
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
+
+              {/* Animated 3D Flight Arc Connections & Radar Beacons */}
+              <svg className={styles.globalFlightArcSvg} viewBox="0 0 1000 500" fill="none">
+                {/* USA (HQ) -> CANADA */}
+                <path d="M 220 180 Q 215 150 210 120" stroke="rgba(255, 106, 0, 0.4)" strokeWidth="2" strokeDasharray="4 4" />
+                {/* USA (HQ) -> UK */}
+                <path d="M 220 180 Q 330 80 450 140" stroke="rgba(255, 106, 0, 0.5)" strokeWidth="2" strokeDasharray="6 6" className={styles.animatedFlightArc} />
+                {/* USA (HQ) -> DUBAI */}
+                <path d="M 220 180 Q 400 60 580 210" stroke="rgba(255, 106, 0, 0.5)" strokeWidth="2" strokeDasharray="6 6" className={styles.animatedFlightArc2} />
+                {/* USA (HQ) -> AUSTRALIA */}
+                <path d="M 220 180 Q 500 380 780 360" stroke="rgba(255, 106, 0, 0.4)" strokeWidth="2" strokeDasharray="6 6" className={styles.animatedFlightArc3} />
+              </svg>
+
+              {/* Radar Beacons & Hotspot Badges */}
+              <div className={`${styles.globalBeacon} ${styles.beaconUsa}`}>
+                <span className={styles.beaconRing} />
+                <span className={styles.beaconDot} />
+                <div className={styles.beaconBadge}>
+                  <span className={styles.beaconFlag}>🇺🇸</span>
+                  <span className={styles.beaconTitle}>USA (HQ)</span>
+                </div>
+              </div>
+
+              <div className={`${styles.globalBeacon} ${styles.beaconCanada}`}>
+                <span className={styles.beaconRing} />
+                <span className={styles.beaconDot} />
+                <div className={styles.beaconBadge}>
+                  <span className={styles.beaconFlag}>🇨🇦</span>
+                  <span className={styles.beaconTitle}>CANADA</span>
+                </div>
+              </div>
+
+              <div className={`${styles.globalBeacon} ${styles.beaconUk}`}>
+                <span className={styles.beaconRing} />
+                <span className={styles.beaconDot} />
+                <div className={styles.beaconBadge}>
+                  <span className={styles.beaconFlag}>🇬🇧</span>
+                  <span className={styles.beaconTitle}>UK</span>
+                </div>
+              </div>
+
+              <div className={`${styles.globalBeacon} ${styles.beaconDubai}`}>
+                <span className={styles.beaconRing} />
+                <span className={styles.beaconDot} />
+                <div className={styles.beaconBadge}>
+                  <span className={styles.beaconFlag}>🇦🇪</span>
+                  <span className={styles.beaconTitle}>DUBAI</span>
+                </div>
+              </div>
+
+              <div className={`${styles.globalBeacon} ${styles.beaconAus}`}>
+                <span className={styles.beaconRing} />
+                <span className={styles.beaconDot} />
+                <div className={styles.beaconBadge}>
+                  <span className={styles.beaconFlag}>🇦🇺</span>
+                  <span className={styles.beaconTitle}>AUSTRALIA</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* 5 Global Hubs Information Cards Grid */}
+          <div className={styles.globalHubsGrid}>
+            {GLOBAL_HUBS.map((hub, index) => (
+              <FadeUp key={hub.id} delay={index * 0.08}>
+                <div className={styles.globalHubCard}>
+                  <div className={styles.hubCardHeader}>
+                    <span className={styles.hubFlag}>{hub.flag}</span>
+                    <h3 className={styles.hubCountry}>{hub.country}</h3>
+                  </div>
+                  <span className={styles.hubRoleBadge}>{hub.role}</span>
+                  <p className={styles.hubDesc}>{hub.desc}</p>
+                  <div className={styles.hubCodesWrap}>
+                    {hub.codes.map((c) => (
+                      <span key={c} className={styles.hubCodeChip}>{c}</span>
+                    ))}
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
           </div>
-        </FadeUp>
+        </div>
+      </section>
+
+      {/* ══ 4.7 CONTACT FORM SECTION (WHITE BACKGROUND) ═════════ */}
+      <section className={styles.contactSection} aria-label="Contact Us">
+        <div className={styles.contactInner}>
+          <FadeUp className={styles.contactHeader}>
+            <span className={styles.contactEyebrow}>GET IN TOUCH</span>
+            <h2 className={styles.contactH2}>
+              Let's Build Something
+              <br />
+              <span className={styles.contactOrangeText}>Extraordinary.</span>
+            </h2>
+            <p className={styles.contactSubline}>
+              Have a structural, BIM, or MEP engineering project? Submit your inquiry below to schedule a consultation with our licensed PE team.
+            </p>
+          </FadeUp>
+
+          <div className={styles.contactGrid}>
+            {/* Left: Contact Info Card */}
+            <FadeUp delay={0.1} className={styles.contactInfoCard}>
+              <h3 className={styles.infoTitle}>Connect With Us</h3>
+              <p className={styles.infoDesc}>
+                Whether you need preliminary structural feasibility, PE stamping, or complete BIM coordination, our engineers are ready to assist.
+              </p>
+
+              <div className={styles.infoList}>
+                <div className={styles.infoItem}>
+                  <div className={styles.infoIconBox}>
+                    <Mail size={18} strokeWidth={2} color="#FF6A00" />
+                  </div>
+                  <div>
+                    <span className={styles.infoLabel}>Email Inquiries</span>
+                    <a href="mailto:info@faecom.com" className={styles.infoValue}>info@faecom.com</a>
+                    <a href="mailto:max@faecom.com" className={styles.infoValueSub}>max@faecom.com</a>
+                  </div>
+                </div>
+
+                <div className={styles.infoItem}>
+                  <div className={styles.infoIconBox}>
+                    <Phone size={18} strokeWidth={2} color="#FF6A00" />
+                  </div>
+                  <div>
+                    <span className={styles.infoLabel}>Direct Call / Phone</span>
+                    <a href="tel:+12026888858" className={styles.infoValue}>+1 (202)-688-8858</a>
+                    <a href="tel:+12062572889" className={styles.infoValueSub}>+1 (206)-257-2889</a>
+                  </div>
+                </div>
+
+                <div className={styles.infoItem}>
+                  <div className={styles.infoIconBox}>
+                    <MapPin size={18} strokeWidth={2} color="#FF6A00" />
+                  </div>
+                  <div>
+                    <span className={styles.infoLabel}>US Headquarters Office</span>
+                    <span className={styles.infoValueText}>9407 NE Vancouver Mall Dr, Vancouver, WA 98662, United States</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.assuranceBadge}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2" width="20" height="20">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4" />
+                </svg>
+                <span>Licensed PE Engineering • 25+ US States</span>
+              </div>
+            </FadeUp>
+
+            {/* Right: Contact Form Container */}
+            <FadeUp delay={0.2} className={styles.contactFormCard}>
+              {formSubmitted ? (
+                <div className={styles.successState}>
+                  <div className={styles.successIconBox}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#FF6A00" strokeWidth="2.5" width="32" height="32">
+                      <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                      <path d="M22 4L12 14.01l-3-3" />
+                    </svg>
+                  </div>
+                  <h3 className={styles.successTitle}>Inquiry Submitted Successfully!</h3>
+                  <p className={styles.successDesc}>
+                    Thank you for reaching out. A Senior Structural Engineer from FAECOM will review your project details and respond within 24 hours.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setFormSubmitted(false)}
+                    className={styles.resetBtn}
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              ) : (
+                <form className={styles.contactForm} onSubmit={handleFormSubmit}>
+                  <div className={styles.formRow2}>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="contact-name" className={styles.formLabel}>Full Name *</label>
+                      <input
+                        id="contact-name"
+                        type="text"
+                        required
+                        placeholder="John Doe"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className={styles.formInput}
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="contact-email" className={styles.formLabel}>Work Email *</label>
+                      <input
+                        id="contact-email"
+                        type="email"
+                        required
+                        placeholder="john@company.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className={styles.formInput}
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.formRow2}>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="contact-phone" className={styles.formLabel}>Phone Number</label>
+                      <input
+                        id="contact-phone"
+                        type="tel"
+                        placeholder="+1 (555) 000-0000"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className={styles.formInput}
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="contact-service" className={styles.formLabel}>Required Service *</label>
+                      <select
+                        id="contact-service"
+                        value={formData.service}
+                        onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                        className={styles.formSelect}
+                      >
+                        <option value="Structural Engineering">Structural Engineering</option>
+                        <option value="Architectural BIM">Architectural BIM Solutions</option>
+                        <option value="PE Stamping">PE Stamping & Peer Review</option>
+                        <option value="LGSF / Cold Formed">LGSF & Cold-Formed Steel</option>
+                        <option value="ICF Construction">ICF Engineering</option>
+                        <option value="Timber Engineering">Mass Timber Engineering</option>
+                        <option value="MEP Engineering">MEP Engineering</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className={styles.formGroup}>
+                    <label htmlFor="contact-message" className={styles.formLabel}>Project Details / Scope *</label>
+                    <textarea
+                      id="contact-message"
+                      required
+                      rows={4}
+                      placeholder="Describe your project, building location, estimated timeline, or specific engineering requirements..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className={styles.formTextarea}
+                    />
+                  </div>
+
+                  <button type="submit" className={styles.submitBtn}>
+                    <span>Submit Project Inquiry</span>
+                    <ArrowUpRight size={18} strokeWidth={2} />
+                  </button>
+                </form>
+              )}
+            </FadeUp>
+          </div>
+        </div>
       </section>
     </>
   );
