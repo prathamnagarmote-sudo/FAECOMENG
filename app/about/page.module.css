@@ -1,12 +1,12 @@
 /* --- About Hero (Architectural Design) --- */
 .aboutHero {
   position: relative;
-  min-height: 85vh;
+  min-height: 90vh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding: var(--pad) var(--gutter);
   overflow: hidden;
-  background-color: var(--primary); /* Fallback */
+  background-color: var(--primary);
 }
 
 @keyframes kenBurns {
@@ -32,12 +32,36 @@
   background: linear-gradient(to top, rgba(33, 20, 95, 0.9) 0%, rgba(33, 20, 95, 0.4) 60%, rgba(33, 20, 95, 0.1) 100%);
 }
 
-.aboutHeroContent {
+.aboutHeroContentSplit {
   position: relative;
   z-index: 1;
-  max-width: 900px;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+}
+
+.aboutHeroLeft {
+  flex: 1;
+  max-width: 600px;
   color: #fff;
-  padding-bottom: 40px;
+}
+
+.aboutHeroRight {
+  flex: 1;
+  max-width: 500px;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .aboutHeroContentSplit {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
 }
 
 .aboutHeroLabel {
@@ -204,7 +228,19 @@
   padding: clamp(80px, 8vw, 120px) var(--gutter);
   text-align: center;
   overflow: hidden;
-  background: #FFFFFF;
+}
+
+.industriesBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.industriesOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 30, 0.85); /* Deep dark architectural overlay */
+  z-index: 1;
 }
 
 .industriesContent {
@@ -217,7 +253,7 @@
   font-size: 36px;
   font-weight: 800;
   letter-spacing: 0.05em;
-  color: var(--primary);
+  color: #FFFFFF;
   text-transform: uppercase;
   margin-bottom: 16px;
 }
@@ -247,17 +283,23 @@
   transform: translateY(-4px);
 }
 
-.indIcon {
-  color: #000000;
+.indImg {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px; /* Soft rounded square shape */
+  margin-bottom: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
 }
 
 .indTitle {
   font-family: var(--font-body);
   font-size: 17px;
   font-weight: 800;
-  color: #000000;
+  color: #FFFFFF;
   text-transform: uppercase;
   line-height: 1.4;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
 .indSubImages {
@@ -272,8 +314,114 @@
   width: clamp(250px, 28vw, 350px);
   height: 220px;
   object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  border: 2px solid var(--accent);
+}
+
+/* --- Construction Expertise Section --- */
+.construction {
+  position: relative;
+  padding: clamp(60px, 6vw, 80px) var(--gutter);
+  text-align: center;
+  overflow: hidden;
+}
+
+.constructionBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.constructionOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 30, 0.85); /* Deep dark overlay */
+  z-index: 1;
+}
+
+.constructionContent {
+  position: relative;
+  z-index: 2;
+}
+
+.constructionSubtitle {
+  max-width: 800px;
+  margin: 0 auto 48px auto;
+  font-family: var(--font-body);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.constGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+/* --- Featured Projects Section --- */
+.featured {
+  padding: clamp(60px, 6vw, 80px) var(--gutter);
+  text-align: center;
+  background-color: rgba(10, 15, 30, 0.95); /* Changed back to dark background */
+}
+
+.featuredH2 {
+  font-family: var(--font-body);
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #FFFFFF; /* White text for dark background */
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.featuredGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 48px;
+}
+
+.featuredCard {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featuredImg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  filter: brightness(0.85); /* Make slightly darker */
+  border: 2px solid var(--accent); /* Orange border */
+  margin-bottom: 24px;
+}
+
+.featuredTitle {
+  font-family: var(--font-body);
+  font-size: 24px; /* Increased font size as requested */
+  font-weight: 800;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.featuredSubtitle {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
 }
 
 @media(max-width: 1100px) {

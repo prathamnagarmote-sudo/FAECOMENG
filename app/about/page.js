@@ -4,6 +4,7 @@ import CtaSection from '@/components/CtaSection';
 import LeadershipSection from '@/components/LeadershipSection';
 import PEStampingSection from '@/components/PEStampingSection';
 import GlobalMapSection from '@/components/GlobalMapSection';
+import AboutHero from '@/components/AboutHero';
 import { Building2, Globe, ShieldCheck, Users, Store, Building, Home, Briefcase, Factory } from 'lucide-react';
 import { StaggerContainer, FadeUp, ScaleIn, ParallaxImage } from '@/components/Animations';
 import styles from './page.module.css';
@@ -22,35 +23,7 @@ const WHY = [
 export default function About() {
   return (
     <>
-      <section className={styles.aboutHero}>
-        <ParallaxImage className={styles.aboutHeroBg} offset={100}>
-          <Image 
-            src="/images/about_hero_shared.jpg" 
-            alt="FAECOM Architectural Design" 
-            fill 
-            style={{ objectFit: 'cover', objectPosition: 'center' }} 
-            priority
-            quality={90}
-          />
-        </ParallaxImage>
-        <div className={styles.aboutHeroOverlay} />
-        <StaggerContainer className={styles.aboutHeroContent}>
-          <FadeUp>
-            <span className={styles.aboutHeroLabel}>INNOVATION • PRECISION • PERFORMANCE</span>
-          </FadeUp>
-          <FadeUp>
-            <h1 className={styles.aboutHeroTitle}>
-              Designing the Future. <br />
-              <em>Engineering the Impossible.</em>
-            </h1>
-          </FadeUp>
-          <FadeUp>
-            <p className={styles.aboutHeroSubtitle}>
-              At FAECOM, engineering is more than calculations—it's the foundation of visionary architecture. Through advanced structural design, BIM integration, Light Gauge Steel, ICF, Timber, and multidisciplinary collaboration, we deliver intelligent, sustainable, and high-performance solutions that transform ambitious concepts into enduring landmarks.
-            </p>
-          </FadeUp>
-        </StaggerContainer>
-      </section>
+      <AboutHero />
       <div className="divider" />
 
       {/* Who We Are */}
@@ -124,6 +97,11 @@ export default function About() {
 
       {/* Industries We Serve */}
       <section className={styles.industries}>
+        <div className={styles.industriesBg}>
+          <Image src="/images/cta_building.png" alt="Industries Background" fill style={{ objectFit: 'cover' }} quality={70} />
+          <div className={styles.industriesOverlay} />
+        </div>
+        
         <StaggerContainer className={styles.industriesContent}>
           <FadeUp>
             <h2 className={styles.industriesH2}>Industries We Serve</h2>
@@ -132,27 +110,27 @@ export default function About() {
           <FadeUp>
             <div className={styles.indGrid}>
               <div className={styles.indCard}>
-                <Store className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <Image src="/images/industry_retail.png" alt="Retail Spaces" width={140} height={140} className={styles.indImg} />
                 <span className={styles.indTitle}>Retail<br/>Spaces</span>
               </div>
               <div className={styles.indCard}>
-                <Building2 className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <Image src="/images/industry_hotel.png" alt="Hotels" width={140} height={140} className={styles.indImg} />
                 <span className={styles.indTitle}>Hotels</span>
               </div>
               <div className={styles.indCard}>
-                <Building className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <Image src="/images/industry_mixed.png" alt="Mixed-Use Developments" width={140} height={140} className={styles.indImg} />
                 <span className={styles.indTitle}>Mixed-Use<br/>Developments</span>
               </div>
               <div className={styles.indCard}>
-                <Home className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <Image src="/images/industry_multifamily.png" alt="Multifamily Residential" width={140} height={140} className={styles.indImg} />
                 <span className={styles.indTitle}>Multifamily<br/>Residential</span>
               </div>
               <div className={styles.indCard}>
-                <Briefcase className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <Image src="/images/industry_commercial.png" alt="Commercial Offices" width={140} height={140} className={styles.indImg} />
                 <span className={styles.indTitle}>Commercial<br/>Offices</span>
               </div>
               <div className={styles.indCard}>
-                <Factory className={styles.indIcon} size={72} strokeWidth={1.2} />
+                <Image src="/images/industry_industrial.png" alt="Industrial Projects" width={140} height={140} className={styles.indImg} />
                 <span className={styles.indTitle}>Industrial<br/>Projects</span>
               </div>
             </div>
@@ -168,56 +146,92 @@ export default function About() {
         </StaggerContainer>
       </section>
 
+      {/* Construction Expertise */}
+      <section className={styles.construction}>
+        <div className={styles.constructionBg}>
+          <Image src="/images/about_building.png" alt="Construction Background" fill style={{ objectFit: 'cover' }} quality={70} />
+          <div className={styles.constructionOverlay} />
+        </div>
+
+        <StaggerContainer className={styles.constructionContent}>
+          <FadeUp>
+            <h2 className={styles.industriesH2}>Construction Expertise</h2>
+            <div className={styles.whoLblLine} style={{ margin: '0 auto 24px auto' }} />
+          </FadeUp>
+
+          <FadeUp>
+            <p className={styles.constructionSubtitle}>
+              From traditional reinforced concrete to cutting-edge hybrid structural systems, our multidisciplinary teams engineer solutions tailored to the unique demands of every material, ensuring peak performance, sustainability, and construction efficiency.
+            </p>
+          </FadeUp>
+
+          <FadeUp>
+            <div className={styles.constGrid}>
+              <div className={styles.indCard}>
+                <Image src="/images/expertise_icf.png" alt="ICF" width={140} height={140} className={styles.indImg} />
+                <span className={styles.indTitle}>ICF<br/>(Insulated<br/>Concrete Form)</span>
+              </div>
+              <div className={styles.indCard}>
+                <Image src="/images/expertise_steel.png" alt="Structural Steel" width={140} height={140} className={styles.indImg} />
+                <span className={styles.indTitle}>Structural<br/>Steel</span>
+              </div>
+              <div className={styles.indCard}>
+                <Image src="/images/expertise_wood.png" alt="Wood & Timber" width={140} height={140} className={styles.indImg} />
+                <span className={styles.indTitle}>Wood &<br/>Timber</span>
+              </div>
+              <div className={styles.indCard}>
+                <Image src="/images/expertise_lgs.png" alt="Light Gauge Steel" width={140} height={140} className={styles.indImg} />
+                <span className={styles.indTitle}>Light Gauge<br/>Steel</span>
+              </div>
+              <div className={styles.indCard}>
+                <Image src="/images/expertise_rc.png" alt="Reinforced Concrete" width={140} height={140} className={styles.indImg} />
+                <span className={styles.indTitle}>Reinforced<br/>Concrete</span>
+              </div>
+              <div className={styles.indCard}>
+                <Image src="/images/expertise_precast.png" alt="Precast Concrete" width={140} height={140} className={styles.indImg} />
+                <span className={styles.indTitle}>Precast<br/>Concrete</span>
+              </div>
+              <div className={styles.indCard}>
+                <Image src="/images/expertise_hybrid.png" alt="Hybrid Structural Systems" width={140} height={140} className={styles.indImg} />
+                <span className={styles.indTitle}>Hybrid<br/>Structural Systems</span>
+              </div>
+            </div>
+          </FadeUp>
+        </StaggerContainer>
+      </section>
+
       <div className="divider" />
+
+      {/* Featured Projects */}
+      <section className={styles.featured}>
+        <StaggerContainer>
+          <FadeUp>
+            <h2 className={styles.featuredH2}>Featured Projects</h2>
+            <div className={styles.whoLblLine} style={{ margin: '0 auto 48px auto' }} />
+          </FadeUp>
+
+          <FadeUp>
+            <div className={styles.featuredGrid}>
+              <div className={styles.featuredCard}>
+                <Image src="/images/featured_commercial.jpg" alt="Commercial Mixed-Use Project" width={600} height={350} className={styles.featuredImg} />
+                <h3 className={styles.featuredTitle}>COMMERCIAL MIXED-USE PROJECT</h3>
+                <p className={styles.featuredSubtitle}>Structural Design & BIM Modelling</p>
+              </div>
+              <div className={styles.featuredCard}>
+                <Image src="/images/featured_residential.png" alt="Residential Apartment Project" width={600} height={350} className={styles.featuredImg} />
+                <h3 className={styles.featuredTitle}>RESIDENTIAL APARTMENT PROJECT</h3>
+                <p className={styles.featuredSubtitle}>Structural Design & BIM Modelling</p>
+              </div>
+            </div>
+          </FadeUp>
+        </StaggerContainer>
+      </section>
 
       {/* Leadership Team */}
       <LeadershipSection />
 
       {/* Global Impact */}
       <GlobalMapSection />
-
-      {/* PE Stamping States */}
-      <PEStampingSection />
-
-      {/* Why Choose Us */}
-      <section className={styles.why}>
-        <StaggerContainer className={styles.whyHdr}>
-          <div>
-            <FadeUp>
-              <span className="lbl">Why FAECOM</span>
-            </FadeUp>
-            <FadeUp>
-              <h2 className="sec-h2">
-                Built on <em>Trust</em>,<br />
-                Driven by<br />
-                Precision
-              </h2>
-            </FadeUp>
-          </div>
-          <FadeUp>
-            <p className={styles.whyIntro}>
-              We are more than engineers. We are partners in your project success — from the first line on the blueprint to the final bolt on site.
-            </p>
-          </FadeUp>
-        </StaggerContainer>
-        <StaggerContainer className={styles.whyGrid} delayOrder={1}>
-          {WHY.map(w => (
-            <FadeUp key={w.n} className="why-card">
-              <div className="why-card-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="24" height="24">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                </svg>
-              </div>
-              <span className="why-card-num">{w.n}</span>
-              <h3 className="why-card-title">{w.title}</h3>
-              <p className="why-card-desc">{w.desc}</p>
-            </FadeUp>
-          ))}
-        </StaggerContainer>
-      </section>
-
-      <div className="divider" />
-      <CtaSection />
     </>
   );
 }
