@@ -1,4 +1,5 @@
 import styles from './LeadershipSection.module.css';
+import { StaggerContainer, FadeUp } from './Animations';
 
 const LEADERS = [
   {
@@ -22,17 +23,23 @@ export default function LeadershipSection() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <span className="lbl">Executive Leadership</span>
-          <h2 className={styles.title}>Our Leadership Team</h2>
-          <p className={styles.subtitle}>
-            Guided by seasoned structural engineers and AEC industry leaders committed to engineering excellence, innovation, and client success.
-          </p>
-        </div>
+        <StaggerContainer className={styles.header}>
+          <FadeUp>
+            <span className="lbl">Executive Leadership</span>
+          </FadeUp>
+          <FadeUp>
+            <h2 className={styles.title}>Our Leadership Team</h2>
+          </FadeUp>
+          <FadeUp>
+            <p className={styles.subtitle}>
+              Guided by seasoned structural engineers and AEC industry leaders committed to engineering excellence, innovation, and client success.
+            </p>
+          </FadeUp>
+        </StaggerContainer>
 
-        <div className={styles.grid}>
+        <StaggerContainer className={styles.grid} delayOrder={1}>
           {LEADERS.map((leader) => (
-            <div key={leader.name} className={styles.card}>
+            <FadeUp key={leader.name} className={styles.card}>
               <div className={styles.avatarBox}>
                 <div className={styles.avatarInitial}>{leader.name[0]}</div>
                 <div className={styles.avatarBorder} />
@@ -40,9 +47,9 @@ export default function LeadershipSection() {
               <h3 className={styles.name}>{leader.name}</h3>
               <span className={styles.role}>{leader.role}</span>
               <p className={styles.desc}>{leader.desc}</p>
-            </div>
+            </FadeUp>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
