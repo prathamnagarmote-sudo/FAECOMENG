@@ -287,10 +287,10 @@
   position: relative;
   z-index: 10;
   padding: 0 var(--gutter);
-  padding-left: max(var(--gutter), clamp(40px, 7vw, 110px));
+  padding-left: max(var(--gutter), clamp(24px, 5vw, 110px));
   padding-top: 130px;
   padding-bottom: 120px;
-  max-width: 580px;
+  max-width: 660px;
   will-change: opacity;
 }
 
@@ -327,23 +327,30 @@
 
 .heroLineNavy {
   font-family: var(--font-body);
-  font-size: clamp(44px, 5.8vw, 82px);
+  font-size: clamp(28px, 4.4vw, 72px);
   font-weight: 900;
   letter-spacing: -0.03em;
   color: #0F1238;
   text-transform: uppercase;
   display: block;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 .heroLineOrange {
   font-family: var(--font-body);
-  font-size: clamp(44px, 5.8vw, 82px);
+  font-size: clamp(28px, 4.4vw, 72px);
   font-weight: 900;
   letter-spacing: -0.03em;
   color: #FF6B2C;
   text-transform: uppercase;
   display: block;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
 }
+
 
 /* Supporting text matching reference image */
 .heroSub {
@@ -3011,17 +3018,16 @@
 }
 
 @media (max-width: 480px) {
-  .heroWord {
-    font-size: clamp(44px, 12vw, 72px);
-  }
-
-  .heroWordAccent {
-    font-size: clamp(48px, 13vw, 80px);
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(24px, 8vw, 40px);
+    white-space: nowrap;
   }
 
   .statsBar {
     grid-template-columns: repeat(2, 1fr);
   }
+
 
   .floatingLabels {
     display: none;

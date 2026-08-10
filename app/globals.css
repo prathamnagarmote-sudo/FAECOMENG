@@ -103,11 +103,11 @@ img, video, canvas, svg, iframe {
 a   { color: inherit; text-decoration: none; }
 button { border: none; background: none; font-family: inherit; cursor: pointer; }
 
-/* Prevent text overflow in flex/grid items */
-h1, h2, h3, h4, h5, h6, p, span, a {
+/* Prevent text overflow safely without forcing mid-word breaks */
+p, code, pre {
   overflow-wrap: break-word;
-  word-break: break-word;
 }
+
 
 /* ── SECTION LABEL ──────────────────────────────────────────── */
 .lbl {
