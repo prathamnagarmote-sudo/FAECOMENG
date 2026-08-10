@@ -2934,13 +2934,76 @@
 }
 
 @media (max-width: 1024px) {
-  .heroContent {
-    max-width: 100%;
-    padding-bottom: 280px;
+  .hero {
+    min-height: auto;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    justify-content: flex-start;
   }
 
-  .hero3dWrap {
-    opacity: 0.4;
+  .cadFilterBar {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin: 80px var(--gutter, 20px) 10px;
+    width: calc(100% - (var(--gutter, 20px) * 2));
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    z-index: 25;
+  }
+
+  .heroContent {
+    max-width: 100%;
+    padding: 20px var(--gutter, 20px) 0;
+    z-index: 10;
+  }
+
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(24px, 7.2vw, 46px);
+    line-height: 1.05;
+    white-space: nowrap;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .heroSub {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 100%;
+  }
+
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .heroBtnPrimary,
+  .heroBtnGhost {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 12px;
+  }
+
+  .heroBg {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: clamp(300px, 45vh, 440px);
+    margin-top: 10px;
+    margin-bottom: 20px;
+    z-index: 2;
+  }
+
+  .annotations {
+    display: none;
   }
 
   .phaseIndicator {
@@ -3020,14 +3083,13 @@
 @media (max-width: 480px) {
   .heroLineNavy,
   .heroLineOrange {
-    font-size: clamp(24px, 8vw, 40px);
+    font-size: clamp(20px, 6.8vw, 32px);
     white-space: nowrap;
   }
 
   .statsBar {
     grid-template-columns: repeat(2, 1fr);
   }
-
 
   .floatingLabels {
     display: none;
@@ -3037,6 +3099,7 @@
     grid-template-columns: 1fr;
   }
 }
+
 
 @media (min-width: 2000px) {
   .heroWord {
