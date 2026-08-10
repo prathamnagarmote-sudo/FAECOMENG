@@ -2,8 +2,8 @@
 
 /* ─────────────────────────────────────────────────────────────
    FAECOM INC — Design System
-   Brand: Architecture + BIM + Structural + MEP
-   Feel: Apple · Porsche · Zaha Hadid · Foster + Partners
+   Universal Dynamic Responsive System for All Device Viewports
+   Smartphones (320px - 480px) · Tablets (600px - 1024px) · Laptops (1280px - 1440px) · 4K / Smart TVs (1920px+)
 ───────────────────────────────────────────────────────────── */
 
 /* ── DESIGN TOKENS ─────────────────────────────────────────── */
@@ -46,8 +46,8 @@
   --font-mono:     'SF Mono', 'Fira Code', 'Courier New', monospace;
 
   /* Spacing */
-  --pad:    clamp(80px, 10vw, 140px);
-  --gutter: clamp(24px, 6vw, 96px);
+  --pad:    clamp(60px, 8vw, 140px);
+  --gutter: clamp(16px, 4vw, 80px);
   --max-w:  1360px;
 
   /* Easing */
@@ -67,7 +67,7 @@
   --shadow-accent:  0 8px 36px rgba(255, 107, 44, 0.30);
 }
 
-/* ── RESET ──────────────────────────────────────────────────── */
+/* ── RESET & UNIVERSAL BOX SCALING ──────────────────────────── */
 *, *::before, *::after {
   margin: 0; padding: 0;
   box-sizing: border-box;
@@ -75,11 +75,13 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   overflow-x: hidden;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizeSpeed;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -88,12 +90,24 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
-img { display: block; max-width: 100%; }
+img, video, canvas, svg, iframe {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 a   { color: inherit; text-decoration: none; }
 button { border: none; background: none; font-family: inherit; cursor: pointer; }
-svg { display: block; }
+
+/* Prevent text overflow in flex/grid items */
+h1, h2, h3, h4, h5, h6, p, span, a {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 
 /* ── SECTION LABEL ──────────────────────────────────────────── */
 .lbl {
@@ -101,7 +115,7 @@ svg { display: block; }
   align-items: center;
   gap: 12px;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: clamp(8px, 1vw, 11px);
   letter-spacing: 0.28em;
   color: var(--accent);
   text-transform: uppercase;
@@ -118,7 +132,7 @@ svg { display: block; }
   align-items: center;
   gap: 12px;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: clamp(8px, 1vw, 11px);
   letter-spacing: 0.28em;
   color: var(--primary);
   text-transform: uppercase;
@@ -135,7 +149,7 @@ svg { display: block; }
   align-items: center;
   gap: 12px;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: clamp(8px, 1vw, 11px);
   letter-spacing: 0.28em;
   color: rgba(255, 107, 44, 0.85);
   text-transform: uppercase;
@@ -154,19 +168,22 @@ svg { display: block; }
 .btn-primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: var(--primary);
   color: #FFF;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: clamp(9px, 1vw, 11px);
   font-weight: 600;
   letter-spacing: 0.20em;
   text-transform: uppercase;
-  padding: 18px 38px;
+  padding: 16px 32px;
+  min-height: 48px;
   position: relative;
   overflow: hidden;
   transition: color 0.4s var(--ease-expo), box-shadow 0.4s;
   box-shadow: var(--shadow-primary);
+  border-radius: 8px;
 }
 .btn-primary::before {
   content: '';
@@ -182,19 +199,22 @@ svg { display: block; }
 .btn-accent {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: var(--accent);
   color: #FFF;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: clamp(9px, 1vw, 11px);
   font-weight: 600;
   letter-spacing: 0.20em;
   text-transform: uppercase;
-  padding: 18px 38px;
+  padding: 16px 32px;
+  min-height: 48px;
   position: relative;
   overflow: hidden;
   transition: color 0.4s var(--ease-expo), box-shadow 0.4s;
   box-shadow: var(--shadow-accent);
+  border-radius: 8px;
 }
 .btn-accent::before {
   content: '';
@@ -209,15 +229,18 @@ svg { display: block; }
 .btn-outline {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: transparent;
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: clamp(9px, 1vw, 11px);
   letter-spacing: 0.20em;
   text-transform: uppercase;
-  padding: 17px 38px;
+  padding: 16px 32px;
+  min-height: 48px;
   border: 1.5px solid var(--gray-300);
+  border-radius: 8px;
   transition: border-color 0.35s, color 0.35s, background 0.35s;
 }
 .btn-outline:hover {
@@ -229,15 +252,18 @@ svg { display: block; }
 .btn-outline-w {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: transparent;
-  color: rgba(255,255,255,0.80);
+  color: rgba(255,255,255,0.85);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: clamp(9px, 1vw, 11px);
   letter-spacing: 0.20em;
   text-transform: uppercase;
-  padding: 17px 38px;
-  border: 1.5px solid rgba(255,255,255,0.20);
+  padding: 16px 32px;
+  min-height: 48px;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  border-radius: 8px;
   transition: border-color 0.35s, color 0.35s, background 0.35s;
 }
 .btn-outline-w:hover {
@@ -251,7 +277,7 @@ svg { display: block; }
   align-items: center;
   gap: 10px;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.20em;
   text-transform: uppercase;
   color: var(--muted);
@@ -267,13 +293,80 @@ svg { display: block; }
   background: var(--border);
 }
 
-/* ── RESPONSIVE ─────────────────────────────────────────────── */
-@media (max-width: 1200px) { :root { --gutter: 56px; } }
-@media (max-width: 900px)  { :root { --gutter: 32px; } }
-@media (max-width: 640px)  { :root { --gutter: 20px; } }
+/* ── DYNAMIC DEVICE BREAKPOINTS & CONTAINER SCALING ──────────── */
+
+/* Smart TVs & Ultra-Wide Desktops (1920px and up) */
+@media (min-width: 1920px) {
+  :root {
+    --max-w: 1680px;
+    --gutter: 80px;
+  }
+  body {
+    font-size: 17px;
+  }
+}
+
+/* Standard Desktops & Laptops (1200px - 1919px) */
+@media (max-width: 1440px) {
+  :root { --max-w: 1280px; }
+}
+
+@media (max-width: 1200px) {
+  :root { --gutter: 40px; --pad: clamp(60px, 8vw, 100px); }
+}
+
+/* Tablets (Portrait & Small Landscape: 768px - 1024px) */
+@media (max-width: 1024px) {
+  :root { --gutter: 28px; --pad: clamp(50px, 7vw, 80px); }
+  
+  /* Touch target sizes */
+  button, input, select, textarea, a.btn-primary, a.btn-accent, a.btn-outline {
+    min-height: 44px;
+  }
+}
+
+/* Smartphones (Landscape & Large Phones: 480px - 767px) */
+@media (max-width: 767px) {
+  :root { --gutter: 20px; --pad: clamp(40px, 6vw, 64px); }
+  
+  .btn-primary, .btn-accent, .btn-outline, .btn-outline-w {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 11px;
+  }
+}
+
+/* Smartphones Small (320px - 479px) */
+@media (max-width: 479px) {
+  :root { --gutter: 16px; --pad: 40px; }
+}
 
 /* ── HIDE SCROLLBAR (Lenis handles it) ──────────────────────── */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
+
+/* ── PERFORMANCE & HARDWARE ACCELERATION ─────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+}
+
+.proj-card {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ── PREFERS-REDUCED-MOTION ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

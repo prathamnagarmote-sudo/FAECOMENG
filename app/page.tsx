@@ -1,9 +1,9 @@
 'use client';
-import { useRef, useState, useEffect, lazy, Suspense } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionValue, animate, useSpring } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring, animate } from 'framer-motion';
 import { ArrowUpRight, ArrowRight, ChevronDown, Mail, Phone, MapPin } from 'lucide-react';
 import styles from './page.module.css';
 
@@ -13,17 +13,30 @@ const HeroScene3D = dynamic(() => import('@/components/HeroScene3D'), {
   loading: () => <div className={styles.scenePlaceholder} />,
 });
 
-/* ── Animation Wrappers ──────────────────────────────────────── */
+/* ── Reduced-Motion aware animation wrappers ─────────────────── */
+function useReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReduced(mq.matches);
+    const onChange = () => setReduced(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+  return reduced;
+}
+
 function FadeUp({ children, delay = 0, className }: {
   children: React.ReactNode; delay?: number; className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const reduced = useReducedMotion();
   return (
     <motion.div ref={ref} className={className}
-      initial={{ opacity: 0, y: 48 }}
+      initial={reduced ? false : { opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay }}
+      transition={{ duration: reduced ? 0 : 0.55, ease: [0.22, 1, 0.36, 1], delay: reduced ? 0 : delay }}
     >{children}</motion.div>
   );
 }
@@ -33,11 +46,12 @@ function FadeIn({ children, delay = 0, className }: {
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
+  const reduced = useReducedMotion();
   return (
     <motion.div ref={ref} className={className}
-      initial={{ opacity: 0 }}
+      initial={reduced ? false : { opacity: 0 }}
       animate={inView ? { opacity: 1 } : {}}
-      transition={{ duration: 1.0, ease: 'easeOut', delay }}
+      transition={{ duration: reduced ? 0 : 0.5, ease: 'easeOut', delay: reduced ? 0 : delay }}
     >{children}</motion.div>
   );
 }
@@ -47,11 +61,12 @@ function SlideIn({ children, delay = 0, className, dir = 'left' }: {
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
+  const reduced = useReducedMotion();
   return (
     <motion.div ref={ref} className={className}
-      initial={{ opacity: 0, x: dir === 'left' ? -60 : 60 }}
+      initial={reduced ? false : { opacity: 0, x: dir === 'left' ? -40 : 40 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay }}
+      transition={{ duration: reduced ? 0 : 0.55, ease: [0.22, 1, 0.36, 1], delay: reduced ? 0 : delay }}
     >{children}</motion.div>
   );
 }
@@ -59,19 +74,160 @@ function SlideIn({ children, delay = 0, className, dir = 'left' }: {
 function Stagger({ children, className }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
+  const reduced = useReducedMotion();
   return (
     <motion.div ref={ref} className={className}
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
-      variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09 } } }}
+      variants={{ hidden: {}, visible: { transition: { staggerChildren: reduced ? 0 : 0.07 } } }}
     >{children}</motion.div>
   );
 }
 
 const itemV = {
-  hidden: { opacity: 0, y: 36 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' as const } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
 };
+
+/* ── Stacked Draggable Carousel ──────────────────────────────── */
+type CarouselSlide = {
+  img: string;
+  title: string;
+  loc: string;
+  badge: string;
+  href: string;
+};
+
+const CAROUSEL_SLIDES: CarouselSlide[] = [
+  { img: '/images/project_elm_st.png',       title: 'ELM ST Unit',            loc: 'Manchester, New Hampshire, USA',      badge: 'Multi-Family',      href: '/projects' },
+  { img: '/images/project_sugar_villa.png',  title: 'SUGAR VILLA',            loc: 'Little Exuma, Bahamas',              badge: 'Luxury Estate',     href: '/projects' },
+  { img: '/images/project_children_bldg.png',title: 'Children Building',      loc: '2714 Goat Creek Rd, Kerrville, TX',  badge: 'Educational',       href: '/projects' },
+  { img: '/images/project_nelson_care.png',  title: 'Nelson Senior Home Care',loc: 'Unit Center, USA',                   badge: 'Senior Living',     href: '/projects' },
+  { img: '/images/project_tm_heights.png',   title: 'TM HEIGHTS',             loc: 'Residential Apartment, USA',         badge: 'Apartment Complex', href: '/projects' },
+  { img: '/images/project_wheel_house.png',  title: 'Wheel House ADU',        loc: 'Modular ADU, USA',                   badge: 'Steel Frame ADU',   href: '/projects' },
+  { img: '/images/project_khan_house.png',   title: 'Khan House',             loc: 'Residential House, Canada',          badge: 'Mass Timber',       href: '/projects' },
+  { img: '/images/project_senior_center.png',title: 'Nelson Care II',         loc: 'Unit Center Phase II, USA',          badge: 'Senior Living',     href: '/projects' },
+];
+
+function useCarouselConfig() {
+  const [cfg, setCfg] = useState({ xMul: 200, yMul: 45, rotMul: 13, scaleR: 0.13, distDiv: 220, velDiv: 850, sensitivity: 260 });
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 640) setCfg({ xMul: 100, yMul: 22, rotMul: 7, scaleR: 0.07, distDiv: 120, velDiv: 500, sensitivity: 180 });
+      else if (w < 1024) setCfg({ xMul: 145, yMul: 32, rotMul: 10, scaleR: 0.10, distDiv: 165, velDiv: 660, sensitivity: 225 });
+      else setCfg({ xMul: 200, yMul: 45, rotMul: 13, scaleR: 0.13, distDiv: 220, velDiv: 850, sensitivity: 260 });
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+  return cfg;
+}
+
+function StackedCarouselCard({
+  slide, index, total, progress, cfg,
+}: {
+  slide: CarouselSlide; index: number; total: number;
+  progress: ReturnType<typeof useMotionValue<number>>;
+  cfg: ReturnType<typeof useCarouselConfig>;
+}) {
+
+
+  const offset = useTransform(progress, (p: number) => {
+    let diff = (index - p) % total;
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
+    return diff;
+  });
+
+  const x      = useTransform(offset, (o: number) => o * cfg.xMul);
+  const rotate = useTransform(offset, (o: number) => Math.abs(o) < 0.05 ? 0 : o * cfg.rotMul);
+  const y      = useTransform(offset, (o: number) => Math.abs(o) < 0.05 ? 0 : Math.abs(o) * cfg.yMul);
+  const scale  = useTransform(offset, (o: number) => 1 - Math.abs(o) * cfg.scaleR);
+  const opacity = useTransform(offset,
+    [-total / 2, -total / 2 + 0.5, 0, total / 2 - 0.5, total / 2],
+    [0, 1, 1, 1, 0],
+  );
+  const zIndex  = useTransform(offset, (o: number) => Math.round(100 - Math.abs(o) * 10));
+  const dimOverlay = useTransform(offset, [-2, -0.5, 0, 0.5, 2], [0.55, 0.22, 0, 0.22, 0.55]);
+  const titleOpacity = useTransform(offset, [-0.5, 0, 0.5], [0, 1, 0]);
+
+  return (
+    <motion.div
+      style={{ x, rotate, y, scale, opacity, zIndex, position: 'absolute' }}
+      className={styles.cCard}
+    >
+      <Image
+        src={slide.img}
+        alt={slide.title}
+        fill
+        quality={88}
+        sizes="(max-width:640px) 176px, (max-width:1024px) 240px, 300px"
+        style={{ objectFit: 'cover', pointerEvents: 'none' }}
+      />
+
+      {/* dim overlay for non-center cards */}
+      <motion.div
+        style={{ opacity: dimOverlay }}
+        className={styles.cDimOverlay}
+      />
+
+      {/* gradient bottom */}
+      <div className={styles.cGradient} />
+
+      {/* badge top-right */}
+      <div className={styles.cBadge}>{slide.badge}</div>
+
+      {/* center card text */}
+      <div className={styles.cMeta}>
+        <motion.p style={{ opacity: titleOpacity }} className={styles.cTitle}>
+          {slide.title}
+        </motion.p>
+        <motion.p style={{ opacity: titleOpacity }} className={styles.cLoc}>
+          {slide.loc}
+        </motion.p>
+      </div>
+    </motion.div>
+  );
+}
+
+function StackedCarousel({ slides }: { slides: CarouselSlide[] }) {
+  const progress = useMotionValue(0);
+  const startRef = useRef(0);
+  const cfg = useCarouselConfig();
+  const total = slides.length;
+
+  return (
+    <div className={styles.cWrap}>
+      {/* drag surface — sits on top of all cards */}
+      <motion.div
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        onDragStart={() => { startRef.current = progress.get(); }}
+        onDrag={(_, info) => { progress.set(progress.get() - info.delta.x / cfg.sensitivity); }}
+        onDragEnd={(_, info) => {
+          const shift = Math.round(-info.offset.x / cfg.distDiv + -info.velocity.x / cfg.velDiv);
+          const clamped = Math.max(-3, Math.min(3, shift));
+          animate(progress, Math.round(startRef.current) + clamped, {
+            type: 'spring', stiffness: 200, damping: 30, mass: 1,
+          });
+        }}
+        className={styles.cDragSurface}
+      />
+      {slides.map((slide, i) => (
+        <StackedCarouselCard
+          key={slide.title + i}
+          slide={slide}
+          index={i}
+          total={total}
+          progress={progress}
+          cfg={cfg}
+        />
+      ))}
+    </div>
+  );
+}
 
 /* ── Animated Counter Component ──────────────────────────────── */
 function AnimatedCounter({ value, duration = 1.4 }: { value: string; duration?: number }) {
@@ -437,52 +593,50 @@ export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
   const [phase, setPhase] = useState(0);
   const [activeFilter, setActiveFilter] = useState<'all' | 'structure' | 'arch' | 'bim' | 'mep'>('all');
+  const reduced = useReducedMotion();
 
+  // Hero mouse tilt — only active on non-reduced-motion devices
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  // Tighter spring = less lag frames
+  const tiltX = useSpring(useTransform(mouseY, [-0.5, 0.5], [2, -2]), { stiffness: 120, damping: 35, mass: 0.5 });
+  const tiltY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-2, 2]), { stiffness: 120, damping: 35, mass: 0.5 });
+  const annotDepthX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), { stiffness: 120, damping: 35, mass: 0.5 });
 
-  // Ultra-smooth physics for 3D tilt & parallax depth
-  const tiltX = useSpring(useTransform(mouseY, [-0.5, 0.5], [3, -3]), { stiffness: 60, damping: 25 });
-  const tiltY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-3, 3]), { stiffness: 60, damping: 25 });
-  const annotDepthX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 70, damping: 25 });
-
-  const handleHeroMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const handleHeroMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    if (reduced) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
+    mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+    mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+  }, [reduced, mouseX, mouseY]);
 
-  // PE Stamping 3D Tilt Motion
+  // PE Stamping 3D Tilt — reduced range & tighter spring
   const peMouseX = useMotionValue(0);
   const peMouseY = useMotionValue(0);
-  const peTiltX = useSpring(useTransform(peMouseY, [-0.5, 0.5], [6, -6]), { stiffness: 70, damping: 20 });
-  const peTiltY = useSpring(useTransform(peMouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 70, damping: 20 });
-  const peMapDepthX = useSpring(useTransform(peMouseX, [-0.5, 0.5], [-12, 12]), { stiffness: 80, damping: 20 });
+  const peTiltX = useSpring(useTransform(peMouseY, [-0.5, 0.5], [3, -3]), { stiffness: 140, damping: 35, mass: 0.4 });
+  const peTiltY = useSpring(useTransform(peMouseX, [-0.5, 0.5], [-4, 4]), { stiffness: 140, damping: 35, mass: 0.4 });
+  const peMapDepthX = useSpring(useTransform(peMouseX, [-0.5, 0.5], [-6, 6]), { stiffness: 150, damping: 40, mass: 0.4 });
 
-  const handlePeMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const handlePeMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    if (reduced) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    peMouseX.set(x);
-    peMouseY.set(y);
-  };
+    peMouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+    peMouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+  }, [reduced, peMouseX, peMouseY]);
 
-  // Global Engineering Work 3D Motion
+  // Global Engineering Work 3D Motion — reduced range
   const globalMouseX = useMotionValue(0);
   const globalMouseY = useMotionValue(0);
-  const globalTiltX = useSpring(useTransform(globalMouseY, [-0.5, 0.5], [6, -6]), { stiffness: 70, damping: 20 });
-  const globalTiltY = useSpring(useTransform(globalMouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 70, damping: 20 });
-  const globalMapDepthX = useSpring(useTransform(globalMouseX, [-0.5, 0.5], [-10, 10]), { stiffness: 80, damping: 20 });
+  const globalTiltX = useSpring(useTransform(globalMouseY, [-0.5, 0.5], [3, -3]), { stiffness: 140, damping: 35, mass: 0.4 });
+  const globalTiltY = useSpring(useTransform(globalMouseX, [-0.5, 0.5], [-4, 4]), { stiffness: 140, damping: 35, mass: 0.4 });
+  const globalMapDepthX = useSpring(useTransform(globalMouseX, [-0.5, 0.5], [-5, 5]), { stiffness: 150, damping: 40, mass: 0.4 });
 
-  const handleGlobalMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const handleGlobalMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    if (reduced) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    globalMouseX.set(x);
-    globalMouseY.set(y);
-  };
+    globalMouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+    globalMouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+  }, [reduced, globalMouseX, globalMouseY]);
 
   // Contact Form State
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -504,28 +658,24 @@ export default function Home() {
     offset: ['start start', 'end start'],
   });
 
-  // Spring physics wrapper for buttery smooth Lenis-style scroll inertia
-  const smoothScroll = useSpring(scrollYProgress, { stiffness: 80, damping: 22, restDelta: 0.001 });
-
-  // Split-Curtain 3D Parallax Exit Motion on Scroll
-  // Left items move LEFT (-x), Right items move RIGHT (+x)
-  const heroOpacity = useTransform(smoothScroll, [0, 0.45], [1, 0]);
-  const heroY = useTransform(smoothScroll, [0, 0.5], [0, -20]);
-  const leftX = useTransform(smoothScroll, [0, 0.5], [0, -140]);
-  const rightX = useTransform(smoothScroll, [0, 0.5], [0, 140]);
-  const bgScale = useTransform(smoothScroll, [0, 0.5], [1, 1.04]);
-  const leftAnnotX = useTransform(smoothScroll, [0, 0.5], [0, -100]);
-  const rightAnnotX = useTransform(smoothScroll, [0, 0.5], [0, 100]);
+  // Use scrollYProgress directly — no double-spring wrapper (that caused double-frame lag)
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -15]);
+  const leftX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : -80]);
+  const rightX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : 80]);
+  const bgScale = useTransform(scrollYProgress, [0, 0.5], [1, reduced ? 1 : 1.03]);
+  const leftAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : -60]);
+  const rightAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : 60]);
 
   // Sync 3D building phase with scroll
   useEffect(() => {
     const unsub = scrollYProgress.on('change', (v) => {
-      if (v < 0.08) setPhase(0); // blueprint
-      else if (v < 0.18) setPhase(1); // steel frame
-      else if (v < 0.30) setPhase(2); // concrete
-      else if (v < 0.42) setPhase(3); // MEP
-      else if (v < 0.55) setPhase(4); // glass
-      else setPhase(5); // complete
+      if (v < 0.08) setPhase(0);
+      else if (v < 0.18) setPhase(1);
+      else if (v < 0.30) setPhase(2);
+      else if (v < 0.42) setPhase(3);
+      else if (v < 0.55) setPhase(4);
+      else setPhase(5);
     });
     return () => unsub();
   }, [scrollYProgress]);
@@ -843,7 +993,7 @@ export default function Home() {
         <div className={styles.cornerBR} aria-hidden />
       </section>
 
-      {/* ══ 2. OUR SERVICES — White Reference-Style Grid ════════ */}
+      {/* ══ 2. OUR SERVICES — Reference-Style Grid ════════ */}
       <section className={styles.servSection} aria-label="Our Services">
         <div className={styles.servInner}>
 
@@ -863,7 +1013,7 @@ export default function Home() {
             </Link>
           </FadeUp>
 
-          {/* 9-Card Award-Winning Architectural Grid */}
+          {/* 3-Column Card Grid */}
           <div className={styles.servGrid}>
             {SERVICES.map((svc, i) => (
               <FadeUp key={svc.href} delay={i * 0.05}>
@@ -932,58 +1082,28 @@ export default function Home() {
             </FadeUp>
           </div>
 
-          {/* 8-Card Award-Winning 3D Grid */}
-          <div className={styles.projGrid}>
-            {PROJECTS.map((proj, i) => (
-              <FadeUp key={proj.id} delay={i * 0.06}>
-                <Link href="/projects" className={styles.projCard}>
-                  {/* Frosted Glass Logo Badge */}
-                  <div className={styles.projLogoBadge}>
-                    <Image
-                      src="/images/logo.png"
-                      alt="FAECOM INC."
-                      width={20}
-                      height={20}
-                      style={{ objectFit: 'contain' }}
-                    />
-                    <span className={styles.projLogoText}>FAECOM</span>
-                  </div>
+          {/* Stacked Draggable Carousel */}
+          <FadeIn delay={0.1}>
+            <StackedCarousel slides={CAROUSEL_SLIDES} />
+          </FadeIn>
 
-                  {/* Category Pill Badge */}
-                  <div className={styles.projCategoryBadge}>{proj.catLabel}</div>
+          {/* Drag hint */}
+          <div className={styles.cDragHint}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="14" height="14">
+              <path d="M14 8l-4 4 4 4"/>
+            </svg>
+            <span>drag to explore</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="14" height="14">
+              <path d="M10 8l4 4-4 4"/>
+            </svg>
+          </div>
 
-                  {/* Image Container with Laser Scan FX */}
-                  <div className={styles.projCardImg}>
-                    <Image
-                      src={proj.img}
-                      alt={proj.title}
-                      fill
-                      quality={88}
-                      sizes="(max-width: 900px) 90vw, 25vw"
-                      style={{ objectFit: 'cover' }}
-                    />
-                    <div className={styles.projCardLaserLine} />
-                    <div className={styles.projCardGradientOverlay} />
-                  </div>
-
-                  {/* Card Bottom Meta */}
-                  <div className={styles.projCardBody}>
-                    <h3 className={styles.projCardTitle}>{proj.title}</h3>
-                    <p className={styles.projCardLoc}>{proj.loc}</p>
-                    <div className={styles.projCardFooter}>
-                      <div className={styles.projCardTags}>
-                        {proj.services.map(s => (
-                          <span key={s} className={styles.projTag}>{s}</span>
-                        ))}
-                      </div>
-                      <div className={styles.projCardArrowBtn}>
-                        <ArrowUpRight size={14} strokeWidth={2.5} />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </FadeUp>
-            ))}
+          {/* CTA row below carousel */}
+          <div className={styles.cCtaRow}>
+            <Link href="/projects" className={styles.projViewAll}>
+              <span>View All 50+ Projects</span>
+              <ArrowUpRight size={13} strokeWidth={2} />
+            </Link>
           </div>
         </div>
       </section>

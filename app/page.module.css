@@ -697,10 +697,10 @@
 }
 
 
-/* ══ 2. SERVICES — Award-Winning Architectural Blueprint Grid ══ */
+/* ══ 2. OUR SERVICES — Architectural Blueprint Grid ════════════ */
 .servSection {
   background-color: #F8FAFC;
-  background-image: 
+  background-image:
     linear-gradient(rgba(15, 18, 56, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(15, 18, 56, 0.035) 1px, transparent 1px);
   background-size: 32px 32px;
@@ -794,14 +794,14 @@
   box-shadow: 0 8px 24px rgba(15, 18, 56, 0.18);
 }
 
-/* ── Card Grid — 3 per row spacious 28px layout ─────────────── */
+/* ── Card Grid — 3 per row ───────────────────────────────────── */
 .servGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
 }
 
-/* ── Individual Standalone Card ─────────────────────────────── */
+/* ── Individual Card ─────────────────────────────────────────── */
 .servCard {
   position: relative;
   display: flex;
@@ -864,7 +864,7 @@
   transform: scale(1.08);
 }
 
-/* ── Card Left: Text Content ─────────────────────────────────── */
+/* ── Card Content ─────────────────────────────────────────────── */
 .servCardTop {
   flex: 1;
   padding: 26px 18px 24px 26px;
@@ -918,7 +918,7 @@
   transform: rotate(45deg) scale(1.25);
 }
 
-/* ── Arrow Button (Bottom Left) ─────────────────────────────── */
+/* ── Arrow Button ────────────────────────────────────────────── */
 .servCardArrowBtn {
   width: 36px;
   height: 36px;
@@ -940,7 +940,7 @@
   box-shadow: 0 6px 18px rgba(255, 107, 44, 0.4);
 }
 
-/* ── Card Right: Engineering Image & Laser Scan ─────────────── */
+/* ── Card Right: Engineering Image ──────────────────────────── */
 .servCardImg {
   width: 145px;
   flex-shrink: 0;
@@ -980,7 +980,7 @@
   100% { top: 110%; }
 }
 
-/* ── Responsive Grid ─────────────────────────────────────────── */
+/* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1200px) {
   .servGrid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
 }
@@ -996,11 +996,168 @@
 /* ══ 3. LATEST PROJECTS — Award-Winning 3D Gallery Grid ═════ */
 .projSection {
   padding: clamp(80px, 10vw, 128px) var(--gutter);
-  background-color: #F8FAFC;
-  background-image: 
-    linear-gradient(rgba(15, 18, 56, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 18, 56, 0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-color: #050d1e;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: none;
+  overflow: hidden;
+}
+
+/* ── Stacked Carousel Wrapper ────────────────────────────────── */
+.cWrap {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  user-select: none;
+}
+
+/* ── Invisible drag surface — covers the whole wrap area ──────── */
+.cDragSurface {
+  position: absolute;
+  inset: 0;
+  z-index: 200;
+  cursor: grab;
+}
+.cDragSurface:active {
+  cursor: grabbing;
+}
+
+/* ── Individual card ─────────────────────────────────────────── */
+.cCard {
+  position: absolute;
+  width: 176px;
+  height: 240px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0A1D44;
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(255,255,255,0.06);
+  pointer-events: none;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@media (min-width: 640px) {
+  .cCard { width: 240px; height: 330px; }
+  .cWrap { height: 500px; }
+}
+
+@media (min-width: 1024px) {
+  .cCard { width: 300px; height: 420px; }
+  .cWrap { height: 580px; }
+}
+
+/* ── Dim overlay for non-center cards ────────────────────────── */
+.cDimOverlay {
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Gradient from bottom for text legibility ────────────────── */
+.cGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 45%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ── Badge top-right ─────────────────────────────────────────── */
+.cBadge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #0A1D44;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 100px;
+}
+
+/* ── Card bottom meta (title + location) ─────────────────────── */
+.cMeta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 16px 18px;
+  z-index: 10;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .cMeta { text-align: left; }
+}
+
+.cTitle {
+  font-size: 14px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+@media (min-width: 640px) {
+  .cTitle { font-size: 17px; }
+}
+
+@media (min-width: 1024px) {
+  .cTitle { font-size: 19px; }
+}
+
+.cLoc {
+  font-size: 10px;
+  color: rgba(255,255,255,0.62);
+  font-style: italic;
+  font-weight: 500;
+  margin: 0;
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .cLoc { display: block; }
+}
+
+/* ── Drag hint row below carousel ────────────────────────────── */
+.cDragHint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 32px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ── CTA button row below drag hint ─────────────────────────── */
+.cCtaRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
 }
 
 .projInner {
@@ -1044,7 +1201,7 @@
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.03em;
-  color: #0F1238;
+  color: #FFFFFF;
   margin: 0;
 }
 
@@ -1064,23 +1221,23 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #0F1238;
-  border: 1.5px solid rgba(15, 18, 56, 0.25);
-  padding: 12px 22px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.8);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255, 107, 44, 0.5);
+  padding: 14px 28px;
+  border-radius: 10px;
+  background: rgba(255, 107, 44, 0.12);
   backdrop-filter: blur(8px);
-  transition: background 0.35s, color 0.35s, gap 0.35s, border-color 0.35s, box-shadow 0.35s;
+  transition: background 0.3s, color 0.3s, gap 0.3s, border-color 0.3s, box-shadow 0.3s;
   white-space: nowrap;
   align-self: flex-end;
 }
 
 .projViewAll:hover {
-  background: #0F1238;
+  background: #FF6B2C;
   color: #FFFFFF;
   gap: 14px;
-  border-color: #0F1238;
-  box-shadow: 0 8px 24px rgba(15, 18, 56, 0.18);
+  border-color: #FF6B2C;
+  box-shadow: 0 8px 28px rgba(255, 107, 44, 0.35);
 }
 
 /* ── 8-Card 4-Column Grid ───────────────────────────────────── */
@@ -2882,5 +3039,88 @@
 
   .heroWordAccent {
     font-size: 156px;
+  }
+}
+
+/* ══ PERFORMANCE: GPU COMPOSITING HINTS ═══════════════════════
+   Promote animated elements to their own GPU layers so the
+   browser can composite them without triggering layout or paint.
+   Use `will-change` sparingly — only on elements Framer Motion
+   actually animates (opacity / transform).
+══════════════════════════════════════════════════════════════ */
+
+/* Hero section: background image + content are the main movers */
+.heroBg {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.heroContent {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.laserScanLine {
+  will-change: top, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Project cards: hover image-zoom is paint-expensive without GPU layer */
+.projCard {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.projCardImg img {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* PE + Global sections: 3D tilt panels */
+.peSection {
+  contain: layout style;
+}
+
+/* Annotation floaters that parallax on scroll */
+.annot {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ══ PERFORMANCE: REDUCE BACKDROP-FILTER COST ON SCROLL ══════
+   Backdrop-filter is expensive. Only apply when element is in
+   viewport (via the motion animation) — CSS can't do this, but
+   we can lower the blur radius to ease GPU fill rate.
+══════════════════════════════════════════════════════════════ */
+.cadFilterBar,
+.heroAnnotBox {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ══ PREFERS-REDUCED-MOTION ═══════════════════════════════════
+   Global * rule lives in globals.css. This block handles only
+   the module-scoped animated elements.
+══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .projCard,
+  .projCardImg img,
+  .heroBg,
+  .heroContent,
+  .laserScanLine,
+  .annot {
+    will-change: auto;
+    transform: none !important;
   }
 }

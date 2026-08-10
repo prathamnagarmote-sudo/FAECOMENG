@@ -9,12 +9,12 @@ import styles from './Nav.module.css';
 
 const NAV_LINKS = [
   { href: '/',         label: 'Home' },
-  { href: '/about',    label: 'About Us' },
+  { href: '/about',    label: 'About' },
   { href: '/services', label: 'Services', hasDropdown: true },
   { href: '/projects', label: 'Projects' },
-  { href: '/clients',  label: 'Software We Know' },
-  { href: '/process',  label: 'Insights' },
-  { href: '/clients',  label: 'Contact' },
+  { href: '/software', label: 'Software We Know' },
+  { href: '/process',  label: 'Blog' },
+  { href: '/contact',  label: 'Contact' },
 ];
 
 const SERVICES_ITEMS = [
@@ -128,7 +128,7 @@ export default function Nav() {
               animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.75 }}
             >
-              <Link href="/clients" className={styles.cta} aria-label="Let's build together">
+              <Link href="/contact" className={styles.cta} aria-label="Let's build together">
                 <span>Let's Build Together</span>
                 <ArrowRight size={14} strokeWidth={2} />
               </Link>
@@ -209,7 +209,7 @@ export default function Nav() {
                 </motion.div>
               ))}
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
-                <Link href="/clients" className={styles.overlayCtaLink}>
+                <Link href="/contact" className={styles.overlayCtaLink}>
                   Let's Build Together <ArrowRight size={14} />
                 </Link>
               </motion.div>
