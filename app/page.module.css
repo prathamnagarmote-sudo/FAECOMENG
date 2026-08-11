@@ -36,9 +36,14 @@
   -webkit-backface-visibility: hidden;
 }
 
+/* Inner wrapper and img — no base overrides needed; mobile overrides below */
+.heroBgInner {}
+.heroImg {}
+
 .heroOverlay {
   display: none;
 }
+
 
 /* ── CAD Layer Filter Switcher Bar ────────────────────────────── */
 .cadFilterBar {
@@ -2933,172 +2938,277 @@
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE HERO — Side-by-side layout matching reference image (≤ 1024px)
+   Left: text content ~50% width
+   Right: 3D building absolute, bleeds off right edge
+   Bottom: CAD filter bar full-width strip
+   Stats bar: flows after hero in normal document flow
+   ZERO changes to PC/desktop view.
+═══════════════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
+
+  /* ── Hero section ── */
   .hero {
-    min-height: auto;
-    padding-top: 10px;
-    padding-bottom: 40px;
-    justify-content: flex-start;
-  }
-
-  .cadFilterBar {
     position: relative;
-    top: 0;
-    right: 0;
-    margin: 80px var(--gutter, 20px) 10px;
-    width: calc(100% - (var(--gutter, 20px) * 2));
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    z-index: 25;
+    display: block;
+    min-height: auto;
+    height: auto;
+    overflow: hidden;
+    padding: 0;
+    background: #FFFFFF;
+    perspective: none;
   }
 
+  /* ── 3D Building on Right Side ── */
+  .heroBg {
+    position: absolute;
+    top: 70px;
+    height: 400px;
+    right: -10px;
+    left: auto;
+    width: 56%;
+    z-index: 2;
+    perspective: none;
+    transform-style: flat;
+  }
+
+  .heroBgInner {
+    transform: none !important;
+    transform-style: flat !important;
+  }
+
+  .heroImg {
+    object-fit: contain !important;
+    object-position: right center !important;
+  }
+
+  .heroOverlay {
+    display: block;
+  }
+
+  /* ── Hero Text Content (Left Column) ── */
   .heroContent {
-    max-width: 100%;
-    padding: 20px var(--gutter, 20px) 0;
+    position: relative;
+    max-width: 48%;
+    width: 48%;
+    padding: 80px 0 70px 16px;
     z-index: 10;
+    background: transparent;
+  }
+
+  .heroTag {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    margin-bottom: 10px;
+    gap: 6px;
+    flex-wrap: wrap;
+    white-space: normal;
+    max-width: 100%;
+    line-height: 1.5;
+  }
+
+  .heroH1 {
+    margin-bottom: 10px;
+    perspective: none;
+    transform-style: flat;
   }
 
   .heroLineNavy,
   .heroLineOrange {
-    font-size: clamp(24px, 7.2vw, 46px);
+    display: block;
+    font-size: clamp(20px, 5.5vw, 32px);
+    font-weight: 900;
     line-height: 1.05;
+    letter-spacing: -0.025em;
     white-space: nowrap;
     word-break: normal;
     overflow-wrap: normal;
   }
 
   .heroSub {
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 24px;
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 14px;
     max-width: 100%;
+    white-space: normal;
+    color: #4A4D6B;
   }
 
   .heroActions {
+    display: flex;
     flex-direction: column;
+    gap: 8px;
+    margin-bottom: 0;
     align-items: stretch;
-    gap: 12px;
-    margin-bottom: 24px;
+    width: 100%;
   }
 
-  .heroBtnPrimary,
+  .heroBtnPrimary {
+    width: 100%;
+    justify-content: center;
+    padding: 6px 8px;
+    font-size: 8px;
+    height: 28px;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    border-radius: 4px;
+  }
+
   .heroBtnGhost {
     width: 100%;
     justify-content: center;
-    padding: 14px 20px;
-    font-size: 12px;
+    padding: 5px 8px;
+    font-size: 8px;
+    height: 28px;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    border-radius: 4px;
   }
 
-  .heroBg {
-    position: relative;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: clamp(300px, 45vh, 440px);
-    margin-top: 10px;
-    margin-bottom: 20px;
-    z-index: 2;
-  }
-
+  /* ── 5 Callouts on 3D Building (Sourced strictly to building column) ── */
   .annotations {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 70px;
+    height: 400px;
+    right: 0;
+    width: 55%;
+    left: auto;
+    z-index: 5;
+    pointer-events: none;
   }
+
+  .annot {
+    gap: 3px;
+    scale: 0.65;
+    transform: none !important; /* Disable scroll-based horizontal movement into left text */
+  }
+
+  .annotTextGroup {
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+
+  .annotTitle { font-size: 7.5px; letter-spacing: 0.03em; }
+  .annotSubText { font-size: 7px; }
+  .annotIconBox { width: 20px; height: 20px; border-radius: 4px; }
+  .annotIconBox svg { width: 10px; height: 10px; }
+
+  .pointerLineDark, .pointerLineOrange,
+  .pointerLineOrangeRight, .pointerLineDarkRight { display: none; }
+
+  .annotStruct { top: 6%; left: 2%; right: auto; transform-origin: top left; }
+  .annotMep { top: 4%; right: 4%; left: auto; transform-origin: top right; }
+  .annotArch { top: 38%; right: 2%; left: auto; transform-origin: center right; }
+  .annotBim { top: 48%; left: 2%; right: auto; transform-origin: center left; }
+  .annotCoord { top: 72%; left: 4%; right: auto; transform-origin: bottom left; }
 
   .phaseIndicator {
     display: none;
   }
 
-  .servGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .servGrid>div:last-child {
-    grid-column: 1 / -1;
-  }
-
-  .projGrid {
-    height: auto;
-    grid-template-columns: 1fr;
-  }
-
-  .projHero {
-    height: 420px;
-  }
-
-  .projSide {
-    height: auto;
-    grid-template-rows: repeat(3, 260px);
-  }
-
-  .ribbonGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+  /* ── Stats Ribbon: Black Grid Section Below Hero ── */
   .statsBar {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    margin-top: 0;
     grid-template-columns: repeat(3, 1fr);
+    z-index: 10;
+    background: #000000;
+    clear: both;
   }
 
-  .statsBar>div {
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.15);
+  .statsBar > div {
+    padding: 18px 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
 
-  .statsBar>div:nth-child(3),
-  .statsBar>div:nth-child(6) {
+  .statsBar > div:nth-child(3),
+  .statsBar > div:nth-child(6) {
     border-right: none;
   }
+
+  /* ── Other section grids ── */
+  .servGrid { grid-template-columns: repeat(2, 1fr); }
+  .servGrid > div:last-child { grid-column: 1 / -1; }
+  .projGrid { height: auto; grid-template-columns: 1fr; }
+  .projHero { height: 420px; }
+  .projSide { height: auto; grid-template-rows: repeat(3, 260px); }
+  .ribbonGrid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* ── Tablet & Small phone adjustments ── */
 @media (max-width: 768px) {
-  .statsBar {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .whoInner {
-    grid-template-columns: 1fr;
-  }
-
-  .servGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .servGrid>div:last-child {
-    grid-column: 1 / 1;
-  }
-
-  .projSide {
-    grid-template-rows: repeat(3, 220px);
-  }
-
-  .procGrid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .ribbonGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .whoInner { grid-template-columns: 1fr; }
+  .servGrid { grid-template-columns: 1fr; }
+  .servGrid > div:last-child { grid-column: 1 / 1; }
+  .projSide { grid-template-rows: repeat(3, 220px); }
+  .procGrid { grid-template-columns: 1fr 1fr; }
+  .ribbonGrid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
-  .heroLineNavy,
-  .heroLineOrange {
-    font-size: clamp(20px, 6.8vw, 32px);
-    white-space: nowrap;
+  .heroContent {
+    max-width: 50%;
+    width: 50%;
+    padding: 70px 0 60px 12px;
+  }
+
+  .heroBg {
+    width: 58%;
+    right: -15px;
+    height: 380px;
+  }
+
+  .annotations {
+    height: 380px;
   }
 
   .statsBar {
+    margin-top: 0;
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .floatingLabels {
-    display: none;
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(17px, 5.2vw, 26px);
   }
 
-  .procGrid {
-    grid-template-columns: 1fr;
+  .heroSub {
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+
+  .heroBtnPrimary,
+  .heroBtnGhost {
+    font-size: 8px;
+    padding: 6px 8px;
+    height: 28px;
+  }
+
+  .statCell { padding: 14px 6px; }
+  .floatingLabels { display: none; }
+  .procGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 375px) {
+  .heroContent {
+    max-width: 52%;
+    width: 52%;
+    padding: 65px 0 55px 10px;
+  }
+
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(15px, 5vw, 22px);
   }
 }
+
 
 
 @media (min-width: 2000px) {

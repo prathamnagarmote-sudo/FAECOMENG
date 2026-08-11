@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import styles from './projects.module.css';
+import { supabase } from '@/lib/supabase';
 
 /* ── PROJECT DATA ────────────────────────────────────────────── */
 const CATEGORIES = [
@@ -729,17 +730,26 @@ export default function ProjectsPage() {
   const [projectList, setProjectList] = useState(ALL_PROJECTS);
 
   React.useEffect(() => {
-    try {
-      const saved = localStorage.getItem('faecom_admin_projects');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setProjectList(parsed);
+    async function loadProjects() {
+      try {
+        const { data: dbProjects, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
+        if (!error && dbProjects && dbProjects.length > 0) {
+          setProjectList(dbProjects);
+          localStorage.setItem('faecom_admin_projects', JSON.stringify(dbProjects));
+          return;
         }
+        const saved = localStorage.getItem('faecom_admin_projects');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setProjectList(parsed);
+          }
+        }
+      } catch (e) {
+        console.error(e);
       }
-    } catch (e) {
-      console.error(e);
     }
+    loadProjects();
   }, []);
 
   const filtered = activeCategory === 'All Projects'

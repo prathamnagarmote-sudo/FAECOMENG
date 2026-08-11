@@ -703,6 +703,7 @@ export default function Home() {
           style={{ opacity: heroOpacity, scale: bgScale, x: rightX, rotateX: tiltX, rotateY: tiltY }}
         >
           <motion.div
+            className={styles.heroBgInner}
             style={{ width: '100%', height: '100%', position: 'relative', transformStyle: 'preserve-3d' }}
             initial={{ opacity: 0, scale: 1.85, rotateX: 28, rotateY: -22, y: 110 }}
             animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
@@ -715,6 +716,7 @@ export default function Home() {
               priority
               quality={95}
               sizes="100vw"
+              className={styles.heroImg}
               style={{ objectFit: 'contain', objectPosition: 'right center' }}
             />
           </motion.div>
@@ -723,31 +725,6 @@ export default function Home() {
         {/* Light gradient overlay — clean white fade on left */}
         <div className={styles.heroOverlay} />
 
-        {/* CAD Layer Filter Switcher Bar - Moves RIGHT (+x) on scroll */}
-        <motion.div
-          className={styles.cadFilterBar}
-          style={{ opacity: heroOpacity, x: rightX }}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-        >
-          <span className={styles.cadFilterLabel}>CAD VIEWPORT:</span>
-          {[
-            { id: 'all', label: 'ALL LAYERS' },
-            { id: 'structure', label: 'STRUCTURAL' },
-            { id: 'arch', label: 'ARCHITECTURAL' },
-            { id: 'bim', label: 'BIM 3D' },
-            { id: 'mep', label: 'MEP SYSTEMS' },
-          ].map((f) => (
-            <button
-              key={f.id}
-              className={`${styles.cadFilterBtn} ${activeFilter === f.id ? styles.cadFilterBtnActive : ''}`}
-              onClick={() => setActiveFilter(f.id as any)}
-            >
-              {f.label}
-            </button>
-          ))}
-        </motion.div>
 
         {/* ── Engineering annotation callouts matching reference image ───── */}
         <motion.div className={styles.annotations} style={{ opacity: heroOpacity, x: annotDepthX }}>
