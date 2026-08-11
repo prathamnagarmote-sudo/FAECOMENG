@@ -18,30 +18,13 @@ const COMPANY = [
   { label: 'About FAECOM', href: '/about' },
   { label: 'Projects',     href: '/projects' },
   { label: 'Our Process',  href: '/process' },
-  { label: 'Software We Know', href: '/clients' },
-  { label: 'Contact',      href: '/clients' },
+  { label: 'Software We Know', href: '/software' },
+  { label: 'Contact',      href: '/contact' },
 ];
 
 export default function Footer() {
   return (
     <footer className={styles.footer} role="contentinfo">
-      {/* Top CTA band */}
-      <div className={styles.ctaBand}>
-        <div className={styles.ctaBandInner}>
-          <div>
-            <p className={styles.ctaBandTag}>Ready to build?</p>
-            <h2 className={styles.ctaBandH2}>
-              Let's create something<br />
-              <em>extraordinary</em>
-            </h2>
-          </div>
-          <Link href="/clients" className={styles.ctaBandBtn}>
-            <span>Start a Project</span>
-            <ArrowUpRight size={16} strokeWidth={2} />
-          </Link>
-        </div>
-      </div>
-
       {/* Main footer */}
       <div className={styles.main}>
         {/* Brand */}
@@ -63,26 +46,26 @@ export default function Footer() {
 
           <div className={styles.contact}>
             <a href="mailto:info@faecom.com" className={styles.contactItem}>
-              <Mail size={14} strokeWidth={1.5} />
+              <Mail size={15} strokeWidth={2} />
               <span>info@faecom.com</span>
             </a>
-            <a href="mailto:sam@faecom.com" className={styles.contactItem}>
-              <Mail size={14} strokeWidth={1.5} />
-              <span>sam@faecom.com</span>
-            </a>
-            <a href="tel:+919975930122" className={styles.contactItem}>
-              <Phone size={14} strokeWidth={1.5} />
-              <span>+91 99759 30122</span>
+            <a href="mailto:max@faecom.com" className={styles.contactItem}>
+              <Mail size={15} strokeWidth={2} />
+              <span>max@faecom.com</span>
             </a>
             <a href="tel:+12026888858" className={styles.contactItem}>
-              <Phone size={14} strokeWidth={1.5} />
-              <span>+1 (202) 688-8858</span>
+              <Phone size={15} strokeWidth={2} />
+              <span>+1 (202)-688-8858</span>
+            </a>
+            <a href="tel:+12062572889" className={styles.contactItem}>
+              <Phone size={15} strokeWidth={2} />
+              <span>+1 (206)-257-2889</span>
             </a>
           </div>
 
           <div className={styles.address}>
-            <MapPin size={14} strokeWidth={1.5} style={{ flexShrink: 0, marginTop: 2 }} />
-            <span>IT Park, Nagpur, Maharashtra, India 440022</span>
+            <MapPin size={15} strokeWidth={2} style={{ flexShrink: 0, marginTop: 2 }} />
+            <span>9407 NE Vancouver Mall Dr, Vancouver, WA 98662, United States</span>
           </div>
         </div>
 
@@ -134,16 +117,22 @@ export default function Footer() {
             </button>
           </form>
 
-          {/* Social */}
+          {/* Social Icons */}
           <div className={styles.social}>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="FAECOM on LinkedIn" className={styles.socialBtn}>
-              <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <a href="https://www.linkedin.com/company/faecominc/" target="_blank" rel="noopener noreferrer" aria-label="FAECOM on LinkedIn" className={styles.socialBtn}>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="FAECOM on Instagram" className={styles.socialBtn}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="15" height="15"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <a href="https://www.instagram.com/faecominc/" target="_blank" rel="noopener noreferrer" aria-label="FAECOM on Instagram" className={styles.socialBtn}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="FAECOM on Twitter" className={styles.socialBtn}>
-              <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <a href="https://www.youtube.com/@FAECOMINC" target="_blank" rel="noopener noreferrer" aria-label="FAECOM on YouTube" className={styles.socialBtn}>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61592669586654" target="_blank" rel="noopener noreferrer" aria-label="FAECOM on Facebook" className={styles.socialBtn}>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://x.com/FaecomINC" target="_blank" rel="noopener noreferrer" aria-label="FAECOM on X (Twitter)" className={styles.socialBtn}>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </a>
           </div>
         </div>
@@ -154,10 +143,11 @@ export default function Footer() {
         <p className={styles.copy}>
           &copy; {new Date().getFullYear()} FAECOM INC. All rights reserved.
         </p>
-        <p className={styles.copy} style={{ color: 'rgba(255,255,255,0.25)' }}>
+        <p className={styles.subCopy}>
           We build success stories for your future!
         </p>
       </div>
     </footer>
   );
 }
+
