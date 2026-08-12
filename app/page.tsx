@@ -592,8 +592,16 @@ export default function Home() {
   const [phase, setPhase] = useState(0);
   const [activeFilter, setActiveFilter] = useState<'all' | 'structure' | 'arch' | 'bim' | 'mep'>('all');
   const reduced = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Hero mouse tilt — only active on non-reduced-motion devices
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Hero mouse tilt — only active on non-reduced-motion desktop devices
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   // Tighter spring = less lag frames
@@ -602,11 +610,11 @@ export default function Home() {
   const annotDepthX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), { stiffness: 120, damping: 35, mass: 0.5 });
 
   const handleHeroMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    if (reduced) return;
+    if (reduced || isMobile) return;
     const rect = e.currentTarget.getBoundingClientRect();
     mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
     mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
-  }, [reduced, mouseX, mouseY]);
+  }, [reduced, isMobile, mouseX, mouseY]);
 
   // PE Stamping 3D Tilt — reduced range & tighter spring
   const peMouseX = useMotionValue(0);
@@ -616,11 +624,11 @@ export default function Home() {
   const peMapDepthX = useSpring(useTransform(peMouseX, [-0.5, 0.5], [-6, 6]), { stiffness: 150, damping: 40, mass: 0.4 });
 
   const handlePeMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    if (reduced) return;
+    if (reduced || isMobile) return;
     const rect = e.currentTarget.getBoundingClientRect();
     peMouseX.set((e.clientX - rect.left) / rect.width - 0.5);
     peMouseY.set((e.clientY - rect.top) / rect.height - 0.5);
-  }, [reduced, peMouseX, peMouseY]);
+  }, [reduced, isMobile, peMouseX, peMouseY]);
 
   // Global Engineering Work 3D Motion — reduced range
   const globalMouseX = useMotionValue(0);
@@ -630,11 +638,11 @@ export default function Home() {
   const globalMapDepthX = useSpring(useTransform(globalMouseX, [-0.5, 0.5], [-5, 5]), { stiffness: 150, damping: 40, mass: 0.4 });
 
   const handleGlobalMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    if (reduced) return;
+    if (reduced || isMobile) return;
     const rect = e.currentTarget.getBoundingClientRect();
     globalMouseX.set((e.clientX - rect.left) / rect.width - 0.5);
     globalMouseY.set((e.clientY - rect.top) / rect.height - 0.5);
-  }, [reduced, globalMouseX, globalMouseY]);
+  }, [reduced, isMobile, globalMouseX, globalMouseY]);
 
   // Contact Form State
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -656,14 +664,15 @@ export default function Home() {
     offset: ['start start', 'end start'],
   });
 
-  // Use scrollYProgress directly — no double-spring wrapper (that caused double-frame lag)
+  // Disable horizontal scroll slide on mobile devices so hero section stays contained
+  const disableSlide = reduced || isMobile;
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -15]);
-  const leftX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : -80]);
-  const rightX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : 80]);
-  const bgScale = useTransform(scrollYProgress, [0, 0.5], [1, reduced ? 1 : 1.03]);
-  const leftAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : -60]);
-  const rightAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : 60]);
+  const leftX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : -80]);
+  const rightX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : 80]);
+  const bgScale = useTransform(scrollYProgress, [0, 0.5], [1, disableSlide ? 1 : 1.03]);
+  const leftAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : -60]);
+  const rightAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : 60]);
 
   // Sync 3D building phase with scroll
   useEffect(() => {
@@ -714,7 +723,7 @@ export default function Home() {
               width: '100%',
               height: '100%',
               position: 'relative',
-              transformStyle: 'preserve-3d',
+              transformStyle: 'flat',
               backfaceVisibility: 'visible',
               WebkitBackfaceVisibility: 'visible',
             }}

@@ -29,8 +29,6 @@
   justify-content: flex-start;
   overflow: hidden;
   background: #FFFFFF;
-  perspective: 1200px;
-  transform-style: preserve-3d;
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -47,8 +45,7 @@
   /* Width: occupies right ~55% — enough for the render, leaves left ~45% for text */
   width: clamp(50%, 55vw, 60%);
   z-index: 2;
-  perspective: 800px;
-  transform-style: preserve-3d;
+  isolation: isolate;
   will-change: transform, opacity;
   backface-visibility: visible;
   -webkit-backface-visibility: visible;
@@ -60,7 +57,6 @@
 .heroImg {
   backface-visibility: visible !important;
   -webkit-backface-visibility: visible !important;
-  transform: translateZ(0);
 }
 
 .heroOverlay {
