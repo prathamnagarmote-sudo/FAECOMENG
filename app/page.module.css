@@ -50,14 +50,18 @@
   perspective: 800px;
   transform-style: preserve-3d;
   will-change: transform, opacity;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
 }
 
 
-/* Inner wrapper and img — no base overrides needed; mobile overrides below */
-.heroBgInner {}
-.heroImg {}
+/* Inner wrapper and img — ensure visible backface so Windows DirectX GPU never culls rendering on hover */
+.heroBgInner,
+.heroImg {
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+  transform: translateZ(0);
+}
 
 .heroOverlay {
   display: none;
@@ -3591,8 +3595,8 @@
 .heroBg {
   will-change: transform, opacity;
   transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
 }
 
 .heroContent {

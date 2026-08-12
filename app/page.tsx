@@ -698,11 +698,26 @@ export default function Home() {
         {/* Full-width background photo with 3D Out-of-Screen Fly-In Landing & Scroll Parting (+x) */}
         <motion.div
           className={styles.heroBg}
-          style={{ opacity: heroOpacity, scale: bgScale, x: rightX, rotateX: tiltX, rotateY: tiltY }}
+          style={{
+            opacity: heroOpacity,
+            scale: bgScale,
+            x: rightX,
+            rotateX: tiltX,
+            rotateY: tiltY,
+            backfaceVisibility: 'visible',
+            WebkitBackfaceVisibility: 'visible',
+          }}
         >
           <motion.div
             className={styles.heroBgInner}
-            style={{ width: '100%', height: '100%', position: 'relative', transformStyle: 'preserve-3d' }}
+            style={{
+              width: '100%',
+              height: '100%',
+              position: 'relative',
+              transformStyle: 'preserve-3d',
+              backfaceVisibility: 'visible',
+              WebkitBackfaceVisibility: 'visible',
+            }}
             initial={{ opacity: 0, scale: 1.85, rotateX: 28, rotateY: -22, y: 110 }}
             animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
@@ -715,7 +730,12 @@ export default function Home() {
               quality={95}
               sizes="100vw"
               className={styles.heroImg}
-              style={{ objectFit: 'contain', objectPosition: 'center center' }}
+              style={{
+                objectFit: 'contain',
+                objectPosition: 'center center',
+                backfaceVisibility: 'visible',
+                WebkitBackfaceVisibility: 'visible',
+              }}
             />
           </motion.div>
         </motion.div>
