@@ -74,7 +74,7 @@ export default function Nav() {
                 height={72}
                 priority
                 className={styles.logoImage}
-                style={{ objectFit: 'contain', width: 'auto', height: '72px' }}
+                style={{ objectFit: 'contain' }}
               />
               <div className={styles.logoTextGroup}>
                 <span className={styles.logoTitle}>FAECOM INC</span>
