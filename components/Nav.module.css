@@ -21,78 +21,97 @@
 }
 
 .inner {
-  max-width: 1440px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 clamp(20px, 4vw, 48px);
-  height: 72px;
+  padding: 0 clamp(16px, 2.5vw, 40px);
+  height: clamp(86px, 5.8vw, 100px);
   display: flex;
   align-items: center;
-  gap: 24px;
+  justify-content: space-between;
+  gap: clamp(16px, 2vw, 36px);
   perspective: 800px;
   transform-style: preserve-3d;
 }
 
-/* ── Logo ────────────────────────────────────────────────────── */
+/* ── Logo — Left Corner ──────────────────────────────────────── */
 .logoContainer {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
+  align-self: center;
+  gap: clamp(14px, 1.4vw, 18px);
   text-decoration: none;
 }
 
 .logoImage {
   flex-shrink: 0;
+  display: block;
+  align-self: center;
 }
 
 .logoTextGroup {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-self: center;
+  gap: 2px;
 }
 
 .logoTitle {
   font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 800;
+  font-size: clamp(21px, 1.7vw, 25px);
+  font-weight: 900;
   color: #0F1238;
-  letter-spacing: 0.03em;
-  line-height: 1.15;
+  letter-spacing: 0.035em;
+  line-height: 1.08;
+  white-space: nowrap;
 }
 
 .logoSubline {
   font-family: var(--font-body);
-  font-size: 9px;
-  font-weight: 500;
-  color: #6B7280;
-  letter-spacing: 0.01em;
-  line-height: 1.1;
+  font-size: clamp(12px, 0.95vw, 14px);
+  font-weight: 600;
+  color: #4B5563;
+  letter-spacing: 0.015em;
+  line-height: 1.15;
   white-space: nowrap;
 }
 
-/* ── Desktop Links ───────────────────────────────────────────── */
+/* ── Desktop Menu Items — Spaced Center ──────────────────────── */
 .links {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: clamp(16px, 1.6vw, 32px);
+  height: 100%;
   list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.linkItem {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
 }
 
 .link {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 8px 14px;
   font-family: var(--font-body);
-  font-size: 12.5px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-size: clamp(13px, 0.95vw, 15px);
+  font-weight: 700;
+  color: #4A4D6B;
+  text-decoration: none;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #222222;
-  white-space: nowrap;
-  transition: color 0.25s;
+  transition: all 0.25s var(--ease-expo);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border-radius: 4px;
   position: relative;
 }
 
@@ -230,15 +249,16 @@
   background: var(--primary);
   color: #FFF;
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: clamp(12.5px, 0.9vw, 14.5px);
+  font-weight: 750;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 11px 22px;
-  border-radius: 4px;
+  padding: 13px clamp(14px, 1.4vw, 26px);
+  border-radius: 6px;
   white-space: nowrap;
   transition: background 0.3s, box-shadow 0.3s;
   box-shadow: 0 4px 16px rgba(33, 20, 95, 0.25);
+  flex-shrink: 0;
 }
 .cta:hover {
   background: var(--accent);
@@ -370,7 +390,11 @@
 }
 .overlayContact a:hover { color: var(--accent); }
 
-@media (max-width: 1100px) {
+@media (max-width: 1550px) {
+  .logoSubline { display: none; }
+}
+
+@media (max-width: 1380px) {
   .links { display: none; }
   .cta   { display: none; }
   .burger { display: flex; }

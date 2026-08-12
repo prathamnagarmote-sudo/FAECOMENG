@@ -451,7 +451,7 @@ const SOFTWARE_CATEGORIES = [
     logos: [
       { name: 'Tekla Structures', img: '/images/software/tekla_structures.png' },
       { name: 'SDS2', img: '/images/software/sds2.png' },
-      { name: 'Autodesk Revit', img: '/images/software/autodesk_revit.png' },
+      { name: 'Autodesk Revit', img: '/images/software/autodesk_revit.png', scale: 1.18 },
       { name: 'MiTek', img: '/images/software/mitek.png' },
       { name: 'StrucSoft', img: '/images/software/strucsoft.png' },
     ],
@@ -459,15 +459,13 @@ const SOFTWARE_CATEGORIES = [
   {
     title: 'STRUCTURAL ANALYSIS & DESIGN',
     logos: [
-      { name: 'Tekla Tedds', img: '/images/software/tekla_tedds.png' },
+      { name: 'Tekla Tedds', img: '/images/software/tekla_tedds.webp', scale: 1.12 },
       { name: 'RISA', img: '/images/software/risa.png' },
-      { name: 'STAAD.Pro', img: '/images/software/staad_pro.png' },
-      { name: 'SAP2000', img: '/images/software/sap2000.png' },
+      { name: 'STAAD.Pro', img: '/images/software/staad_pro.png', scale: 1.10 },
+      { name: 'SAP2000', img: '/images/software/sap2000.png', scale: 1.10 },
       { name: 'IES', img: '/images/software/ies.png' },
-      { name: 'SkyCiv', img: '/images/software/skyciv.png' },
-      { name: 'FORTEWEB', img: '/images/software/forteweb.png' },
-      { name: 'ENERCALC', img: '/images/software/enercalc.png' },
-      { name: 'StructurePoint', img: '/images/software/structurepoint.png' },
+      { name: 'SkyCiv', img: '/images/software/skyciv.png', scale: 1.12 },
+      { name: 'StructurePoint', img: '/images/software/structurepoint.png', scale: 1.10 },
     ],
   },
   {
@@ -717,7 +715,7 @@ export default function Home() {
               quality={95}
               sizes="100vw"
               className={styles.heroImg}
-              style={{ objectFit: 'contain', objectPosition: 'right center' }}
+              style={{ objectFit: 'contain', objectPosition: 'center center' }}
             />
           </motion.div>
         </motion.div>
@@ -1114,9 +1112,12 @@ export default function Home() {
                 <div className={styles.softCategoryBlock}>
                   <h3 className={styles.softCategoryTitle}>{group.title}</h3>
                   <div className={styles.softLogoRow}>
-                    {group.logos.map((soft, i) => (
+                    {group.logos.map((soft) => (
                       <div key={soft.name} className={styles.softLogoCard}>
-                        <div className={styles.softLogoImgWrap}>
+                        <div
+                          className={styles.softLogoImgWrap}
+                          style={soft.scale ? { transform: `scale(${soft.scale})` } : undefined}
+                        >
                           <Image
                             src={soft.img}
                             alt={soft.name}

@@ -12,7 +12,7 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,12 +20,14 @@
   background: #FFFFFF;
   perspective: 1200px;
   transform-style: preserve-3d;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .heroBg {
   position: absolute;
-  top: 90px;
-  bottom: 110px;
+  top: clamp(80px, 7vw, 100px);
+  bottom: clamp(140px, 14vh, 180px);
   right: 2%;
   width: 56%;
   z-index: 2;
@@ -115,31 +117,31 @@
 }
 
 .annotStruct {
-  top: 18%;
+  top: 14%;
   left: 45%;
 }
 
 .annotArch {
-  top: 42%;
+  top: 38%;
   right: 2%;
   flex-direction: row-reverse;
   text-align: right;
 }
 
 .annotBim {
-  top: 46%;
+  top: 42%;
   left: 36%;
 }
 
 .annotMep {
-  top: 15%;
+  top: 11%;
   right: 16%;
   flex-direction: row-reverse;
   text-align: right;
 }
 
 .annotCoord {
-  top: 64%;
+  top: 60%;
   left: 48%;
 }
 
@@ -293,29 +295,34 @@
   z-index: 10;
   padding: 0 var(--gutter);
   padding-left: max(var(--gutter), clamp(24px, 5vw, 110px));
-  padding-top: 130px;
-  padding-bottom: 120px;
-  max-width: 660px;
+  padding-top: clamp(120px, 9.5vh, 160px);
+  padding-bottom: clamp(24px, 3vh, 48px);
+  margin-top: 0;
+  margin-bottom: auto;
+  max-width: clamp(480px, 46vw, 780px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   will-change: opacity;
 }
 
 .heroTag {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   margin-bottom: 20px;
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-size: clamp(12px, 0.9vw, 14.5px);
+  font-weight: 800;
+  letter-spacing: 0.18em;
   color: #FF6B2C;
   text-transform: uppercase;
 }
 
 .heroTagLine {
   display: inline-block;
-  width: 24px;
-  height: 2px;
+  width: 34px;
+  height: 2.5px;
   background: #FF6B2C;
   flex-shrink: 0;
 }
@@ -324,17 +331,17 @@
 .heroH1 {
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
-  line-height: 1.02;
+  margin-bottom: 22px;
+  line-height: 0.96;
   perspective: 1000px;
   transform-style: preserve-3d;
 }
 
 .heroLineNavy {
   font-family: var(--font-body);
-  font-size: clamp(28px, 4.4vw, 72px);
+  font-size: clamp(34px, 4.8vw, 84px);
   font-weight: 900;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   color: #0F1238;
   text-transform: uppercase;
   display: block;
@@ -345,9 +352,9 @@
 
 .heroLineOrange {
   font-family: var(--font-body);
-  font-size: clamp(28px, 4.4vw, 72px);
+  font-size: clamp(34px, 4.8vw, 84px);
   font-weight: 900;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   color: #FF6B2C;
   text-transform: uppercase;
   display: block;
@@ -356,15 +363,14 @@
   overflow-wrap: normal;
 }
 
-
 /* Supporting text matching reference image */
 .heroSub {
-  font-size: 14.5px;
-  font-weight: 400;
-  line-height: 1.65;
-  color: #4A4D6B;
-  max-width: 540px;
-  margin-bottom: 36px;
+  font-size: clamp(14.5px, 1.1vw, 18.5px);
+  font-weight: 450;
+  line-height: 1.6;
+  color: #3B3E5C;
+  max-width: 580px;
+  margin-bottom: 28px;
 }
 
 .heroSubHighlight {
@@ -378,7 +384,7 @@
   gap: 16px;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .heroBtnPrimary {
@@ -388,10 +394,10 @@
   background: #0F1238;
   color: #FFFFFF;
   font-family: var(--font-body);
-  font-size: 11.5px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 750;
   letter-spacing: 0.08em;
-  padding: 15px 28px;
+  padding: 16px 32px;
   border-radius: 4px;
   transition: all 0.3s var(--ease-expo);
   box-shadow: 0 6px 22px rgba(15, 18, 56, 0.25);
@@ -1617,13 +1623,14 @@
   justify-content: center;
   width: 200px;
   height: 95px;
-  padding: 16px 20px;
+  padding: 10px 16px;
   background: #FFFFFF;
   border: 1.5px solid #FF6B2C;
   border-radius: 14px;
   box-shadow: 0 4px 18px rgba(15, 18, 56, 0.04);
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .softLogoCard:hover {
@@ -2922,6 +2929,62 @@
   background: rgba(255, 107, 44, 0.06);
 }
 
+/* ══ DESKTOP & LAPTOP SCREEN RESPONSIVE (1025px+) ══════════════ */
+@media (max-width: 1440px) and (min-width: 1025px) {
+  .heroContent {
+    max-width: 45vw;
+    padding-top: clamp(100px, 8.5vh, 130px);
+  }
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(32px, 4.2vw, 72px);
+  }
+  .heroSub {
+    font-size: clamp(13.5px, 1.05vw, 17px);
+    margin-bottom: 22px;
+  }
+  .heroTag {
+    margin-bottom: 14px;
+  }
+  .heroH1 {
+    margin-bottom: 16px;
+  }
+  .heroBg {
+    width: 52%;
+    right: 1%;
+    bottom: clamp(130px, 13vh, 160px);
+  }
+}
+
+@media (max-height: 820px) and (min-width: 1025px) {
+  .heroContent {
+    padding-top: clamp(90px, 7.5vh, 110px);
+    padding-bottom: 16px;
+  }
+  .heroTag {
+    margin-bottom: 12px;
+  }
+  .heroH1 {
+    margin-bottom: 14px;
+  }
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(30px, 3.8vw, 64px);
+  }
+  .heroSub {
+    font-size: clamp(13px, 0.95vw, 15.5px);
+    margin-bottom: 18px;
+  }
+  .heroBtnPrimary,
+  .heroBtnGhost {
+    height: 44px;
+    padding: 0 22px;
+    font-size: 11.5px;
+  }
+  .heroBg {
+    bottom: clamp(120px, 12vh, 140px);
+  }
+}
 
 /* ══ RESPONSIVE ══════════════════════════════════════════════════ */
 @media (max-width: 1200px) {

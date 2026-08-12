@@ -12,7 +12,6 @@ const NAV_LINKS = [
   { href: '/about',    label: 'About' },
   { href: '/services', label: 'Services', hasDropdown: true },
   { href: '/projects', label: 'Projects' },
-  { href: '/software', label: 'Software We Know' },
   { href: '/process',  label: 'Blog' },
   { href: '/contact',  label: 'Contact' },
 ];
@@ -71,11 +70,11 @@ export default function Nav() {
               <Image
                 src="/images/logo.png"
                 alt="FAECOM INC."
-                width={42}
-                height={42}
+                width={72}
+                height={72}
                 priority
                 className={styles.logoImage}
-                style={{ objectFit: 'contain', width: 'auto', height: '42px' }}
+                style={{ objectFit: 'contain', width: 'auto', height: '72px' }}
               />
               <div className={styles.logoTextGroup}>
                 <span className={styles.logoTitle}>FAECOM INC</span>

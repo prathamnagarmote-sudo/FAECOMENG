@@ -18,7 +18,6 @@ const COMPANY = [
   { label: 'About FAECOM', href: '/about' },
   { label: 'Projects',     href: '/projects' },
   { label: 'Our Process',  href: '/process' },
-  { label: 'Software We Know', href: '/software' },
   { label: 'Contact',      href: '/contact' },
 ];
 
