@@ -509,12 +509,12 @@
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   background: #000000;
   flex-shrink: 0;
-  /* Minimum height so text inside stats cells never gets squished */
-  min-height: clamp(80px, 10vh, 110px);
+  /* Dynamic height & vertical space that scales smoothly on all desktop resolutions */
+  min-height: clamp(95px, 12vh, 135px);
 }
 
 .statCell {
-  padding: 30px 16px;
+  padding: clamp(26px, 3.5vh, 44px) clamp(16px, 1.8vw, 32px);
   border-right: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
@@ -543,7 +543,7 @@
 
 .statVal {
   font-family: var(--font-body);
-  font-size: clamp(24px, 3vw, 36px);
+  font-size: clamp(26px, 3.2vw, 42px);
   font-weight: 800;
   color: #FFFFFF;
   letter-spacing: -0.02em;
@@ -552,13 +552,13 @@
 
 .statLabel {
   font-family: var(--font-mono);
-  font-size: clamp(8px, 0.8vw, 9.5px);
+  font-size: clamp(9px, 0.9vw, 11.5px);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.70);
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.4;
-  max-width: 170px;
+  max-width: clamp(160px, 16vw, 220px);
 }
 
 /* Corner brackets */
@@ -2990,6 +2990,19 @@
     width: 52%;
     right: 2%;
   }
+  .statsBar {
+    min-height: 140px;
+  }
+  .statCell {
+    padding: 44px 24px;
+  }
+  .statVal {
+    font-size: 46px;
+  }
+  .statLabel {
+    font-size: 13px;
+    max-width: 230px;
+  }
 }
 
 /* ── 2. QHD / 27" MONITOR (1920–2559px) ─────────────────────────── */
@@ -3009,6 +3022,19 @@
     width: 54%;
     right: 2%;
   }
+  .statsBar {
+    min-height: 125px;
+  }
+  .statCell {
+    padding: 38px 20px;
+  }
+  .statVal {
+    font-size: 40px;
+  }
+  .statLabel {
+    font-size: 12px;
+    max-width: 210px;
+  }
 }
 
 /* ── 3. STANDARD DESKTOP / MACBOOK PRO 16" (1441–1919px) ────────── */
@@ -3027,6 +3053,19 @@
   .heroBg {
     width: 54%;
     right: 1%;
+  }
+  .statsBar {
+    min-height: 115px;
+  }
+  .statCell {
+    padding: 34px 18px;
+  }
+  .statVal {
+    font-size: 34px;
+  }
+  .statLabel {
+    font-size: 11px;
+    max-width: 190px;
   }
 }
 
@@ -3055,6 +3094,19 @@
     width: 55%;
     right: 0;
     bottom: clamp(90px, 10vh, 120px);
+  }
+  .statsBar {
+    min-height: 105px;
+  }
+  .statCell {
+    padding: 28px 14px;
+  }
+  .statVal {
+    font-size: 30px;
+  }
+  .statLabel {
+    font-size: 10px;
+    max-width: 175px;
   }
   .annotBim { left: 47%; }
   .annotStruct { left: 50%; }
@@ -3098,14 +3150,18 @@
     right: 0;
     bottom: clamp(85px, 9vh, 110px);
   }
-  .statVal {
-    font-size: clamp(20px, 2.2vw, 28px);
-  }
-  .statLabel {
-    font-size: clamp(7.5px, 0.7vw, 9px);
+  .statsBar {
+    min-height: 95px;
   }
   .statCell {
-    padding: 22px 12px;
+    padding: 24px 12px;
+  }
+  .statVal {
+    font-size: 26px;
+  }
+  .statLabel {
+    font-size: 9.5px;
+    max-width: 160px;
   }
   .annotBim { left: 48%; }
   .annotStruct { left: 50%; }
