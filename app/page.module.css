@@ -589,7 +589,7 @@
 
 /* ══ 2. WHO WE ARE ══════════════════════════════════════════════ */
 .whoSection {
-  padding: clamp(96px, 12vw, 160px) var(--gutter);
+  padding: clamp(48px, 4.5vw, 64px) var(--gutter);
   background: var(--surface);
 }
 
@@ -759,7 +759,7 @@
     linear-gradient(rgba(15, 18, 56, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(15, 18, 56, 0.035) 1px, transparent 1px);
   background-size: 32px 32px;
-  padding: clamp(80px, 10vw, 128px) var(--gutter);
+  padding: clamp(48px, 4.5vw, 64px) var(--gutter);
   position: relative;
 }
 
@@ -1050,7 +1050,7 @@
 
 /* ══ 3. LATEST PROJECTS — Award-Winning 3D Gallery Grid ═════ */
 .projSection {
-  padding: clamp(80px, 10vw, 128px) var(--gutter);
+  padding: clamp(48px, 4.5vw, 64px) var(--gutter);
   background-color: #050d1e;
   background-image:
     linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
@@ -1509,7 +1509,7 @@
 /* ══ 4. SOFTWARE WE USE — Engineering Tech Stack ═════════════════ */
 .softSection {
   background: #FFFFFF;
-  padding: clamp(80px, 10vw, 128px) var(--gutter);
+  padding: clamp(48px, 4.5vw, 64px) var(--gutter);
   border-top: 1px solid #E2E8F0;
   border-bottom: 1px solid #E2E8F0;
 }
@@ -1697,7 +1697,7 @@
 /* ══ 4.5 PE STAMPING & APPROVAL ═════════════════════════════════ */
 .peSection {
   background: #FFFFFF;
-  padding: clamp(80px, 10vw, 128px) var(--gutter);
+  padding: clamp(48px, 4.5vw, 64px) var(--gutter);
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid #E6ECFF;
@@ -2043,7 +2043,7 @@
 /* ══ 4.6 GLOBAL ENGINEERING WORK ═════════════════════════════════ */
 .globalSection {
   background: #0A1D44;
-  padding: clamp(80px, 10vw, 128px) var(--gutter);
+  padding: clamp(48px, 4.5vw, 64px) var(--gutter);
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -2150,7 +2150,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
@@ -2258,25 +2258,34 @@
 
 /* Positions on the map percentage */
 .beaconUsa { top: 38%; left: 24%; }
-.beaconCanada { top: 26%; left: 22%; }
-.beaconUk { top: 29%; left: 46%; }
+.beaconCanada { top: 24%; left: 20%; }
+.beaconUk { top: 28%; left: 47%; }
 .beaconDubai { top: 43%; left: 59%; }
-.beaconAus { top: 72%; left: 80%; }
+.beaconAus { top: 70%; left: 77%; }
 
 /* ── 5 Global Hub Cards Grid ────────────────────────────────── */
 .globalHubsGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.globalHubsGrid > div {
+  display: flex;
+  height: 100%;
 }
 
 .globalHubCard {
   background: rgba(15, 28, 68, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  padding: 24px;
+  padding: 20px 16px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
   gap: 12px;
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
 }
@@ -2356,7 +2365,7 @@
 /* ══ 4.7 CONTACT FORM SECTION (WHITE BACKGROUND) ═════════════════ */
 .contactSection {
   background: #FFFFFF;
-  padding: clamp(80px, 10vw, 120px) var(--gutter);
+  padding: clamp(48px, 4.5vw, 64px) var(--gutter);
   position: relative;
   overflow: hidden;
   border-top: 1px solid #E6ECFF;
@@ -2719,7 +2728,7 @@
 /* ══ 5. PROCESS ══════════════════════════════════════════════════ */
 .procSection {
   background: var(--surface);
-  padding: clamp(96px, 12vw, 160px) var(--gutter);
+  padding: clamp(48px, 4.5vw, 64px) var(--gutter);
 }
 
 .procInner {
@@ -2858,7 +2867,7 @@
   position: relative;
   overflow: hidden;
   background: var(--dark-mid);
-  padding: clamp(80px, 10vw, 140px) var(--gutter);
+  padding: clamp(52px, 5vw, 76px) var(--gutter);
 }
 
 .ctaInner {

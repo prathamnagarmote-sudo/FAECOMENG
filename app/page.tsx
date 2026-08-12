@@ -541,11 +541,67 @@ const PE_STATS = [
   },
 ];
 
+const CountryFlag = ({ code }: { code: 'usa' | 'canada' | 'uk' | 'dubai' | 'australia' }) => {
+  switch (code) {
+    case 'usa':
+      return (
+        <svg viewBox="0 0 36 24" width="20" height="14" style={{ borderRadius: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+          <rect width="36" height="24" fill="#B22234" />
+          <path d="M0 3.7h36M0 9.2h36M0 14.8h36M0 20.3h36" stroke="#FFFFFF" strokeWidth="1.85" />
+          <rect width="14.4" height="13" fill="#3C3B6E" />
+          <circle cx="7.2" cy="6.5" r="2.8" fill="#FFFFFF" opacity="0.95" />
+        </svg>
+      );
+    case 'canada':
+      return (
+        <svg viewBox="0 0 36 24" width="20" height="14" style={{ borderRadius: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+          <rect width="36" height="24" fill="#FF0000" />
+          <rect x="9" width="18" height="24" fill="#FFFFFF" />
+          <path d="M18 6l1.8 3.6h3.6l-2.7 2.2 1 3.6-3.7-2.3-3.7 2.3 1-3.6-2.7-2.2h3.6z" fill="#FF0000" />
+        </svg>
+      );
+    case 'uk':
+      return (
+        <svg viewBox="0 0 36 24" width="20" height="14" style={{ borderRadius: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+          <rect width="36" height="24" fill="#00247D" />
+          <path d="M0 0l36 24M36 0L0 24" stroke="#FFFFFF" strokeWidth="4" />
+          <path d="M0 0l36 24M36 0L0 24" stroke="#CF142B" strokeWidth="2.4" />
+          <path d="M18 0v24M0 12h36" stroke="#FFFFFF" strokeWidth="6" />
+          <path d="M18 0v24M0 12h36" stroke="#CF142B" strokeWidth="3.6" />
+        </svg>
+      );
+    case 'dubai':
+      return (
+        <svg viewBox="0 0 36 24" width="20" height="14" style={{ borderRadius: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+          <rect width="36" height="8" y="0" fill="#007A3D" />
+          <rect width="36" height="8" y="8" fill="#FFFFFF" />
+          <rect width="36" height="8" y="16" fill="#000000" />
+          <rect width="9" height="24" x="0" fill="#FF0000" />
+        </svg>
+      );
+    case 'australia':
+      return (
+        <svg viewBox="0 0 36 24" width="20" height="14" style={{ borderRadius: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+          <rect width="36" height="24" fill="#000085" />
+          <rect width="18" height="12" fill="#00247D" />
+          <path d="M0 0l18 12M18 0L0 12" stroke="#FFFFFF" strokeWidth="2" />
+          <path d="M0 0l18 12M18 0L0 12" stroke="#CF142B" strokeWidth="1.2" />
+          <path d="M9 0v12M0 6h18" stroke="#FFFFFF" strokeWidth="3" />
+          <path d="M9 0v12M0 6h18" stroke="#CF142B" strokeWidth="1.8" />
+          <circle cx="27" cy="6" r="1.5" fill="#FFFFFF" />
+          <circle cx="24" cy="15" r="1.5" fill="#FFFFFF" />
+          <circle cx="30" cy="18" r="1.5" fill="#FFFFFF" />
+          <circle cx="9" cy="18" r="2.2" fill="#FFFFFF" />
+        </svg>
+      );
+  }
+};
+
 const GLOBAL_HUBS = [
   {
     id: 'usa',
     country: 'USA',
-    flag: '🇺🇸',
+    flagCode: 'usa' as const,
     role: 'Primary Engineering Hub',
     codes: ['AISC', 'IBC', 'ACI', 'ASCE 7'],
     desc: 'Full-service structural, MEP & BIM engineering for high-rise, commercial, and industrial facilities across 25+ licensed states.',
@@ -553,7 +609,7 @@ const GLOBAL_HUBS = [
   {
     id: 'canada',
     country: 'CANADA',
-    flag: '🇨🇦',
+    flagCode: 'canada' as const,
     role: 'Structural & Cold-Formed Steel',
     codes: ['NBC', 'CSA S16', 'CSA A23.3'],
     desc: 'Advanced LGS detailing, timber structure design, and BIM coordination compliant with Canadian National Building Codes.',
@@ -561,7 +617,7 @@ const GLOBAL_HUBS = [
   {
     id: 'uk',
     country: 'UNITED KINGDOM',
-    flag: '🇬🇧',
+    flagCode: 'uk' as const,
     role: 'BIM & Structural Detailing',
     codes: ['Eurocodes', 'BS EN 1993', 'BSI'],
     desc: 'Third-party peer reviews, complex steel connections, and Level 2 BIM modeling for commercial developments across Europe.',
@@ -569,7 +625,7 @@ const GLOBAL_HUBS = [
   {
     id: 'dubai',
     country: 'DUBAI (UAE)',
-    flag: '🇦🇪',
+    flagCode: 'dubai' as const,
     role: 'High-Rise & Mega Infrastructure',
     codes: ['Dubai Building Code', 'AISC', 'Eurocodes'],
     desc: 'Specialized structural engineering and rebar detailing for landmark skyscrapers, residential towers, and hospitality projects.',
@@ -577,7 +633,7 @@ const GLOBAL_HUBS = [
   {
     id: 'australia',
     country: 'AUSTRALIA',
-    flag: '🇦🇺',
+    flagCode: 'australia' as const,
     role: 'Residential & Light Gauge Steel',
     codes: ['AS/NZS 1170', 'AS 4100', 'NCC'],
     desc: 'Cold-formed steel framing, residential structural calculations, and 3D Tekla detailing compliant with Australian Standards.',
@@ -1323,7 +1379,7 @@ export default function Home() {
                 <span className={styles.beaconRing} />
                 <span className={styles.beaconDot} />
                 <div className={styles.beaconBadge}>
-                  <span className={styles.beaconFlag}>🇺🇸</span>
+                  <CountryFlag code="usa" />
                   <span className={styles.beaconTitle}>USA (HQ)</span>
                 </div>
               </div>
@@ -1332,7 +1388,7 @@ export default function Home() {
                 <span className={styles.beaconRing} />
                 <span className={styles.beaconDot} />
                 <div className={styles.beaconBadge}>
-                  <span className={styles.beaconFlag}>🇨🇦</span>
+                  <CountryFlag code="canada" />
                   <span className={styles.beaconTitle}>CANADA</span>
                 </div>
               </div>
@@ -1341,7 +1397,7 @@ export default function Home() {
                 <span className={styles.beaconRing} />
                 <span className={styles.beaconDot} />
                 <div className={styles.beaconBadge}>
-                  <span className={styles.beaconFlag}>🇬🇧</span>
+                  <CountryFlag code="uk" />
                   <span className={styles.beaconTitle}>UK</span>
                 </div>
               </div>
@@ -1350,7 +1406,7 @@ export default function Home() {
                 <span className={styles.beaconRing} />
                 <span className={styles.beaconDot} />
                 <div className={styles.beaconBadge}>
-                  <span className={styles.beaconFlag}>🇦🇪</span>
+                  <CountryFlag code="dubai" />
                   <span className={styles.beaconTitle}>DUBAI</span>
                 </div>
               </div>
@@ -1359,7 +1415,7 @@ export default function Home() {
                 <span className={styles.beaconRing} />
                 <span className={styles.beaconDot} />
                 <div className={styles.beaconBadge}>
-                  <span className={styles.beaconFlag}>🇦🇺</span>
+                  <CountryFlag code="australia" />
                   <span className={styles.beaconTitle}>AUSTRALIA</span>
                 </div>
               </div>
@@ -1372,7 +1428,7 @@ export default function Home() {
               <FadeUp key={hub.id} delay={index * 0.08}>
                 <div className={styles.globalHubCard}>
                   <div className={styles.hubCardHeader}>
-                    <span className={styles.hubFlag}>{hub.flag}</span>
+                    <CountryFlag code={hub.flagCode} />
                     <h3 className={styles.hubCountry}>{hub.country}</h3>
                   </div>
                   <span className={styles.hubRoleBadge}>{hub.role}</span>
