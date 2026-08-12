@@ -131,25 +131,25 @@
    (left ≥ 46%) — this guarantees zero overlap with the left hero text
    column on every device. */
 .annotStruct {
-  top: 13%;
-  left: 49%;
+  top: clamp(130px, 17vh, 165px);
+  left: clamp(46%, 48vw, 51%);
 }
 
 .annotArch {
-  top: 36%;
-  right: clamp(0px, 1vw, 24px);
+  top: 38%;
+  right: clamp(10px, 2vw, 40px);
   flex-direction: row-reverse;
   text-align: right;
 }
 
 .annotBim {
-  top: 44%;
+  top: 45%;
   left: 46%;
 }
 
 .annotMep {
-  top: 10%;
-  right: clamp(40px, 10vw, 200px);
+  top: clamp(120px, 15.5vh, 155px);
+  right: clamp(20px, 4vw, 100px);
   flex-direction: row-reverse;
   text-align: right;
 }
@@ -3179,10 +3179,10 @@
     font-size: 7.5px;
   }
   .annotBim { left: 49%; }
-  .annotStruct { left: 51%; }
+  .annotStruct { top: clamp(110px, 14.5vh, 135px); left: 50%; }
   .annotCoord { left: 53%; top: 68%; }
   .annotArch { right: 0; }
-  .annotMep { right: 8%; }
+  .annotMep { top: clamp(108px, 14vh, 130px); right: 4%; }
   .annotTitle { font-size: 9.5px; }
   .annotSubText { font-size: 9px; }
   .annotIconBox { width: 30px; height: 30px; }
