@@ -3302,19 +3302,19 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   MOBILE HERO — Side-by-side layout matching reference image (≤ 1024px)
-   Left: text content ~50% width
-   Right: 3D building absolute, bleeds off right edge
-   Bottom: CAD filter bar full-width strip
-   Stats bar: flows after hero in normal document flow
+   MOBILE HERO — Premium Stacked Layout (≤ 1024px)
+   Top:    Hero text content (full width, generous padding)
+   Middle: 3D Building with floating badges (full width)
+   Bottom: Stats ribbon (responsive grid)
    ZERO changes to PC/desktop view.
 ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
 
-  /* ── Hero section ── */
+  /* ── Hero Container — Stacked vertical flow ── */
   .hero {
     position: relative;
-    display: block;
+    display: flex;
+    flex-direction: column;
     min-height: auto;
     height: auto;
     overflow: hidden;
@@ -3323,17 +3323,105 @@
     perspective: none;
   }
 
-  /* ── 3D Building on Right Side ── */
+  /* ── Hero Text Content (Full Width, Top Section) ── */
+  .heroContent {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    padding: 90px 24px 28px 24px;
+    z-index: 10;
+    background: transparent;
+    margin: 0;
+    order: 1;
+  }
+
+  .heroTag {
+    font-size: clamp(9px, 2.2vw, 12px);
+    letter-spacing: 0.14em;
+    margin-bottom: 14px;
+    gap: 8px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    line-height: 1.4;
+  }
+
+  .heroTagLine {
+    width: 28px;
+    height: 2.5px;
+  }
+
+  .heroH1 {
+    margin-bottom: 14px;
+    gap: clamp(4px, 1vw, 8px);
+    perspective: none;
+    transform-style: flat;
+  }
+
+  .heroLineNavy,
+  .heroLineOrange {
+    display: block;
+    font-size: clamp(28px, 7vw, 48px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    white-space: nowrap;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .heroSub {
+    font-size: clamp(12px, 2.8vw, 15px);
+    line-height: 1.55;
+    margin-bottom: 20px;
+    max-width: 100%;
+    white-space: normal;
+    color: #4A4D6B;
+  }
+
+  .heroActions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 0;
+    align-items: center;
+    width: 100%;
+  }
+
+  .heroBtnPrimary {
+    flex: 1;
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: clamp(10px, 2.5vw, 12px);
+    height: auto;
+    white-space: nowrap;
+    letter-spacing: 0.06em;
+    border-radius: 6px;
+  }
+
+  .heroBtnGhost {
+    flex: 1;
+    justify-content: center;
+    padding: 11px 16px;
+    font-size: clamp(10px, 2.5vw, 12px);
+    height: auto;
+    white-space: nowrap;
+    letter-spacing: 0.06em;
+    border-radius: 6px;
+  }
+
+  /* ── 3D Building (Full Width, Middle Section) ── */
   .heroBg {
-    position: absolute;
-    top: 70px;
-    height: 400px;
-    right: -10px;
+    position: relative;
+    top: auto;
+    bottom: auto;
+    right: auto;
     left: auto;
-    width: 56%;
+    width: 100%;
+    height: clamp(320px, 50vw, 460px);
     z-index: 2;
     perspective: none;
     transform-style: flat;
+    order: 2;
   }
 
   .heroBgInner {
@@ -3343,135 +3431,116 @@
 
   .heroImg {
     object-fit: contain !important;
-    object-position: right center !important;
+    object-position: center center !important;
   }
 
   .heroOverlay {
-    display: block;
+    display: none;
   }
 
-  /* ── Hero Text Content (Left Column) ── */
-  .heroContent {
-    position: relative;
-    max-width: 48%;
-    width: 48%;
-    padding: 80px 0 70px 16px;
-    z-index: 10;
-    background: transparent;
-  }
-
-  .heroTag {
-    font-size: 8px;
-    letter-spacing: 0.12em;
-    margin-bottom: 10px;
-    gap: 6px;
-    flex-wrap: wrap;
-    white-space: normal;
-    max-width: 100%;
-    line-height: 1.5;
-  }
-
-  .heroH1 {
-    margin-bottom: 10px;
-    perspective: none;
-    transform-style: flat;
-  }
-
-  .heroLineNavy,
-  .heroLineOrange {
-    display: block;
-    font-size: clamp(20px, 5.5vw, 32px);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -0.025em;
-    white-space: nowrap;
-    word-break: normal;
-    overflow-wrap: normal;
-  }
-
-  .heroSub {
-    font-size: 11px;
-    line-height: 1.5;
-    margin-bottom: 14px;
-    max-width: 100%;
-    white-space: normal;
-    color: #4A4D6B;
-  }
-
-  .heroActions {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 0;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  .heroBtnPrimary {
-    width: 100%;
-    justify-content: center;
-    padding: 6px 8px;
-    font-size: 8px;
-    height: 28px;
-    white-space: nowrap;
-    letter-spacing: 0.04em;
-    border-radius: 4px;
-  }
-
-  .heroBtnGhost {
-    width: 100%;
-    justify-content: center;
-    padding: 5px 8px;
-    font-size: 8px;
-    height: 28px;
-    white-space: nowrap;
-    letter-spacing: 0.04em;
-    border-radius: 4px;
-  }
-
-  /* ── 5 Callouts on 3D Building (Sourced strictly to building column) ── */
+  /* ── Floating Badges (Positioned around building image) ── */
   .annotations {
     display: block;
     position: absolute;
-    top: 70px;
-    height: 400px;
+    top: auto;
+    bottom: 110px;
+    left: 0;
     right: 0;
-    width: 55%;
-    left: auto;
+    width: 100%;
+    height: clamp(320px, 50vw, 460px);
     z-index: 5;
     pointer-events: none;
   }
 
   .annot {
-    gap: 3px;
-    scale: 0.65;
-    transform: none !important; /* Disable scroll-based horizontal movement into left text */
+    gap: 4px;
+    scale: 1;
+    transform: none !important;
   }
 
   .annotTextGroup {
-    padding: 2px 5px;
-    border-radius: 4px;
+    padding: 4px 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   }
 
-  .annotTitle { font-size: 7.5px; letter-spacing: 0.03em; }
-  .annotSubText { font-size: 7px; }
-  .annotIconBox { width: 20px; height: 20px; border-radius: 4px; }
-  .annotIconBox svg { width: 10px; height: 10px; }
+  .annotTitle {
+    font-size: clamp(8px, 1.8vw, 10px);
+    letter-spacing: 0.04em;
+  }
+  .annotSubText {
+    font-size: clamp(7px, 1.5vw, 9px);
+  }
+  .annotIconBox {
+    width: clamp(24px, 5vw, 32px);
+    height: clamp(24px, 5vw, 32px);
+    border-radius: 5px;
+  }
+  .annotIconBox svg {
+    width: clamp(12px, 2.5vw, 16px);
+    height: clamp(12px, 2.5vw, 16px);
+  }
 
+  /* Hide pointer lines on mobile — too cluttered */
   .pointerLineDark, .pointerLineOrange,
   .pointerLineOrangeRight, .pointerLineDarkRight { display: none; }
 
-  .annotStruct { top: 6%; left: 2%; right: auto; transform-origin: top left; }
-  .annotMep { top: 4%; right: 4%; left: auto; transform-origin: top right; }
-  .annotArch { top: 38%; right: 2%; left: auto; transform-origin: center right; }
-  .annotBim { top: 48%; left: 2%; right: auto; transform-origin: center left; }
-  .annotCoord { top: 72%; left: 4%; right: auto; transform-origin: bottom left; }
+  /* Position each badge around the building with guaranteed no overlap.
+     Top-left and top-right in the upper zone,
+     mid-left and mid-right in the middle zone,
+     bottom-left in the lower zone. */
+  .annotStruct {
+    top: 2%;
+    left: 3%;
+    right: auto;
+  }
+  .annotMep {
+    top: 2%;
+    right: 3%;
+    left: auto;
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+  .annotArch {
+    top: 42%;
+    right: 2%;
+    left: auto;
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+  .annotBim {
+    top: 45%;
+    left: 2%;
+    right: auto;
+  }
+  .annotCoord {
+    bottom: 6%;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%) !important;
+    right: auto;
+  }
 
   .phaseIndicator {
     display: none;
   }
 
-  /* ── Stats Ribbon: Black Grid Section Below Hero ── */
+  /* Hide CAD filter bar on mobile — too compact to be usable */
+  .cadFilterBar {
+    display: none;
+  }
+
+  /* ── Corner brackets ── */
+  .cornerTL, .cornerBR {
+    display: none;
+  }
+
+  /* ── Laser scan line ── */
+  .laserScanLine {
+    display: none;
+  }
+
+  /* ── Stats Ribbon: Clean Grid Below Hero ── */
   .statsBar {
     position: relative;
     top: auto;
@@ -3480,20 +3549,31 @@
     right: auto;
     width: 100%;
     margin-top: 0;
+    transform: none;
     grid-template-columns: repeat(3, 1fr);
     z-index: 10;
     background: #000000;
     clear: both;
+    order: 3;
+    min-height: auto;
   }
 
   .statsBar > div {
-    padding: 18px 6px;
+    padding: 20px 8px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   .statsBar > div:nth-child(3),
   .statsBar > div:nth-child(6) {
     border-right: none;
+  }
+
+  .statVal {
+    font-size: clamp(18px, 4.5vw, 26px);
+  }
+
+  .statLabel {
+    font-size: clamp(6.5px, 1.6vw, 8.5px);
   }
 
   /* ── Other section grids ── */
@@ -3517,58 +3597,69 @@
 
 @media (max-width: 480px) {
   .heroContent {
-    max-width: 50%;
-    width: 50%;
-    padding: 70px 0 60px 12px;
+    padding: 80px 16px 24px 16px;
   }
 
   .heroBg {
-    width: 58%;
-    right: -15px;
-    height: 380px;
+    height: clamp(280px, 65vw, 380px);
   }
 
   .annotations {
-    height: 380px;
-  }
-
-  .statsBar {
-    margin-top: 0;
-    grid-template-columns: repeat(2, 1fr);
+    height: clamp(280px, 65vw, 380px);
+    bottom: 140px;
   }
 
   .heroLineNavy,
   .heroLineOrange {
-    font-size: clamp(17px, 5.2vw, 26px);
+    font-size: clamp(24px, 7vw, 36px);
   }
 
   .heroSub {
-    font-size: 10px;
-    margin-bottom: 10px;
+    font-size: clamp(11px, 2.8vw, 13px);
+    margin-bottom: 16px;
+  }
+
+  .heroActions {
+    flex-direction: column;
+    gap: 8px;
   }
 
   .heroBtnPrimary,
   .heroBtnGhost {
-    font-size: 8px;
-    padding: 6px 8px;
-    height: 28px;
+    font-size: clamp(9px, 2.4vw, 11px);
+    padding: 10px 14px;
   }
 
-  .statCell { padding: 14px 6px; }
+  .statsBar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statCell { padding: 16px 6px; }
   .floatingLabels { display: none; }
   .procGrid { grid-template-columns: 1fr; }
+
+  /* Scale down badges slightly on small phones */
+  .annot {
+    scale: 0.88;
+  }
 }
 
 @media (max-width: 375px) {
   .heroContent {
-    max-width: 52%;
-    width: 52%;
-    padding: 65px 0 55px 10px;
+    padding: 75px 14px 20px 14px;
   }
 
   .heroLineNavy,
   .heroLineOrange {
-    font-size: clamp(15px, 5vw, 22px);
+    font-size: clamp(22px, 6.5vw, 32px);
+  }
+
+  .heroTag {
+    font-size: 9px;
+  }
+
+  .annot {
+    scale: 0.78;
   }
 }
 
