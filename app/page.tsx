@@ -305,49 +305,49 @@ const SERVICES = [
   {
     n: '02', href: '/services/structural-steel',
     title: 'Structural Engineering',
-    img: '/images/project_commercial.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443972/structural_steel_solutions.png',
     bullets: ['Structural Analysis', 'Steel & Concrete Design', 'Connection Design', 'Foundation Engineering'],
   },
   {
     n: '03', href: '/services/bim',
     title: 'BIM Modeling',
-    img: '/images/about_building.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443962/architectural_bim_services.jpg',
     bullets: ['3D BIM Modeling', 'Clash Detection', '4D Construction', '5D Estimation'],
   },
   {
     n: '04', href: '/services/mep',
     title: 'MEP Systems',
-    img: '/images/project_industrial.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443927/mep.jpg',
     bullets: ['HVAC Design', 'Electrical Systems', 'Plumbing Systems', 'Fire Protection'],
   },
   {
     n: '05', href: '/services/bim-solutions-3d',
     title: 'BIM-integrated Solutions 3D',
-    img: '/images/cta_building.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443953/Bim_integrated_3d.jpg',
     bullets: ['Multi-Discipline Coordination', 'BIM to Field', 'Quantity Take-Off', 'Construction Planning'],
   },
   {
     n: '06', href: '/services/icf',
     title: 'ICF Solutions',
-    img: '/images/project_commercial.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443935/ICF.jpg',
     bullets: ['ICF Structural Design', 'Energy Efficient Buildings', 'Wall & Foundation Systems', 'Shop Drawings'],
   },
   {
     n: '07', href: '/services/timber',
     title: 'Timber Engineering',
-    img: '/images/about_building.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443980/wood_and_timber.png',
     bullets: ['Timber Structure Design', 'Glulam & CLT Solutions', 'Connection Design', 'Sustainable Structures'],
   },
   {
     n: '08', href: '/services/rebar-concrete',
     title: 'Rebar & Concrete',
-    img: '/images/project_industrial.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443919/concrete_and_rebar_solutions.png',
     bullets: ['Precast Concrete Design', 'Rebar Detailing', 'Placing Drawings', 'Shop Drawings'],
   },
   {
     n: '09', href: '/services/third-party-review',
     title: 'Third Party Review',
-    img: '/images/project_commercial.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786444120/tekla_structures.png',
     bullets: ['Peer Review', 'Value Engineering', 'Code Compliance Check', 'Structural Optimization'],
   },
 ];
@@ -1103,14 +1103,14 @@ export default function Home() {
                   </div>
 
                   {/* Isometric Building Render & Laser Scan Sweep */}
-                  <div className={styles.servCardImg} style={{ width: svc.n === '01' ? '220px' : undefined }}>
+                  <div className={styles.servCardImg} style={{ width: '250px' }}>
                     <Image
                       src={svc.img}
                       alt={svc.title}
                       fill
                       quality={85}
                       sizes="(max-width: 900px) 90vw, 25vw"
-                      style={{ objectFit: 'cover' }}
+                      style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                     <div className={styles.servCardLaserLine} />
                   </div>
