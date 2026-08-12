@@ -1,7 +1,7 @@
 .section {
   padding: clamp(60px, 6vw, 80px) var(--gutter);
   text-align: center;
-  background-color: rgba(10, 15, 30, 0.95); /* Dark background */
+  background-color: #FFFFFF; /* White background */
 }
 
 .container {
@@ -21,7 +21,7 @@
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #FFFFFF; /* White on dark background */
+  color: #000000; /* Black */
   margin-bottom: 16px;
 }
 
@@ -29,7 +29,7 @@
   font-size: 18px; /* Increased font size */
   font-weight: 500; /* Slightly bold */
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.85); /* Light color on dark background */
+  color: #000000; /* Black */
 }
 
 .grid {
@@ -40,7 +40,7 @@
 
 .card {
   background: var(--white);
-  border: 2px solid #FFFFFF; /* White border */
+  border: 2px solid #000000; /* Black border */
   border-radius: 12px;
   overflow: hidden;
   display: flex;
@@ -91,38 +91,40 @@
   font-family: var(--font-body);
   font-size: 32px;
   font-weight: 900;
-  color: #FFFFFF; /* Crisp white for the name */
+  color: #000000; /* Crisp black for the name */
   margin-bottom: 2px;
 }
 
 .role {
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: bold;
   color: var(--accent); /* Orange */
   margin-bottom: 4px;
 }
 
 .role2 {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.75); /* Light gray/white */
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--accent); /* Orange */
   margin-bottom: 4px;
 }
 
 .email {
   font-family: var(--font-body);
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.75); /* Light gray/white */
+  font-weight: bold;
+  color: var(--accent); /* Orange */
   margin-bottom: 16px;
 }
 
 .desc {
-  font-size: 13px; /* Slightly increased for readability */
+  font-size: 14.5px;
   font-weight: 500;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6); /* Softer light gray for body text */
+  color: rgba(0, 0, 0, 0.75); /* Dark gray for body text */
+  text-align: left;
 }
 
 @media (max-width: 1200px) {

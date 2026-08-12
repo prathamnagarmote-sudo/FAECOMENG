@@ -25,9 +25,9 @@ export const ALL_PROJECTS = [
     location: 'USA',
     category: 'Light Gauge Steel',
     tag: 'Residential Apartment',
-    area: '100,000 sq. ft.',
+    area: '150,000 sq. ft.',
     storeys: '6 Floors',
-    image: '/images/project_tm_heights.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786445987/TM_HEIGHTS_USA....png',
     featured: true,
   },
   {
@@ -35,10 +35,10 @@ export const ALL_PROJECTS = [
     name: 'Nelson Senior Care Center',
     location: 'USA',
     category: 'Light Gauge Steel',
-    tag: 'Senior Home Care Unit Center',
+    tag: 'Senior HomeCare Unit Center',
     area: '220,000 sq. ft.',
-    storeys: '5 Floors',
-    image: '/images/project_nelson_care.png',
+    storeys: '5 floors',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786446264/NELSON_USA.png',
     featured: true,
   },
   {
@@ -48,8 +48,8 @@ export const ALL_PROJECTS = [
     category: 'Light Gauge Steel',
     tag: 'Residential House',
     area: '5,000 sq. ft.',
-    storeys: 'G+1 Floor',
-    image: '/images/project_khan_house.png',
+    storeys: 'G+1 floor',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786446440/KHAN_HOUSE_CANADA.png',
     featured: false,
   },
   {
@@ -59,8 +59,8 @@ export const ALL_PROJECTS = [
     category: 'Light Gauge Steel',
     tag: 'Affordable Housing',
     area: '3,000 sq. ft.',
-    storeys: '1 Floor',
-    image: '/images/project_residential.png',
+    storeys: '1',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786446646/CHESSNUT_USA.png',
     featured: false,
   },
   {
@@ -69,9 +69,9 @@ export const ALL_PROJECTS = [
     location: 'USA',
     category: 'Light Gauge Steel',
     tag: 'Religious Structure',
-    area: '11,760 sq. ft.',
+    area: '11,760 sq ft.',
     storeys: 'G+1',
-    image: '/images/project_children_bldg.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786446813/FELLOWSHIPCHILDREN_BUILDING_USA.png',
     featured: false,
   },
   {
@@ -79,10 +79,10 @@ export const ALL_PROJECTS = [
     name: 'Wheel House',
     location: 'USA',
     category: 'Light Gauge Steel',
-    tag: 'ADU Unit',
-    area: '810 sq. ft.',
-    storeys: '1 Floor',
-    image: '/images/project_wheel_house.png',
+    tag: 'ADU UNIT',
+    area: '80 sq ft.',
+    storeys: '1',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786447061/WHEEL_HOUSE_USA.png',
     featured: false,
   },
   {
@@ -91,9 +91,9 @@ export const ALL_PROJECTS = [
     location: 'MD 21054, USA',
     category: 'Light Gauge Steel',
     tag: 'Retail Building',
-    area: '11,760 sq. ft.',
-    storeys: '1 Floor',
-    image: '/images/project_commercial.png',
+    area: '11,760 sq ft.',
+    storeys: '1',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786447180/RETAIL_BUILDING_810_CRAIN.png',
     featured: false,
   },
   {
@@ -102,9 +102,9 @@ export const ALL_PROJECTS = [
     location: 'USA',
     category: 'Light Gauge Steel',
     tag: 'Religious Structure',
-    area: '13,898 sq. ft.',
-    storeys: '1 Floor',
-    image: '/images/project_commercial.png',
+    area: '13,698 sq ft.',
+    storeys: '1',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786447309/NEW_ADDITION_JCC.png',
     featured: false,
   },
 
@@ -117,7 +117,7 @@ export const ALL_PROJECTS = [
     tag: 'Residential Complex',
     area: '22,492 sq. ft.',
     storeys: null,
-    image: '/images/project_elm_st.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786447633/MANCHESTER_NEW_HAMPSHIREE.png',
     featured: true,
   },
   {
@@ -128,40 +128,40 @@ export const ALL_PROJECTS = [
     tag: 'Residential Cabin',
     area: '3,689 sq. ft.',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786447794/THEODORE_CABIN_USA.png',
     featured: false,
   },
   {
     id: 'widdison-family-cabin',
     name: 'Widdison Family Cabin',
-    location: '1075 E Empty Saddle Rd Duck Creek Village, UT 84782, USA',
+    location: '1075 E Empty Saddle Rd Duck Creek Village, UT 84762',
     category: 'Wood & Mass Timber',
     tag: 'Residential Cabin',
     area: null,
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786448012/WIDDISON_FAMILY_CABIN.png',
     featured: false,
   },
   {
     id: 'tipsy-moose',
     name: 'Tipsy Moose',
-    location: 'Lot 24, 1075 N Valley Hills Blvd, Heber City, UT 84032, USA',
+    location: 'LOT 24, 1075 N VALLEY HILLS BLVD HEBER CITY, UT 84032',
     category: 'Wood & Mass Timber',
     tag: 'Residential Villa',
-    area: '2,322 sq. ft.',
+    area: '2322 sq. ft.',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786448140/TIPSY_MOOSE_USA.png',
     featured: false,
   },
   {
     id: 'cottage-unit-bahamas',
     name: 'Cottage Unit',
-    location: 'Little Exuma, The Commonwealth of Bahamas',
+    location: 'Little Exuma, The Commonwealth Of Bahamas',
     category: 'Wood & Mass Timber',
     tag: 'Residential Villa',
     area: '734.38 sq. ft.',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786448267/COTTAGE_UNIT_BAHAMAS.png',
     featured: false,
   },
   {
@@ -169,449 +169,449 @@ export const ALL_PROJECTS = [
     name: 'M & M Residence',
     location: 'North Carolina, USA',
     category: 'Wood & Mass Timber',
-    tag: 'Residential Villa',
-    area: '10,000 sq. ft.',
+    tag: 'Residential Villaa',
+    area: '10,000 sq. ft',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786448864/M_M_RESIDENCE_NORTH_CAROLINA.png',
     featured: false,
   },
   {
     id: 'sugar-villa-bahamas',
     name: 'Sugar Villa',
-    location: 'Little Exuma, The Commonwealth of Bahamas',
+    location: 'Little Exuma, The Commonwealth Of Bahamas',
     category: 'Wood & Mass Timber',
     tag: 'Residential Villa',
-    area: '13,808.80 sq. ft.',
+    area: '13808.82 sq. ft.',
     storeys: null,
-    image: '/images/project_sugar_villa.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443953/Bim_integrated_3d.jpg',
     featured: false,
   },
   {
     id: 'beach-bar-bahamas',
     name: 'Beach Bar',
-    location: 'Little Exuma, The Commonwealth of Bahamas',
+    location: 'Little Exuma, The Commonwealth Of Bahamas',
     category: 'Wood & Mass Timber',
     tag: 'Commercial',
     area: null,
     storeys: null,
-    image: '/images/project_commercial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786448726/BEACH_BAR_BAHAMAS.png',
     featured: false,
   },
 
   /* ── STRUCTURAL STEEL ── */
   {
     id: 'emmons-bay-hotel',
-    name: 'Emmons Bay Hotel 2902 Emmons Avenue',
-    location: 'Brooklyn, NY, USA',
+    name: 'EMMONS BAY HOTEL 2902 EMMONS AVENUE, BROOKLYN, NY',
+    location: 'Brooklyn, NY',
     category: 'Structural Steel',
     tag: 'Commercial Project',
     area: '11,235 sq. ft.',
     storeys: null,
-    image: '/images/project_commercial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786449074/EMMONS_BAY_HOTEL_2902_EMMONS_AVENUE_BROOKLYN_NY.png',
     featured: true,
   },
   {
     id: 'ascend-towers',
-    name: 'Ascend Towers',
-    location: 'New York, USA',
+    name: 'ASCEND TOWERS',
+    location: 'New York',
     category: 'Structural Steel',
     tag: 'Industrial Project',
     area: null,
     storeys: null,
-    image: '/images/project_commercial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786449234/ASCEND_TOWERS_New_York.png',
     featured: false,
   },
   {
     id: 'skid-project-1',
-    name: 'Skid Project',
+    name: 'SKID PROJECT',
     location: 'USA',
     category: 'Structural Steel',
     tag: 'Industrial Project',
     area: null,
     storeys: null,
-    image: '/images/project_industrial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786449404/SKID_PROJECT_USA.png',
     featured: false,
   },
   {
     id: 'skid-project-2',
-    name: 'Skid Project',
+    name: 'SKID PROJECT',
     location: 'USA',
     category: 'Structural Steel',
     tag: 'Industrial Project',
     area: null,
     storeys: null,
-    image: '/images/project_industrial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786521241/SKID_PROJECT_USA_2.png',
     featured: false,
   },
   {
     id: 'skid-project-3',
-    name: 'Skid Project',
+    name: 'SKID PROJECT',
     location: 'USA',
     category: 'Structural Steel',
     tag: 'Industrial Project',
     area: null,
     storeys: null,
-    image: '/images/project_industrial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786521241/SKID_PROJECT_USA_3.png',
     featured: false,
   },
   {
     id: 'charter-school-bronx',
-    name: 'Charter School',
-    location: '200 West Tremont, Bronx, NY, USA',
+    name: 'CHARTER SCHOOL',
+    location: 'BRONX, NY',
     category: 'Structural Steel',
-    tag: 'Charter School For Law And Social Justice',
-    area: '10,453 sq. ft.',
+    tag: 'Charter School For Law And Social Justice 200 West Tremont',
+    area: '10453 sq. ft.',
     storeys: null,
-    image: '/images/project_commercial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786521241/CHARTER_SCHOOL_BRONX_NY.png',
     featured: false,
   },
   {
     id: 'highbridge',
-    name: 'Highbridge',
-    location: '1387 University Avenue, Bronx, USA',
+    name: 'HIGHBRIDGE',
+    location: '1387 University Avenue, Bronx',
     category: 'Structural Steel',
     tag: 'Commercial Project',
     area: null,
     storeys: null,
-    image: '/images/project_commercial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786521241/HIGHBRIDGE_USA.png',
     featured: false,
   },
   {
     id: 'junction-boulevard',
-    name: 'Junction Boulevard',
-    location: 'Queens, 292 Madison Ave, New York, NY 10017, USA',
+    name: 'JUNCTION BOULEVARD',
+    location: 'Queens 292 Madison Ave, New York, NY 10017',
     category: 'Structural Steel',
     tag: 'Commercial Project',
     area: null,
     storeys: null,
-    image: '/images/project_commercial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786521241/JUNCTION_BOULEVARD_USA.png',
     featured: false,
   },
   {
     id: 'glenmark',
-    name: 'Glenmark',
+    name: 'GLENMARK',
     location: 'USA',
     category: 'Structural Steel',
     tag: 'Industrial Project',
     area: null,
     storeys: null,
-    image: '/images/project_industrial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786521241/Glenmark_USA.png',
     featured: false,
   },
 
   /* ── MEP ENGINEERING ── */
   {
     id: 'fellowship-church-mep',
-    name: 'Fellowship Church',
-    location: '2714 Goat Creek Road, Kerrville, Texas, USA',
+    name: 'FELLOWSHIP CHURCH',
+    location: '2714 Goat Creek Road Kerrville, TX',
     category: 'MEP Engineering',
     tag: 'Cross Kingdom Church',
-    area: '11,760 sq. ft.',
+    area: '11760 sq. ft.',
     storeys: null,
-    image: '/images/project_children_bldg.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786522340/FELLOWSHIP_CHURCH_USA_Mep.png',
     featured: true,
   },
   {
     id: 'children-building-mep',
-    name: 'Children Building',
-    location: '2714 Goat Creek Road, Kerrville, Texas, USA',
+    name: 'CHILDREN BUILDING',
+    location: '2714 Goat Creek Road Kerrville, TX',
     category: 'MEP Engineering',
     tag: 'Cross Kingdom Church',
-    area: '8,925 sq. ft.',
+    area: '8925 sq. ft.',
     storeys: null,
-    image: '/images/project_children_bldg.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786522340/CHILDREN_BUILDING_USA_MEP.png',
     featured: false,
   },
   {
     id: 'camile-carpenter-res',
-    name: 'Camile–Carpenter Residence',
-    location: '204 Louisiana Dr, Mexico Beach, FL 32456, USA',
+    name: 'CAMILIE-CARPENTER RESIDENCE',
+    location: '204 Louisiana Dr, Mexico Beach, FL 32456',
     category: 'MEP Engineering',
-    tag: 'New Construction',
+    tag: 'Nest Pro 1600-New Construction',
     area: null,
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786522340/CAMILIE-CARPENTER_RESIDENCE_MEP.png',
     featured: false,
   },
   {
     id: 'matthew-campbell-res',
-    name: 'Matthew–Campbell Residence',
-    location: '12 Bayshore Pines Court, Miramar Beach, FL 32550, USA',
+    name: 'MATTHEW- CAMPBELL RESIDENC',
+    location: '12 Bayshore Pines Court Miramar Beach, FL 32550',
     category: 'MEP Engineering',
     tag: 'Residential',
-    area: '8,761.92 sq. ft.',
+    area: '8761.92 sq. ft.',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786522340/MATTHEW-_CAMPBELL_RESIDENC_MEP.png',
     featured: false,
   },
   {
     id: 'drescher-drescher-mep',
-    name: 'Drescher–Drescher Residence',
-    location: '42 Oceanside Drive, Palm Coast, FL 32137, USA',
+    name: 'DRESCHER-DRESCHER RESIDENCE',
+    location: '42 Oceanside Drive, Palm Coast, FL 32137',
     category: 'MEP Engineering',
     tag: 'Residential Villa',
-    area: '7,671.75 sq. ft.',
+    area: '7671.75 sq. ft.',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786522340/DRESCHER-DRESCHER_RESIDENCE_MEP.png',
     featured: false,
   },
   {
     id: 'nelson-care-mep',
-    name: 'Nelson Care Unit',
+    name: 'NELSON CARE UNIT',
     location: 'USA',
     category: 'MEP Engineering',
     tag: 'Senior Home Care Unit Center',
     area: '220,000 sq. ft.',
-    storeys: '5 Floors',
-    image: '/images/project_nelson_care.png',
+    storeys: '5 floors',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786522341/MELSON_CARE_UNIT_USA_MEP.png',
     featured: false,
   },
 
   /* ── BIM INTEGRATED 3D ── */
   {
     id: 'elm-st-bim',
-    name: 'Elm St Unit',
-    location: 'Manchester, New Hampshire, USA',
+    name: 'ELM ST UNIT',
+    location: 'MANCHESTER, NEW HAMPSHIR',
     category: 'BIM Integrated 3D',
     tag: 'Residential Complex',
     area: '22,492 sq. ft.',
     storeys: null,
-    image: '/images/project_elm_st.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786525331/ELM_ST_UNIT_MANCHESTER_BIM.png',
     featured: true,
   },
   {
     id: 'little-home-nc',
-    name: 'Little Home',
-    location: 'North Carolina, USA',
+    name: 'LITTLE HOME',
+    location: 'NORTH CAROLINA',
     category: 'BIM Integrated 3D',
     tag: 'Residential Villa',
     area: '1,500 sq. ft.',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786526011/LITTLE_HOME_NORTH_CAROLINA_BIM.png',
     featured: false,
   },
   {
     id: 'nelson-care-bim',
-    name: 'Nelson Care Unit',
+    name: 'NELSON CARE UNIT',
     location: 'USA',
     category: 'BIM Integrated 3D',
     tag: 'Senior Home Care Unit Center',
     area: '220,000 sq. ft.',
-    storeys: '5 Floors',
-    image: '/images/project_nelson_care.png',
+    storeys: '5 floors',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786526009/NELSON_CARE_UNIT_USA_BIM.png',
     featured: false,
   },
   {
     id: 'sugar-villa-bim',
-    name: 'Sugar Villa',
-    location: 'Little Exuma, The Commonwealth of Bahamas',
+    name: 'SUGAR VILLA',
+    location: 'Little Exuma, The Commonwealth Of Bahamas',
     category: 'BIM Integrated 3D',
     tag: 'Residential Villa',
-    area: '13,808.82 sq. ft.',
+    area: '13808.82 sq. ft.',
     storeys: null,
-    image: '/images/project_sugar_villa.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786525314/Sugar_villa_BIM.jpg',
     featured: false,
   },
   {
     id: 'cottage-unit-bim',
-    name: 'Cottage Unit',
-    location: 'Little Exuma, The Commonwealth of Bahamas',
+    name: 'COTTAGE UNIT',
+    location: 'Little Exuma, The Commonwealth Of Bahamas',
     category: 'BIM Integrated 3D',
     tag: 'Residential Villa',
     area: '734.38 sq. ft.',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786525385/COTTAGE_UNIT_BAHAMAS_BIM.png',
     featured: false,
   },
   {
     id: 'widdison-cabin-bim',
-    name: 'Widdison Family Cabin',
-    location: '1075 E Empty Saddle Rd Duck Creek Village, UT 84762, USA',
+    name: 'WIDDISON FAMILY CABIN',
+    location: '1075 E Empty Saddle Rd Duck Creek Village, UT 84762',
     category: 'BIM Integrated 3D',
     tag: 'Residential Cabin',
     area: null,
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786525366/WIDDISON_FAMILY_CABIN_BIM.png',
     featured: false,
   },
   {
     id: 'mm-residence-bim',
-    name: 'M & M Residence',
-    location: 'North Carolina, USA',
+    name: 'M & M RESIDENCE',
+    location: 'NORTH CAROLINA',
     category: 'BIM Integrated 3D',
     tag: 'Residential Villa',
-    area: '10,000 sq. ft.',
+    area: '10,000 sq. ft',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786525469/M_M_RESIDENCE_NORTH_CAROLINA_BIM.png',
     featured: false,
   },
   {
     id: 'ruiz-residence-bim',
-    name: 'Ruiz Residence',
+    name: 'RUIZ RESIDENCE',
     location: 'USA',
     category: 'BIM Integrated 3D',
     tag: 'Residential Villa',
-    area: '8,000 sq. ft.',
+    area: '8,000 sq. ft',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786526007/RUIZ_RESIDENCE_USA_BIM.png',
     featured: false,
   },
 
   /* ── ARCHITECTURAL BIM ── */
   {
     id: 'joacim-miami',
-    name: 'Joacim | 17820 SW 104 Ave',
+    name: 'JOACIM | 17820 SW 104 AVE, MIAMI',
     location: 'Miami, USA',
     category: 'Architectural BIM',
-    tag: 'Multifamily Apartment',
-    area: '17,884 sq. ft.',
-    storeys: '11 Units',
-    image: '/images/project_commercial.png',
+    tag: '11 Unit Multifamily Apartment',
+    area: '17,884 sq. ft',
+    storeys: null,
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786532637/JOACIM_17820_SW_104_AVE_MIAMI_ABIM.png',
     featured: true,
   },
   {
     id: 'drescher-arch-bim',
-    name: 'Drescher–Drescher Residence',
-    location: '42 Oceanside Drive, Palm Coast, FL 32137, USA',
+    name: 'DRESCHER-DRESCHER RESIDENCE',
+    location: '42 Oceanside Drive, Palm Coast, FL 32137',
     category: 'Architectural BIM',
-    tag: 'Residential Villa',
-    area: '7,671.75 sq. ft.',
+    tag: 'Residential Vill',
+    area: '7671.75 sq. ft.',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786532634/DRESCHER-DRESCHER_RESIDENCE_ABIM.png',
     featured: false,
   },
   {
     id: 'fellowship-church-arch',
-    name: 'Fellowship Church',
-    location: '2714 Goat Creek Road, Kerrville, Texas, USA',
+    name: 'FELLOWSHIP CHURCH | USA',
+    location: '2714 Goat Creek Road Kerrville, Texas',
     category: 'Architectural BIM',
     tag: 'Cross Kingdom Church',
-    area: '11,760 sq. ft.',
+    area: '11760 sq. ft.',
     storeys: null,
-    image: '/images/project_children_bldg.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786532630/FELLOWSHIP_CHURCH_USA_ABIM.png',
     featured: false,
   },
   {
     id: 'children-bldg-lvl1',
-    name: 'Children Building Level 1',
-    location: '2714 Goat Creek Road, Kerrville, Texas, USA',
+    name: 'CHILDREN BUILDING LEVEL 1 | USA',
+    location: '2714 Goat Creek Road Kerrville, Texas',
     category: 'Architectural BIM',
     tag: 'Cross Kingdom Church',
-    area: '8,925 sq. ft.',
+    area: '8925 sq. ft.',
     storeys: null,
-    image: '/images/project_children_bldg.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786532626/CHILDREN_BUILDING_LEVEL_1_USA_ABIM.png',
     featured: false,
   },
   {
     id: 'children-bldg-lvl2',
-    name: 'Children Building Level 2',
-    location: '2714 Goat Creek Road, Kerrville, Texas, USA',
+    name: 'CHILDREN BUILDING LEVEL 2 | USA',
+    location: '2714 Goat Creek Road Kerrville, Texas',
     category: 'Architectural BIM',
     tag: 'Cross Kingdom Church',
-    area: '8,925 sq. ft.',
+    area: '8925 sq. ft.',
     storeys: null,
-    image: '/images/project_children_bldg.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786532622/CHILDREN_BUILDING_LEVEL_2_USA_ABIM.png',
     featured: false,
   },
   {
     id: 'angel-ruiz-miami',
-    name: 'Angel Ruiz',
-    location: '5849 sq. ft. Avenue, Miami, Florida 33127, USA',
+    name: 'ANGEL RUIUSA | MIAMI, USA',
+    location: 'Avenue, Miami, Florida 33127',
     category: 'Architectural BIM',
     tag: 'Residential',
-    area: '5,849 sq. ft.',
+    area: '5849 sq. ft.',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786532619/ANGEL_RUIUSA_MIAMI_USA_ABIM.png',
     featured: false,
   },
   {
     id: 'campbell-walton',
-    name: 'Campbell Residence',
-    location: '12 Bayshore Pines Court, Miramar Beach, FL, USA',
+    name: 'CAMPBELL RESIDENCE | WALTON, USA',
+    location: '12 Bayshore Pines Court, Miramar Beach',
     category: 'Architectural BIM',
     tag: 'Residential',
-    area: '8,761.92 sq. ft.',
+    area: '8761.92 sq. ft.',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786532615/CAMPBELL_RESIDENCE_WALTON_USA_ABIM.png',
     featured: false,
   },
   {
     id: 'carpenter-residence',
-    name: 'Carpenter Residence',
-    location: '200 Lillian Hwy, Pensacola, Florida 32516, USA',
+    name: 'Carpenter Residence | USA',
+    location: '200 Lillian Hwy, Pensacola, Florida 32516',
     category: 'Architectural BIM',
     tag: 'Residential',
-    area: '8,761.92 sq. ft.',
+    area: '8761.92 sq. ft.',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786532614/Carpenter_Residence_USA_ABIM.png',
     featured: false,
   },
 
   /* ── CONCRETE SOLUTIONS ── */
   {
     id: 'ruiz-residence-concrete',
-    name: 'Ruiz Residence',
+    name: 'RUIZ RESIDENCE | USA',
     location: 'USA',
     category: 'Concrete Solutions',
     tag: 'Residential Villa',
-    area: '8,000 sq. ft.',
+    area: '8,000 sq. ft',
     storeys: null,
-    image: '/images/project_residential.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786534156/RUIZ_RESIDENCE_USA_CSS.png',
     featured: true,
   },
   {
     id: '5th-ave-ny',
-    name: '5th Avenue New York',
-    location: 'New York, NY 10011, USA',
+    name: '5TH AVENUE New York, NY 10011',
+    location: 'New York, NY 10011',
     category: 'Concrete Solutions',
     tag: 'Residential Villa',
-    area: '8,000 sq. ft.',
+    area: '8,000 sq. ft',
     storeys: null,
-    image: '/images/project_commercial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786534151/5TH_AVENUE_New_York_NY_10011_CSS.png',
     featured: false,
   },
   {
     id: '225th-st-ny',
-    name: '225th Street',
-    location: 'New York, NY 10463, USA',
+    name: '225TH STREET',
+    location: 'NEW YORK, NY 10463',
     category: 'Concrete Solutions',
     tag: 'Mixed-use: Residential & Commercial',
     area: null,
     storeys: null,
-    image: '/images/project_commercial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786534150/225TH_STREET_CSS.png',
     featured: false,
   },
   {
     id: 'utphin-blvd-jamaica',
-    name: 'Utphin Boulevard',
-    location: 'Jamaica, NY 11435, USA',
+    name: 'UTPHIN BOULEVARD',
+    location: 'JAMAICA, NY 11435',
     category: 'Concrete Solutions',
     tag: 'Mixed-use: Residential & Commercial',
     area: null,
     storeys: null,
-    image: '/images/project_commercial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786535053/UTPHIN_BOULEVARD_CSS.png',
     featured: false,
   },
   {
     id: 'grand-concourse-bronx',
-    name: 'Grand Concourse',
+    name: 'GRAND CONCOURSE | BRONX, USA',
     location: 'Bronx, USA',
     category: 'Concrete Solutions',
     tag: 'Mixed-use: Residential & Commercial',
     area: null,
     storeys: null,
-    image: '/images/project_commercial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786535051/GRAND_CONCOURSE_BRONX_USA_CSS.png',
     featured: false,
   },
   {
     id: 'junction-blvd-queens',
-    name: 'Junction Blvd, Queens',
-    location: 'Queens, New York, USA',
+    name: 'JUNCTION BLVD, QUEENS',
+    location: 'Queens',
     category: 'Concrete Solutions',
     tag: 'Mixed-use: Residential & Commercial',
     area: null,
     storeys: null,
-    image: '/images/project_commercial.png',
+    image: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786535187/JUNCTION_BLVD_QUEENS_CSS.png',
     featured: false,
   },
 ];
@@ -650,74 +650,43 @@ function StatItem({ value, label }: { value: string; label: string }) {
 function ProjectCard({ project, index }: { project: typeof ALL_PROJECTS[0]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
-  const color = CAT_COLORS[project.category] ?? '#FF6A00';
+
+  const typeDesc = project.tag ? `${project.category} - ${project.tag}` : project.category;
+  const areaDesc = project.area ? `Area: ${project.area}. ` : '';
+  const storeysDesc = project.storeys ? `Storeys: ${project.storeys}.` : '';
+  const desc = `A ${typeDesc} project located in ${project.location}. ${areaDesc}${storeysDesc}`;
 
   return (
     <motion.div
       ref={ref}
-      className={styles.card}
+      className={styles.dynamicCard}
       initial={{ opacity: 0, y: 50, scale: 0.96 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: (index % 4) * 0.08 }}
-      whileHover={{ y: -6, transition: { duration: 0.3 } }}
     >
-      <div className={styles.cardImgWrap}>
-        <Image
+      <div className={styles.dynamicCardImgWrapper}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={project.image}
           alt={project.name}
-          fill
-          className={styles.cardImg}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          className={styles.dynamicCardImg}
+          loading="lazy"
         />
-        {/* Overlay */}
-        <div className={styles.cardOverlay} />
-        {/* Category badge */}
-        <div className={styles.cardBadge} style={{ background: color }}>
-          {project.category}
-        </div>
-        {/* Featured star */}
-        {project.featured && (
-          <div className={styles.featuredPip}>
-            <svg viewBox="0 0 16 16" fill="#FF6A00" width="10" height="10">
-              <path d="M8 0l2 6h6l-5 3.5 2 6L8 12l-5 3.5 2-6L0 6h6z" />
-            </svg>
-            Featured
-          </div>
-        )}
-        {/* Hover reveal */}
-        <div className={styles.cardHoverPanel}>
-          <div className={styles.cardMeta}>
-            {project.area && (
-              <div className={styles.metaRow}>
-                <span className={styles.metaLbl}>Area</span>
-                <span className={styles.metaVal}>{project.area}</span>
-              </div>
-            )}
-            {project.storeys && (
-              <div className={styles.metaRow}>
-                <span className={styles.metaLbl}>Storeys</span>
-                <span className={styles.metaVal}>{project.storeys}</span>
-              </div>
-            )}
-            {project.tag && (
-              <div className={styles.metaRow}>
-                <span className={styles.metaLbl}>Type</span>
-                <span className={styles.metaVal}>{project.tag}</span>
-              </div>
-            )}
-          </div>
-        </div>
       </div>
-
-      <div className={styles.cardBody}>
-        <div className={styles.cardAccent} style={{ background: color }} />
-        <h3 className={styles.cardName}>{project.name}</h3>
-        <div className={styles.cardLocation}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="12" height="12">
-            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
-          </svg>
-          <span>{project.location}</span>
-        </div>
+      <div className={styles.dynamicCardContent}>
+        <h4 className={styles.dynamicCardTitle}>{project.name}</h4>
+        {project.category === 'Light Gauge Steel' || project.category === 'Wood & Mass Timber' || project.category === 'Structural Steel' || project.category === 'MEP Engineering' || project.category === 'BIM Integrated 3D' || project.category === 'Architectural BIM' || project.category === 'Concrete Solutions' ? (
+          <div className={styles.dynamicCardDesc}>
+            <div style={{ color: '#FF6A00', fontSize: '13px', fontWeight: '600', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              {project.category === 'Light Gauge Steel' ? 'LGS (Light Gauge Steel)' : project.category === 'Wood & Mass Timber' ? 'Wood & Mass Timber' : project.category === 'Structural Steel' ? 'Structural Steel Solutions' : project.category === 'MEP Engineering' ? 'MEP Engineering Solutions' : project.category === 'BIM Integrated 3D' ? 'BIM Integrated 3D Solutions' : project.category === 'Architectural BIM' ? 'Architectural BIM Services' : 'Concrete Solution Services'}
+            </div>
+            {project.area && <div>Area: {project.area}</div>}
+            {project.tag && <div>Type: {project.tag}</div>}
+            {project.storeys && <div>Storeys: {project.storeys}</div>}
+          </div>
+        ) : (
+          <p className={styles.dynamicCardDesc}>{desc}</p>
+        )}
       </div>
     </motion.div>
   );

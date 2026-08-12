@@ -228,12 +228,14 @@
   padding: clamp(80px, 8vw, 120px) var(--gutter);
   text-align: center;
   overflow: hidden;
+  background: #FFFFFF;
 }
 
 .industriesBg {
   position: absolute;
   inset: 0;
   z-index: 0;
+  display: none;
 }
 
 .industriesOverlay {
@@ -241,6 +243,7 @@
   inset: 0;
   background: rgba(10, 15, 30, 0.85); /* Deep dark architectural overlay */
   z-index: 1;
+  display: none;
 }
 
 .industriesContent {
@@ -253,7 +256,7 @@
   font-size: 36px;
   font-weight: 800;
   letter-spacing: 0.05em;
-  color: #FFFFFF;
+  color: #000000;
   text-transform: uppercase;
   margin-bottom: 16px;
 }
@@ -296,10 +299,10 @@
   font-family: var(--font-body);
   font-size: 17px;
   font-weight: 800;
-  color: #FFFFFF;
+  color: #000000;
   text-transform: uppercase;
   line-height: 1.4;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  text-shadow: none;
 }
 
 .indSubImages {
@@ -325,12 +328,14 @@
   padding: clamp(60px, 6vw, 80px) var(--gutter);
   text-align: center;
   overflow: hidden;
+  background: #FFFFFF;
 }
 
 .constructionBg {
   position: absolute;
   inset: 0;
   z-index: 0;
+  display: none;
 }
 
 .constructionOverlay {
@@ -338,6 +343,7 @@
   inset: 0;
   background: rgba(10, 15, 30, 0.85); /* Deep dark overlay */
   z-index: 1;
+  display: none;
 }
 
 .constructionContent {
@@ -349,10 +355,10 @@
   max-width: 800px;
   margin: 0 auto 48px auto;
   font-family: var(--font-body);
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 500;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--accent); /* Orange */
 }
 
 .constGrid {

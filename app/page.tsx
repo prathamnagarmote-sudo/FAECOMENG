@@ -299,7 +299,7 @@ const SERVICES = [
   {
     n: '01', href: '/services/lgs',
     title: 'LGSF Solutions',
-    img: '/images/project_residential.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443295/1662696676169_edited_edited_edited.jpg',
     bullets: ['Light Gauge Steel Design', 'Structural Detailing', 'Shop Drawings', 'BOQ & Estimation'],
   },
   {
@@ -1043,7 +1043,7 @@ export default function Home() {
                   </div>
 
                   {/* Isometric Building Render & Laser Scan Sweep */}
-                  <div className={styles.servCardImg}>
+                  <div className={styles.servCardImg} style={{ width: svc.n === '01' ? '220px' : undefined }}>
                     <Image
                       src={svc.img}
                       alt={svc.title}
