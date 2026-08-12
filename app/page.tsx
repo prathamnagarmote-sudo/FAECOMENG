@@ -803,14 +803,9 @@ export default function Home() {
               }}
             />
           </motion.div>
-        </motion.div>
 
-        {/* Light gradient overlay — clean white fade on left */}
-        <div className={styles.heroOverlay} />
-
-
-        {/* ── Engineering annotation callouts matching reference image ───── */}
-        <motion.div className={styles.annotations} style={{ opacity: heroOpacity, x: annotDepthX }}>
+          {/* ── Engineering annotation callouts matching reference image ───── */}
+          <motion.div className={styles.annotations} style={{ opacity: heroOpacity, x: annotDepthX }}>
           {/* 1. Structural Engineering (Top Left - Moves LEFT on scroll) */}
           <motion.div
             className={`${styles.annot} ${styles.annotStruct}`}
@@ -939,6 +934,10 @@ export default function Home() {
             </div>
           </motion.div>
         </motion.div>
+      </motion.div>
+
+        {/* Light gradient overlay — clean white fade on left */}
+        <div className={styles.heroOverlay} />
 
         {/* ── Hero Left Content (Moves LEFT (-x) on scroll) ─────────────────── */}
         <motion.div className={styles.heroContent} style={{ opacity: heroOpacity, y: heroY, x: leftX }}>
@@ -1103,7 +1102,7 @@ export default function Home() {
                   </div>
 
                   {/* Isometric Building Render & Laser Scan Sweep */}
-                  <div className={styles.servCardImg} style={{ width: '250px' }}>
+                  <div className={styles.servCardImg}>
                     <Image
                       src={svc.img}
                       alt={svc.title}
