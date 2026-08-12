@@ -27,7 +27,7 @@ export default function Services() {
                 slug: 'lgs',
                 title: 'LGS (Light Gauge Steel)',
                 desc: 'Lightweight steel framing solutions for residential, commercial, and industrial buildings with faster construction and durability.',
-                img: 'https://res.cloudinary.com/dfslgqnds/image/upload/v1/1662696676169_edited_edited_edited'
+                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443295/1662696676169_edited_edited_edited.jpg'
               },
               {
                 slug: 'timber',
