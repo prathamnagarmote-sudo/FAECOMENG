@@ -146,6 +146,8 @@ export default function About() {
         </StaggerContainer>
       </section>
 
+      <div style={{ width: '100%', height: '1px', background: '#000000' }} />
+
       {/* Construction Expertise */}
       <section className={styles.construction}>
         <div className={styles.constructionBg}>
@@ -228,6 +230,7 @@ export default function About() {
       </section>
 
       {/* Leadership Team */}
+      <div style={{ width: '100%', height: '1px', backgroundColor: '#FFFFFF' }} />
       <LeadershipSection />
 
       {/* Global Impact */}

@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight, Mail, Phone, MapPin } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
 
 const SERVICES = [
@@ -22,6 +23,9 @@ const COMPANY = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname === '/services/lgs') return null;
+
   return (
     <footer className={styles.footer} role="contentinfo">
       {/* Main footer */}

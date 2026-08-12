@@ -9,7 +9,7 @@ import styles from './Nav.module.css';
 
 const NAV_LINKS = [
   { href: '/',         label: 'Home' },
-  { href: '/about',    label: 'About' },
+  { href: '/about',    label: 'About Us' },
   { href: '/services', label: 'Services', hasDropdown: true },
   { href: '/projects', label: 'Projects' },
   { href: '/process',  label: 'Blog' },

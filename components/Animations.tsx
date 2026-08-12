@@ -43,6 +43,23 @@ export const FadeUp = ({ children, className = '', delay = 0 }) => {
   );
 };
 
+export const PopIn = ({ children, className = '', delay = 0 }) => {
+  return (
+    <motion.div
+      className={className}
+      variants={{
+        hidden: { opacity: 0, scale: 0.8 },
+        show: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 150, damping: 12, delay } },
+      }}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 export const ScaleIn = ({ children, className = '' }) => {
   return (
     <motion.div
