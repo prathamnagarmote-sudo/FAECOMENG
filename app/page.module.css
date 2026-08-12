@@ -15,21 +15,22 @@
   min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   overflow: hidden;
   background: #FFFFFF;
   perspective: 1200px;
   transform-style: preserve-3d;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .heroBg {
   position: absolute;
   top: clamp(80px, 7vw, 100px);
-  bottom: clamp(140px, 14vh, 180px);
+  bottom: clamp(100px, 12vh, 140px);
   right: 2%;
   width: 56%;
+  max-height: calc(100% - 150px);
   z-index: 2;
   perspective: 800px;
   transform-style: preserve-3d;
@@ -465,15 +466,15 @@
 
 /* ── 6-Stat Ribbon (Reference-matched) ───────────────────────────── */
 .statsBar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: relative;
+  width: 100%;
+  margin-top: auto;
   z-index: 10;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   background: #000000;
+  flex-shrink: 0;
 }
 
 .statCell {
