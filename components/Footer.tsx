@@ -67,7 +67,7 @@ export default function Footer() {
           </div>
 
           <div className={styles.address}>
-            <MapPin size={15} strokeWidth={2} style={{ flexShrink: 0, marginTop: 2 }} />
+            <MapPin size={18} strokeWidth={2.2} style={{ flexShrink: 0, marginTop: 2, color: '#FF6B2C' }} />
             <span>9407 NE Vancouver Mall Dr, Vancouver, WA 98662, United States</span>
           </div>
         </div>
