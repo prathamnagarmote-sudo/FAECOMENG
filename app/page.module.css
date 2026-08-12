@@ -12,10 +12,13 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 100px);
+  /* Fill viewport minus header; never collapse, never overflow */
+  min-height: calc(100vh - clamp(86px, 5.8vw, 100px));
+  min-height: calc(100dvh - clamp(86px, 5.8vw, 100px));
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* Content fills middle, stats bar sticks to bottom */
+  justify-content: flex-start;
   overflow: hidden;
   background: #FFFFFF;
   perspective: 1200px;
@@ -24,13 +27,18 @@
   padding-bottom: 0;
 }
 
+/* 3D Building render — absolutely positioned in right half.
+   Uses % + clamp to stay within bounds on every screen size.
+   Never overlaps left text column or stats bar. */
 .heroBg {
   position: absolute;
-  top: clamp(80px, 7vw, 100px);
-  bottom: clamp(100px, 12vh, 140px);
-  right: 2%;
-  width: 56%;
-  max-height: calc(100% - 150px);
+  /* Top: clear the header */
+  top: clamp(70px, 6vw, 100px);
+  /* Bottom: clear the stats bar height (~100-120px) */
+  bottom: clamp(90px, 10vh, 130px);
+  right: clamp(0px, 1vw, 24px);
+  /* Width: occupies right ~55% — enough for the render, leaves left ~45% for text */
+  width: clamp(50%, 55vw, 60%);
   z-index: 2;
   perspective: 800px;
   transform-style: preserve-3d;
@@ -113,37 +121,42 @@
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   pointer-events: none;
+  /* Scale down on smaller screens so badges don't overflow */
+  font-size: clamp(9px, 0.7vw, 11px);
 }
 
+/* ALL annotation badges sit in the RIGHT half of the viewport
+   (left ≥ 46%) — this guarantees zero overlap with the left hero text
+   column on every device. */
 .annotStruct {
-  top: 12%;
-  left: 48%;
+  top: 13%;
+  left: 49%;
 }
 
 .annotArch {
   top: 36%;
-  right: 1%;
+  right: clamp(0px, 1vw, 24px);
   flex-direction: row-reverse;
   text-align: right;
 }
 
 .annotBim {
-  top: 42%;
-  left: 44%;
+  top: 44%;
+  left: 46%;
 }
 
 .annotMep {
   top: 10%;
-  right: 12%;
+  right: clamp(40px, 10vw, 200px);
   flex-direction: row-reverse;
   text-align: right;
 }
 
 .annotCoord {
   top: 66%;
-  left: 49%;
+  left: 50%;
 }
 
 .annotIconBox {
@@ -291,20 +304,28 @@
 }
 
 /* ── Hero Left Content ───────────────────────────────────────── */
+/* Vertically centered in the hero via flex margin trick.
+   Max-width ≤ 44% ensures it never touches the right-side building render.
+   Padding-top clears the fixed header; padding-bottom gives breathing room above stats bar. */
 .heroContent {
   position: relative;
   z-index: 10;
   padding: 0 var(--gutter);
-  padding-left: max(var(--gutter), clamp(24px, 5vw, 110px));
-  padding-top: clamp(100px, 8vh, 125px);
-  padding-bottom: clamp(30px, 4vh, 50px);
+  padding-left: max(var(--gutter), clamp(28px, 5vw, 110px));
+  /* Vertical breathing room — clears header and stats bar */
+  padding-top: clamp(90px, 7.5vh, 120px);
+  padding-bottom: clamp(24px, 3vh, 40px);
+  /* Flex centering — pushes content to vertical middle */
   margin-top: auto;
   margin-bottom: auto;
-  max-width: clamp(450px, 43vw, 750px);
+  /* Width constraint — NEVER exceed ~44% of viewport to prevent text-image overlap */
+  max-width: clamp(420px, 44vw, 720px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   will-change: opacity;
+  /* Safety: prevent content from shrinking under flex pressure */
+  flex-shrink: 0;
 }
 
 .heroTag {
@@ -465,6 +486,9 @@
 }
 
 /* ── 6-Stat Ribbon (Reference-matched) ───────────────────────────── */
+/* Always anchored to bottom of hero via margin-top:auto + flex-shrink:0.
+   This ensures the stats bar never collides with or overlaps the hero text,
+   even when the viewport height is very short. */
 .statsBar {
   position: relative;
   width: 100%;
@@ -475,6 +499,8 @@
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   background: #000000;
   flex-shrink: 0;
+  /* Minimum height so text inside stats cells never gets squished */
+  min-height: clamp(80px, 10vh, 110px);
 }
 
 .statCell {
@@ -2930,69 +2956,315 @@
   background: rgba(255, 107, 44, 0.06);
 }
 
-/* ══ DESKTOP & LAPTOP SCREEN RESPONSIVE (1025px+) ══════════════ */
-@media (max-width: 1440px) and (min-width: 1025px) {
+/* ══════════════════════════════════════════════════════════════════
+   HERO SECTION — GLOBAL DEVICE RESPONSIVE LADDER
+   Covers every desktop/laptop class from Chromebook 11" to 4K ultrawide.
+   Each breakpoint fine-tunes font sizes, spacing, and positions so
+   NO elements ever collide, overlap, or look cramped.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. ULTRAWIDE & 4K (≥ 2560px) ──────────────────────────────── */
+@media (min-width: 2560px) {
   .heroContent {
-    max-width: 42vw;
-    padding-top: clamp(95px, 7.5vh, 120px);
+    max-width: 38vw;
+    padding-left: max(var(--gutter), 140px);
   }
   .heroLineNavy,
   .heroLineOrange {
-    font-size: clamp(30px, 4.0vw, 68px);
+    font-size: 96px;
   }
   .heroSub {
-    font-size: clamp(13px, 1.0vw, 16px);
-    margin-bottom: 20px;
+    font-size: 20px;
   }
-  .heroTag {
-    margin-bottom: 12px;
+  .heroBg {
+    width: 52%;
+    right: 2%;
   }
-  .heroH1 {
-    margin-bottom: 14px;
+}
+
+/* ── 2. QHD / 27" MONITOR (1920–2559px) ─────────────────────────── */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  .heroContent {
+    max-width: 40vw;
+    padding-left: max(var(--gutter), 120px);
+  }
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(72px, 4.5vw, 88px);
+  }
+  .heroSub {
+    font-size: 18px;
+  }
+  .heroBg {
+    width: 54%;
+    right: 2%;
+  }
+}
+
+/* ── 3. STANDARD DESKTOP / MACBOOK PRO 16" (1441–1919px) ────────── */
+@media (min-width: 1441px) and (max-width: 1919px) {
+  .heroContent {
+    max-width: 43vw;
+  }
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(52px, 4.6vw, 78px);
+  }
+  .heroSub {
+    font-size: clamp(15px, 1.1vw, 18px);
+    margin-bottom: 24px;
   }
   .heroBg {
     width: 54%;
     right: 1%;
-    bottom: clamp(110px, 11vh, 140px);
-  }
-  .annotBim {
-    left: 46%;
-  }
-  .annotStruct {
-    left: 49%;
-  }
-  .annotCoord {
-    left: 50%;
   }
 }
 
-@media (max-height: 820px) and (min-width: 1025px) {
+/* ── 4. MACBOOK PRO 14" / STANDARD LAPTOP (1367–1440px) ─────────── */
+@media (min-width: 1367px) and (max-width: 1440px) {
   .heroContent {
-    padding-top: clamp(90px, 7.5vh, 110px);
-    padding-bottom: 16px;
+    max-width: 42vw;
+    padding-top: clamp(85px, 7vh, 110px);
+  }
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(42px, 4.2vw, 62px);
   }
   .heroTag {
+    font-size: clamp(11px, 0.85vw, 13px);
+    margin-bottom: 14px;
+  }
+  .heroH1 {
+    margin-bottom: 16px;
+  }
+  .heroSub {
+    font-size: clamp(13.5px, 1.05vw, 16.5px);
+    margin-bottom: 22px;
+  }
+  .heroBg {
+    width: 55%;
+    right: 0;
+    bottom: clamp(90px, 10vh, 120px);
+  }
+  .annotBim { left: 47%; }
+  .annotStruct { left: 50%; }
+  .annotCoord { left: 51%; }
+}
+
+/* ── 5. CHROMEBOOK / SMALL LAPTOP (1280–1366px) ─────────────────── */
+@media (min-width: 1280px) and (max-width: 1366px) {
+  .heroContent {
+    max-width: 43vw;
+    padding-top: clamp(80px, 6.5vh, 100px);
+    padding-bottom: clamp(18px, 2.5vh, 32px);
+  }
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(36px, 3.8vw, 52px);
+  }
+  .heroTag {
+    font-size: clamp(10.5px, 0.8vw, 12.5px);
     margin-bottom: 12px;
+    gap: 10px;
   }
   .heroH1 {
     margin-bottom: 14px;
   }
+  .heroSub {
+    font-size: clamp(12.5px, 0.95vw, 15px);
+    margin-bottom: 18px;
+    max-width: 460px;
+  }
+  .heroBtnPrimary {
+    padding: 13px 26px;
+    font-size: 12px;
+  }
+  .heroBtnGhost {
+    padding: 11px 22px;
+    font-size: 11px;
+  }
+  .heroBg {
+    width: 54%;
+    right: 0;
+    bottom: clamp(85px, 9vh, 110px);
+  }
+  .statVal {
+    font-size: clamp(20px, 2.2vw, 28px);
+  }
+  .statLabel {
+    font-size: clamp(7.5px, 0.7vw, 9px);
+  }
+  .statCell {
+    padding: 22px 12px;
+  }
+  .annotBim { left: 48%; }
+  .annotStruct { left: 50%; }
+  .annotCoord { left: 52%; }
+  .annotTitle { font-size: 10px; }
+  .annotSubText { font-size: 9.5px; }
+  .annotIconBox { width: 32px; height: 32px; }
+  .annotIconBox svg { width: 16px; height: 16px; }
+}
+
+/* ── 6. MACBOOK AIR 13" / SMALL SCREENS (1025–1279px) ───────────── */
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .heroContent {
+    max-width: 44vw;
+    padding-top: clamp(75px, 6vh, 95px);
+    padding-bottom: clamp(16px, 2vh, 28px);
+  }
   .heroLineNavy,
   .heroLineOrange {
-    font-size: clamp(30px, 3.8vw, 64px);
+    font-size: clamp(32px, 3.4vw, 46px);
+  }
+  .heroTag {
+    font-size: clamp(10px, 0.75vw, 12px);
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+  .heroTagLine {
+    width: 26px;
+  }
+  .heroH1 {
+    margin-bottom: 12px;
+    line-height: 1.0;
   }
   .heroSub {
-    font-size: clamp(13px, 0.95vw, 15.5px);
-    margin-bottom: 18px;
+    font-size: clamp(12px, 0.9vw, 14px);
+    margin-bottom: 16px;
+    max-width: 400px;
+    line-height: 1.5;
+  }
+  .heroBtnPrimary {
+    padding: 12px 22px;
+    font-size: 11.5px;
+    gap: 8px;
+  }
+  .heroBtnGhost {
+    padding: 10px 18px;
+    font-size: 10.5px;
+    gap: 8px;
+  }
+  .heroActions {
+    gap: 12px;
+  }
+  .heroBg {
+    width: 53%;
+    right: 0;
+    bottom: clamp(80px, 9vh, 105px);
+    top: clamp(65px, 5.5vw, 85px);
+  }
+  .statVal {
+    font-size: clamp(18px, 2vw, 24px);
+  }
+  .statLabel {
+    font-size: clamp(7px, 0.65vw, 8.5px);
+  }
+  .statCell {
+    padding: 18px 10px;
+  }
+  .statsBar {
+    min-height: 70px;
+  }
+  .cadFilterBar {
+    top: 75px;
+    right: 2%;
+    padding: 4px 6px;
+  }
+  .cadFilterBtn {
+    font-size: 8px;
+    padding: 4px 8px;
+  }
+  .cadFilterLabel {
+    font-size: 7.5px;
+  }
+  .annotBim { left: 49%; }
+  .annotStruct { left: 51%; }
+  .annotCoord { left: 53%; top: 68%; }
+  .annotArch { right: 0; }
+  .annotMep { right: 8%; }
+  .annotTitle { font-size: 9.5px; }
+  .annotSubText { font-size: 9px; }
+  .annotIconBox { width: 30px; height: 30px; }
+  .annotIconBox svg { width: 15px; height: 15px; }
+  .annotTextGroup { padding: 5px 10px; }
+  .annot { gap: 8px; }
+}
+
+/* ── 7. SHORT HEIGHT SCREENS (≤ 720px height, desktop width) ────── */
+@media (max-height: 720px) and (min-width: 1025px) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  .heroContent {
+    padding-top: clamp(70px, 5.5vh, 85px);
+    padding-bottom: 12px;
+  }
+  .heroTag {
+    margin-bottom: 8px;
+  }
+  .heroH1 {
+    margin-bottom: 10px;
+  }
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(28px, 3.2vw, 42px);
+  }
+  .heroSub {
+    font-size: clamp(11.5px, 0.85vw, 13.5px);
+    margin-bottom: 14px;
+    line-height: 1.45;
   }
   .heroBtnPrimary,
   .heroBtnGhost {
-    height: 44px;
-    padding: 0 22px;
+    padding: 10px 18px;
+    font-size: 10.5px;
+  }
+  .heroBg {
+    bottom: clamp(70px, 8vh, 95px);
+  }
+  .statsBar {
+    min-height: 65px;
+  }
+  .statVal {
+    font-size: clamp(16px, 1.8vw, 22px);
+  }
+  .statLabel {
+    font-size: 7px;
+  }
+  .statCell {
+    padding: 14px 8px;
+  }
+}
+
+/* ── 8. MEDIUM HEIGHT SCREENS (721-820px height, desktop width) ─── */
+@media (min-height: 721px) and (max-height: 820px) and (min-width: 1025px) {
+  .heroContent {
+    padding-top: clamp(78px, 6vh, 95px);
+    padding-bottom: 16px;
+  }
+  .heroTag {
+    margin-bottom: 10px;
+  }
+  .heroH1 {
+    margin-bottom: 12px;
+  }
+  .heroLineNavy,
+  .heroLineOrange {
+    font-size: clamp(30px, 3.6vw, 56px);
+  }
+  .heroSub {
+    font-size: clamp(12.5px, 0.95vw, 15px);
+    margin-bottom: 16px;
+  }
+  .heroBtnPrimary,
+  .heroBtnGhost {
+    padding: 12px 22px;
     font-size: 11.5px;
   }
   .heroBg {
-    bottom: clamp(120px, 12vh, 140px);
+    bottom: clamp(80px, 9vh, 110px);
   }
 }
 
