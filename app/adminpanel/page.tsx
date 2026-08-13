@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 import styles from './admin.module.css';
 
-import { ALL_PROJECTS } from '@/app/projects/page';
+import ALL_PROJECTS from '@/data/projects.json';
 
 // Initial default projects dataset (All 53 projects)
 const INITIAL_PROJECTS = ALL_PROJECTS;

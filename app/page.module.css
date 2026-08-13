@@ -805,16 +805,16 @@
 .servGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
+  gap: 48px;
 }
 
 /* ── Individual Card ─────────────────────────────────────────── */
 .servCard {
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: stretch;
-  min-height: 270px;
+  min-height: 440px;
   text-decoration: none;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
@@ -873,8 +873,8 @@
 
 /* ── Card Content ─────────────────────────────────────────────── */
 .servCardTop {
-  flex: 1;
-  padding: 26px 18px 24px 26px;
+  flex: none;
+  padding: 26px 18px 28px 26px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -884,8 +884,8 @@
 
 .servCardTitle {
   font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 20px;
+  font-weight: 900;
   letter-spacing: -0.01em;
   text-transform: uppercase;
   color: #0F1238;
@@ -925,34 +925,17 @@
   transform: rotate(45deg) scale(1.25);
 }
 
-/* ── Arrow Button ────────────────────────────────────────────── */
-.servCardArrowBtn {
-  width: 36px;
-  height: 36px;
-  background: #0F1238;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
-  margin-top: 16px;
-  align-self: flex-start;
-  transition: background 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
-  flex-shrink: 0;
-}
 
-.servCard:hover .servCardArrowBtn {
-  background: #FF6B2C;
-  transform: rotate(45deg);
-  box-shadow: 0 6px 18px rgba(255, 107, 44, 0.4);
-}
 
 /* ── Card Right: Engineering Image ──────────────────────────── */
 .servCardImg {
-  width: 145px;
-  flex-shrink: 0;
+  width: auto;
+  flex: 1;
+  min-height: 180px;
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
+  margin: 0 18px 18px 18px;
 }
 
 .servCardImg img {
@@ -963,29 +946,7 @@
   transform: scale(1.08);
 }
 
-.servCardLaserLine {
-  position: absolute;
-  top: -100%;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #FF6B2C, #FFFFFF, #FF6B2C, transparent);
-  box-shadow: 0 0 15px #FF6B2C, 0 0 30px #FF6B2C;
-  pointer-events: none;
-  z-index: 5;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
 
-.servCard:hover .servCardLaserLine {
-  opacity: 1;
-  animation: laserSweep 1.4s ease-in-out infinite;
-}
-
-@keyframes laserSweep {
-  0% { top: -10%; }
-  100% { top: 110%; }
-}
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1200px) {
@@ -994,8 +955,8 @@
 
 @media (max-width: 680px) {
   .servGrid { grid-template-columns: 1fr; gap: 18px; }
-  .servCardImg { width: 120px; }
-  .servCard { min-height: 200px; }
+  .servCardImg { min-height: 160px; }
+  .servCard { min-height: 380px; }
 }
 
 
