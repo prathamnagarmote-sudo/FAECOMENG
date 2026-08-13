@@ -66,10 +66,16 @@ export default function Footer() {
             </a>
           </div>
 
-          <div className={styles.address}>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=9407+NE+Vancouver+Mall+Dr,+Vancouver,+WA+98662"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.address}
+            style={{ textDecoration: 'none' }}
+          >
             <MapPin size={18} strokeWidth={2.2} style={{ flexShrink: 0, marginTop: 2, color: '#FF6B2C' }} />
             <span>9407 NE Vancouver Mall Dr, Vancouver, WA 98662, United States</span>
-          </div>
+          </a>
         </div>
 
         {/* Services */}

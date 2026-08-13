@@ -614,48 +614,6 @@ const CountryFlag = ({ code }: { code: 'usa' | 'canada' | 'uk' | 'dubai' | 'aust
   }
 };
 
-const GLOBAL_HUBS = [
-  {
-    id: 'usa',
-    country: 'USA',
-    flagCode: 'usa' as const,
-    role: 'Primary Engineering Hub',
-    codes: ['AISC', 'IBC', 'ACI', 'ASCE 7'],
-    desc: 'Full-service structural, MEP & BIM engineering for high-rise, commercial, and industrial facilities across 25+ licensed states.',
-  },
-  {
-    id: 'canada',
-    country: 'CANADA',
-    flagCode: 'canada' as const,
-    role: 'Structural & Cold-Formed Steel',
-    codes: ['NBC', 'CSA S16', 'CSA A23.3'],
-    desc: 'Advanced LGS detailing, timber structure design, and BIM coordination compliant with Canadian National Building Codes.',
-  },
-  {
-    id: 'uk',
-    country: 'UNITED KINGDOM',
-    flagCode: 'uk' as const,
-    role: 'BIM & Structural Detailing',
-    codes: ['Eurocodes', 'BS EN 1993', 'BSI'],
-    desc: 'Third-party peer reviews, complex steel connections, and Level 2 BIM modeling for commercial developments across Europe.',
-  },
-  {
-    id: 'dubai',
-    country: 'DUBAI (UAE)',
-    flagCode: 'dubai' as const,
-    role: 'High-Rise & Mega Infrastructure',
-    codes: ['Dubai Building Code', 'AISC', 'Eurocodes'],
-    desc: 'Specialized structural engineering and rebar detailing for landmark skyscrapers, residential towers, and hospitality projects.',
-  },
-  {
-    id: 'australia',
-    country: 'AUSTRALIA',
-    flagCode: 'australia' as const,
-    role: 'Residential & Light Gauge Steel',
-    codes: ['AS/NZS 1170', 'AS 4100', 'NCC'],
-    desc: 'Cold-formed steel framing, residential structural calculations, and 3D Tekla detailing compliant with Australian Standards.',
-  },
-];
 
 /* ═══════════════════════════════════════════════════════════════
    HOME PAGE
@@ -1420,27 +1378,6 @@ export default function Home() {
               </div>
             </motion.div>
           </motion.div>
-
-          {/* 5 Global Hubs Information Cards Grid */}
-          <div className={styles.globalHubsGrid}>
-            {GLOBAL_HUBS.map((hub, index) => (
-              <FadeUp key={hub.id} delay={index * 0.08}>
-                <div className={styles.globalHubCard}>
-                  <div className={styles.hubCardHeader}>
-                    <CountryFlag code={hub.flagCode} />
-                    <h3 className={styles.hubCountry}>{hub.country}</h3>
-                  </div>
-                  <span className={styles.hubRoleBadge}>{hub.role}</span>
-                  <p className={styles.hubDesc}>{hub.desc}</p>
-                  <div className={styles.hubCodesWrap}>
-                    {hub.codes.map((c) => (
-                      <span key={c} className={styles.hubCodeChip}>{c}</span>
-                    ))}
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
         </div>
       </section>
 

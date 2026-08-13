@@ -769,7 +769,7 @@
 }
 
 .servInner {
-  max-width: 1440px;
+  max-width: 1680px;
   margin: 0 auto;
 }
 
@@ -831,34 +831,35 @@
   align-items: center;
   gap: 10px;
   font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #0F1238;
-  border: 1.5px solid rgba(15, 18, 56, 0.25);
-  padding: 12px 22px;
+  color: #FF6B2C;
+  border: 1.5px solid #FFFFFF;
+  padding: 14px 28px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  transition: background 0.35s, color 0.35s, gap 0.35s, border-color 0.35s, box-shadow 0.35s;
+  background: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: background 0.3s, color 0.3s, gap 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
   white-space: nowrap;
   align-self: flex-end;
 }
 
 .servViewAll:hover {
-  background: #0F1238;
-  color: #FFFFFF;
+  background: #F8F8F8;
+  border-color: #F8F8F8;
+  color: #E55A1F;
   gap: 14px;
-  border-color: #0F1238;
-  box-shadow: 0 8px 24px rgba(15, 18, 56, 0.18);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
 }
 
 /* ── Card Grid — 3 per row ───────────────────────────────────── */
 .servGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
+  gap: 56px;
 }
 
 /* ── Individual Card ─────────────────────────────────────────── */
@@ -3231,6 +3232,7 @@
   .annotSubText { font-size: 9px; }
   .annotIconBox { width: 30px; height: 30px; }
   .annotIconBox svg { width: 15px; height: 15px; }
+  
   .annotTextGroup { padding: 5px 10px; }
   .annot { gap: 8px; }
 }
