@@ -5,7 +5,7 @@ import { ArrowLeft, CheckCircle2, Settings, FileText, CheckSquare, Layers, Zap }
 import { motion } from 'framer-motion';
 import PageHero from '@/components/PageHero';
 import CtaSection from '@/components/CtaSection';
-
+import LGS_DATA from '@/data/lgs.json';
 export default function LGSPage() {
   return (
     <>
@@ -16,9 +16,9 @@ export default function LGSPage() {
       >
         <PageHero
           label="Engineering Services"
-          title="Light Gauge Steel"
-          titleEm="(LGS) Solutions"
-          subtitle="Advanced structural systems designed for fast and efficient construction."
+          title={<span style={{ fontWeight: 'bold' }}>Light Gauge Steel</span>}
+          titleEm={<span style={{ fontWeight: 'bold' }}>(LGS) Solutions</span>}
+          subtitle={<span style={{ color: '#000000', fontWeight: 'bold' }}>Advanced structural systems designed for fast and efficient construction.</span>}
         />
       </motion.div>
 
@@ -153,7 +153,7 @@ export default function LGSPage() {
               FAECOM provides detailed Structural Drawings Packages that include essential documentation for fabrication and construction.
             </p>
             <div style={{ position: 'relative', width: '100%', height: '300px', borderRadius: '12px', overflow: 'hidden', border: '1px solid #E5E7EB' }}>
-              <Image src="/images/project_commercial.png" alt="Drawings Package" fill style={{ objectFit: 'cover' }} />
+              <Image src={LGS_DATA.structuralDrawingsPackageImage} alt="Drawings Package" fill style={{ objectFit: 'cover' }} />
             </div>
           </div>
 
@@ -168,7 +168,7 @@ export default function LGSPage() {
               FAECOM provides comprehensive Design Calculation Reports to ensure structural stability, compliance, and efficiency.
             </p>
             <div style={{ position: 'relative', width: '100%', height: '300px', borderRadius: '12px', overflow: 'hidden', border: '1px solid #E5E7EB' }}>
-              <Image src="/images/featured_residential.png" alt="Calculation Report" fill style={{ objectFit: 'cover' }} />
+              <Image src="/images/featured_residential.png" alt="Calculation Report" fill style={{ objectFit: 'cover', objectPosition: 'center' }} />
             </div>
           </div>
 

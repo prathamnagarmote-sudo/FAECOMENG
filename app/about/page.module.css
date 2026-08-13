@@ -262,37 +262,42 @@
 }
 
 .indGrid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px;
-  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  max-width: 1400px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
 }
 
 .indCard {
-  background: transparent;
-  padding: 32px 16px;
+  background: #FFFFFF;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  transition: transform 0.3s ease;
+  gap: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 274px;
 }
 
 .indCard:hover {
   transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .indImg {
-  width: 140px;
-  height: 140px;
+  width: 240px;
+  height: 240px;
   object-fit: cover;
-  border-radius: 12px; /* Soft rounded square shape */
-  margin-bottom: 12px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  border-radius: 8px;
+  margin-bottom: 0;
 }
 
 .indTitle {

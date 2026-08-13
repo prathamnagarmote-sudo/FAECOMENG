@@ -78,9 +78,10 @@
 }
 
 .dynamicCardTitle {
-  color: #1A237E;
-  font-size: 20px;
-  font-weight: 700;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 900;
+  -webkit-text-stroke: 1px #000000;
   margin-bottom: 16px;
   font-family: var(--font-display);
 }
