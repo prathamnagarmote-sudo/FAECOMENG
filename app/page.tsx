@@ -465,7 +465,7 @@ const SOFTWARE_CATEGORIES = [
       { name: 'SAP2000', img: '/images/software/sap2000.png', scale: 1.10 },
       { name: 'IES', img: '/images/software/ies.png' },
       { name: 'SkyCiv', img: '/images/software/skyciv.png', scale: 1.12 },
-      { name: 'StructurePoint', img: '/images/software/structurepoint.png', scale: 1.10 },
+      { name: 'StructurePoint', img: '/images/software/newstructurepointlogo.png', scale: 1.10 },
     ],
   },
   {
