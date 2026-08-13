@@ -29,7 +29,7 @@ const SOFTWARE_CATEGORIES = [
       { name: 'Tekla Tedds',     img: '/images/software/tekla_tedds.webp', scale: 1.12 },
       { name: 'RISA',            img: '/images/software/risa.png' },
       { name: 'STAAD.Pro',       img: '/images/software/staad_pro.png', scale: 1.10 },
-      { name: 'SAP2000',         img: '/images/software/sap2000.png', scale: 1.10 },
+      { name: 'SAP2000',         img: '/images/software/sap2000_hq.png', scale: 1.10 },
       { name: 'IES',             img: '/images/software/ies.png' },
       { name: 'SkyCiv',          img: '/images/software/skyciv.png', scale: 1.12 },
       { name: 'StructurePoint',  img: '/images/software/newstructurepointlogo.png', scale: 1.10 },

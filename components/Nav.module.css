@@ -402,14 +402,27 @@
 
 @media (max-width: 640px) {
   .inner {
-    height: 64px;
-    padding: 0 16px;
+    height: 72px;
+    padding: 0 20px;
     justify-content: space-between;
   }
 
+  .logoContainer {
+    gap: 12px;
+  }
+
+  .logoImage {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .logoTitle {
+    font-size: 19px;
+  }
+
   .burger {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     flex-shrink: 0;
   }
 }
