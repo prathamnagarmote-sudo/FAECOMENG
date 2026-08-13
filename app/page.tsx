@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring, animate } from 'framer-motion';
 import { ArrowUpRight, ArrowRight, ChevronDown, Mail, Phone, MapPin } from 'lucide-react';
 import styles from './page.module.css';
+import ALL_PROJECTS from '@/data/projects.json';
 
 /* ── Lazy-load heavy 3D scene ────────────────────────────────── */
 const HeroScene3D = dynamic(() => import('@/components/HeroScene3D'), {
@@ -98,16 +99,14 @@ type CarouselSlide = {
   href: string;
 };
 
-const CAROUSEL_SLIDES: CarouselSlide[] = [
-  { img: '/images/project_elm_st.png',       title: 'ELM ST Unit',            loc: 'Manchester, New Hampshire, USA',      badge: 'Multi-Family',      href: '/projects' },
-  { img: '/images/project_sugar_villa.png',  title: 'SUGAR VILLA',            loc: 'Little Exuma, Bahamas',              badge: 'Luxury Estate',     href: '/projects' },
-  { img: '/images/project_children_bldg.png',title: 'Children Building',      loc: '2714 Goat Creek Rd, Kerrville, TX',  badge: 'Educational',       href: '/projects' },
-  { img: '/images/project_nelson_care.png',  title: 'Nelson Senior Home Care',loc: 'Unit Center, USA',                   badge: 'Senior Living',     href: '/projects' },
-  { img: '/images/project_tm_heights.png',   title: 'TM HEIGHTS',             loc: 'Residential Apartment, USA',         badge: 'Apartment Complex', href: '/projects' },
-  { img: '/images/project_wheel_house.png',  title: 'Wheel House ADU',        loc: 'Modular ADU, USA',                   badge: 'Steel Frame ADU',   href: '/projects' },
-  { img: '/images/project_khan_house.png',   title: 'Khan House',             loc: 'Residential House, Canada',          badge: 'Mass Timber',       href: '/projects' },
-  { img: '/images/project_senior_center.png',title: 'Nelson Care II',         loc: 'Unit Center Phase II, USA',          badge: 'Senior Living',     href: '/projects' },
-];
+const featuredProjects = ALL_PROJECTS.filter((p) => p.featured).slice(0, 8);
+const CAROUSEL_SLIDES: CarouselSlide[] = featuredProjects.map((p) => ({
+  img: p.image,
+  title: p.name,
+  loc: p.location,
+  badge: p.tag || p.category,
+  href: `/projects#${p.id}`,
+}));
 
 function useCarouselConfig() {
   const [cfg, setCfg] = useState({ xMul: 200, yMul: 45, rotMul: 13, scaleR: 0.13, distDiv: 220, velDiv: 850, sensitivity: 260 });
@@ -192,9 +191,13 @@ function StackedCarouselCard({
   );
 }
 
+import { useRouter } from 'next/navigation';
+
 function StackedCarousel({ slides }: { slides: CarouselSlide[] }) {
+  const router = useRouter();
   const progress = useMotionValue(0);
   const startRef = useRef(0);
+  const clickTimeRef = useRef(0);
   const cfg = useCarouselConfig();
   const total = slides.length;
 
@@ -204,7 +207,10 @@ function StackedCarousel({ slides }: { slides: CarouselSlide[] }) {
       <motion.div
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
-        onDragStart={() => { startRef.current = progress.get(); }}
+        onDragStart={() => { 
+          startRef.current = progress.get(); 
+          clickTimeRef.current = Date.now();
+        }}
         onDrag={(_, info) => { progress.set(progress.get() - info.delta.x / cfg.sensitivity); }}
         onDragEnd={(_, info) => {
           const shift = Math.round(-info.offset.x / cfg.distDiv + -info.velocity.x / cfg.velDiv);
@@ -213,7 +219,18 @@ function StackedCarousel({ slides }: { slides: CarouselSlide[] }) {
             type: 'spring', stiffness: 200, damping: 30, mass: 1,
           });
         }}
+        onClick={() => {
+          const dragTime = Date.now() - clickTimeRef.current;
+          if (dragTime < 250) {
+            let centerIndex = Math.round(progress.get()) % total;
+            if (centerIndex < 0) centerIndex += total;
+            if (slides[centerIndex]?.href) {
+              router.push(slides[centerIndex].href as string);
+            }
+          }
+        }}
         className={styles.cDragSurface}
+        style={{ cursor: 'pointer' }}
       />
       {slides.map((slide, i) => (
         <StackedCarouselCard

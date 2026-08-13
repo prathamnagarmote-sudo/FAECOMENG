@@ -61,6 +61,7 @@ function ProjectCard({ project, index }: { project: typeof ALL_PROJECTS[0]; inde
 
   return (
     <motion.div
+      id={project.id}
       ref={ref}
       className={styles.dynamicCard}
       initial={{ opacity: 0, y: 50, scale: 0.96 }}
