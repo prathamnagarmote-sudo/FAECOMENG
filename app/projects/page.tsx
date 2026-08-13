@@ -105,15 +105,20 @@ export default function ProjectsPage() {
       try {
         const { data: dbProjects, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
         if (!error && dbProjects && dbProjects.length > 0) {
-          setProjectList(dbProjects);
-          localStorage.setItem('faecom_admin_projects', JSON.stringify(dbProjects));
+          // Merge dbProjects with ALL_PROJECTS, preferring ALL_PROJECTS to keep Prachi's Cloudinary images intact
+          const dbOnly = dbProjects.filter(dbP => !ALL_PROJECTS.some(p => p.id === dbP.id));
+          const merged = [...ALL_PROJECTS, ...dbOnly];
+          setProjectList(merged);
+          localStorage.setItem('faecom_admin_projects', JSON.stringify(merged));
           return;
         }
         const saved = localStorage.getItem('faecom_admin_projects');
         if (saved) {
           const parsed = JSON.parse(saved);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            setProjectList(parsed);
+            // Merge local storage with ALL_PROJECTS
+            const savedOnly = parsed.filter(sP => !ALL_PROJECTS.some(p => p.id === sP.id));
+            setProjectList([...ALL_PROJECTS, ...savedOnly]);
           }
         }
       } catch (e) {
