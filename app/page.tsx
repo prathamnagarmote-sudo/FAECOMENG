@@ -1096,9 +1096,6 @@ export default function Home() {
                         </li>
                       ))}
                     </ul>
-                    <div className={styles.servCardArrowBtn}>
-                      <ArrowUpRight size={15} strokeWidth={2.5} />
-                    </div>
                   </div>
 
                   {/* Isometric Building Render & Laser Scan Sweep */}
@@ -1111,7 +1108,6 @@ export default function Home() {
                       sizes="(max-width: 900px) 90vw, 25vw"
                       style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
-                    <div className={styles.servCardLaserLine} />
                   </div>
                 </Link>
               </FadeUp>
