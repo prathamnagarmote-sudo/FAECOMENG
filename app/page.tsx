@@ -1344,32 +1344,33 @@ export default function Home() {
             style={{ rotateX: globalTiltX, rotateY: globalTiltY, transformStyle: 'preserve-3d' }}
           >
             <motion.div className={styles.globalMapWrap} style={{ x: globalMapDepthX }}>
-              {/* World Map Transparent Asset */}
+              {/* World Map Clean Cloudinary Asset - 100% Container Coverage */}
               <div className={styles.globalMapImgBox}>
                 <Image
-                  src="/images/global_map_transparent.png"
+                  src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786605308/GLOBALMAPFORFAECOM.png"
                   alt="FAECOM Global Engineering Work Map"
                   fill
                   quality={95}
                   priority
-                  sizes="(max-width: 1200px) 100vw, 85vw"
-                  style={{ objectFit: 'contain' }}
+                  unoptimized
+                  sizes="100vw"
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
 
-              {/* Animated 3D Flight Arc Connections & Radar Beacons */}
+              {/* Animated 3D Flight Arc Connections */}
               <svg className={styles.globalFlightArcSvg} viewBox="0 0 1000 500" fill="none">
                 {/* USA (HQ) -> CANADA */}
-                <path d="M 220 180 Q 215 150 210 120" stroke="rgba(255, 106, 0, 0.4)" strokeWidth="2" strokeDasharray="4 4" />
+                <path d="M 220 140 Q 240 120 240 100" stroke="rgba(255, 107, 44, 0.65)" strokeWidth="2.5" strokeDasharray="5 5" />
                 {/* USA (HQ) -> UK */}
-                <path d="M 220 180 Q 330 80 450 140" stroke="rgba(255, 106, 0, 0.5)" strokeWidth="2" strokeDasharray="6 6" className={styles.animatedFlightArc} />
+                <path d="M 220 140 Q 330 50 440 90" stroke="rgba(255, 107, 44, 0.75)" strokeWidth="2.5" strokeDasharray="6 6" className={styles.animatedFlightArc} />
                 {/* USA (HQ) -> DUBAI */}
-                <path d="M 220 180 Q 400 60 580 210" stroke="rgba(255, 106, 0, 0.5)" strokeWidth="2" strokeDasharray="6 6" className={styles.animatedFlightArc2} />
+                <path d="M 220 140 Q 410 60 610 205" stroke="rgba(255, 107, 44, 0.75)" strokeWidth="2.5" strokeDasharray="6 6" className={styles.animatedFlightArc2} />
                 {/* USA (HQ) -> AUSTRALIA */}
-                <path d="M 220 180 Q 500 380 780 360" stroke="rgba(255, 106, 0, 0.4)" strokeWidth="2" strokeDasharray="6 6" className={styles.animatedFlightArc3} />
+                <path d="M 220 140 Q 520 380 830 350" stroke="rgba(255, 107, 44, 0.65)" strokeWidth="2.5" strokeDasharray="6 6" className={styles.animatedFlightArc3} />
               </svg>
 
-              {/* Radar Beacons & Hotspot Badges */}
+              {/* Radar Beacons & Hotspot Badges for 5 Countries */}
               <div className={`${styles.globalBeacon} ${styles.beaconUsa}`}>
                 <span className={styles.beaconRing} />
                 <span className={styles.beaconDot} />
