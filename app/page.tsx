@@ -1313,21 +1313,7 @@ export default function Home() {
             </FadeUp>
           </motion.div>
 
-          {/* Bottom Floating Metrics Bar (5 Equal Columns) */}
-          <FadeUp delay={0.3}>
-            <div className={styles.peRibbonStrip}>
-              {PE_STATS.map((st, i) => (
-                <div key={i} className={styles.peRibbonCell}>
-                  <div className={styles.peRibbonIconBox}>{st.icon}</div>
-                  <div className={styles.peRibbonMeta}>
-                    <h4 className={styles.peRibbonVal}>{st.title}</h4>
-                    {st.hasAccentBar && <div className={styles.peStatAccentBar} />}
-                    <p className={styles.peRibbonLbl}>{st.subtitle}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </FadeUp>
+
         </div>
       </section>
 
