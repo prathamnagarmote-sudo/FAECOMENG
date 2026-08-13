@@ -170,21 +170,21 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
           >
-            <StatItem value="300+" label="Projects Delivered" />
+            <StatItem value="1000+" label="Projects Delivered" />
             <div className={styles.statDivider} />
-            <StatItem value="7" label="Disciplines" />
+            <StatItem value="90+" label="Global Clients" />
             <div className={styles.statDivider} />
-            <StatItem value="5+" label="Continents" />
+            <StatItem value="5+" label="Countries Served" />
             <div className={styles.statDivider} />
-            <StatItem value="25+" label="US States Licensed" />
+            <StatItem value="25+" label="Years Experience" />
             <div className={styles.statDivider} />
-            <StatItem value="20+" label="Years Experience" />
+            <StatItem value="24-48 Hr" label="Response Time" />
           </motion.div>
         </div>
       </section>
 
       {/* ── FILTER BAR ── */}
-      <section className={styles.filterSection}>
+      <section id="filter-bar" className={styles.filterSection}>
         <div className={styles.filterInner}>
           <div className={styles.filterLabel}>Filter by Discipline</div>
           <div className={styles.filterBar}>
@@ -192,7 +192,14 @@ export default function ProjectsPage() {
               <button
                 key={cat}
                 className={`${styles.filterBtn} ${activeCategory === cat ? styles.filterActive : ''}`}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  const filterBar = document.getElementById('filter-bar');
+                  if (filterBar) {
+                    const y = filterBar.getBoundingClientRect().top + window.scrollY - 70;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                  }
+                }}
                 style={activeCategory === cat && cat !== 'All Projects'
                   ? { borderColor: CAT_COLORS[cat], color: CAT_COLORS[cat], background: `${CAT_COLORS[cat]}15` }
                   : {}
