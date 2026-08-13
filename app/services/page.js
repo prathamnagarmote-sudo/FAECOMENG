@@ -72,7 +72,7 @@ export default function Services() {
                 img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786444120/tekla_structures.png'
               },
               {
-                slug: 'concrete-rebar',
+                slug: 'rebar-concrete',
                 title: 'Concrete and Rebar Solutions',
                 desc: 'Innovative concrete and rebar engineering solutions ensuring robust infrastructure design and site development.',
                 img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443919/concrete_and_rebar_solutions.png'
