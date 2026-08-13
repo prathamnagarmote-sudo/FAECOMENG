@@ -110,39 +110,32 @@ export default function About() {
           <FadeUp>
             <div className={styles.indGrid}>
               <div className={styles.indCard}>
-                <Image src="/images/industry_retail.png" alt="Retail Spaces" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/industry_retail.png" alt="Retail Spaces" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Retail<br/>Spaces</span>
               </div>
               <div className={styles.indCard}>
-                <Image src="/images/industry_hotel.png" alt="Hotels" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/industry_hotel.png" alt="Hotels" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Hotels</span>
               </div>
               <div className={styles.indCard}>
-                <Image src="/images/industry_mixed.png" alt="Mixed-Use Developments" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/industry_mixed.png" alt="Mixed-Use Developments" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Mixed-Use<br/>Developments</span>
               </div>
               <div className={styles.indCard}>
-                <Image src="/images/industry_multifamily.png" alt="Multifamily Residential" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/industry_multifamily.png" alt="Multifamily Residential" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Multifamily<br/>Residential</span>
               </div>
               <div className={styles.indCard}>
-                <Image src="/images/industry_commercial.png" alt="Commercial Offices" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/industry_commercial.png" alt="Commercial Offices" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Commercial<br/>Offices</span>
               </div>
               <div className={styles.indCard}>
-                <Image src="/images/industry_industrial.png" alt="Industrial Projects" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/industry_industrial.png" alt="Industrial Projects" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Industrial<br/>Projects</span>
               </div>
             </div>
           </FadeUp>
           
-          <FadeUp>
-            <div className={styles.indSubImages}>
-              <Image src="/images/project_commercial.png" width={400} height={250} alt="Commercial Project" className={styles.indSubImg} />
-              <Image src="/images/project_industrial.png" width={400} height={250} alt="Industrial Project" className={styles.indSubImg} />
-              <Image src="/images/project_residential.png" width={400} height={250} alt="Residential Project" className={styles.indSubImg} />
-            </div>
-          </FadeUp>
         </StaggerContainer>
       </section>
 
@@ -170,31 +163,31 @@ export default function About() {
           <FadeUp>
             <div className={styles.constGrid}>
               <div className={styles.indCard}>
-                <Image src="/images/expertise_icf.png" alt="ICF" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/expertise_icf.png" alt="ICF" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>ICF<br/>(Insulated<br/>Concrete Form)</span>
               </div>
               <div className={styles.indCard}>
-                <Image src="/images/expertise_steel.png" alt="Structural Steel" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/expertise_steel.png" alt="Structural Steel" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Structural<br/>Steel</span>
               </div>
               <div className={styles.indCard}>
-                <Image src="/images/expertise_wood.png" alt="Wood & Timber" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/expertise_wood.png" alt="Wood & Timber" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Wood &<br/>Timber</span>
               </div>
               <div className={styles.indCard}>
-                <Image src="/images/expertise_lgs.png" alt="Light Gauge Steel" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/expertise_lgs.png" alt="Light Gauge Steel" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Light Gauge<br/>Steel</span>
               </div>
               <div className={styles.indCard}>
-                <Image src="/images/expertise_rc.png" alt="Reinforced Concrete" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/expertise_rc.png" alt="Reinforced Concrete" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Reinforced<br/>Concrete</span>
               </div>
               <div className={styles.indCard}>
-                <Image src="/images/expertise_precast.png" alt="Precast Concrete" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/expertise_precast.png" alt="Precast Concrete" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Precast<br/>Concrete</span>
               </div>
               <div className={styles.indCard}>
-                <Image src="/images/expertise_hybrid.png" alt="Hybrid Structural Systems" width={140} height={140} className={styles.indImg} />
+                <Image src="/images/expertise_hybrid.png" alt="Hybrid Structural Systems" width={240} height={240} className={styles.indImg} />
                 <span className={styles.indTitle}>Hybrid<br/>Structural Systems</span>
               </div>
             </div>
