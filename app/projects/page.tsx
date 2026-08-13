@@ -251,7 +251,7 @@ export default function ProjectsPage() {
           <p className={styles.ctaSub}>
             Connect with our licensed PE team and turn your vision into precision-engineered reality.
           </p>
-          <Link href="/#contact" className={styles.ctaBtn}>
+          <Link href="/contact" className={styles.ctaBtn}>
             Get In Touch
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
               <path d="M5 12h14M12 5l7 7-7 7" />

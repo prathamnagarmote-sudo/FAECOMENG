@@ -6,13 +6,13 @@ import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
 
 const SERVICES = [
-  'Architectural BIM',
-  'Structural Engineering',
-  'LGSF Engineering',
-  'ICF Construction',
-  'Timber Engineering',
-  'MEP Engineering',
-  'Industrial Buildings',
+  { label: 'Architectural BIM', href: '/services/bim' },
+  { label: 'Structural Engineering', href: '/services/structural-steel' },
+  { label: 'LGSF Engineering', href: '/services/lgs' },
+  { label: 'ICF Construction', href: '/services/icf' },
+  { label: 'Timber Engineering', href: '/services/timber' },
+  { label: 'MEP Engineering', href: '/services/mep' },
+  { label: 'Industrial Buildings', href: '/services' },
 ];
 
 const COMPANY = [
@@ -77,10 +77,10 @@ export default function Footer() {
           <p className={styles.colTitle}>Services</p>
           <ul className={styles.colList}>
             {SERVICES.map((s) => (
-              <li key={s}>
-                <Link href="/services" className={styles.colLink}>
+              <li key={s.label}>
+                <Link href={s.href} className={styles.colLink}>
                   <span className={styles.colLinkDot} />
-                  {s}
+                  {s.label}
                 </Link>
               </li>
             ))}
