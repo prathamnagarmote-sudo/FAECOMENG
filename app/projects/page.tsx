@@ -168,7 +168,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* ── FILTER BAR ── */}
-      <section className={styles.filterSection}>
+      <section id="project-filter-section" className={styles.filterSection}>
         <div className={styles.filterInner}>
           <div className={styles.filterLabel}>Filter by Discipline</div>
           <div className={styles.filterBar}>
@@ -176,7 +176,14 @@ export default function ProjectsPage() {
               <button
                 key={cat}
                 className={`${styles.filterBtn} ${activeCategory === cat ? styles.filterActive : ''}`}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  const el = document.getElementById('project-filter-section');
+                  if (el) {
+                    const y = el.getBoundingClientRect().top + window.scrollY - 60;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                  }
+                }}
                 style={activeCategory === cat && cat !== 'All Projects'
                   ? { borderColor: CAT_COLORS[cat], color: CAT_COLORS[cat], background: `${CAT_COLORS[cat]}15` }
                   : {}

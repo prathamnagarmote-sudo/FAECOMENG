@@ -1,8 +1,8 @@
 'use client';
 import { useRef } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import styles from '@/app/about/page.module.css'; // Reusing the layout styles from about page hero
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import styles from '@/app/about/page.module.css';
 
 export default function ServicesHero() {
   const ref = useRef(null);
@@ -11,49 +11,111 @@ export default function ServicesHero() {
     offset: ["start start", "end start"]
   });
 
-  const leftX = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
-  const rightX = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  
+  const leftSlideOnScroll = useTransform(scrollYProgress, [0, 0.5], [0, -150]);
+  const rightSlideOnScroll = useTransform(scrollYProgress, [0, 0.5], [0, 150]);
 
   return (
-    <section className={styles.aboutHero} ref={ref}>
+    <section className={styles.aboutHeroNew} ref={ref}>
+      {/* Absolute right-aligned image background */}
       <motion.div 
-        className={styles.aboutHeroBg}
-        style={{ y: bgY }}
-        initial={{ scale: 1.15, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+        style={{ 
+          position: 'absolute', 
+          right: '-15%', 
+          top: '120px', 
+          height: '100%', 
+          width: '75%', 
+          zIndex: 0,
+          x: rightSlideOnScroll
+        }}
       >
-        <Image src="/images/services_hero_bg.png" alt="Engineering Services" fill style={{ objectFit: 'cover', objectPosition: 'center' }} priority quality={90} />
-        <div className={styles.aboutHeroOverlay} />
+        <AnimatePresence mode="wait">
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
+            style={{ width: '100%', height: '100%', position: 'relative' }}
+          >
+            {/* Soft white feather/fade on the left edge */}
+            <div style={{
+              position: 'absolute',
+              top: 0, left: 0, bottom: 0, width: '40%',
+              background: 'linear-gradient(to right, #FFFFFF 0%, rgba(255,255,255,0) 100%)',
+              zIndex: 1
+            }} />
+
+            <Image 
+              src="/images/luxury_house_3d_model.png"
+              alt="Engineering Services" 
+              fill 
+              style={{ objectFit: 'cover', objectPosition: 'right center' }} 
+              priority 
+              quality={100} 
+            />
+          </motion.div>
+        </AnimatePresence>
       </motion.div>
-      
-      <motion.div className={styles.aboutHeroContentSplit} style={{ opacity }}>
-        <motion.div 
-          className={styles.aboutHeroLeft} 
-          style={{ x: leftX }}
-          initial={{ x: -80, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className={styles.aboutHeroLabel}>OUR EXPERTISE</span>
-          <h1 className={styles.aboutHeroTitle}>
-            Comprehensive <br />
-            <em>Engineering Services.</em>
-          </h1>
-        </motion.div>
-        
-        <motion.div 
-          className={styles.aboutHeroRight} 
-          style={{ x: rightX }}
-          initial={{ x: 80, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.4, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <p className={styles.aboutHeroSubtitle}>
-            End-to-end structural, BIM, MEP, and value engineering solutions built on 25+ years of international expertise. We deliver precision and efficiency for projects of any scale, translating your vision into constructible, cost-effective reality.
-          </p>
+
+      <motion.div className={styles.aboutHeroNewContent} style={{ opacity, zIndex: 1, width: '100%' }}>
+        <motion.div className={styles.aboutHeroNewLeft} style={{ x: leftSlideOnScroll }}>
+          <motion.div
+            initial={{ opacity: 0, scale: 1.5, rotateX: 20, rotateY: -15, y: -20 }}
+            animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          >
+            <span className={styles.aboutHeroNewLabel}>
+              <span className={styles.aboutHeroNewLabelLine} />
+              OUR EXPERTISE
+            </span>
+          </motion.div>
+
+          <AnimatePresence mode="wait">
+            <motion.div>
+              <motion.h1 
+                className={styles.aboutHeroNewTitle}
+                initial={{ opacity: 0, scale: 1.5, rotateX: 20, rotateY: -15, y: -20 }}
+                animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
+                exit={{ opacity: 0, scale: 1.05, rotateX: -10, rotateY: 10, y: 20 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                style={{ fontSize: 'clamp(50px, 6vw, 90px)' }}
+              >
+                <span className={styles.textNavy}>COMPREHENSIVE</span> <span className={styles.textOrange}>ENGINEERING</span><br/>
+                <span className={styles.textNavy}>SERVICES.</span> <span className={styles.textOrange}>SOLUTIONS.</span>
+              </motion.h1>
+
+              <motion.p 
+                className={styles.aboutHeroNewSubtitle}
+                initial={{ opacity: 0, scale: 1.5, rotateX: 20, rotateY: -15, y: -20 }}
+                animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
+                exit={{ opacity: 0, scale: 1.05, rotateX: -10, rotateY: 10, y: 20 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                style={{ fontSize: 'clamp(18px, 1.8vw, 22px)' }}
+              >
+                End-to-end structural, BIM, MEP, and value engineering solutions built on 25+ years of international expertise. We deliver precision and efficiency for projects of any scale, translating your vision into constructible, cost-effective reality.
+              </motion.p>
+            </motion.div>
+          </AnimatePresence>
+
+          <motion.div 
+            className={styles.aboutHeroNewButtons}
+            initial={{ opacity: 0, scale: 1.5, rotateX: 20, rotateY: -15, y: -20 }}
+            animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+          >
+            <div style={{ 
+              padding: '1rem 1.5rem', 
+              backgroundColor: 'rgba(0, 31, 63, 0.04)', 
+              borderLeft: '4px solid #FF5722',
+              color: '#001f3f',
+              fontWeight: 600,
+              fontSize: '1.2rem',
+              maxWidth: '100%',
+              lineHeight: '1.5'
+            }}>
+              "Delivering precision and efficiency for projects of any scale, translating your vision into constructible, cost-effective reality."
+            </div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>
