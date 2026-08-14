@@ -2,96 +2,28 @@ import Image from 'next/image';
 import Link from 'next/link';
 import CtaSection from '@/components/CtaSection';
 import LeadershipSection from '@/components/LeadershipSection';
+import WhoWeArePillarsSection from '@/components/WhoWeArePillarsSection';
+import MeetOurTeamSection from '@/components/MeetOurTeamSection';
 import PEStampingSection from '@/components/PEStampingSection';
 import GlobalMapSection from '@/components/GlobalMapSection';
-import AboutHero from '@/components/AboutHero';
+import AboutHeroArchitectural from '@/components/AboutHeroArchitectural';
 import { Building2, Globe, ShieldCheck, Users, Store, Building, Home, Briefcase, Factory } from 'lucide-react';
 import { StaggerContainer, FadeUp, ScaleIn, ParallaxImage } from '@/components/Animations';
 import styles from './page.module.css';
 
 export const metadata = { title: 'About FAECOM INC.' };
 
-const WHY = [
-  { icon:'shield', n:'01', title:'PE Stamped in 25+ States', desc:'Licensed Professional Engineers across more than 25 US states. Your project meets every local building code, every time.' },
-  { icon:'globe',  n:'02', title:'100% Remote Capability', desc:'Fully digital cloud-based workflows enabling seamless collaboration with clients worldwide — no delays, no borders.' },
-  { icon:'layers', n:'03', title:'Multidisciplinary Mastery', desc:'Structural, BIM, MEP — all under one roof. Fully coordinated, collision-free models delivered on schedule.' },
-  { icon:'bar-chart-2', n:'04', title:'Cost-Optimised Design', desc:'Value engineering at every stage — reducing material waste, construction cost, and timelines without compromise.' },
-  { icon:'users', n:'05', title:'Dedicated Project Teams', desc:'A dedicated senior engineer leads every project from kickoff to handover — consistent, accountable, always reachable.' },
-  { icon:'map-pin', n:'06', title:'Global Impact, One Standard', desc:'USA, Canada, UK, UAE, India, Australia — a single uncompromised standard of engineering excellence, globally.' },
-];
-
 export default function About() {
   return (
     <>
-      <AboutHero />
-      <div className="divider" />
+      {/* Award-Winning Architectural Hero Section */}
+      <AboutHeroArchitectural />
 
-      {/* Who We Are */}
-      <section className={styles.whoWeAre}>
-        <div className={styles.whoWeAreBg}>
-          <Image src="/images/who_we_are.png" alt="Background Texture" fill style={{ objectFit: "cover" }} quality={90} priority />
-          <div className={styles.whoWeAreOverlay} />
-        </div>
+      {/* ══ 1. WHO WE ARE & 4 PILLARS (Matching Reference Layout) ══ */}
+      <WhoWeArePillarsSection />
 
-        <div className={styles.whoWeAreInner}>
-          <div className={styles.whoColumns}>
-            <StaggerContainer className={styles.whoLeft}>
-              <FadeUp className={styles.whoLblContainer}>
-                <span className={styles.whoLbl}>Who We Are</span>
-                <span className={styles.whoLblLine} />
-              </FadeUp>
-              <FadeUp>
-                <p className={styles.whoText}>
-                  FAECOM INC is a multidisciplinary engineering firm providing reliable and cost-effective Insulated Concrete Form (ICF) solutions, Structural, Architectural, MEP, and BIM Design, along with Structural Drawings, Design Calculations, Engineering Review & Stamp, and Detailing.
-                </p>
-              </FadeUp>
-              <FadeUp>
-                <p className={styles.whoText}>
-                  We help Architects, Contractors, Fabricators, Developers, and Owners deliver practical, code-compliant, and efficient engineering solutions.
-                </p>
-              </FadeUp>
-            </StaggerContainer>
-
-            <StaggerContainer className={styles.whoGrid} delayOrder={1}>
-              {/* Item 1 */}
-              <FadeUp className={styles.whoGridItem}>
-                <Building2 className={styles.whoIcon} size={36} strokeWidth={1.5} />
-                <div className={styles.whoItemContent}>
-                  <h3 className={styles.whoItemTitle}>Multidisciplinary<br/>Expertise</h3>
-                  <p className={styles.whoItemDesc}>End-to-end engineering solutions under one roof.</p>
-                </div>
-              </FadeUp>
-              
-              {/* Item 2 */}
-              <FadeUp className={styles.whoGridItem}>
-                <Globe className={styles.whoIcon} size={36} strokeWidth={1.5} />
-                <div className={styles.whoItemContent}>
-                  <h3 className={styles.whoItemTitle}>Global<br/>Experience</h3>
-                  <p className={styles.whoItemDesc}>Serving clients across multiple countries.</p>
-                </div>
-              </FadeUp>
-
-              {/* Item 3 */}
-              <FadeUp className={styles.whoGridItem}>
-                <ShieldCheck className={styles.whoIcon} size={36} strokeWidth={1.5} />
-                <div className={styles.whoItemContent}>
-                  <h3 className={styles.whoItemTitle}>Quality &<br/>Compliance</h3>
-                  <p className={styles.whoItemDesc}>Code-compliant designs with industry standards.</p>
-                </div>
-              </FadeUp>
-
-              {/* Item 4 */}
-              <FadeUp className={styles.whoGridItem}>
-                <Users className={styles.whoIcon} size={36} strokeWidth={1.5} />
-                <div className={styles.whoItemContent}>
-                  <h3 className={styles.whoItemTitle}>Client<br/>Focused</h3>
-                  <p className={styles.whoItemDesc}>Practical, efficient and cost-effective solutions.</p>
-                </div>
-              </FadeUp>
-            </StaggerContainer>
-          </div>
-        </div>
-      </section>
+      {/* ══ 2. MEET OUR TEAM (Compact Cards + Read Bio Modal) ══ */}
+      <MeetOurTeamSection />
 
       <div className="divider" />
 
@@ -156,7 +88,7 @@ export default function About() {
 
           <FadeUp>
             <p className={styles.constructionSubtitle}>
-              From traditional reinforced concrete to cutting-edge hybrid structural systems, our multidisciplinary teams engineer solutions tailored to the unique demands of every material, ensuring peak performance, sustainability, and construction efficiency.
+              Our expertise spans a wide range of construction systems, including ICF, Wood, Cold-Formed Metal, Structural Steel, Reinforced Concrete, Precast Concrete, Precast Sandwich Panels, Light Gauge Steel (LGS), and Hybrid/Composite Structural Systems. From concept to construction, we provide Structural Design, Structural Drawings, Design Calculations, Engineering Review & Stamp, Hybrid Design, Prescriptive Tables, Modular Structural Design & Detailing, Steel Staircases, and specialized solutions.
             </p>
           </FadeUp>
 
@@ -221,10 +153,6 @@ export default function About() {
           </FadeUp>
         </StaggerContainer>
       </section>
-
-      {/* Leadership Team */}
-      <div style={{ width: '100%', height: '1px', backgroundColor: '#FFFFFF' }} />
-      <LeadershipSection />
 
       {/* Global Impact */}
       <GlobalMapSection />

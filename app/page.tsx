@@ -727,14 +727,6 @@ export default function Home() {
         aria-label="Hero"
         onMouseMove={handleHeroMouseMove}
       >
-        {/* Laser CAD Scanning Line Landing Sweep */}
-        <motion.div
-          className={styles.laserScanLine}
-          initial={{ top: '0%', opacity: 1 }}
-          animate={{ top: '100%', opacity: 0 }}
-          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-        />
-
         {/* Full-width background photo with 3D Out-of-Screen Fly-In Landing & Scroll Parting (+x) */}
         <motion.div
           className={styles.heroBg}
@@ -963,18 +955,20 @@ export default function Home() {
             </motion.span>
           </h1>
 
-          {/* Subtext matching reference image */}
-          <motion.p
-            className={styles.heroSub}
+          {/* Executive Subline */}
+          <motion.div
+            className={styles.heroSubWrap}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.8 }}
           >
-            From Concept to Completion – We deliver{' '}
-            <strong className={styles.heroSubHighlight}>
-              Integrated Solutions in Architecture, Structure, BIM, and MEP.
-            </strong>
-          </motion.p>
+            <p className={styles.heroSubText}>
+              From Architectural BIM, LGSF, ICF (Insulated Concrete Form), Timber, MEP, and Industrial Buildings —
+            </p>
+            <div className={styles.heroSubTagline}>
+              We Design with <span className={styles.heroSubOrange}>Precision and Purpose.</span>
+            </div>
+          </motion.div>
 
           {/* Action Buttons matching reference image */}
           <motion.div
@@ -1013,7 +1007,7 @@ export default function Home() {
                   delay: 0.6 + i * 0.12,
                 }}
               >
-                <div className={styles.statVal}>
+                <div className={`${styles.statVal} ${st.val.length > 8 ? styles.statValLong : ''}`}>
                   <AnimatedCounter value={st.val} />
                 </div>
                 <div className={styles.statLabel}>{st.label}</div>
