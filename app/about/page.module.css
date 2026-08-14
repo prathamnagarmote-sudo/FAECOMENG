@@ -1,57 +1,70 @@
-/* --- About Hero (New Clean Layout) --- */
-.aboutHeroNew {
+/* --- About Hero (Architectural Design) --- */
+.aboutHero {
   position: relative;
   min-height: 90vh;
   display: flex;
   align-items: center;
-  padding: clamp(30px, 4vw, 50px) var(--gutter) clamp(100px, 12vw, 160px);
+  padding: var(--pad) var(--gutter);
   overflow: hidden;
-  background-color: #FFFFFF;
+  background-color: var(--primary);
 }
 
-.aboutHeroNewContent {
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+.aboutHeroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.aboutHeroBg img {
+  animation: kenBurns 20s ease-out forwards;
+}
+
+.aboutHeroOverlay {
+  position: absolute;
+  inset: 0;
+  /* Navy blue overlay with no glassmorphism, gradient for readability */
+  background: linear-gradient(to top, rgba(33, 20, 95, 0.9) 0%, rgba(33, 20, 95, 0.4) 60%, rgba(33, 20, 95, 0.1) 100%);
+}
+
+.aboutHeroContentSplit {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1300px;
   margin: 0 auto;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 40px;
+  gap: 60px;
 }
 
-.aboutHeroNewLeft {
+.aboutHeroLeft {
   flex: 1;
-  max-width: 650px;
+  max-width: 600px;
+  color: #fff;
 }
 
-.aboutHeroNewRight {
-  flex: 1.6;
-  position: relative;
-  height: 950px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.aboutHeroRight {
+  flex: 1;
+  max-width: 500px;
+  color: #fff;
 }
 
-@media (max-width: 1024px) {
-  .aboutHeroNewContent {
+@media (max-width: 900px) {
+  .aboutHeroContentSplit {
     flex-direction: column;
-    text-align: left;
-  }
-  .aboutHeroNewLabel {
-    justify-content: flex-start;
-  }
-  .aboutHeroNewButtons {
-    justify-content: flex-start;
-  }
-  .aboutHeroNewRight {
-    width: 100%;
-    height: 550px;
+    align-items: flex-start;
+    gap: 40px;
   }
 }
 
-.aboutHeroNewLabel {
+.aboutHeroLabel {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -63,154 +76,34 @@
   margin-bottom: 24px;
 }
 
-.aboutHeroNewLabelLine {
-  width: 40px; 
-  height: 2px;
+.aboutHeroLabel::before {
+  content: '';
+  width: 40px; height: 2px;
   background: var(--accent);
+  flex-shrink: 0;
 }
 
-.aboutHeroNewTitle {
+.aboutHeroTitle {
   font-family: var(--font-display);
-  font-size: clamp(40px, 5vw, 76px);
-  font-weight: 900;
-  line-height: 1.05;
+  font-size: clamp(50px, 9vw, 110px);
+  font-weight: 300;
+  line-height: 0.95;
   letter-spacing: -0.02em;
   margin: 0 0 24px 0;
-  text-transform: uppercase;
+  color: #ffffff;
 }
 
-.textNavy {
-  color: #0E0F20;
-}
-
-.textOrange {
+.aboutHeroTitle em {
+  font-style: italic;
   color: var(--accent);
 }
 
-.aboutHeroNewSubtitle {
-  font-size: clamp(15px, 1.5vw, 17px);
-  font-weight: 500;
-  line-height: 1.8;
-  color: #555555;
-  margin-bottom: 40px;
-  max-width: 580px;
-}
-
-.aboutHeroNewButtons {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.btnPrimaryNew {
-  background: #0E0F20;
-  color: #FFFFFF;
-  padding: 16px 32px;
-  border-radius: 6px;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.05em;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.btnPrimaryNew:hover {
-  background: var(--accent);
-  color: #FFFFFF;
-}
-
-.btnSecondaryNew {
-  background: transparent;
-  color: #0E0F20;
-  border: 2px solid #0E0F20;
-  padding: 14px 32px;
-  border-radius: 6px;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.05em;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.btnSecondaryNew:hover {
-  background: rgba(14, 15, 32, 0.05);
-}
-
-.btnArrow {
-  font-size: 18px;
-  font-weight: normal;
-}
-
-.aboutHeroNewImageWrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.floatingAnnot {
-  position: absolute;
-  background: #FFFFFF;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-  padding: 12px 20px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  z-index: 10;
-}
-
-.annotIconBox {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 107, 44, 0.1);
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  border: 1px solid var(--accent);
-}
-
-.annotText {
-  display: flex;
-  flex-direction: column;
-}
-
-.annotText strong {
-  font-size: 13px;
-  font-weight: 800;
-  color: #0E0F20;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.annotText span {
-  font-size: 12px;
-  color: #666;
-  font-weight: 500;
-}
-
-.annot1 {
-  top: 15%;
-  left: -10%;
-}
-
-.annot2 {
-  bottom: 25%;
-  right: -5%;
-}
-
-@media (max-width: 1200px) {
-  .annot1, .annot2 {
-    display: none;
-  }
+.aboutHeroSubtitle {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
 }
 
 /* --- Who We Are Section --- */
