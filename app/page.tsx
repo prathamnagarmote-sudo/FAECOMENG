@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring, animate } from 'framer-motion';
 import { ArrowUpRight, ArrowRight, ChevronDown, Mail, Phone, MapPin } from 'lucide-react';
 import styles from './page.module.css';
+import ALL_PROJECTS from '@/data/projects.json';
 
 /* ── Lazy-load heavy 3D scene ────────────────────────────────── */
 const HeroScene3D = dynamic(() => import('@/components/HeroScene3D'), {
@@ -98,16 +99,14 @@ type CarouselSlide = {
   href: string;
 };
 
-const CAROUSEL_SLIDES: CarouselSlide[] = [
-  { img: '/images/project_elm_st.png',       title: 'ELM ST Unit',            loc: 'Manchester, New Hampshire, USA',      badge: 'Multi-Family',      href: '/projects' },
-  { img: '/images/project_sugar_villa.png',  title: 'SUGAR VILLA',            loc: 'Little Exuma, Bahamas',              badge: 'Luxury Estate',     href: '/projects' },
-  { img: '/images/project_children_bldg.png',title: 'Children Building',      loc: '2714 Goat Creek Rd, Kerrville, TX',  badge: 'Educational',       href: '/projects' },
-  { img: '/images/project_nelson_care.png',  title: 'Nelson Senior Home Care',loc: 'Unit Center, USA',                   badge: 'Senior Living',     href: '/projects' },
-  { img: '/images/project_tm_heights.png',   title: 'TM HEIGHTS',             loc: 'Residential Apartment, USA',         badge: 'Apartment Complex', href: '/projects' },
-  { img: '/images/project_wheel_house.png',  title: 'Wheel House ADU',        loc: 'Modular ADU, USA',                   badge: 'Steel Frame ADU',   href: '/projects' },
-  { img: '/images/project_khan_house.png',   title: 'Khan House',             loc: 'Residential House, Canada',          badge: 'Mass Timber',       href: '/projects' },
-  { img: '/images/project_senior_center.png',title: 'Nelson Care II',         loc: 'Unit Center Phase II, USA',          badge: 'Senior Living',     href: '/projects' },
-];
+const featuredProjects = ALL_PROJECTS.filter((p) => p.featured).slice(0, 8);
+const CAROUSEL_SLIDES: CarouselSlide[] = featuredProjects.map((p) => ({
+  img: p.image,
+  title: p.name,
+  loc: p.location,
+  badge: p.tag || p.category,
+  href: `/projects#${p.id}`,
+}));
 
 function useCarouselConfig() {
   const [cfg, setCfg] = useState({ xMul: 200, yMul: 45, rotMul: 13, scaleR: 0.13, distDiv: 220, velDiv: 850, sensitivity: 260 });
@@ -192,9 +191,13 @@ function StackedCarouselCard({
   );
 }
 
+import { useRouter } from 'next/navigation';
+
 function StackedCarousel({ slides }: { slides: CarouselSlide[] }) {
+  const router = useRouter();
   const progress = useMotionValue(0);
   const startRef = useRef(0);
+  const clickTimeRef = useRef(0);
   const cfg = useCarouselConfig();
   const total = slides.length;
 
@@ -204,7 +207,10 @@ function StackedCarousel({ slides }: { slides: CarouselSlide[] }) {
       <motion.div
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
-        onDragStart={() => { startRef.current = progress.get(); }}
+        onDragStart={() => { 
+          startRef.current = progress.get(); 
+          clickTimeRef.current = Date.now();
+        }}
         onDrag={(_, info) => { progress.set(progress.get() - info.delta.x / cfg.sensitivity); }}
         onDragEnd={(_, info) => {
           const shift = Math.round(-info.offset.x / cfg.distDiv + -info.velocity.x / cfg.velDiv);
@@ -213,7 +219,18 @@ function StackedCarousel({ slides }: { slides: CarouselSlide[] }) {
             type: 'spring', stiffness: 200, damping: 30, mass: 1,
           });
         }}
+        onClick={() => {
+          const dragTime = Date.now() - clickTimeRef.current;
+          if (dragTime < 250) {
+            let centerIndex = Math.round(progress.get()) % total;
+            if (centerIndex < 0) centerIndex += total;
+            if (slides[centerIndex]?.href) {
+              router.push(slides[centerIndex].href as string);
+            }
+          }
+        }}
         className={styles.cDragSurface}
+        style={{ cursor: 'pointer' }}
       />
       {slides.map((slide, i) => (
         <StackedCarouselCard
@@ -451,7 +468,7 @@ const SOFTWARE_CATEGORIES = [
     logos: [
       { name: 'Tekla Structures', img: '/images/software/tekla_structures.png' },
       { name: 'SDS2', img: '/images/software/sds2.png' },
-      { name: 'Autodesk Revit', img: '/images/software/autodesk_revit.png' },
+      { name: 'Autodesk Revit', img: '/images/software/autodesk_revit.png', scale: 1.18 },
       { name: 'MiTek', img: '/images/software/mitek.png' },
       { name: 'StrucSoft', img: '/images/software/strucsoft.png' },
     ],
@@ -459,15 +476,13 @@ const SOFTWARE_CATEGORIES = [
   {
     title: 'STRUCTURAL ANALYSIS & DESIGN',
     logos: [
-      { name: 'Tekla Tedds', img: '/images/software/tekla_tedds.png' },
+      { name: 'Tekla Tedds', img: '/images/software/tekla_tedds.webp', scale: 1.12 },
       { name: 'RISA', img: '/images/software/risa.png' },
-      { name: 'STAAD.Pro', img: '/images/software/staad_pro.png' },
-      { name: 'SAP2000', img: '/images/software/sap2000.png' },
+      { name: 'STAAD.Pro', img: '/images/software/staad_pro.png', scale: 1.10 },
+      { name: 'SAP2000', img: '/images/software/sap2000_hq.png', scale: 1.10 },
       { name: 'IES', img: '/images/software/ies.png' },
-      { name: 'SkyCiv', img: '/images/software/skyciv.png' },
-      { name: 'FORTEWEB', img: '/images/software/forteweb.png' },
-      { name: 'ENERCALC', img: '/images/software/enercalc.png' },
-      { name: 'StructurePoint', img: '/images/software/structurepoint.png' },
+      { name: 'SkyCiv', img: '/images/software/skyciv.png', scale: 1.12 },
+      { name: 'StructurePoint', img: '/images/software/newstructurepointlogo.png', scale: 1.10 },
     ],
   },
   {
@@ -543,48 +558,62 @@ const PE_STATS = [
   },
 ];
 
-const GLOBAL_HUBS = [
-  {
-    id: 'usa',
-    country: 'USA',
-    flag: '🇺🇸',
-    role: 'Primary Engineering Hub',
-    codes: ['AISC', 'IBC', 'ACI', 'ASCE 7'],
-    desc: 'Full-service structural, MEP & BIM engineering for high-rise, commercial, and industrial facilities across 25+ licensed states.',
-  },
-  {
-    id: 'canada',
-    country: 'CANADA',
-    flag: '🇨🇦',
-    role: 'Structural & Cold-Formed Steel',
-    codes: ['NBC', 'CSA S16', 'CSA A23.3'],
-    desc: 'Advanced LGS detailing, timber structure design, and BIM coordination compliant with Canadian National Building Codes.',
-  },
-  {
-    id: 'uk',
-    country: 'UNITED KINGDOM',
-    flag: '🇬🇧',
-    role: 'BIM & Structural Detailing',
-    codes: ['Eurocodes', 'BS EN 1993', 'BSI'],
-    desc: 'Third-party peer reviews, complex steel connections, and Level 2 BIM modeling for commercial developments across Europe.',
-  },
-  {
-    id: 'dubai',
-    country: 'DUBAI (UAE)',
-    flag: '🇦🇪',
-    role: 'High-Rise & Mega Infrastructure',
-    codes: ['Dubai Building Code', 'AISC', 'Eurocodes'],
-    desc: 'Specialized structural engineering and rebar detailing for landmark skyscrapers, residential towers, and hospitality projects.',
-  },
-  {
-    id: 'australia',
-    country: 'AUSTRALIA',
-    flag: '🇦🇺',
-    role: 'Residential & Light Gauge Steel',
-    codes: ['AS/NZS 1170', 'AS 4100', 'NCC'],
-    desc: 'Cold-formed steel framing, residential structural calculations, and 3D Tekla detailing compliant with Australian Standards.',
-  },
-];
+const CountryFlag = ({ code }: { code: 'usa' | 'canada' | 'uk' | 'dubai' | 'australia' }) => {
+  switch (code) {
+    case 'usa':
+      return (
+        <svg viewBox="0 0 36 24" width="20" height="14" style={{ borderRadius: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+          <rect width="36" height="24" fill="#B22234" />
+          <path d="M0 3.7h36M0 9.2h36M0 14.8h36M0 20.3h36" stroke="#FFFFFF" strokeWidth="1.85" />
+          <rect width="14.4" height="13" fill="#3C3B6E" />
+          <circle cx="7.2" cy="6.5" r="2.8" fill="#FFFFFF" opacity="0.95" />
+        </svg>
+      );
+    case 'canada':
+      return (
+        <svg viewBox="0 0 36 24" width="20" height="14" style={{ borderRadius: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+          <rect width="36" height="24" fill="#FF0000" />
+          <rect x="9" width="18" height="24" fill="#FFFFFF" />
+          <path d="M18 6l1.8 3.6h3.6l-2.7 2.2 1 3.6-3.7-2.3-3.7 2.3 1-3.6-2.7-2.2h3.6z" fill="#FF0000" />
+        </svg>
+      );
+    case 'uk':
+      return (
+        <svg viewBox="0 0 36 24" width="20" height="14" style={{ borderRadius: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+          <rect width="36" height="24" fill="#00247D" />
+          <path d="M0 0l36 24M36 0L0 24" stroke="#FFFFFF" strokeWidth="4" />
+          <path d="M0 0l36 24M36 0L0 24" stroke="#CF142B" strokeWidth="2.4" />
+          <path d="M18 0v24M0 12h36" stroke="#FFFFFF" strokeWidth="6" />
+          <path d="M18 0v24M0 12h36" stroke="#CF142B" strokeWidth="3.6" />
+        </svg>
+      );
+    case 'dubai':
+      return (
+        <svg viewBox="0 0 36 24" width="20" height="14" style={{ borderRadius: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+          <rect width="36" height="8" y="0" fill="#007A3D" />
+          <rect width="36" height="8" y="8" fill="#FFFFFF" />
+          <rect width="36" height="8" y="16" fill="#000000" />
+          <rect width="9" height="24" x="0" fill="#FF0000" />
+        </svg>
+      );
+    case 'australia':
+      return (
+        <svg viewBox="0 0 36 24" width="20" height="14" style={{ borderRadius: '3px', display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+          <rect width="36" height="24" fill="#000085" />
+          <rect width="18" height="12" fill="#00247D" />
+          <path d="M0 0l18 12M18 0L0 12" stroke="#FFFFFF" strokeWidth="2" />
+          <path d="M0 0l18 12M18 0L0 12" stroke="#CF142B" strokeWidth="1.2" />
+          <path d="M9 0v12M0 6h18" stroke="#FFFFFF" strokeWidth="3" />
+          <path d="M9 0v12M0 6h18" stroke="#CF142B" strokeWidth="1.8" />
+          <circle cx="27" cy="6" r="1.5" fill="#FFFFFF" />
+          <circle cx="24" cy="15" r="1.5" fill="#FFFFFF" />
+          <circle cx="30" cy="18" r="1.5" fill="#FFFFFF" />
+          <circle cx="9" cy="18" r="2.2" fill="#FFFFFF" />
+        </svg>
+      );
+  }
+};
+
 
 /* ═══════════════════════════════════════════════════════════════
    HOME PAGE
@@ -594,8 +623,16 @@ export default function Home() {
   const [phase, setPhase] = useState(0);
   const [activeFilter, setActiveFilter] = useState<'all' | 'structure' | 'arch' | 'bim' | 'mep'>('all');
   const reduced = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Hero mouse tilt — only active on non-reduced-motion devices
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Hero mouse tilt — only active on non-reduced-motion desktop devices
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   // Tighter spring = less lag frames
@@ -604,11 +641,11 @@ export default function Home() {
   const annotDepthX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), { stiffness: 120, damping: 35, mass: 0.5 });
 
   const handleHeroMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    if (reduced) return;
+    if (reduced || isMobile) return;
     const rect = e.currentTarget.getBoundingClientRect();
     mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
     mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
-  }, [reduced, mouseX, mouseY]);
+  }, [reduced, isMobile, mouseX, mouseY]);
 
   // PE Stamping 3D Tilt — reduced range & tighter spring
   const peMouseX = useMotionValue(0);
@@ -618,11 +655,11 @@ export default function Home() {
   const peMapDepthX = useSpring(useTransform(peMouseX, [-0.5, 0.5], [-6, 6]), { stiffness: 150, damping: 40, mass: 0.4 });
 
   const handlePeMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    if (reduced) return;
+    if (reduced || isMobile) return;
     const rect = e.currentTarget.getBoundingClientRect();
     peMouseX.set((e.clientX - rect.left) / rect.width - 0.5);
     peMouseY.set((e.clientY - rect.top) / rect.height - 0.5);
-  }, [reduced, peMouseX, peMouseY]);
+  }, [reduced, isMobile, peMouseX, peMouseY]);
 
   // Global Engineering Work 3D Motion — reduced range
   const globalMouseX = useMotionValue(0);
@@ -632,11 +669,11 @@ export default function Home() {
   const globalMapDepthX = useSpring(useTransform(globalMouseX, [-0.5, 0.5], [-5, 5]), { stiffness: 150, damping: 40, mass: 0.4 });
 
   const handleGlobalMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    if (reduced) return;
+    if (reduced || isMobile) return;
     const rect = e.currentTarget.getBoundingClientRect();
     globalMouseX.set((e.clientX - rect.left) / rect.width - 0.5);
     globalMouseY.set((e.clientY - rect.top) / rect.height - 0.5);
-  }, [reduced, globalMouseX, globalMouseY]);
+  }, [reduced, isMobile, globalMouseX, globalMouseY]);
 
   // Contact Form State
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -658,14 +695,15 @@ export default function Home() {
     offset: ['start start', 'end start'],
   });
 
-  // Use scrollYProgress directly — no double-spring wrapper (that caused double-frame lag)
+  // Disable horizontal scroll slide on mobile devices so hero section stays contained
+  const disableSlide = reduced || isMobile;
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -15]);
-  const leftX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : -80]);
-  const rightX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : 80]);
-  const bgScale = useTransform(scrollYProgress, [0, 0.5], [1, reduced ? 1 : 1.03]);
-  const leftAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : -60]);
-  const rightAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, reduced ? 0 : 60]);
+  const leftX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : -80]);
+  const rightX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : 80]);
+  const bgScale = useTransform(scrollYProgress, [0, 0.5], [1, disableSlide ? 1 : 1.03]);
+  const leftAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : -60]);
+  const rightAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : 60]);
 
   // Sync 3D building phase with scroll
   useEffect(() => {
@@ -689,21 +727,29 @@ export default function Home() {
         aria-label="Hero"
         onMouseMove={handleHeroMouseMove}
       >
-        {/* Laser CAD Scanning Line Landing Sweep */}
-        <motion.div
-          className={styles.laserScanLine}
-          initial={{ top: '0%', opacity: 1 }}
-          animate={{ top: '100%', opacity: 0 }}
-          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-        />
-
         {/* Full-width background photo with 3D Out-of-Screen Fly-In Landing & Scroll Parting (+x) */}
         <motion.div
           className={styles.heroBg}
-          style={{ opacity: heroOpacity, scale: bgScale, x: rightX, rotateX: tiltX, rotateY: tiltY }}
+          style={{
+            opacity: heroOpacity,
+            scale: bgScale,
+            x: rightX,
+            rotateX: tiltX,
+            rotateY: tiltY,
+            backfaceVisibility: 'visible',
+            WebkitBackfaceVisibility: 'visible',
+          }}
         >
           <motion.div
-            style={{ width: '100%', height: '100%', position: 'relative', transformStyle: 'preserve-3d' }}
+            className={styles.heroBgInner}
+            style={{
+              width: '100%',
+              height: '100%',
+              position: 'relative',
+              transformStyle: 'flat',
+              backfaceVisibility: 'visible',
+              WebkitBackfaceVisibility: 'visible',
+            }}
             initial={{ opacity: 0, scale: 1.85, rotateX: 28, rotateY: -22, y: 110 }}
             animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
@@ -715,39 +761,19 @@ export default function Home() {
               priority
               quality={95}
               sizes="100vw"
-              style={{ objectFit: 'contain', objectPosition: 'right center' }}
+              className={styles.heroImg}
+              style={{
+                objectFit: 'contain',
+                objectPosition: 'center center',
+                backfaceVisibility: 'visible',
+                WebkitBackfaceVisibility: 'visible',
+              }}
             />
           </motion.div>
         </motion.div>
 
         {/* Light gradient overlay — clean white fade on left */}
         <div className={styles.heroOverlay} />
-
-        {/* CAD Layer Filter Switcher Bar - Moves RIGHT (+x) on scroll */}
-        <motion.div
-          className={styles.cadFilterBar}
-          style={{ opacity: heroOpacity, x: rightX }}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-        >
-          <span className={styles.cadFilterLabel}>CAD VIEWPORT:</span>
-          {[
-            { id: 'all', label: 'ALL LAYERS' },
-            { id: 'structure', label: 'STRUCTURAL' },
-            { id: 'arch', label: 'ARCHITECTURAL' },
-            { id: 'bim', label: 'BIM 3D' },
-            { id: 'mep', label: 'MEP SYSTEMS' },
-          ].map((f) => (
-            <button
-              key={f.id}
-              className={`${styles.cadFilterBtn} ${activeFilter === f.id ? styles.cadFilterBtnActive : ''}`}
-              onClick={() => setActiveFilter(f.id as any)}
-            >
-              {f.label}
-            </button>
-          ))}
-        </motion.div>
 
         {/* ── Engineering annotation callouts matching reference image ───── */}
         <motion.div className={styles.annotations} style={{ opacity: heroOpacity, x: annotDepthX }}>
@@ -929,18 +955,20 @@ export default function Home() {
             </motion.span>
           </h1>
 
-          {/* Subtext matching reference image */}
-          <motion.p
-            className={styles.heroSub}
+          {/* Executive Subline */}
+          <motion.div
+            className={styles.heroSubWrap}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.8 }}
           >
-            From Concept to Completion – We deliver{' '}
-            <strong className={styles.heroSubHighlight}>
-              Integrated Solutions in Architecture, Structure, BIM, and MEP.
-            </strong>
-          </motion.p>
+            <p className={styles.heroSubText}>
+              From Architectural BIM, LGSF, ICF (Insulated Concrete Form), Timber, MEP, and Industrial Buildings —
+            </p>
+            <div className={styles.heroSubTagline}>
+              We Design with <span className={styles.heroSubOrange}>Precision and Purpose.</span>
+            </div>
+          </motion.div>
 
           {/* Action Buttons matching reference image */}
           <motion.div
@@ -979,7 +1007,7 @@ export default function Home() {
                   delay: 0.6 + i * 0.12,
                 }}
               >
-                <div className={styles.statVal}>
+                <div className={`${styles.statVal} ${st.val.length > 8 ? styles.statValLong : ''}`}>
                   <AnimatedCounter value={st.val} />
                 </div>
                 <div className={styles.statLabel}>{st.label}</div>
@@ -1133,9 +1161,12 @@ export default function Home() {
                 <div className={styles.softCategoryBlock}>
                   <h3 className={styles.softCategoryTitle}>{group.title}</h3>
                   <div className={styles.softLogoRow}>
-                    {group.logos.map((soft, i) => (
+                    {group.logos.map((soft) => (
                       <div key={soft.name} className={styles.softLogoCard}>
-                        <div className={styles.softLogoImgWrap}>
+                        <div
+                          className={styles.softLogoImgWrap}
+                          style={soft.scale ? { transform: `scale(${soft.scale})` } : undefined}
+                        >
                           <Image
                             src={soft.img}
                             alt={soft.name}
@@ -1234,21 +1265,7 @@ export default function Home() {
             </FadeUp>
           </motion.div>
 
-          {/* Bottom Floating Metrics Bar (5 Equal Columns) */}
-          <FadeUp delay={0.3}>
-            <div className={styles.peRibbonStrip}>
-              {PE_STATS.map((st, i) => (
-                <div key={i} className={styles.peRibbonCell}>
-                  <div className={styles.peRibbonIconBox}>{st.icon}</div>
-                  <div className={styles.peRibbonMeta}>
-                    <h4 className={styles.peRibbonVal}>{st.title}</h4>
-                    {st.hasAccentBar && <div className={styles.peStatAccentBar} />}
-                    <p className={styles.peRibbonLbl}>{st.subtitle}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </FadeUp>
+
         </div>
       </section>
 
@@ -1282,37 +1299,38 @@ export default function Home() {
             style={{ rotateX: globalTiltX, rotateY: globalTiltY, transformStyle: 'preserve-3d' }}
           >
             <motion.div className={styles.globalMapWrap} style={{ x: globalMapDepthX }}>
-              {/* World Map Transparent Asset */}
+              {/* World Map Clean Cloudinary Asset - 100% Container Coverage */}
               <div className={styles.globalMapImgBox}>
                 <Image
-                  src="/images/global_map_transparent.png"
+                  src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786605308/GLOBALMAPFORFAECOM.png"
                   alt="FAECOM Global Engineering Work Map"
                   fill
                   quality={95}
                   priority
-                  sizes="(max-width: 1200px) 100vw, 85vw"
-                  style={{ objectFit: 'contain' }}
+                  unoptimized
+                  sizes="100vw"
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
 
-              {/* Animated 3D Flight Arc Connections & Radar Beacons */}
+              {/* Animated 3D Flight Arc Connections */}
               <svg className={styles.globalFlightArcSvg} viewBox="0 0 1000 500" fill="none">
                 {/* USA (HQ) -> CANADA */}
-                <path d="M 220 180 Q 215 150 210 120" stroke="rgba(255, 106, 0, 0.4)" strokeWidth="2" strokeDasharray="4 4" />
+                <path d="M 220 140 Q 240 120 240 100" stroke="rgba(255, 107, 44, 0.65)" strokeWidth="2.5" strokeDasharray="5 5" />
                 {/* USA (HQ) -> UK */}
-                <path d="M 220 180 Q 330 80 450 140" stroke="rgba(255, 106, 0, 0.5)" strokeWidth="2" strokeDasharray="6 6" className={styles.animatedFlightArc} />
+                <path d="M 220 140 Q 330 50 440 90" stroke="rgba(255, 107, 44, 0.75)" strokeWidth="2.5" strokeDasharray="6 6" className={styles.animatedFlightArc} />
                 {/* USA (HQ) -> DUBAI */}
-                <path d="M 220 180 Q 400 60 580 210" stroke="rgba(255, 106, 0, 0.5)" strokeWidth="2" strokeDasharray="6 6" className={styles.animatedFlightArc2} />
+                <path d="M 220 140 Q 410 60 610 205" stroke="rgba(255, 107, 44, 0.75)" strokeWidth="2.5" strokeDasharray="6 6" className={styles.animatedFlightArc2} />
                 {/* USA (HQ) -> AUSTRALIA */}
-                <path d="M 220 180 Q 500 380 780 360" stroke="rgba(255, 106, 0, 0.4)" strokeWidth="2" strokeDasharray="6 6" className={styles.animatedFlightArc3} />
+                <path d="M 220 140 Q 520 380 830 350" stroke="rgba(255, 107, 44, 0.65)" strokeWidth="2.5" strokeDasharray="6 6" className={styles.animatedFlightArc3} />
               </svg>
 
-              {/* Radar Beacons & Hotspot Badges */}
+              {/* Radar Beacons & Hotspot Badges for 5 Countries */}
               <div className={`${styles.globalBeacon} ${styles.beaconUsa}`}>
                 <span className={styles.beaconRing} />
                 <span className={styles.beaconDot} />
                 <div className={styles.beaconBadge}>
-                  <span className={styles.beaconFlag}>🇺🇸</span>
+                  <CountryFlag code="usa" />
                   <span className={styles.beaconTitle}>USA (HQ)</span>
                 </div>
               </div>
@@ -1321,7 +1339,7 @@ export default function Home() {
                 <span className={styles.beaconRing} />
                 <span className={styles.beaconDot} />
                 <div className={styles.beaconBadge}>
-                  <span className={styles.beaconFlag}>🇨🇦</span>
+                  <CountryFlag code="canada" />
                   <span className={styles.beaconTitle}>CANADA</span>
                 </div>
               </div>
@@ -1330,7 +1348,7 @@ export default function Home() {
                 <span className={styles.beaconRing} />
                 <span className={styles.beaconDot} />
                 <div className={styles.beaconBadge}>
-                  <span className={styles.beaconFlag}>🇬🇧</span>
+                  <CountryFlag code="uk" />
                   <span className={styles.beaconTitle}>UK</span>
                 </div>
               </div>
@@ -1339,7 +1357,7 @@ export default function Home() {
                 <span className={styles.beaconRing} />
                 <span className={styles.beaconDot} />
                 <div className={styles.beaconBadge}>
-                  <span className={styles.beaconFlag}>🇦🇪</span>
+                  <CountryFlag code="dubai" />
                   <span className={styles.beaconTitle}>DUBAI</span>
                 </div>
               </div>
@@ -1348,33 +1366,12 @@ export default function Home() {
                 <span className={styles.beaconRing} />
                 <span className={styles.beaconDot} />
                 <div className={styles.beaconBadge}>
-                  <span className={styles.beaconFlag}>🇦🇺</span>
+                  <CountryFlag code="australia" />
                   <span className={styles.beaconTitle}>AUSTRALIA</span>
                 </div>
               </div>
             </motion.div>
           </motion.div>
-
-          {/* 5 Global Hubs Information Cards Grid */}
-          <div className={styles.globalHubsGrid}>
-            {GLOBAL_HUBS.map((hub, index) => (
-              <FadeUp key={hub.id} delay={index * 0.08}>
-                <div className={styles.globalHubCard}>
-                  <div className={styles.hubCardHeader}>
-                    <span className={styles.hubFlag}>{hub.flag}</span>
-                    <h3 className={styles.hubCountry}>{hub.country}</h3>
-                  </div>
-                  <span className={styles.hubRoleBadge}>{hub.role}</span>
-                  <p className={styles.hubDesc}>{hub.desc}</p>
-                  <div className={styles.hubCodesWrap}>
-                    {hub.codes.map((c) => (
-                      <span key={c} className={styles.hubCodeChip}>{c}</span>
-                    ))}
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
         </div>
       </section>
 

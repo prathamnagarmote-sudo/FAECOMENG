@@ -12,7 +12,6 @@ const NAV_LINKS = [
   { href: '/about',    label: 'About Us' },
   { href: '/services', label: 'Services', hasDropdown: true },
   { href: '/projects', label: 'Projects' },
-  { href: '/software', label: 'Software We Know' },
   { href: '/process',  label: 'Blog' },
   { href: '/contact',  label: 'Contact' },
 ];
@@ -71,11 +70,11 @@ export default function Nav() {
               <Image
                 src="/images/logo.png"
                 alt="FAECOM INC."
-                width={42}
-                height={42}
+                width={72}
+                height={72}
                 priority
                 className={styles.logoImage}
-                style={{ objectFit: 'contain', width: 'auto', height: '42px' }}
+                style={{ objectFit: 'contain' }}
               />
               <div className={styles.logoTextGroup}>
                 <span className={styles.logoTitle}>FAECOM INC</span>
@@ -176,14 +175,19 @@ export default function Nav() {
                 >
                   {hasDropdown ? (
                     <div className={styles.mobileDropdownGroup}>
-                      <button 
-                        className={styles.overlayLink} 
-                        onClick={() => setMobileSvcOpen(!mobileSvcOpen)}
-                        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}
-                      >
-                        <span>{label}</span>
-                        <ChevronDown size={20} style={{ transform: mobileSvcOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
-                      </button>
+                      <div className={styles.mobileLinkRow} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                        <Link href={href} className={styles.overlayLink} onClick={() => setOpen(false)}>
+                          {label}
+                        </Link>
+                        <button 
+                          className={styles.mobileDropdownToggle}
+                          onClick={() => setMobileSvcOpen(!mobileSvcOpen)}
+                          aria-label="Toggle sub-services dropdown"
+                          style={{ background: 'none', border: 'none', color: '#FFF', padding: '8px 12px', cursor: 'pointer' }}
+                        >
+                          <ChevronDown size={22} style={{ transform: mobileSvcOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
+                        </button>
+                      </div>
                       
                       <AnimatePresence>
                         {mobileSvcOpen && (
@@ -194,6 +198,9 @@ export default function Nav() {
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3 }}
                           >
+                            <Link href="/services" className={styles.mobileSubLink} style={{ color: '#FF6B2C', fontWeight: '700' }}>
+                              Explore All Services →
+                            </Link>
                             {SERVICES_ITEMS.map((subItem) => (
                               <Link key={subItem.label} href={subItem.href} className={styles.mobileSubLink}>
                                 {subItem.label}

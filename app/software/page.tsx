@@ -16,7 +16,7 @@ const SOFTWARE_CATEGORIES = [
     logos: [
       { name: 'Tekla Structures', img: '/images/software/tekla_structures.png' },
       { name: 'SDS2',             img: '/images/software/sds2.png' },
-      { name: 'Autodesk Revit',   img: '/images/software/autodesk_revit.png' },
+      { name: 'Autodesk Revit',   img: '/images/software/autodesk_revit.png', scale: 1.18 },
       { name: 'MiTek',            img: '/images/software/mitek.png' },
       { name: 'StrucSoft',        img: '/images/software/strucsoft.png' },
     ],
@@ -26,15 +26,13 @@ const SOFTWARE_CATEGORIES = [
     title: 'Structural Analysis & Design',
     description: 'Comprehensive FEA and code-check platforms spanning all structural systems.',
     logos: [
-      { name: 'Tekla Tedds',     img: '/images/software/tekla_tedds.png' },
+      { name: 'Tekla Tedds',     img: '/images/software/tekla_tedds.webp', scale: 1.12 },
       { name: 'RISA',            img: '/images/software/risa.png' },
-      { name: 'STAAD.Pro',       img: '/images/software/staad_pro.png' },
-      { name: 'SAP2000',         img: '/images/software/sap2000.png' },
+      { name: 'STAAD.Pro',       img: '/images/software/staad_pro.png', scale: 1.10 },
+      { name: 'SAP2000',         img: '/images/software/sap2000_hq.png', scale: 1.10 },
       { name: 'IES',             img: '/images/software/ies.png' },
-      { name: 'SkyCiv',          img: '/images/software/skyciv.png' },
-      { name: 'FORTEWEB',        img: '/images/software/forteweb.png' },
-      { name: 'ENERCALC',        img: '/images/software/enercalc.png' },
-      { name: 'StructurePoint',  img: '/images/software/structurepoint.png' },
+      { name: 'SkyCiv',          img: '/images/software/skyciv.png', scale: 1.12 },
+      { name: 'StructurePoint',  img: '/images/software/newstructurepointlogo.png', scale: 1.10 },
     ],
   },
   {
@@ -118,7 +116,10 @@ export default function SoftwarePage() {
               <div className={styles.logoGrid}>
                 {cat.logos.map(logo => (
                   <div key={logo.name} className={styles.logoCard}>
-                    <div className={styles.logoImgWrap}>
+                    <div
+                      className={styles.logoImgWrap}
+                      style={logo.scale ? { transform: `scale(${logo.scale})` } : undefined}
+                    >
                       <Image
                         src={logo.img}
                         alt={logo.name}

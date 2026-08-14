@@ -10,14 +10,7 @@ const IMPACT_STATS = [
   { val: '24 HR', label: 'RESPONSE TIME',      desc: 'Rapid support across time zones' },
 ];
 
-const LOCATIONS = [
-  { country: 'USA', desc: 'PE Licensed in 25+ States' },
-  { country: 'Canada', desc: 'Mass Timber & Residential' },
-  { country: 'UK', desc: 'BIM & Structural Detailing' },
-  { country: 'Dubai (UAE)', desc: 'High-rise & Commercial' },
-  { country: 'India', desc: 'Engineering & Delivery Center' },
-  { country: 'Australia', desc: 'Structural Design & Detailing' },
-];
+
 
 export default function GlobalMapSection() {
   return (
@@ -46,24 +39,6 @@ export default function GlobalMapSection() {
               </div>
               <div className={styles.statLabel}>{s.label}</div>
               <div className={styles.statDesc}>{s.desc}</div>
-            </FadeUp>
-          ))}
-        </StaggerContainer>
-
-        {/* Global Footprint Grid */}
-        <StaggerContainer className={styles.locationGrid} delayOrder={2}>
-          {LOCATIONS.map((loc) => (
-            <FadeUp key={loc.country} className={styles.locCard}>
-              <div className={styles.locIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                </svg>
-              </div>
-              <div>
-                <h4 className={styles.locCountry}>{loc.country}</h4>
-                <p className={styles.locDesc}>{loc.desc}</p>
-              </div>
             </FadeUp>
           ))}
         </StaggerContainer>

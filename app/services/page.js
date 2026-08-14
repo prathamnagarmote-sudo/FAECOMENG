@@ -14,8 +14,8 @@ export default function Services() {
     <>
       <ServicesHero />
       <div style={{ width: '100%', height: '1px', background: '#000000' }} />
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'center', padding: '100px 20px 20px', background: '#FFFFFF' }}>
-        <div style={{ position: 'relative', width: '100%', maxWidth: '1300px', margin: '0 auto', left: '30px' }}>
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'center', padding: '60px 20px 40px', background: '#FFFFFF' }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: '1300px', margin: '0 auto' }}>
           <PopIn delay={0.1}>
             <h2 style={{ textAlign: 'center', color: '#000000', fontSize: '42px', fontWeight: 'bold', marginTop: '20px', marginBottom: '2px', textTransform: 'uppercase' }}>OUR SERVICES</h2>
             <div style={{ width: '60px', height: '3px', background: 'var(--accent)', margin: '0 auto 4px auto' }} />
@@ -27,7 +27,7 @@ export default function Services() {
                 slug: 'lgs',
                 title: 'LGS (Light Gauge Steel)',
                 desc: 'Lightweight steel framing solutions for residential, commercial, and industrial buildings with faster construction and durability.',
-                img: 'https://res.cloudinary.com/dfslgqnds/image/upload/v1/1662696676169_edited_edited_edited'
+                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443295/1662696676169_edited_edited_edited.jpg'
               },
               {
                 slug: 'timber',
@@ -72,7 +72,7 @@ export default function Services() {
                 img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786444120/tekla_structures.png'
               },
               {
-                slug: 'concrete-rebar',
+                slug: 'rebar-concrete',
                 title: 'Concrete and Rebar Solutions',
                 desc: 'Innovative concrete and rebar engineering solutions ensuring robust infrastructure design and site development.',
                 img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443919/concrete_and_rebar_solutions.png'

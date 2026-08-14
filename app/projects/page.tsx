@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import styles from './projects.module.css';
+import { supabase } from '@/lib/supabase';
 import ALL_PROJECTS from '@/data/projects.json';
 
 /* ── PROJECT DATA ────────────────────────────────────────────── */
@@ -60,6 +61,7 @@ function ProjectCard({ project, index }: { project: typeof ALL_PROJECTS[0]; inde
 
   return (
     <motion.div
+      id={project.id}
       ref={ref}
       className={styles.dynamicCard}
       initial={{ opacity: 0, y: 50, scale: 0.96 }}
@@ -100,17 +102,31 @@ export default function ProjectsPage() {
   const [projectList, setProjectList] = useState(ALL_PROJECTS);
 
   React.useEffect(() => {
-    try {
-      const saved = localStorage.getItem('faecom_admin_projects');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setProjectList(parsed);
+    async function loadProjects() {
+      try {
+        const { data: dbProjects, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
+        if (!error && dbProjects && dbProjects.length > 0) {
+          // Merge dbProjects with ALL_PROJECTS, preferring ALL_PROJECTS to keep Prachi's Cloudinary images intact
+          const dbOnly = dbProjects.filter(dbP => !ALL_PROJECTS.some(p => p.id === dbP.id));
+          const merged = [...ALL_PROJECTS, ...dbOnly];
+          setProjectList(merged);
+          localStorage.setItem('faecom_admin_projects', JSON.stringify(merged));
+          return;
         }
+        const saved = localStorage.getItem('faecom_admin_projects');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            // Merge local storage with ALL_PROJECTS
+            const savedOnly = parsed.filter(sP => !ALL_PROJECTS.some(p => p.id === sP.id));
+            setProjectList([...ALL_PROJECTS, ...savedOnly]);
+          }
+        }
+      } catch (e) {
+        console.error(e);
       }
-    } catch (e) {
-      console.error(e);
     }
+    loadProjects();
   }, []);
 
   const filtered = activeCategory === 'All Projects'
@@ -154,21 +170,21 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
           >
-            <StatItem value="300+" label="Projects Delivered" />
+            <StatItem value="1000+" label="Projects Delivered" />
             <div className={styles.statDivider} />
-            <StatItem value="7" label="Disciplines" />
+            <StatItem value="90+" label="Global Clients" />
             <div className={styles.statDivider} />
-            <StatItem value="5+" label="Continents" />
+            <StatItem value="5+" label="Countries Served" />
             <div className={styles.statDivider} />
-            <StatItem value="25+" label="US States Licensed" />
+            <StatItem value="25+" label="Years Experience" />
             <div className={styles.statDivider} />
-            <StatItem value="20+" label="Years Experience" />
+            <StatItem value="24-48 Hr" label="Response Time" />
           </motion.div>
         </div>
       </section>
 
       {/* ── FILTER BAR ── */}
-      <section id="project-filter-section" className={styles.filterSection}>
+      <section id="filter-bar" className={styles.filterSection}>
         <div className={styles.filterInner}>
           <div className={styles.filterLabel}>Filter by Discipline</div>
           <div className={styles.filterBar}>
@@ -178,9 +194,9 @@ export default function ProjectsPage() {
                 className={`${styles.filterBtn} ${activeCategory === cat ? styles.filterActive : ''}`}
                 onClick={() => {
                   setActiveCategory(cat);
-                  const el = document.getElementById('project-filter-section');
-                  if (el) {
-                    const y = el.getBoundingClientRect().top + window.scrollY - 60;
+                  const filterBar = document.getElementById('filter-bar');
+                  if (filterBar) {
+                    const y = filterBar.getBoundingClientRect().top + window.scrollY - 70;
                     window.scrollTo({ top: y, behavior: 'smooth' });
                   }
                 }}
@@ -242,7 +258,7 @@ export default function ProjectsPage() {
           <p className={styles.ctaSub}>
             Connect with our licensed PE team and turn your vision into precision-engineered reality.
           </p>
-          <Link href="/#contact" className={styles.ctaBtn}>
+          <Link href="/contact" className={styles.ctaBtn}>
             Get In Touch
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
               <path d="M5 12h14M12 5l7 7-7 7" />

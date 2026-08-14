@@ -26,6 +26,8 @@ import styles from './admin.module.css';
 
 import ALL_PROJECTS from '@/data/projects.json';
 
+import { supabase } from '@/lib/supabase';
+
 // Initial default projects dataset (All 53 projects)
 const INITIAL_PROJECTS = ALL_PROJECTS;
 
@@ -47,12 +49,13 @@ export default function AdminPanel() {
   const [tab, setTab] = useState<'projects' | 'blogs'>('projects');
   
   // Projects State
-  const [projects, setProjects] = useState(INITIAL_PROJECTS);
+  const [projects, setProjects] = useState<any[]>(INITIAL_PROJECTS);
   const [projSearch, setProjSearch] = useState('');
   const [projCatFilter, setProjCatFilter] = useState('All');
   const [projFeaturedOnly, setProjFeaturedOnly] = useState(false);
   const [isProjModalOpen, setIsProjModalOpen] = useState(false);
   const [editingProj, setEditingProj] = useState<any | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   // Project Form State
   const [projForm, setProjForm] = useState({
@@ -68,7 +71,7 @@ export default function AdminPanel() {
   });
 
   // Blogs State
-  const [blogs, setBlogs] = useState(INITIAL_BLOGS);
+  const [blogs, setBlogs] = useState<any[]>(INITIAL_BLOGS);
   const [blogSearch, setBlogSearch] = useState('');
   const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
   const [editingBlog, setEditingBlog] = useState<any | null>(null);
@@ -87,37 +90,88 @@ export default function AdminPanel() {
     content: '',
   });
 
-  // Load from localStorage on mount
+  // Fetch from Supabase DB on mount (with localStorage fallback)
   useEffect(() => {
-    try {
-      const savedProjects = localStorage.getItem('faecom_admin_projects');
-      if (savedProjects) {
-        const parsed = JSON.parse(savedProjects);
-        if (Array.isArray(parsed) && parsed.length >= INITIAL_PROJECTS.length) {
-          setProjects(parsed);
+    async function loadData() {
+      try {
+        const { data: dbProjects, error: projErr } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
+        if (!projErr && dbProjects && dbProjects.length > 0) {
+          setProjects(dbProjects);
+          localStorage.setItem('faecom_admin_projects', JSON.stringify(dbProjects));
         } else {
-          // Sync all 53 projects if previous cached data had fewer items
-          setProjects(INITIAL_PROJECTS);
-          localStorage.setItem('faecom_admin_projects', JSON.stringify(INITIAL_PROJECTS));
+          const savedProjects = localStorage.getItem('faecom_admin_projects');
+          if (savedProjects) {
+            setProjects(JSON.parse(savedProjects));
+          }
         }
-      } else {
-        setProjects(INITIAL_PROJECTS);
-        localStorage.setItem('faecom_admin_projects', JSON.stringify(INITIAL_PROJECTS));
-      }
 
-      const savedBlogs = localStorage.getItem('faecom_admin_blogs');
-      if (savedBlogs) {
-        setBlogs(JSON.parse(savedBlogs));
-      } else {
-        setBlogs([]);
+        const { data: dbBlogs, error: blogErr } = await supabase.from('blogs').select('*').order('created_at', { ascending: false });
+        if (!blogErr && dbBlogs) {
+          setBlogs(dbBlogs);
+          localStorage.setItem('faecom_admin_blogs', JSON.stringify(dbBlogs));
+        } else {
+          const savedBlogs = localStorage.getItem('faecom_admin_blogs');
+          if (savedBlogs) {
+            setBlogs(JSON.parse(savedBlogs));
+          }
+        }
+      } catch (e) {
+        console.error('Error fetching Supabase data:', e);
       }
-    } catch (e) {
-      console.error('Error loading localStorage', e);
     }
+    loadData();
   }, []);
 
-  // Save projects to localStorage
-  const saveProjectsToStorage = (newProjects: any[]) => {
+  // Upload image to Supabase Storage
+  const handleUploadImage = async (e: React.ChangeEvent<HTMLInputElement>, isBlog = false) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingImage(true);
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 7)}.${fileExt}`;
+      const filePath = `uploads/${fileName}`;
+
+      const { data, error } = await supabase.storage
+        .from('project-media')
+        .upload(filePath, file, { upsert: true });
+
+      if (error) {
+        console.error('Image upload error:', error.message);
+        // Fallback to Base64 data URL if bucket is not created yet
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          if (isBlog) {
+            setBlogForm(prev => ({ ...prev, coverImg: reader.result as string }));
+          } else {
+            setProjForm(prev => ({ ...prev, image: reader.result as string }));
+          }
+          setUploadingImage(false);
+        };
+        reader.readAsDataURL(file);
+        return;
+      }
+
+      const { data: publicUrlData } = supabase.storage
+        .from('project-media')
+        .getPublicUrl(filePath);
+
+      const publicUrl = publicUrlData.publicUrl;
+      if (isBlog) {
+        setBlogForm(prev => ({ ...prev, coverImg: publicUrl }));
+      } else {
+        setProjForm(prev => ({ ...prev, image: publicUrl }));
+      }
+    } catch (err) {
+      console.error('Upload failed:', err);
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
+  // Save projects to Supabase & localStorage
+  const saveProjectsToStorage = async (newProjects: any[]) => {
     setProjects(newProjects);
     try {
       localStorage.setItem('faecom_admin_projects', JSON.stringify(newProjects));
@@ -126,8 +180,8 @@ export default function AdminPanel() {
     }
   };
 
-  // Save blogs to localStorage
-  const saveBlogsToStorage = (newBlogs: any[]) => {
+  // Save blogs to Supabase & localStorage
+  const saveBlogsToStorage = async (newBlogs: any[]) => {
     setBlogs(newBlogs);
     try {
       localStorage.setItem('faecom_admin_blogs', JSON.stringify(newBlogs));
@@ -137,16 +191,22 @@ export default function AdminPanel() {
   };
 
   // Toggle Featured status directly
-  const handleToggleFeatured = (id: string) => {
+  const handleToggleFeatured = async (id: string) => {
     const updated = projects.map(p => p.id === id ? { ...p, featured: !p.featured } : p);
     saveProjectsToStorage(updated);
+
+    const target = updated.find(p => p.id === id);
+    if (target) {
+      await supabase.from('projects').upsert(target, { onConflict: 'id' });
+    }
   };
 
   // Delete project
-  const handleDeleteProject = (id: string) => {
+  const handleDeleteProject = async (id: string) => {
     if (confirm('Are you sure you want to delete this project?')) {
       const updated = projects.filter(p => p.id !== id);
       saveProjectsToStorage(updated);
+      await supabase.from('projects').delete().eq('id', id);
     }
   };
 
@@ -185,7 +245,7 @@ export default function AdminPanel() {
   };
 
   // Submit Project Form
-  const handleSaveProject = (e: React.FormEvent) => {
+  const handleSaveProject = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!projForm.name.trim()) return;
 
@@ -197,13 +257,20 @@ export default function AdminPanel() {
     }
     saveProjectsToStorage(updatedProjects);
     setIsProjModalOpen(false);
+
+    try {
+      await supabase.from('projects').upsert(projForm, { onConflict: 'id' });
+    } catch (err) {
+      console.error('Error saving project to Supabase:', err);
+    }
   };
 
   // Delete Blog
-  const handleDeleteBlog = (id: string) => {
+  const handleDeleteBlog = async (id: string) => {
     if (confirm('Are you sure you want to delete this blog post?')) {
       const updated = blogs.filter(b => b.id !== id);
       saveBlogsToStorage(updated);
+      await supabase.from('blogs').delete().eq('id', id);
     }
   };
 
@@ -244,19 +311,27 @@ export default function AdminPanel() {
   };
 
   // Submit Blog Form
-  const handleSaveBlog = (e: React.FormEvent) => {
+  const handleSaveBlog = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!blogForm.title.trim()) return;
 
     let updatedBlogs;
+    let blogRecord = { ...blogForm };
     if (editingBlog) {
-      updatedBlogs = blogs.map(b => b.id === blogForm.id ? { ...blogForm } : b);
+      updatedBlogs = blogs.map(b => b.id === blogForm.id ? { ...blogRecord } : b);
     } else {
       const generatedSlug = blogForm.slug || blogForm.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      updatedBlogs = [{ ...blogForm, slug: generatedSlug }, ...blogs];
+      blogRecord = { ...blogForm, slug: generatedSlug };
+      updatedBlogs = [blogRecord, ...blogs];
     }
     saveBlogsToStorage(updatedBlogs);
     setIsBlogModalOpen(false);
+
+    try {
+      await supabase.from('blogs').upsert(blogRecord, { onConflict: 'id' });
+    } catch (err) {
+      console.error('Error saving blog to Supabase:', err);
+    }
   };
 
   // Filtered Projects
@@ -652,13 +727,37 @@ export default function AdminPanel() {
                 </div>
 
                 <div className={`${styles.modalField} ${styles.fullWidth}`}>
-                  <label>Image Thumbnail Path / URL</label>
-                  <input
-                    type="text"
-                    placeholder="/images/project_tm_heights.png"
-                    value={projForm.image}
-                    onChange={e => setProjForm({ ...projForm, image: e.target.value })}
-                  />
+                  <label>Image Thumbnail (Upload File or Enter URL)</label>
+                  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <input
+                      type="text"
+                      placeholder="/images/project_tm_heights.png or https://..."
+                      value={projForm.image}
+                      onChange={e => setProjForm({ ...projForm, image: e.target.value })}
+                      style={{ flex: 1 }}
+                    />
+                    <label style={{
+                      background: '#FF6B2C',
+                      color: '#fff',
+                      padding: '8px 12px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      whiteSpace: 'nowrap',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '4px'
+                    }}>
+                      {uploadingImage ? 'Uploading...' : 'Upload File'}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={e => handleUploadImage(e, false)}
+                        style={{ display: 'none' }}
+                        disabled={uploadingImage}
+                      />
+                    </label>
+                  </div>
                 </div>
 
                 <div className={`${styles.modalField} ${styles.fullWidth}`}>
@@ -743,14 +842,38 @@ export default function AdminPanel() {
                   />
                 </div>
 
-                <div className={styles.modalField}>
-                  <label>Cover Image URL</label>
-                  <input
-                    type="text"
-                    placeholder="/images/featured_commercial.jpg"
-                    value={blogForm.coverImg}
-                    onChange={e => setBlogForm({ ...blogForm, coverImg: e.target.value })}
-                  />
+                <div className={`${styles.modalField} ${styles.fullWidth}`}>
+                  <label>Cover Image (Upload File or Enter URL)</label>
+                  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <input
+                      type="text"
+                      placeholder="/images/featured_commercial.jpg or https://..."
+                      value={blogForm.coverImg}
+                      onChange={e => setBlogForm({ ...blogForm, coverImg: e.target.value })}
+                      style={{ flex: 1 }}
+                    />
+                    <label style={{
+                      background: '#FF6B2C',
+                      color: '#fff',
+                      padding: '8px 12px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      whiteSpace: 'nowrap',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '4px'
+                    }}>
+                      {uploadingImage ? 'Uploading...' : 'Upload File'}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={e => handleUploadImage(e, true)}
+                        style={{ display: 'none' }}
+                        disabled={uploadingImage}
+                      />
+                    </label>
+                  </div>
                 </div>
 
                 <div className={`${styles.modalField} ${styles.fullWidth}`}>
