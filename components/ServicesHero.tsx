@@ -2,7 +2,7 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import styles from '@/app/about/page.module.css';
+import styles from './ServicesHero.module.css';
 
 export default function ServicesHero() {
   const ref = useRef(null);
