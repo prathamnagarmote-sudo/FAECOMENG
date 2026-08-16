@@ -17,9 +17,9 @@ export default function Services() {
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center', padding: '60px 20px 40px', background: '#FFFFFF' }}>
         <div style={{ position: 'relative', width: '100%', maxWidth: '1300px', margin: '0 auto' }}>
           <PopIn delay={0.1}>
-            <h2 style={{ textAlign: 'center', color: '#000000', fontSize: '42px', fontWeight: 'bold', marginTop: '20px', marginBottom: '2px', textTransform: 'uppercase' }}>OUR SERVICES</h2>
-            <div style={{ width: '60px', height: '3px', background: 'var(--accent)', margin: '0 auto 4px auto' }} />
-            <h3 style={{ textAlign: 'center', color: 'var(--accent)', fontSize: '24px', fontWeight: 'bold', marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>COMPREHENSIVE ENGINEERING SERVICES</h3>
+            <h2 style={{ textAlign: 'center', color: '#000000', fontSize: 'clamp(28px, 6vw, 42px)', fontWeight: 'bold', marginTop: '20px', marginBottom: '2px', textTransform: 'uppercase' }}>OUR SERVICES</h2>
+            <div style={{ width: '60px', height: '3px', background: 'var(--accent)', margin: '0 auto 8px auto' }} />
+            <h3 style={{ textAlign: 'center', color: 'var(--accent)', fontSize: 'clamp(15px, 3.5vw, 22px)', fontWeight: 'bold', marginBottom: '15px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>COMPREHENSIVE ENGINEERING SERVICES</h3>
           </PopIn>
           <div className={styles.dynamicGrid}>
             {[

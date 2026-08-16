@@ -13,6 +13,7 @@ import {
   Target,
   ArrowRight,
 } from 'lucide-react';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import styles from './AboutHeroArchitectural.module.css';
 
 const STATS = [
@@ -63,6 +64,7 @@ const VALUES = [
 
 export default function AboutHeroArchitectural() {
   const sectionRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile(900);
   
   // Industry-Level Architectural Scroll Parallax
   const { scrollYProgress } = useScroll({
@@ -70,10 +72,15 @@ export default function AboutHeroArchitectural() {
     offset: ['start start', 'end start'],
   });
 
-  const leftScrollX = useTransform(scrollYProgress, [0, 0.75], [0, -240]);
-  const textScrollX = useTransform(scrollYProgress, [0, 0.75], [0, 240]);
-  const textScrollY = useTransform(scrollYProgress, [0, 0.75], [0, -60]);
+  const rawLeftScrollX = useTransform(scrollYProgress, [0, 0.75], [0, -240]);
+  const rawTextScrollX = useTransform(scrollYProgress, [0, 0.75], [0, 240]);
+  const rawTextScrollY = useTransform(scrollYProgress, [0, 0.75], [0, -60]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.2]);
+
+  // On Mobile: Disable horizontal displacement to prevent overflow while keeping PC view identical
+  const leftScrollX = isMobile ? 0 : rawLeftScrollX;
+  const textScrollX = isMobile ? 0 : rawTextScrollX;
+  const textScrollY = isMobile ? 0 : rawTextScrollY;
 
   return (
     <section ref={sectionRef} className={styles.heroShell} aria-label="About Hero">
@@ -96,17 +103,17 @@ export default function AboutHeroArchitectural() {
       {/* Main Full-Bleed Grid Container */}
       <div className={styles.heroMainGrid}>
         
-        {/* Left Column: Hero Image (3D Architectural Fly In + Scroll Left Offset) */}
+        {/* Left Column: Hero Image (3D Fly-In on PC, Clean Vertical Fade-Up on Mobile) */}
         <motion.div
           className={styles.leftColImage}
-          initial={{ opacity: 0, x: -200, rotateY: -28, scale: 0.9 }}
-          animate={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, x: -200, rotateY: -28, scale: 0.9 }}
+          animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0, rotateY: 0, scale: 1 }}
+          transition={{ duration: isMobile ? 0.8 : 1.4, ease: [0.16, 1, 0.3, 1] }}
           style={{
             x: leftScrollX,
             opacity: heroOpacity,
-            perspective: 1200,
-            transformStyle: 'preserve-3d',
+            perspective: isMobile ? undefined : 1200,
+            transformStyle: isMobile ? undefined : 'preserve-3d',
           }}
         >
           <div className={styles.freeHeroImgWrapper}>
@@ -117,12 +124,12 @@ export default function AboutHeroArchitectural() {
               priority
               quality={98}
               sizes="(max-width: 900px) 100vw, 75vw"
-              style={{ objectFit: 'fill', objectPosition: 'left center' }}
+              style={{ objectFit: isMobile ? 'cover' : 'fill', objectPosition: 'left center' }}
             />
           </div>
         </motion.div>
 
-        {/* Right Column: Masked Kinetic Line-by-Line Editorial Reveal */}
+        {/* Right Column: Editorial Reveal */}
         <motion.div
           className={styles.rightColText}
           style={{
@@ -149,7 +156,7 @@ export default function AboutHeroArchitectural() {
             </motion.div>
           </div>
 
-          {/* Main Editorial Headline — Industry Masked Line Unfold */}
+          {/* Main Editorial Headline — Masked Line Unfold */}
           <h1 className={styles.mainHeading}>
             <div style={{ overflow: 'hidden', display: 'block' }}>
               <motion.span
@@ -182,7 +189,7 @@ export default function AboutHeroArchitectural() {
             transition={{ duration: 0.7, delay: 0.52, ease: 'easeOut' }}
           />
 
-          {/* Description Paragraph — Masked Rise */}
+          {/* Description Paragraph */}
           <div style={{ overflow: 'hidden' }}>
             <motion.p
               className={styles.descriptionParagraph}
@@ -194,7 +201,7 @@ export default function AboutHeroArchitectural() {
             </motion.p>
           </div>
 
-          {/* Action Buttons — Masked Kinetic Entrance */}
+          {/* Action Buttons */}
           <div style={{ overflow: 'hidden', paddingTop: '4px' }}>
             <motion.div
               className={styles.buttonGroup}

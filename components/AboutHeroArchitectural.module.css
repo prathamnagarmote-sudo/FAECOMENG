@@ -382,13 +382,30 @@
 @media (max-width: 1100px) {
   .heroMainGrid {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 0 var(--gutter, clamp(24px, 4.5vw, 64px)) 40px;
+    gap: 32px;
+    padding: 0 24px 30px;
   }
 
   .rightColText {
+    margin-left: 0;
     padding-left: 0;
     padding-right: 0;
+    width: 100%;
+  }
+
+  .leftColImage {
+    width: 100%;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .freeHeroImgWrapper {
+    width: 100%;
+    transform: none;
+    margin-top: 0;
+    height: clamp(280px, 50vw, 420px);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   }
 
   .cadCoordBadge {
@@ -397,7 +414,8 @@
 
   .floatingStatsCard {
     grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    gap: 24px;
+    padding: 24px 28px;
   }
 
   .statDivider {
@@ -406,23 +424,67 @@
 
   .navyValuesInner {
     grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    gap: 24px;
+    padding: 28px 24px;
   }
 }
 
 @media (max-width: 640px) {
+  .heroShell {
+    padding-top: clamp(60px, 12vw, 80px);
+  }
+
+  .heroMainGrid {
+    gap: 24px;
+    padding: 0 16px 24px;
+  }
+
+  .freeHeroImgWrapper {
+    height: 240px;
+    border-radius: 14px;
+  }
+
+  .mainHeading {
+    font-size: clamp(28px, 7.5vw, 40px);
+    margin-bottom: 16px;
+  }
+
+  .eyebrowTag {
+    font-size: 12.5px;
+    margin-bottom: 16px;
+  }
+
+  .descriptionParagraph {
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .floatingStatsContainer {
+    padding: 0 16px;
+    margin-top: -15px;
+  }
+
   .floatingStatsCard {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
+    padding: 20px;
   }
 
   .navyValuesInner {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
+    padding: 24px 20px;
   }
 
   .buttonGroup {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+  }
+
+  .filledOrangeBtn, .outlinedNavyBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
   }
 }

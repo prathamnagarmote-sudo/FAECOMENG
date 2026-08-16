@@ -33,23 +33,6 @@
   align-items: center;
 }
 
-@media (max-width: 1024px) {
-  .aboutHeroNewContent {
-    flex-direction: column;
-    text-align: left;
-  }
-  .aboutHeroNewLabel {
-    justify-content: flex-start;
-  }
-  .aboutHeroNewButtons {
-    justify-content: flex-start;
-  }
-  .aboutHeroNewRight {
-    width: 100%;
-    height: 550px;
-  }
-}
-
 .aboutHeroNewLabel {
   display: inline-flex;
   align-items: center;
@@ -71,7 +54,7 @@
 
 .aboutHeroNewTitle {
   font-family: var(--font-display, sans-serif);
-  font-size: clamp(40px, 5vw, 76px);
+  font-size: clamp(36px, 5.2vw, 76px);
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -92,7 +75,7 @@
   font-weight: 500;
   line-height: 1.8;
   color: #555555;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   max-width: 580px;
 }
 
@@ -102,113 +85,56 @@
   flex-wrap: wrap;
 }
 
-.btnPrimaryNew {
-  background: #0E0F20;
-  color: #FFFFFF;
-  padding: 16px 32px;
-  border-radius: 6px;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.05em;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.btnPrimaryNew:hover {
-  background: var(--accent, #FF6B2C);
-  color: #FFFFFF;
-}
-
-.btnSecondaryNew {
-  background: transparent;
+.quoteBox {
+  padding: 1.25rem 1.5rem;
+  background-color: rgba(14, 15, 32, 0.04);
+  border-left: 4px solid var(--accent, #FF6B2C);
   color: #0E0F20;
-  border: 2px solid #0E0F20;
-  padding: 14px 32px;
-  border-radius: 6px;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.05em;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.3s ease;
-  text-decoration: none;
+  font-weight: 600;
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  max-width: 100%;
+  line-height: 1.55;
+  border-radius: 0 8px 8px 0;
 }
 
-.btnSecondaryNew:hover {
-  background: rgba(14, 15, 32, 0.05);
-}
+/* Mobile Responsiveness (Does NOT affect PC view) */
+@media (max-width: 900px) {
+  .aboutHeroNew {
+    min-height: auto;
+    padding: clamp(60px, 10vw, 80px) 20px 40px;
+    flex-direction: column;
+  }
 
-.btnArrow {
-  font-size: 18px;
-  font-weight: normal;
-}
+  .aboutHeroNewContent {
+    flex-direction: column;
+    text-align: left;
+    gap: 20px;
+  }
 
-.aboutHeroNewImageWrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+  .aboutHeroNewLeft {
+    max-width: 100%;
+    width: 100%;
+  }
 
-.floatingAnnot {
-  position: absolute;
-  background: #FFFFFF;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-  padding: 12px 20px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  z-index: 10;
-}
+  .aboutHeroNewLabel {
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
 
-.annotIconBox {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 107, 44, 0.1);
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  border: 1px solid var(--accent, #FF6B2C);
-}
+  .aboutHeroNewTitle {
+    font-size: clamp(30px, 7.5vw, 44px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
 
-.annotText {
-  display: flex;
-  flex-direction: column;
-}
+  .aboutHeroNewSubtitle {
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
 
-.annotText strong {
-  font-size: 13px;
-  font-weight: 800;
-  color: #0E0F20;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.annotText span {
-  font-size: 12px;
-  color: #666;
-  font-weight: 500;
-}
-
-.annot1 {
-  top: 15%;
-  left: -10%;
-}
-
-.annot2 {
-  bottom: 25%;
-  right: -5%;
-}
-
-@media (max-width: 1200px) {
-  .annot1, .annot2 {
-    display: none;
+  .quoteBox {
+    font-size: 14px;
+    padding: 1rem 1.25rem;
   }
 }
