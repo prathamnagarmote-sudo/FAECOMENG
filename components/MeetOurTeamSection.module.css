@@ -223,17 +223,20 @@
   transform: translateX(2px);
 }
 
-/* Modal Overlay */
+/* Modal Overlay — Scrollable Container for Mobile Touch Devices */
 .modalOverlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(10, 15, 30, 0.82);
+  background: rgba(10, 15, 30, 0.85);
   backdrop-filter: blur(10px);
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: clamp(12px, 3vw, 24px);
+  align-items: center;
+  padding: 24px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
   animation: fadeIn 0.25s ease-out forwards;
 }
 
@@ -248,12 +251,10 @@
   border-radius: 24px;
   max-width: 680px;
   width: 100%;
-  max-height: 85vh;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: clamp(20px, 3.5vw, 36px);
+  padding: 36px;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: auto;
   animation: popUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -263,9 +264,9 @@
 }
 
 .closeBtn {
-  position: sticky;
-  top: 0;
-  float: right;
+  position: absolute;
+  top: 20px;
+  right: 20px;
   z-index: 30;
   width: 44px;
   height: 44px;
@@ -279,8 +280,6 @@
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: background 0.2s ease, transform 0.2s ease;
-  margin-top: -6px;
-  margin-right: -6px;
 }
 
 .closeBtn:hover {
@@ -304,7 +303,7 @@
   text-transform: uppercase;
   border: none;
   border-radius: 12px;
-  margin-top: 16px;
+  margin-top: 20px;
   cursor: pointer;
   transition: background 0.25s ease, transform 0.2s ease;
 }
@@ -424,17 +423,26 @@
     gap: 20px;
   }
   .modalOverlay {
-    padding: 12px;
+    padding: 16px 12px;
+    align-items: flex-start; /* Allows seamless scrolling from top to bottom on mobile */
   }
   .modalContent {
-    max-height: 88vh;
-    padding: 20px 16px;
+    padding: 24px 18px 20px;
     border-radius: 20px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
+  .closeBtn {
+    top: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
   }
   .modalHeader {
     flex-direction: column;
     text-align: center;
-    gap: 14px;
+    gap: 12px;
+    padding-top: 8px;
   }
   .modalPortraitWrap {
     width: 100px;
@@ -443,8 +451,12 @@
   .modalName {
     font-size: 22px;
   }
+  .modalRole {
+    font-size: 14px;
+  }
   .modalBioText p {
     font-size: 14.5px;
-    line-height: 1.65;
+    line-height: 1.7;
+    color: #333345;
   }
 }
