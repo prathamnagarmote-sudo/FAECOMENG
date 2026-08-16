@@ -131,7 +131,7 @@ export default function MeetOurTeamSection() {
               onClick={() => setActiveLeader(null)}
               aria-label="Close Bio Modal"
             >
-              <X size={20} />
+              <X size={22} />
             </button>
 
             <div className={styles.modalBody}>
@@ -163,6 +163,14 @@ export default function MeetOurTeamSection() {
                 <h4>Executive Bio & Professional Experience</h4>
                 <p>{activeLeader.fullDesc}</p>
               </div>
+
+              <button
+                type="button"
+                className={styles.modalFooterCloseBtn}
+                onClick={() => setActiveLeader(null)}
+              >
+                <span>Close Bio</span>
+              </button>
             </div>
           </div>
         </div>

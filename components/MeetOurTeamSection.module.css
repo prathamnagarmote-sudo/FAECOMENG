@@ -228,12 +228,12 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(10, 15, 30, 0.8);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 15, 30, 0.82);
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: clamp(12px, 3vw, 24px);
   animation: fadeIn 0.25s ease-out forwards;
 }
 
@@ -248,7 +248,10 @@
   border-radius: 24px;
   max-width: 680px;
   width: 100%;
-  padding: 36px;
+  max-height: 85vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(20px, 3.5vw, 36px);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.2);
   animation: popUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -260,26 +263,54 @@
 }
 
 .closeBtn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 30;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #F0F3F8;
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #1A184D;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: background 0.2s ease, transform 0.2s ease;
+  margin-top: -6px;
+  margin-right: -6px;
 }
 
 .closeBtn:hover {
   background: #1A184D;
   color: #FFFFFF;
   transform: rotate(90deg);
+}
+
+.modalFooterCloseBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 20px;
+  background: #1A184D;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 12px;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.modalFooterCloseBtn:hover {
+  background: #FF6B2C;
 }
 
 .modalBody {
@@ -392,8 +423,28 @@
     grid-template-columns: 1fr;
     gap: 20px;
   }
+  .modalOverlay {
+    padding: 12px;
+  }
+  .modalContent {
+    max-height: 88vh;
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
   .modalHeader {
     flex-direction: column;
     text-align: center;
+    gap: 14px;
+  }
+  .modalPortraitWrap {
+    width: 100px;
+    height: 120px;
+  }
+  .modalName {
+    font-size: 22px;
+  }
+  .modalBioText p {
+    font-size: 14.5px;
+    line-height: 1.65;
   }
 }
