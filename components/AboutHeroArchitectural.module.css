@@ -431,7 +431,7 @@
 
 @media (max-width: 640px) {
   .heroShell {
-    padding-top: clamp(60px, 12vw, 80px);
+    padding-top: clamp(100px, 14vw, 120px);
   }
 
   .heroMainGrid {

@@ -105,7 +105,7 @@
 @media (max-width: 900px) {
   .aboutHeroNew {
     min-height: auto;
-    padding: clamp(60px, 10vw, 80px) 20px 40px;
+    padding: clamp(100px, 14vw, 120px) 20px 40px;
     flex-direction: column;
   }
 

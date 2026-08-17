@@ -27,17 +27,35 @@
   .hero {
     display: flex;
     flex-direction: column;
-    padding-top: 100px;
+    padding-top: 110px;
   }
   .heroImageWrapper {
     position: relative !important;
     width: 100% !important;
-    height: 450px !important;
+    height: clamp(240px, 45vw, 360px) !important;
     right: auto !important;
     top: auto !important;
     bottom: auto !important;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: clamp(100px, 14vw, 120px);
+    padding-bottom: clamp(40px, 6vw, 60px);
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .h1 {
+    font-size: clamp(34px, 8.5vw, 56px);
+    line-height: 1.05;
+  }
+  .sub {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-top: 18px;
   }
 }
 
