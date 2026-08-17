@@ -39,11 +39,7 @@ With a strong commitment to engineering excellence, quality, and client satisfac
 
 With a strong technical foundation and a results-driven approach, I have successfully led engineering teams in designing structures for high seismic and high wind regions while ensuring compliance with international standards, including ACI, ASCE, NDS, and IS codes. My experience covers the complete project lifecycle—from concept design and structural analysis to construction support, responding to RFIs, and close coordination with architects, contractors, and clients.
 
-I am proficient in industry-leading engineering software, including ETABS, SAFE, RISA, ADAPT, Framecad, Howick, and Autodesk Revit, enabling efficient and accurate design solutions for complex structural projects. I also possess extensive expertise in post-tensioned slab systems and cold-formed steel design, detailing, and manufacturing workflows.
-
-Beyond technical excellence, I am passionate about building high-performing engineering teams. I have developed and implemented standardized operating procedures (SOPs) that streamline workflows, improve quality, enhance collaboration, and increase project efficiency. My leadership philosophy emphasizes innovation, technical precision, continuous improvement, and client-focused solutions.
-
-By combining engineering expertise, strategic planning, and effective project leadership, I am committed to delivering safe, sustainable, and cost-effective structures that exceed client expectations while maintaining the highest standards of quality and professionalism.`,
+Driven by a commitment to engineering excellence and efficiency, I specialize in advanced structural modeling using ETABS, SAFE, SAP2000, and RISA 3D, seamlessly integrated with Revit BIM workflows. I am passionate about optimizing structural design for constructability, safety, and economy while delivering high-quality engineering services tailored to client requirements.`,
   },
   {
     name: 'Sam',
@@ -75,6 +71,7 @@ An expert in FrameCAD, Scottsdale, Vertex, MWF, Tekla, and STAAD Pro, Sam also m
 export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeamSectionProps) {
   const [activeLeader, setActiveLeader] = useState<typeof LEADERS[0] | null>(null);
 
+  // Prevent background page scrolling when bio modal is open
   useEffect(() => {
     if (activeLeader) {
       document.body.style.overflow = 'hidden';
@@ -196,6 +193,7 @@ export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeam
               <X size={22} />
             </button>
 
+            {/* Scrollable body — only this area scrolls */}
             <div className={styles.modalBody}>
               <div className={styles.modalHeader}>
                 <div className={styles.modalPortraitWrap}>
@@ -222,10 +220,13 @@ export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeam
               <div className={styles.modalDivider} />
 
               <div className={styles.modalBioText} data-lenis-prevent>
-                <h4>Executive Bio & Professional Experience</h4>
+                <h4>Executive Bio &amp; Professional Experience</h4>
                 <p style={{ whiteSpace: 'pre-wrap' }}>{activeLeader.fullDesc}</p>
               </div>
+            </div>
 
+            {/* Fixed footer — stays at bottom, never scrolls away */}
+            <div className={styles.modalFooter}>
               <button
                 type="button"
                 className={styles.modalFooterCloseBtn}

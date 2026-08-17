@@ -320,8 +320,8 @@
   z-index: 10;
   padding: 0 var(--gutter);
   padding-left: max(var(--gutter), clamp(28px, 5vw, 110px));
-  /* Vertical breathing room — clears header and stats bar with guaranteed safe space */
-  padding-top: clamp(100px, 8vh, 130px);
+  /* Vertical breathing room — clears header with guaranteed safe space for tag line */
+  padding-top: clamp(140px, 11vh, 175px);
   padding-bottom: clamp(24px, 3vh, 40px);
   /* Flex centering — pushes content to vertical middle */
   margin-top: auto;
@@ -470,25 +470,25 @@
 .sectorsLabelFixed {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  font-family: var(--font-mono, monospace);
-  font-size: 13px;
+  gap: 10px;
+  font-family: var(--font-body, 'Manrope', sans-serif);
+  font-size: 14.5px;
   font-weight: 900;
-  letter-spacing: 0.16em;
-  color: #FF6B2C; /* Ultra-bold vibrant Faecom Orange */
-  text-shadow: 0 0 12px rgba(255, 107, 44, 0.45);
+  letter-spacing: 0.12em;
+  color: #FFFFFF; /* High-contrast crisp white */
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 12px rgba(255, 255, 255, 0.4);
   white-space: nowrap;
   flex-shrink: 0;
-  padding-right: 16px;
-  border-right: 1.5px solid rgba(255, 107, 44, 0.4);
+  padding-right: 18px;
+  border-right: 2px solid #FF6B2C;
 }
 
 .sectorsDotPulse {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: #FF6B2C;
-  box-shadow: 0 0 8px #FF6B2C;
+  box-shadow: 0 0 10px #FF6B2C, 0 0 20px rgba(255, 107, 44, 0.6);
 }
 
 .sectorsTrackContainer {
@@ -1310,19 +1310,80 @@
   .cLoc { display: block; }
 }
 
-/* ── Drag hint row below carousel ────────────────────────────── */
+/* ── Drag & Navigation Hint Pill Below Carousel ──────────────── */
 .cDragHint {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 32px;
+  margin-top: 36px;
+  width: 100%;
+}
+
+.dragHintInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 107, 44, 0.12);
+  border: 1.5px solid rgba(255, 107, 44, 0.65);
+  box-shadow: 0 0 24px rgba(255, 107, 44, 0.25), 0 4px 18px rgba(0, 0, 0, 0.4);
+  padding: 10px 24px;
+  border-radius: 30px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: hintGlowPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes hintGlowPulse {
+  0% {
+    box-shadow: 0 0 16px rgba(255, 107, 44, 0.25), 0 4px 16px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 107, 44, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 36px rgba(255, 107, 44, 0.55), 0 6px 24px rgba(0, 0, 0, 0.6);
+    border-color: #FF6B2C;
+  }
+}
+
+.dragHintText {
   font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #FFFFFF;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+}
+
+.dragArrowLeft,
+.dragArrowRight {
+  display: flex;
+  align-items: center;
+  color: #FF6B2C;
+}
+
+.dragArrowLeft {
+  animation: arrowBounceLeft 1.4s ease-in-out infinite;
+}
+
+.dragArrowRight {
+  animation: arrowBounceRight 1.4s ease-in-out infinite;
+}
+
+@keyframes arrowBounceLeft {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-6px); }
+}
+
+@keyframes arrowBounceRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
+.dragDotPulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FF6B2C;
+  box-shadow: 0 0 8px #FF6B2C;
 }
 
 /* ── CTA button row below drag hint ─────────────────────────── */
@@ -2321,19 +2382,56 @@
   perspective: 1200px;
 }
 
+.dragMapHint {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10, 20, 50, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 107, 44, 0.45);
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.dragDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FF6B2C;
+  box-shadow: 0 0 8px #FF6B2C;
+}
+
+.mapLoadingPlaceholder {
+  width: 100%;
+  height: 520px;
+  background: linear-gradient(145deg, rgba(10, 20, 50, 0.98) 0%, rgba(6, 14, 38, 0.99) 100%);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .globalMapWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 1647 / 955;
-  max-height: 580px;
-  background: linear-gradient(145deg, rgba(10, 20, 50, 0.98) 0%, rgba(6, 14, 38, 0.99) 100%);
+  height: 520px;
+  background: #060E26;
   border: 1.5px solid rgba(255, 107, 44, 0.45);
   border-radius: 24px;
   padding: 0;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 0 60px rgba(30, 58, 138, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
@@ -3268,7 +3366,7 @@
 @media (min-width: 1367px) and (max-width: 1440px) {
   .heroContent {
     max-width: 42vw;
-    padding-top: clamp(85px, 7vh, 110px);
+    padding-top: clamp(130px, 10vh, 155px);
   }
   .heroLineNavy,
   .heroLineOrange {

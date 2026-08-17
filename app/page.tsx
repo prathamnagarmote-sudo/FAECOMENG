@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring, animate } from 'framer-motion';
-import { ArrowUpRight, ArrowRight, ChevronDown, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Mail, Phone, MapPin } from 'lucide-react';
 import styles from './page.module.css';
 import ALL_PROJECTS from '@/data/projects.json';
 import IndustriesWeServeSection from '@/components/IndustriesWeServeSection';
@@ -14,6 +14,12 @@ import MeetOurTeamSection from '@/components/MeetOurTeamSection';
 const HeroScene3D = dynamic(() => import('@/components/HeroScene3D'), {
   ssr: false,
   loading: () => <div className={styles.scenePlaceholder} />,
+});
+
+/* ── Lazy-load Leaflet world map (no SSR — requires browser DOM) ── */
+const FaecomWorldMap = dynamic(() => import('@/components/FaecomWorldMap'), {
+  ssr: false,
+  loading: () => <div className={styles.mapLoadingPlaceholder} />,
 });
 
 /* ── Reduced-Motion aware animation wrappers ─────────────────── */
@@ -1180,15 +1186,19 @@ export default function Home() {
             <StackedCarousel slides={CAROUSEL_SLIDES} />
           </FadeIn>
 
-          {/* Drag hint */}
+          {/* High-Visibility Drag & Navigation Hint */}
           <div className={styles.cDragHint}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="14" height="14">
-              <path d="M14 8l-4 4 4 4"/>
-            </svg>
-            <span>drag to explore</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="14" height="14">
-              <path d="M10 8l4 4-4 4"/>
-            </svg>
+            <div className={styles.dragHintInner}>
+              <span className={styles.dragArrowLeft}>
+                <ChevronLeft size={18} strokeWidth={2.5} />
+              </span>
+              <span className={styles.dragDotPulse} />
+              <span className={styles.dragHintText}>DRAG OR SWIPE TO EXPLORE ALL PROJECTS</span>
+              <span className={styles.dragDotPulse} />
+              <span className={styles.dragArrowRight}>
+                <ChevronRight size={18} strokeWidth={2.5} />
+              </span>
+            </div>
           </div>
 
           {/* CTA row below carousel */}
@@ -1362,85 +1372,12 @@ export default function Home() {
             </p>
           </FadeUp>
 
-          {/* Main 3D World Map Interactive Stage */}
-          <motion.div
-            className={styles.globalStage}
-            style={{ rotateX: globalTiltX, rotateY: globalTiltY, transformStyle: 'preserve-3d' }}
-          >
-            <motion.div className={styles.globalMapWrap} style={{ x: globalMapDepthX }}>
-              {/* World Map Clean Cloudinary Asset - 100% Container Coverage */}
-              <div className={styles.globalMapImgBox}>
-                <Image
-                  src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786605308/GLOBALMAPFORFAECOM.png"
-                  alt="FAECOM Global Engineering Work Map"
-                  fill
-                  quality={95}
-                  priority
-                  unoptimized
-                  sizes="100vw"
-                  style={{ objectFit: 'cover', objectPosition: 'center' }}
-                />
-              </div>
-
-              {/* Animated 3D Flight Arc Connections */}
-              <svg className={styles.globalFlightArcSvg} viewBox="0 0 1000 500" fill="none">
-                {/* USA (HQ) -> CANADA */}
-                <path d="M 220 140 Q 240 120 240 100" stroke="rgba(255, 107, 44, 0.65)" strokeWidth="2.5" strokeDasharray="5 5" />
-                {/* USA (HQ) -> UK */}
-                <path d="M 220 140 Q 330 50 440 90" stroke="rgba(255, 107, 44, 0.75)" strokeWidth="2.5" strokeDasharray="6 6" className={styles.animatedFlightArc} />
-                {/* USA (HQ) -> DUBAI */}
-                <path d="M 220 140 Q 410 60 610 205" stroke="rgba(255, 107, 44, 0.75)" strokeWidth="2.5" strokeDasharray="6 6" className={styles.animatedFlightArc2} />
-                {/* USA (HQ) -> AUSTRALIA */}
-                <path d="M 220 140 Q 520 380 830 350" stroke="rgba(255, 107, 44, 0.65)" strokeWidth="2.5" strokeDasharray="6 6" className={styles.animatedFlightArc3} />
-              </svg>
-
-              {/* Radar Beacons & Hotspot Badges for 5 Countries */}
-              <div className={`${styles.globalBeacon} ${styles.beaconUsa}`}>
-                <span className={styles.beaconRing} />
-                <span className={styles.beaconDot} />
-                <div className={styles.beaconBadge}>
-                  <CountryFlag code="usa" />
-                  <span className={styles.beaconTitle}>USA (HQ)</span>
-                </div>
-              </div>
-
-              <div className={`${styles.globalBeacon} ${styles.beaconCanada}`}>
-                <span className={styles.beaconRing} />
-                <span className={styles.beaconDot} />
-                <div className={styles.beaconBadge}>
-                  <CountryFlag code="canada" />
-                  <span className={styles.beaconTitle}>CANADA</span>
-                </div>
-              </div>
-
-              <div className={`${styles.globalBeacon} ${styles.beaconUk}`}>
-                <span className={styles.beaconRing} />
-                <span className={styles.beaconDot} />
-                <div className={styles.beaconBadge}>
-                  <CountryFlag code="uk" />
-                  <span className={styles.beaconTitle}>UK</span>
-                </div>
-              </div>
-
-              <div className={`${styles.globalBeacon} ${styles.beaconDubai}`}>
-                <span className={styles.beaconRing} />
-                <span className={styles.beaconDot} />
-                <div className={styles.beaconBadge}>
-                  <CountryFlag code="dubai" />
-                  <span className={styles.beaconTitle}>DUBAI</span>
-                </div>
-              </div>
-
-              <div className={`${styles.globalBeacon} ${styles.beaconAus}`}>
-                <span className={styles.beaconRing} />
-                <span className={styles.beaconDot} />
-                <div className={styles.beaconBadge}>
-                  <CountryFlag code="australia" />
-                  <span className={styles.beaconTitle}>AUSTRALIA</span>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+          {/* Real Interactive Leaflet World Map — drag, zoom, click markers */}
+          <div className={styles.globalStage}>
+            <div className={styles.globalMapWrap}>
+              <FaecomWorldMap />
+            </div>
+          </div>
         </div>
       </section>
 
