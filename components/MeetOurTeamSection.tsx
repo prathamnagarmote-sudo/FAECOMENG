@@ -75,11 +75,14 @@ export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeam
   useEffect(() => {
     if (activeLeader) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
   }, [activeLeader]);
 
@@ -184,6 +187,7 @@ export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeam
               <X size={22} />
             </button>
 
+            {/* Scrollable body — only this area scrolls */}
             <div className={styles.modalBody}>
               <div className={styles.modalHeader}>
                 <div className={styles.modalPortraitWrap}>
@@ -209,14 +213,14 @@ export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeam
 
               <div className={styles.modalDivider} />
 
-              {/* Dedicated Scrollable Container for Bio Text */}
-              <div className={styles.modalScrollArea}>
-                <div className={styles.modalBioText}>
-                  <h4>Executive Bio & Professional Experience</h4>
-                  <p>{activeLeader.fullDesc}</p>
-                </div>
+              <div className={styles.modalBioText}>
+                <h4>Executive Bio &amp; Professional Experience</h4>
+                <p>{activeLeader.fullDesc}</p>
               </div>
+            </div>
 
+            {/* Fixed footer — stays at bottom, never scrolls away */}
+            <div className={styles.modalFooter}>
               <button
                 type="button"
                 className={styles.modalFooterCloseBtn}

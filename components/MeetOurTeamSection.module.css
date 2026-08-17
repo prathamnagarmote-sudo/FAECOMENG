@@ -265,10 +265,7 @@
   justify-content: center;
   align-items: center;
   padding: clamp(12px, 3vh, 28px) 16px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
+  overflow: hidden;
   animation: fadeIn 0.25s ease-out forwards;
 }
 
@@ -283,15 +280,34 @@
   border-radius: 24px;
   max-width: 680px;
   width: 100%;
-  max-height: min(85vh, 720px);
+  height: min(85vh, 720px);
   display: flex;
   flex-direction: column;
-  padding: 32px 28px 24px 32px;
+  padding: 0;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.2);
   margin: auto;
   overflow: hidden;
   animation: popUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom Scrollbar for Bio Modal */
+.modalContent::-webkit-scrollbar {
+  width: 7px;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 4px;
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background: #FF6B2C;
+  border-radius: 4px;
+}
+
+.modalContent::-webkit-scrollbar-thumb:hover {
+  background: #E55A1C;
 }
 
 @keyframes popUp {
@@ -324,6 +340,12 @@
   transform: rotate(90deg);
 }
 
+.modalFooter {
+  flex-shrink: 0;
+  padding: 0 28px 24px 32px;
+  background: #FFFFFF;
+}
+
 .modalFooterCloseBtn {
   display: inline-flex;
   align-items: center;
@@ -339,7 +361,7 @@
   text-transform: uppercase;
   border: none;
   border-radius: 12px;
-  margin-top: 14px;
+  margin-top: 18px;
   flex-shrink: 0;
   cursor: pointer;
   transition: background 0.25s ease, transform 0.2s ease;
@@ -352,41 +374,31 @@
 .modalBody {
   display: flex;
   flex-direction: column;
+  gap: 20px;
   flex: 1;
-  min-height: 0;
-  height: 100%;
-  overflow: hidden;
-}
-
-.modalScrollArea {
-  flex: 1;
-  min-height: 0;
   overflow-y: auto;
-  padding-right: 10px;
-  margin-top: 16px;
-  margin-bottom: 12px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 32px 28px 24px 32px;
   scrollbar-width: thin;
   scrollbar-color: #FF6B2C #F1F5F9;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
 }
 
-/* Custom Scrollbar for Bio Modal text */
-.modalScrollArea::-webkit-scrollbar {
+.modalBody::-webkit-scrollbar {
   width: 7px;
 }
 
-.modalScrollArea::-webkit-scrollbar-track {
+.modalBody::-webkit-scrollbar-track {
   background: #F1F5F9;
   border-radius: 4px;
 }
 
-.modalScrollArea::-webkit-scrollbar-thumb {
+.modalBody::-webkit-scrollbar-thumb {
   background: #FF6B2C;
   border-radius: 4px;
 }
 
-.modalScrollArea::-webkit-scrollbar-thumb:hover {
+.modalBody::-webkit-scrollbar-thumb:hover {
   background: #E55A1C;
 }
 
