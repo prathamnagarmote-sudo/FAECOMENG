@@ -17,6 +17,7 @@ export default function ServiceDetail() {
         title={<span style={{ fontWeight: 'bold' }}>Wood</span>}
         titleEm={<span style={{ fontWeight: 'bold' }}>And Mass Timber Engineering</span>}
         subtitle={<span style={{ color: '#000000', fontWeight: 'bold' }}>High-performance timber, CLT, and glulam systems marrying natural aesthetics with structural excellence.</span>}
+        imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443980/wood_and_timber.png"
       />
 
       <div className="divider" />

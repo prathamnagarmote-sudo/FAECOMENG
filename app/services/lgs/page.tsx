@@ -19,6 +19,7 @@ export default function LGSPage() {
           title={<span style={{ fontWeight: 'bold' }}>Light Gauge Steel</span>}
           titleEm={<span style={{ fontWeight: 'bold' }}>(LGS) Solutions</span>}
           subtitle={<span style={{ color: '#000000', fontWeight: 'bold' }}>Advanced structural systems designed for fast and efficient construction.</span>}
+          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443295/1662696676169_edited_edited_edited.jpg"
         />
       </motion.div>
 

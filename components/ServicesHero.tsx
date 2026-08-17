@@ -27,13 +27,14 @@ export default function ServicesHero() {
     <section className={styles.aboutHeroNew} ref={ref}>
       {/* Right-aligned image background (3D Parallax on PC, Inline mobile Hero Banner on Mobile) */}
       <motion.div 
-        className={styles.heroImageContainer}
+        className={styles.servicesHeroImageWrapper}
         style={{ 
           position: isMobile ? 'relative' : 'absolute', 
-          right: isMobile ? 0 : '-15%', 
-          top: isMobile ? 0 : '120px', 
-          height: isMobile ? '240px' : '100%', 
-          width: isMobile ? '100%' : '75%', 
+          right: isMobile ? 0 : '2%', 
+          top: isMobile ? 0 : '40px', 
+          bottom: isMobile ? 0 : '40px',
+          height: isMobile ? '240px' : 'auto', 
+          width: isMobile ? '100%' : '55%', 
           zIndex: 0,
           x: rightSlideOnScroll,
           marginBottom: isMobile ? '24px' : 0,
@@ -46,7 +47,7 @@ export default function ServicesHero() {
             initial={isMobile ? { opacity: 0, y: 20 } : { opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: isMobile ? 0.8 : 1.2, ease: [0.16, 1, 0.3, 1], delay: isMobile ? 0.2 : 0.5 }}
-            style={{ width: '100%', height: '100%', position: 'relative' }}
+            style={{ width: '100%', height: '100%', position: 'relative', padding: isMobile ? 0 : '20px' }}
           >
             {/* Soft white feather/fade on the left edge for desktop */}
             {!isMobile && (
@@ -59,10 +60,10 @@ export default function ServicesHero() {
             )}
 
             <Image 
-              src="/images/luxury_house_3d_model.png"
+              src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786950526/hero_page_service.png"
               alt="Engineering Services" 
               fill 
-              style={{ objectFit: 'cover', objectPosition: isMobile ? 'center' : 'right center' }} 
+              style={{ objectFit: isMobile ? 'cover' : 'contain', objectPosition: 'right center' }} 
               priority 
               quality={100} 
             />

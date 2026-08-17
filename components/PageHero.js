@@ -1,11 +1,29 @@
 import styles from './PageHero.module.css';
 
-export default function PageHero({ label, title, titleEm, subtitle }) {
+import Image from 'next/image';
+
+export default function PageHero({ label, title, titleEm, subtitle, imageSrc, imageScale }) {
   return (
     <section className={styles.hero}>
+      {imageSrc && (
+        <div className={styles.heroImageWrapper}>
+          <div className={styles.heroImageFade} />
+          <Image 
+            src={imageSrc}
+            alt="Hero Image" 
+            fill
+            style={{ 
+              objectFit: 'contain', 
+              objectPosition: 'right center',
+              ...(imageScale && { transform: `scale(${imageScale})`, transformOrigin: 'right center' })
+            }} 
+            priority
+          />
+        </div>
+      )}
       <div className={styles.wm} aria-hidden="true">{title}</div>
       <div className={styles.inner}>
-        <span className="lbl">{label}</span>
+        <span className="lbl" style={{ fontSize: 'clamp(14px, 1.5vw, 18px)', fontWeight: 'bold' }}>{label}</span>
         <h1 className={styles.h1}>
           {title}
           {titleEm && <><br /><em>{titleEm}</em></>}
