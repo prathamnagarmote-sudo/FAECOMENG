@@ -470,25 +470,25 @@
 .sectorsLabelFixed {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  font-family: var(--font-mono, monospace);
-  font-size: 13px;
+  gap: 10px;
+  font-family: var(--font-body, 'Manrope', sans-serif);
+  font-size: 14.5px;
   font-weight: 900;
-  letter-spacing: 0.16em;
-  color: #FF6B2C; /* Ultra-bold vibrant Faecom Orange */
-  text-shadow: 0 0 12px rgba(255, 107, 44, 0.45);
+  letter-spacing: 0.12em;
+  color: #FFFFFF; /* High-contrast crisp white */
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 12px rgba(255, 255, 255, 0.4);
   white-space: nowrap;
   flex-shrink: 0;
-  padding-right: 16px;
-  border-right: 1.5px solid rgba(255, 107, 44, 0.4);
+  padding-right: 18px;
+  border-right: 2px solid #FF6B2C;
 }
 
 .sectorsDotPulse {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: #FF6B2C;
-  box-shadow: 0 0 8px #FF6B2C;
+  box-shadow: 0 0 10px #FF6B2C, 0 0 20px rgba(255, 107, 44, 0.6);
 }
 
 .sectorsTrackContainer {

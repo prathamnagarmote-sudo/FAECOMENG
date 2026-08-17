@@ -30,11 +30,11 @@ export default function ServicesHero() {
         className={styles.servicesHeroImageWrapper}
         style={{ 
           position: isMobile ? 'relative' : 'absolute', 
-          right: isMobile ? 0 : '2%', 
-          top: isMobile ? 0 : '40px', 
-          bottom: isMobile ? 0 : '40px',
+          right: isMobile ? 0 : '0px', 
+          top: isMobile ? 0 : '110px', 
+          bottom: isMobile ? 0 : '20px',
           height: isMobile ? '240px' : 'auto', 
-          width: isMobile ? '100%' : '55%', 
+          width: isMobile ? '100%' : '72%', 
           zIndex: 0,
           x: rightSlideOnScroll,
           marginBottom: isMobile ? '24px' : 0,
@@ -47,23 +47,18 @@ export default function ServicesHero() {
             initial={isMobile ? { opacity: 0, y: 20 } : { opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: isMobile ? 0.8 : 1.2, ease: [0.16, 1, 0.3, 1], delay: isMobile ? 0.2 : 0.5 }}
-            style={{ width: '100%', height: '100%', position: 'relative', padding: isMobile ? 0 : '20px' }}
+            style={{ width: '100%', height: '100%', position: 'relative' }}
           >
-            {/* Soft white feather/fade on the left edge for desktop */}
-            {!isMobile && (
-              <div style={{
-                position: 'absolute',
-                top: 0, left: 0, bottom: 0, width: '40%',
-                background: 'linear-gradient(to right, #FFFFFF 0%, rgba(255,255,255,0) 100%)',
-                zIndex: 1
-              }} />
-            )}
-
             <Image 
               src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786950526/hero_page_service.png"
               alt="Engineering Services" 
               fill 
-              style={{ objectFit: isMobile ? 'cover' : 'contain', objectPosition: 'right center' }} 
+              style={{ 
+                objectFit: isMobile ? 'cover' : 'contain', 
+                objectPosition: isMobile ? 'center' : 'right center',
+                transform: isMobile ? 'none' : 'scaleX(1.35) scaleY(1.15)',
+                transformOrigin: 'right center'
+              }} 
               priority 
               quality={100} 
             />

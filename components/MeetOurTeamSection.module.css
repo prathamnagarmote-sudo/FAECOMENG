@@ -255,7 +255,6 @@
   box-shadow: 0 12px 28px rgba(255, 107, 44, 0.35);
 }
 
-/* Modal Overlay — Scrollable Container for Mobile Touch Devices */
 .modalOverlay {
   position: fixed;
   inset: 0;
@@ -265,8 +264,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 24px;
+  padding: clamp(12px, 3vh, 28px) 16px;
   overflow-y: auto;
+  overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
   animation: fadeIn 0.25s ease-out forwards;
@@ -283,10 +283,14 @@
   border-radius: 24px;
   max-width: 680px;
   width: 100%;
-  padding: 36px;
+  max-height: min(85vh, 720px);
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px 24px 32px;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.2);
   margin: auto;
+  overflow: hidden;
   animation: popUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -297,11 +301,11 @@
 
 .closeBtn {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 18px;
+  right: 18px;
   z-index: 30;
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: #F0F3F8;
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -335,7 +339,8 @@
   text-transform: uppercase;
   border: none;
   border-radius: 12px;
-  margin-top: 20px;
+  margin-top: 14px;
+  flex-shrink: 0;
   cursor: pointer;
   transition: background 0.25s ease, transform 0.2s ease;
 }
@@ -347,7 +352,42 @@
 .modalBody {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.modalScrollArea {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-top: 16px;
+  margin-bottom: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #FF6B2C #F1F5F9;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+/* Custom Scrollbar for Bio Modal text */
+.modalScrollArea::-webkit-scrollbar {
+  width: 7px;
+}
+
+.modalScrollArea::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 4px;
+}
+
+.modalScrollArea::-webkit-scrollbar-thumb {
+  background: #FF6B2C;
+  border-radius: 4px;
+}
+
+.modalScrollArea::-webkit-scrollbar-thumb:hover {
+  background: #E55A1C;
 }
 
 .modalHeader {

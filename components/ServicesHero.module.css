@@ -1,9 +1,12 @@
 .aboutHeroNew {
   position: relative;
-  min-height: 90vh;
+  min-height: 85vh;
   display: flex;
   align-items: center;
-  padding: clamp(30px, 4vw, 50px) var(--gutter, 5%) clamp(100px, 12vw, 160px);
+  padding-top: clamp(60px, 6vw, 100px);
+  padding-bottom: clamp(60px, 8vw, 120px);
+  padding-left: max(var(--gutter), clamp(28px, 5vw, 110px));
+  padding-right: 0;
   overflow: hidden;
   background-color: #FFFFFF;
 }
@@ -12,16 +15,17 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
+  max-width: 1760px;
   display: flex;
   align-items: center;
-  gap: 40px;
+  justify-content: space-between;
 }
 
 .aboutHeroNewLeft {
   flex: 1;
-  max-width: 650px;
+  max-width: clamp(580px, 44vw, 760px);
+  position: relative;
+  left: 0;
 }
 
 .aboutHeroNewRight {
@@ -71,12 +75,12 @@
 }
 
 .aboutHeroNewSubtitle {
-  font-size: clamp(15px, 1.5vw, 17px);
+  font-size: clamp(15px, 1.5vw, 17.5px);
   font-weight: 500;
-  line-height: 1.8;
-  color: #555555;
+  line-height: 1.75;
+  color: #4A5568;
   margin-bottom: 32px;
-  max-width: 580px;
+  max-width: 720px;
 }
 
 .aboutHeroNewButtons {
