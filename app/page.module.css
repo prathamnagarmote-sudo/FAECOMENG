@@ -450,16 +450,15 @@
 .sectorsTickerBar {
   position: relative;
   z-index: 12;
-  width: calc(100% - max(var(--gutter), clamp(28px, 5vw, 110px)) * 2);
+  width: 100%;
   max-width: clamp(520px, 60vw, 980px);
-  margin-top: -16px;
-  margin-left: max(var(--gutter), clamp(28px, 5vw, 110px));
-  margin-right: auto;
+  margin-top: 24px;
+  margin-left: 0;
   background: #0B0F19; /* Solid deep dark architectural navy */
   border-top: 1.5px solid #FF6B2C; /* Orange accent line */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  padding: 15px 22px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -498,6 +497,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+  contain: content;
 }
 
 .sectorsTrack {
@@ -507,6 +507,9 @@
   white-space: nowrap;
   animation: scrollSectorMarquee 35s linear infinite;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .sectorsTickerBar:hover .sectorsTrack {

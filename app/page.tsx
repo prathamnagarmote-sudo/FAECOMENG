@@ -725,15 +725,22 @@ export default function Home() {
   const leftAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : -60]);
   const rightAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : 60]);
 
-  // Sync 3D building phase with scroll
+  // Sync 3D building phase with scroll (Optimized: prevents redundant React re-renders)
   useEffect(() => {
+    let currentPhase = -1;
     const unsub = scrollYProgress.on('change', (v) => {
-      if (v < 0.08) setPhase(0);
-      else if (v < 0.18) setPhase(1);
-      else if (v < 0.30) setPhase(2);
-      else if (v < 0.42) setPhase(3);
-      else if (v < 0.55) setPhase(4);
-      else setPhase(5);
+      let newPhase = 0;
+      if (v < 0.08) newPhase = 0;
+      else if (v < 0.18) newPhase = 1;
+      else if (v < 0.30) newPhase = 2;
+      else if (v < 0.42) newPhase = 3;
+      else if (v < 0.55) newPhase = 4;
+      else newPhase = 5;
+
+      if (newPhase !== currentPhase) {
+        currentPhase = newPhase;
+        setPhase(newPhase);
+      }
     });
     return () => unsub();
   }, [scrollYProgress]);
@@ -1006,45 +1013,45 @@ export default function Home() {
               <ArrowRight size={15} strokeWidth={2} />
             </Link>
           </motion.div>
-        </motion.div>
 
-        {/* Crisp Architectural Sectors Ticker Ribbon (Outside 3D transform container for 100% vector sharpness) */}
-        <motion.div
-          className={styles.sectorsTickerBar}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.35, duration: 0.8 }}
-        >
-          <div className={styles.sectorsLabelFixed}>
-            <span className={styles.sectorsDotPulse} />
-            <span>SECTORS WE ENGINEER:</span>
-          </div>
-
-          <div className={styles.sectorsTrackContainer}>
-            <div className={styles.sectorsTrack}>
-              {[
-                'Retail Spaces',
-                'Hotels & Hospitality',
-                'Mixed-Use',
-                'Multifamily Residential',
-                'Commercial Offices',
-                'Senior Living',
-                'Industrial Projects',
-                'Retail Spaces',
-                'Hotels & Hospitality',
-                'Mixed-Use',
-                'Multifamily Residential',
-                'Commercial Offices',
-                'Senior Living',
-                'Industrial Projects',
-              ].map((sector, sIdx) => (
-                <div key={sIdx} className={styles.sectorsItem}>
-                  <span className={styles.sectorsDiamond}>✦</span>
-                  <span className={styles.sectorsItemText}>{sector}</span>
-                </div>
-              ))}
+          {/* Crisp Architectural Sectors Ticker Ribbon (Moves left with heroContent on scroll) */}
+          <motion.div
+            className={styles.sectorsTickerBar}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.35, duration: 0.8 }}
+          >
+            <div className={styles.sectorsLabelFixed}>
+              <span className={styles.sectorsDotPulse} />
+              <span>SECTORS WE ENGINEER:</span>
             </div>
-          </div>
+
+            <div className={styles.sectorsTrackContainer}>
+              <div className={styles.sectorsTrack}>
+                {[
+                  'Retail Spaces',
+                  'Hotels & Hospitality',
+                  'Mixed-Use',
+                  'Multifamily Residential',
+                  'Commercial Offices',
+                  'Senior Living',
+                  'Industrial Projects',
+                  'Retail Spaces',
+                  'Hotels & Hospitality',
+                  'Mixed-Use',
+                  'Multifamily Residential',
+                  'Commercial Offices',
+                  'Senior Living',
+                  'Industrial Projects',
+                ].map((sector, sIdx) => (
+                  <div key={sIdx} className={styles.sectorsItem}>
+                    <span className={styles.sectorsDiamond}>✦</span>
+                    <span className={styles.sectorsItemText}>{sector}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* ── 6-Stat Ribbon ───────────────────────────────── */}
