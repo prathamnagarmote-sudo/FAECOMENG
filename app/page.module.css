@@ -446,6 +446,67 @@
   margin-bottom: 0;
 }
 
+/* High-Contrast Crisp Sectors We Engineer Badge Bar */
+.sectorsBadgeStrip {
+  margin-top: 24px;
+  padding: 14px 20px;
+  background: #FFFFFF; /* Solid clean white background eliminates backdrop-blur text blurring */
+  border: 1.5px solid rgba(15, 18, 56, 0.16);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 18, 56, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 760px;
+}
+
+.sectorsLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #0F1238;
+  text-transform: uppercase;
+}
+
+.sectorsDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FF6B2C;
+  box-shadow: 0 0 8px rgba(255, 107, 44, 0.8);
+}
+
+.sectorsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sectorPill {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 800;
+  color: #0F1238; /* Solid deep navy high contrast */
+  background: #F1F5F9; /* Solid light slate background */
+  border: 1px solid #CBD5E1; /* Solid crisp border */
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.sectorPill:hover {
+  background: #FF6B2C;
+  color: #FFFFFF;
+  border-color: #FF6B2C;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 107, 44, 0.3);
+}
+
 .heroBtnPrimary {
   display: inline-flex;
   align-items: center;
@@ -1851,6 +1912,72 @@
   filter: drop-shadow(0 16px 32px rgba(10, 29, 68, 0.08));
   transition: transform 0.4s ease, filter 0.4s ease;
 }
+
+/* Animated 3D Pins Layer over US Map */
+.peMapPinsLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.mapPin {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+}
+
+.pinDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FF6B2C;
+  box-shadow: 0 0 10px #FF6B2C;
+  z-index: 2;
+}
+
+.pinPulseRing {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #FF6B2C;
+  animation: mapPulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  z-index: 1;
+}
+
+@keyframes mapPulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+.pinLabel {
+  font-family: var(--font-mono, monospace);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #0F1238;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(15, 18, 56, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+}
+
+/* State Positions on Transparent Map Graphic */
+.pinWA { top: 22%; left: 16%; }
+.pinCA { top: 46%; left: 10%; }
+.pinTX { top: 72%; left: 46%; }
+.pinFL { top: 78%; left: 82%; }
+.pinNY { top: 32%; left: 86%; }
+.pinIL { top: 40%; left: 63%; }
 
 .peMapImgBox:hover {
   filter: drop-shadow(0 22px 40px rgba(10, 29, 68, 0.14));

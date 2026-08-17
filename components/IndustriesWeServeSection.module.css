@@ -1,0 +1,374 @@
+/* ═════════════════════════════════════════════════════════════════════
+   INDUSTRIES WE SERVE — PREMIUM ARCHITECTURAL EDITORIAL SECTION
+   Deep navy typography · Warm light background · Orange accents
+   Asymmetric 6-item Grid · Blueprint CAD details · Ultra-precise hover
+   ═════════════════════════════════════════════════════════════════════ */
+
+.section {
+  position: relative;
+  background-color: #FAF9F6; /* Warm white / light architectural stone */
+  padding: clamp(48px, 4vw, 68px) clamp(20px, 2.5vw, 40px);
+  color: #0E1326; /* Deep navy typography */
+  overflow: hidden;
+  border-top: 1px solid rgba(14, 19, 38, 0.08);
+  border-bottom: 1px solid rgba(14, 19, 38, 0.08);
+}
+
+.roughSketchesBgLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.07;
+  filter: contrast(1.1) sepia(0.05);
+  mix-blend-mode: multiply;
+}
+
+/* Subtle CAD linework details top-right & bottom-left */
+.blueprintLineworkTopRight {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  width: 280px;
+  height: 200px;
+  border-left: 1px stroke rgba(14, 19, 38, 0.12);
+  border-bottom: 1px stroke rgba(14, 19, 38, 0.12);
+  background-image: radial-gradient(rgba(229, 90, 30, 0.15) 1px, transparent 1px);
+  background-size: 16px 16px;
+  pointer-events: none;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.blueprintLineworkBottomLeft {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  width: 240px;
+  height: 160px;
+  background-image: radial-gradient(rgba(14, 19, 38, 0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1760px;
+  margin: 0 auto;
+}
+
+/* ── Spacious Editorial Heading Area ───────────────────────────────── */
+.header {
+  margin-bottom: clamp(24px, 2.8vw, 36px);
+  max-width: 1100px;
+}
+
+.headerTopMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  color: #D9480F; /* High-contrast vibrant orange */
+  text-transform: uppercase;
+}
+
+.eyebrowDash {
+  width: 32px;
+  height: 2.5px;
+  background-color: #D9480F;
+  flex-shrink: 0;
+}
+
+.cadRefTag {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #1E293B; /* Solid high-contrast dark slate tag */
+  text-transform: uppercase;
+}
+
+.mainTitle {
+  font-family: var(--font-body, 'Manrope', sans-serif);
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 900;
+  color: #0A0E1A; /* Solid dark navy header */
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin: 0 0 4px 0;
+}
+
+.italicSubline {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(24px, 2.8vw, 36px);
+  font-weight: 500;
+  font-style: italic;
+  color: #D9480F; /* High-contrast orange accent serif */
+  line-height: 1.15;
+  margin: 0 0 14px 0;
+}
+
+.supportingDesc {
+  font-family: var(--font-body, 'Manrope', sans-serif);
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 600; /* Bolder text */
+  color: #111827; /* Rich dark charcoal text - maximum legibility */
+  line-height: 1.65;
+  max-width: 900px;
+  margin: 0;
+}
+
+/* ── Asymmetric 6-Item Architectural Editorial Grid ─────────────────── */
+.asymmetricGrid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 1.8vw, 24px);
+  margin-bottom: 24px;
+}
+
+/* Row 1: 1.45fr 1fr 1fr */
+.gridRow1 {
+  display: grid;
+  grid-template-columns: 1.42fr 1fr 1fr;
+  gap: clamp(16px, 1.8vw, 24px);
+  width: 100%;
+}
+
+/* Row 2: 1fr 1.45fr 1fr */
+.gridRow2 {
+  display: grid;
+  grid-template-columns: 1fr 1.42fr 1fr;
+  gap: clamp(16px, 1.8vw, 24px);
+  width: 100%;
+}
+
+/* ── Individual Industry Tile Cards ────────────────────────────────── */
+.tileCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: clamp(260px, 20vw, 340px);
+  border-radius: 4px; /* Sharp architectural edges / minimal rounded corners */
+  overflow: hidden;
+  background-color: #0E1326;
+  box-shadow: 0 12px 32px rgba(14, 19, 38, 0.08);
+  border: 1px solid rgba(14, 19, 38, 0.1);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.tileCard:hover {
+  border-color: #FF6B2C;
+  box-shadow: 0 20px 48px rgba(255, 107, 44, 0.18);
+}
+
+.tileImageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.tileImg {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: brightness(0.92) contrast(1.05);
+}
+
+.tileCard:hover .tileImg {
+  transform: scale(1.04);
+  filter: brightness(0.85) contrast(1.08);
+}
+
+/* Dark gradient overlay for text readability */
+.tileOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 19, 38, 0.45) 0%, rgba(14, 19, 38, 0.25) 45%, rgba(14, 19, 38, 0.92) 100%);
+  transition: opacity 0.35s ease;
+}
+
+.tileCard:hover .tileOverlay {
+  background: linear-gradient(180deg, rgba(14, 19, 38, 0.55) 0%, rgba(14, 19, 38, 0.35) 40%, rgba(14, 19, 38, 0.96) 100%);
+}
+
+.tileBorderAccent {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid transparent;
+  pointer-events: none;
+  transition: border-color 0.35s ease;
+  z-index: 10;
+}
+
+.tileCard:hover .tileBorderAccent {
+  border-color: #FF6B2C;
+}
+
+/* Tile Overlay Content */
+.tileContent {
+  position: relative;
+  z-index: 5;
+  padding: clamp(24px, 2.2vw, 32px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.numBadgeWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.numText {
+  font-family: var(--font-mono, monospace);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #FF6B2C; /* Small orange industry number */
+}
+
+.numDash {
+  width: 20px;
+  height: 2px;
+  background-color: #FF6B2C;
+}
+
+.tileBottomMeta {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tileCard:hover .tileBottomMeta {
+  transform: translateY(-6px);
+}
+
+.tileTitle {
+  font-family: var(--font-body, 'Manrope', sans-serif);
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 800;
+  color: #FFFFFF; /* Large white typography */
+  line-height: 1.15;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.01em;
+}
+
+.tileSub {
+  font-family: var(--font-body, 'Manrope', sans-serif);
+  font-size: clamp(12.5px, 1vw, 14.5px);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Orange Arrow → on Hover */
+.tileHoverArrow {
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #FF6B2C;
+  color: #FFFFFF;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(255, 107, 44, 0.4);
+}
+
+.tileCard:hover .tileHoverArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Minimal Right-Aligned CTA Below Grid ──────────────────────────── */
+.ctaRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.minimalCtaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body, 'Manrope', sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #0E1326;
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #FF6B2C;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.minimalCtaLink:hover {
+  color: #FF6B2C;
+}
+
+.ctaArrowIcon {
+  color: #FF6B2C;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.minimalCtaLink:hover .ctaArrowIcon {
+  transform: translateX(6px);
+}
+
+/* ── Responsive Grid Breakpoints ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  .gridRow1, .gridRow2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .tileCard {
+    height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gridRow1, .gridRow2 {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .tileCard {
+    height: 300px;
+  }
+  .tileHoverArrow {
+    opacity: 1;
+    transform: translateX(0);
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin-top: 12px;
+  }
+  .ctaRow {
+    justify-content: center;
+    margin-top: 36px;
+  }
+}

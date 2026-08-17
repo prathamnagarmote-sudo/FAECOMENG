@@ -14,6 +14,7 @@ import {
   Building2,
   FileCheck,
   Globe2,
+  ShieldCheck,
   ArrowUpRight,
   Sparkles,
   ChevronDown
@@ -67,12 +68,23 @@ const SERVICE_OPTIONS = [
   'Third-Party Review & Value Engineering',
 ];
 
-const GLOBAL_OFFICES = [
-  { country: 'United States', city: 'Vancouver, WA (HQ)', role: 'Engineering & PE Stamping Hub' },
-  { country: 'Canada', city: 'Toronto / Vancouver', role: 'BIM & Structural Detailing' },
-  { country: 'Bahamas & Caribbean', city: 'Nassau', role: 'Resort & High-Wind Engineering' },
-  { country: 'United Arab Emirates', city: 'Dubai', role: 'Commercial & High-Rise BIM' },
-  { country: 'India', city: 'Engineering Center', role: 'Dedicated Offshore Production' },
+const DELIVERY_COMMITMENTS = [
+  {
+    title: '24-48 HOUR RESPONSE SLA',
+    desc: 'Rapid technical evaluation of drawing sets and preliminary RFPs directly by senior structural leads.'
+  },
+  {
+    title: 'PE / SE STAMPED COMPLIANCE',
+    desc: 'Licensed Professional Engineering stamps and calculation packages across 25+ US states.'
+  },
+  {
+    title: 'GLOBAL TURNKEY CAPACITY',
+    desc: 'Round-the-clock modeling and detailing teams utilizing Tekla, Revit, SDS2, and STAAD.Pro.'
+  },
+  {
+    title: '100% CONFIDENTIALITY & NDA',
+    desc: 'Full IP security for all CAD blueprints, structural models, and proprietary architectural specifications.'
+  }
 ];
 
 const FAQS = [
@@ -158,11 +170,25 @@ export default function ContactPage() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -392,8 +418,8 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    <button type="submit" className={styles.submitBtn}>
-                      <span>Submit Inquiry to Engineering Team</span>
+                    <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
+                      <span>{isSubmitting ? 'Sending Proposal Request...' : 'Submit Inquiry to Engineering Team'}</span>
                       <Send size={16} />
                     </button>
 
@@ -409,24 +435,24 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ── 3. Global Engineering Offices ─────────────────────── */}
+      {/* ── 3. Engineering Delivery Commitments ─────────────────────── */}
       <section className={styles.officesSection}>
         <div className={styles.container}>
           <div className={styles.officesHeader}>
-            <span className={styles.eyebrow}>GLOBAL PRESENCE</span>
-            <h2 className={styles.officesTitle}>Engineering Hubs &amp; Regional Offices</h2>
-            <p className={styles.officesSub}>Operated under one unified standard of engineering precision across 5 countries.</p>
+            <span className={styles.eyebrow}>OUR SERVICE COMMITMENT</span>
+            <h2 className={styles.officesTitle}>Why Leading Firms Partner With FAECOM</h2>
+            <p className={styles.officesSub}>Built on 25+ years of international engineering precision, transparency, and rapid turnaround.</p>
           </div>
 
           <div className={styles.officesGrid}>
-            {GLOBAL_OFFICES.map((office, idx) => (
+            {DELIVERY_COMMITMENTS.map((item, idx) => (
               <div key={idx} className={styles.officeCard}>
                 <div className={styles.officeTop}>
-                  <Globe2 className={styles.officeGlobeIcon} />
-                  <span className={styles.officeCountry}>{office.country}</span>
+                  <ShieldCheck className={styles.officeGlobeIcon} />
+                  <span className={styles.officeCountry}>FAECOM STANDARD</span>
                 </div>
-                <h3 className={styles.officeCity}>{office.city}</h3>
-                <p className={styles.officeRole}>{office.role}</p>
+                <h3 className={styles.officeCity} style={{ fontSize: '15px', letterSpacing: '0.04em', color: '#FFFFFF', marginBottom: '8px' }}>{item.title}</h3>
+                <p className={styles.officeRole} style={{ fontSize: '13px', textTransform: 'none', color: 'rgba(255,255,255,0.7)', lineHeight: '1.6', fontWeight: 400 }}>{item.desc}</p>
               </div>
             ))}
           </div>

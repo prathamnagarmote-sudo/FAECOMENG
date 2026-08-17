@@ -7,6 +7,7 @@ import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionV
 import { ArrowUpRight, ArrowRight, ChevronDown, Mail, Phone, MapPin } from 'lucide-react';
 import styles from './page.module.css';
 import ALL_PROJECTS from '@/data/projects.json';
+import IndustriesWeServeSection from '@/components/IndustriesWeServeSection';
 
 /* ── Lazy-load heavy 3D scene ────────────────────────────────── */
 const HeroScene3D = dynamic(() => import('@/components/HeroScene3D'), {
@@ -615,6 +616,16 @@ const CountryFlag = ({ code }: { code: 'usa' | 'canada' | 'uk' | 'dubai' | 'aust
 };
 
 
+const TARGET_INDUSTRIES = [
+  'Retail & Commercial Spaces',
+  'Hotels & Hospitality',
+  'Mixed-Use Developments',
+  'Multifamily Residential',
+  'Commercial Office Towers',
+  'Senior Living Care Homes',
+  'Industrial & Logistics Hubs',
+];
+
 /* ═══════════════════════════════════════════════════════════════
    HOME PAGE
 ═══════════════════════════════════════════════════════════════ */
@@ -624,6 +635,14 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'structure' | 'arch' | 'bim' | 'mep'>('all');
   const reduced = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
+  const [industryIdx, setIndustryIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndustryIdx((prev) => (prev + 1) % TARGET_INDUSTRIES.length);
+    }, 2600);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
@@ -986,6 +1005,28 @@ export default function Home() {
               <ArrowRight size={15} strokeWidth={2} />
             </Link>
           </motion.div>
+
+          {/* Option 2: Glassmorphic Sectors We Engineer Badge Strip */}
+          <motion.div
+            className={styles.sectorsBadgeStrip}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.35, duration: 0.8 }}
+          >
+            <div className={styles.sectorsLabel}>
+              <span className={styles.sectorsDot} />
+              <span>SECTORS WE ENGINEER:</span>
+            </div>
+            <div className={styles.sectorsGrid}>
+              <span className={styles.sectorPill}>Retail Spaces</span>
+              <span className={styles.sectorPill}>Hotels &amp; Hospitality</span>
+              <span className={styles.sectorPill}>Mixed-Use</span>
+              <span className={styles.sectorPill}>Multifamily Residential</span>
+              <span className={styles.sectorPill}>Commercial Offices</span>
+              <span className={styles.sectorPill}>Senior Living</span>
+              <span className={styles.sectorPill}>Industrial Projects</span>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* ── 6-Stat Ribbon ───────────────────────────────── */}
@@ -1085,6 +1126,9 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* ══ 2.5 INDUSTRIES WE SERVE — Asymmetric Editorial Grid ═════ */}
+      <IndustriesWeServeSection />
 
       {/* ══ 3. LATEST PROJECTS — Award-Winning 3D Gallery Grid ═════ */}
       <section className={styles.projSection} aria-label="Latest Projects">

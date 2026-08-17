@@ -7,6 +7,8 @@ import MeetOurTeamSection from '@/components/MeetOurTeamSection';
 import PEStampingSection from '@/components/PEStampingSection';
 import GlobalMapSection from '@/components/GlobalMapSection';
 import AboutHeroArchitectural from '@/components/AboutHeroArchitectural';
+import EngineeringMethodologySection from '@/components/EngineeringMethodologySection';
+import IndustriesWeServeSection from '@/components/IndustriesWeServeSection';
 import { Building2, Globe, ShieldCheck, Users, Store, Building, Home, Briefcase, Factory } from 'lucide-react';
 import { StaggerContainer, FadeUp, ScaleIn, ParallaxImage } from '@/components/Animations';
 import styles from './page.module.css';
@@ -67,7 +69,6 @@ export default function About() {
               </div>
             </div>
           </FadeUp>
-          
         </StaggerContainer>
       </section>
 
@@ -126,6 +127,9 @@ export default function About() {
           </FadeUp>
         </StaggerContainer>
       </section>
+
+      {/* ══ 4-Stage Engineering Delivery Methodology & Building Code Mastery ══ */}
+      <EngineeringMethodologySection />
 
       <div className="divider" />
 
