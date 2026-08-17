@@ -657,7 +657,7 @@
   transform: translateY(0);
   z-index: 10;
   display: grid;
-  grid-template-columns: 0.95fr 0.95fr 0.95fr 1.3fr 2.1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1.35fr 2.15fr 1fr;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   background: #000000;
   flex-shrink: 0;
@@ -723,7 +723,7 @@
 
 .statLabel {
   font-family: var(--font-mono);
-  font-size: clamp(8.5px, 0.72vw, 11px);
+  font-size: clamp(7.5px, 0.65vw, 11px);
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -731,8 +731,8 @@
   line-height: 1.35;
   text-align: center;
   width: 100%;
-  white-space: normal;
-  max-width: 260px;
+  white-space: nowrap;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -3294,7 +3294,8 @@
   }
   .statLabel {
     font-size: 13px;
-    max-width: 230px;
+    max-width: none;
+    white-space: nowrap;
   }
 }
 
@@ -3326,7 +3327,8 @@
   }
   .statLabel {
     font-size: 12px;
-    max-width: 210px;
+    max-width: none;
+    white-space: nowrap;
   }
 }
 
@@ -3358,7 +3360,8 @@
   }
   .statLabel {
     font-size: 11px;
-    max-width: 190px;
+    max-width: none;
+    white-space: nowrap;
   }
 }
 
@@ -3399,7 +3402,8 @@
   }
   .statLabel {
     font-size: 10px;
-    max-width: 175px;
+    max-width: none;
+    white-space: nowrap;
   }
   .annotBim { left: 47%; }
   .annotStruct { left: 50%; }
@@ -3454,7 +3458,8 @@
   }
   .statLabel {
     font-size: 9.5px;
-    max-width: 160px;
+    max-width: none;
+    white-space: nowrap;
   }
   .annotBim { left: 48%; }
   .annotStruct { left: 50%; }
@@ -3946,7 +3951,9 @@
   }
 
   .statLabel {
-    font-size: clamp(6.5px, 1.6vw, 8.5px);
+    font-size: clamp(6px, 1.4vw, 8px);
+    white-space: nowrap;
+    max-width: none;
   }
 
   /* ── Service Cards Mobile Layout (100% Full Width, Zero Right Cropping) ── */
@@ -4055,7 +4062,7 @@
 
   .statCell { padding: 16px 8px; }
   .statVal { font-size: 22px; font-weight: 900; }
-  .statLabel { font-size: 8.5px; font-weight: 700; }
+  .statLabel { font-size: clamp(6.5px, 1.7vw, 8.5px); font-weight: 700; white-space: nowrap; max-width: none; }
   .floatingLabels { display: none; }
   .procGrid { grid-template-columns: 1fr; }
 
