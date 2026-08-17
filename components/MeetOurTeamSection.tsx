@@ -75,14 +75,20 @@ export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeam
   useEffect(() => {
     if (activeLeader) {
       document.body.style.overflow = 'hidden';
+      document.body.style.height = '100vh';
       document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.height = '100vh';
     } else {
       document.body.style.overflow = '';
+      document.body.style.height = '';
       document.documentElement.style.overflow = '';
+      document.documentElement.style.height = '';
     }
     return () => {
       document.body.style.overflow = '';
+      document.body.style.height = '';
       document.documentElement.style.overflow = '';
+      document.documentElement.style.height = '';
     };
   }, [activeLeader]);
 
@@ -213,9 +219,9 @@ export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeam
 
               <div className={styles.modalDivider} />
 
-              <div className={styles.modalBioText}>
+              <div className={styles.modalBioText} data-lenis-prevent>
                 <h4>Executive Bio &amp; Professional Experience</h4>
-                <p>{activeLeader.fullDesc}</p>
+                <p style={{ whiteSpace: 'pre-wrap' }}>{activeLeader.fullDesc}</p>
               </div>
             </div>
 
