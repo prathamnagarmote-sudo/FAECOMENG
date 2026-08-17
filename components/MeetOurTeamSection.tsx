@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Mail, X, ArrowRight, Award, ShieldCheck } from 'lucide-react';
@@ -74,6 +74,26 @@ An expert in FrameCAD, Scottsdale, Vertex, MWF, Tekla, and STAAD Pro, Sam also m
 
 export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeamSectionProps) {
   const [activeLeader, setActiveLeader] = useState<typeof LEADERS[0] | null>(null);
+
+  useEffect(() => {
+    if (activeLeader) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100vh';
+      document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.height = '100vh';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+      document.documentElement.style.overflow = '';
+      document.documentElement.style.height = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+      document.documentElement.style.overflow = '';
+      document.documentElement.style.height = '';
+    };
+  }, [activeLeader]);
 
   return (
     <section className={styles.teamSection} aria-label="Meet Our Team">
@@ -201,9 +221,9 @@ export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeam
 
               <div className={styles.modalDivider} />
 
-              <div className={styles.modalBioText}>
+              <div className={styles.modalBioText} data-lenis-prevent>
                 <h4>Executive Bio & Professional Experience</h4>
-                <p>{activeLeader.fullDesc}</p>
+                <p style={{ whiteSpace: 'pre-wrap' }}>{activeLeader.fullDesc}</p>
               </div>
 
               <button
