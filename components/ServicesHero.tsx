@@ -20,12 +20,13 @@ export default function ServicesHero() {
     <section className={styles.aboutHeroNew} ref={ref}>
       {/* Absolute right-aligned image background */}
       <motion.div 
+        className={styles.servicesHeroImageWrapper}
         style={{ 
           position: 'absolute', 
-          right: '-15%', 
-          top: '120px', 
-          height: '100%', 
-          width: '75%', 
+          right: '2%', 
+          top: '40px', 
+          bottom: '40px', 
+          width: '55%', 
           zIndex: 0,
           x: rightSlideOnScroll
         }}
@@ -35,21 +36,13 @@ export default function ServicesHero() {
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-            style={{ width: '100%', height: '100%', position: 'relative' }}
+            style={{ width: '100%', height: '100%', position: 'relative', padding: '20px' }}
           >
-            {/* Soft white feather/fade on the left edge */}
-            <div style={{
-              position: 'absolute',
-              top: 0, left: 0, bottom: 0, width: '40%',
-              background: 'linear-gradient(to right, #FFFFFF 0%, rgba(255,255,255,0) 100%)',
-              zIndex: 1
-            }} />
-
             <Image 
-              src="/images/luxury_house_3d_model.png"
+              src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786950526/hero_page_service.png"
               alt="Engineering Services" 
               fill 
-              style={{ objectFit: 'cover', objectPosition: 'right center' }} 
+              style={{ objectFit: 'contain', objectPosition: 'right center' }} 
               priority 
               quality={100} 
             />

@@ -7,6 +7,40 @@
   overflow: hidden;
 }
 
+.heroImageWrapper {
+  position: absolute;
+  right: 2%;
+  top: 120px;
+  bottom: 40px;
+  width: 55%;
+  z-index: 0;
+}
+
+.heroImageFade {
+  position: absolute;
+  top: 0; left: 0; bottom: 0; width: 40%;
+  background: linear-gradient(to right, #FFFFFF 0%, rgba(255,255,255,0) 100%);
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+  }
+  .heroImageWrapper {
+    position: relative !important;
+    width: 100% !important;
+    height: 450px !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    margin-bottom: 30px;
+    order: -1;
+  }
+}
+
 /* Subtle orange bottom line gradient */
 .hero::after {
   content: '';
