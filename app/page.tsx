@@ -8,6 +8,7 @@ import { ArrowUpRight, ArrowRight, ChevronDown, Mail, Phone, MapPin } from 'luci
 import styles from './page.module.css';
 import ALL_PROJECTS from '@/data/projects.json';
 import IndustriesWeServeSection from '@/components/IndustriesWeServeSection';
+import MeetOurTeamSection from '@/components/MeetOurTeamSection';
 
 /* ── Lazy-load heavy 3D scene ────────────────────────────────── */
 const HeroScene3D = dynamic(() => import('@/components/HeroScene3D'), {
@@ -1005,28 +1006,45 @@ export default function Home() {
               <ArrowRight size={15} strokeWidth={2} />
             </Link>
           </motion.div>
+        </motion.div>
 
-          {/* Option 2: Glassmorphic Sectors We Engineer Badge Strip */}
-          <motion.div
-            className={styles.sectorsBadgeStrip}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.35, duration: 0.8 }}
-          >
-            <div className={styles.sectorsLabel}>
-              <span className={styles.sectorsDot} />
-              <span>SECTORS WE ENGINEER:</span>
+        {/* Crisp Architectural Sectors Ticker Ribbon (Outside 3D transform container for 100% vector sharpness) */}
+        <motion.div
+          className={styles.sectorsTickerBar}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.35, duration: 0.8 }}
+        >
+          <div className={styles.sectorsLabelFixed}>
+            <span className={styles.sectorsDotPulse} />
+            <span>SECTORS WE ENGINEER:</span>
+          </div>
+
+          <div className={styles.sectorsTrackContainer}>
+            <div className={styles.sectorsTrack}>
+              {[
+                'Retail Spaces',
+                'Hotels & Hospitality',
+                'Mixed-Use',
+                'Multifamily Residential',
+                'Commercial Offices',
+                'Senior Living',
+                'Industrial Projects',
+                'Retail Spaces',
+                'Hotels & Hospitality',
+                'Mixed-Use',
+                'Multifamily Residential',
+                'Commercial Offices',
+                'Senior Living',
+                'Industrial Projects',
+              ].map((sector, sIdx) => (
+                <div key={sIdx} className={styles.sectorsItem}>
+                  <span className={styles.sectorsDiamond}>✦</span>
+                  <span className={styles.sectorsItemText}>{sector}</span>
+                </div>
+              ))}
             </div>
-            <div className={styles.sectorsGrid}>
-              <span className={styles.sectorPill}>Retail Spaces</span>
-              <span className={styles.sectorPill}>Hotels &amp; Hospitality</span>
-              <span className={styles.sectorPill}>Mixed-Use</span>
-              <span className={styles.sectorPill}>Multifamily Residential</span>
-              <span className={styles.sectorPill}>Commercial Offices</span>
-              <span className={styles.sectorPill}>Senior Living</span>
-              <span className={styles.sectorPill}>Industrial Projects</span>
-            </div>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* ── 6-Stat Ribbon ───────────────────────────────── */}
@@ -1418,6 +1436,9 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* ══ EXECUTIVE LEADERSHIP & MEET OUR TEAM ═════════════════ */}
+      <MeetOurTeamSection showAboutCta={true} />
 
       {/* ══ 4.7 CONTACT FORM SECTION (WHITE BACKGROUND) ═════════ */}
       <section className={styles.contactSection} aria-label="Contact Us">

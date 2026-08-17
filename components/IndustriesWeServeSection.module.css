@@ -344,31 +344,76 @@
 @media (max-width: 1024px) {
   .gridRow1, .gridRow2 {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 18px;
   }
   .tileCard {
-    height: 320px;
+    height: 280px;
   }
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 36px 16px;
+  }
+  .header {
+    margin-bottom: 24px;
+  }
+  .headerTopMeta {
+    flex-direction: row;
+    gap: 8px;
+  }
+  .mainTitle {
+    font-size: 28px;
+  }
+  .italicSubline {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .supportingDesc {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .asymmetricGrid {
+    gap: 14px;
+  }
   .gridRow1, .gridRow2 {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 14px;
   }
   .tileCard {
-    height: 300px;
+    height: 240px;
+  }
+  .tileContent {
+    padding: 16px;
+  }
+  .numText {
+    font-size: 12px;
+  }
+  .tileTitle {
+    font-size: 18px;
+  }
+  .tileSub {
+    font-size: 12px;
   }
   .tileHoverArrow {
     opacity: 1;
     transform: translateX(0);
-    position: relative;
-    right: auto;
-    bottom: auto;
-    margin-top: 12px;
+    width: 32px;
+    height: 32px;
   }
-  .ctaRow {
-    justify-content: center;
-    margin-top: 36px;
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 28px 12px;
+  }
+  .mainTitle {
+    font-size: 24px;
+  }
+  .italicSubline {
+    font-size: 18px;
+  }
+  .tileCard {
+    height: 210px;
   }
 }

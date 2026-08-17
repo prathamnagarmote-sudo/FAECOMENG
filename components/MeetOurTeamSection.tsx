@@ -1,9 +1,14 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Mail, X, ArrowRight, Award, ShieldCheck } from 'lucide-react';
 import { StaggerContainer, FadeUp } from './Animations';
 import styles from './MeetOurTeamSection.module.css';
+
+interface MeetOurTeamSectionProps {
+  showAboutCta?: boolean;
+}
 
 const LEADERS = [
   {
@@ -11,20 +16,34 @@ const LEADERS = [
     image: '/images/harvey_new.jpg',
     role: 'Chief Executive Officer',
     role2: 'Principal Structural Engineer, Ph.D., P.E.',
-    badge: '20+ YRS EXP // P.E. STAMP',
+    badge: '20+ YRS EXP // Ph.D. P.E.',
     email: 'harvey@faecom.com',
-    shortDesc: 'Principal Structural Engineer with Ph.D. & P.E. licenses across 25+ U.S. states. Expert in structural steel, concrete, podium, & ICF systems.',
-    fullDesc: 'Harvey Dang is a Principal Structural Engineer, Ph.D., and licensed Professional Engineer (P.E.) registered in multiple U.S. states, with over 20 years of experience in structural design, analysis, and project execution. He specializes in structural steel, reinforced concrete, ICF, podium, and wood-framed systems, delivering innovative, code-compliant, safe, and cost-effective solutions. Harvey collaborates with multidisciplinary teams to ensure successful project delivery, client satisfaction, and engineering excellence.',
+    shortDesc: 'Structural Engineer with Ph.D. & P.E. licenses across multiple U.S. states with 20+ years experience in structural design, ICF, steel, concrete, podium, and timber systems.',
+    fullDesc: `Harvey is a highly accomplished Structural Engineer with a Ph.D. in Structural Engineering and over 20 years of professional experience in the design, analysis, and execution of structural systems across a wide range of construction projects. He is a registered Professional Engineer (P.E.) in multiple states across the United States, demonstrating his commitment to the highest standards of engineering practice and professional excellence.
+
+Throughout his career, Harvey has successfully delivered numerous residential, commercial, industrial, and mixed-use projects, providing innovative, practical, and code-compliant structural solutions tailored to each client's unique requirements. His extensive expertise spans multiple construction systems, including Insulated Concrete Forms (ICF), structural steel, reinforced concrete, podium structures, and wood-framed buildings.
+
+Harvey is recognized for his deep technical knowledge, meticulous attention to detail, and ability to develop efficient structural designs that optimize safety, constructability, and cost-effectiveness. He has worked closely with architects, developers, contractors, and multidisciplinary engineering teams to ensure seamless project delivery from concept through construction.
+
+With a strong commitment to engineering excellence, quality, and client satisfaction, Harvey continues to provide reliable structural engineering solutions that meet modern building standards while addressing the challenges of complex and demanding projects.`,
   },
   {
     name: 'Pratik',
     image: '/images/pratik_new.png',
     role: 'Chief Production Officer',
     role2: 'Structural & BIM Systems Lead',
-    badge: 'CPO // BIM & STRUCTURAL LEAD',
+    badge: 'CPO // ETABS, SAFE & REVIT LEAD',
     email: 'pratik@faecom.com',
-    shortDesc: 'CPO driving operational excellence, high-precision BIM models, & code-compliant structural solutions across global developments.',
-    fullDesc: 'Pratik D. is the Chief Production Officer with extensive experience in delivering innovative, practical, and code-compliant solutions across residential, commercial, industrial, and institutional projects. His expertise includes reinforced concrete, post-tensioned concrete, structural steel, timber, ICF, cold-formed steel, composite, and light-gauge steel construction systems. He is committed to operational excellence, process efficiency, and delivering the highest standards of quality and professionalism.',
+    shortDesc: 'Director of Structural Engineering delivering code-compliant solutions across high-seismic/wind regions, post-tensioned slabs, CFS/LGS detailing, & Revit BIM workflows.',
+    fullDesc: `As Director of Structural Engineering, I bring extensive experience in delivering innovative, practical, and code-compliant structural solutions across a wide range of residential, commercial, industrial, and institutional projects. My expertise spans reinforced concrete, post-tensioned concrete, structural steel, timber, insulated concrete form (ICF), cold-formed steel (CFS), composite, and light-gauge steel construction systems.
+
+With a strong technical foundation and a results-driven approach, I have successfully led engineering teams in designing structures for high seismic and high wind regions while ensuring compliance with international standards, including ACI, ASCE, NDS, and IS codes. My experience covers the complete project lifecycle—from concept design and structural analysis to construction support, responding to RFIs, and close coordination with architects, contractors, and clients.
+
+I am proficient in industry-leading engineering software, including ETABS, SAFE, RISA, ADAPT, Framecad, Howick, and Autodesk Revit, enabling efficient and accurate design solutions for complex structural projects. I also possess extensive expertise in post-tensioned slab systems and cold-formed steel design, detailing, and manufacturing workflows.
+
+Beyond technical excellence, I am passionate about building high-performing engineering teams. I have developed and implemented standardized operating procedures (SOPs) that streamline workflows, improve quality, enhance collaboration, and increase project efficiency. My leadership philosophy emphasizes innovation, technical precision, continuous improvement, and client-focused solutions.
+
+By combining engineering expertise, strategic planning, and effective project leadership, I am committed to delivering safe, sustainable, and cost-effective structures that exceed client expectations while maintaining the highest standards of quality and professionalism.`,
   },
   {
     name: 'Sam',
@@ -34,8 +53,12 @@ const LEADERS = [
     role2: 'M.S. Structural, Ph.D. Candidate (CFS)',
     badge: 'TECHNICAL DIRECTOR // 17+ YRS',
     email: 'sam@faecom.com',
-    shortDesc: 'Technical Director with 17+ years leading structural design across 4 continents, specializing in LGS, ICF, and hybrid structural systems.',
-    fullDesc: "Sam S. holds a Master's degree in Structural Engineering and is currently pursuing his Ph.D. in Cold-Formed Steel Structure Construction — academic rigor backed by 17+ years delivering structural solutions across four continents. As Technical Director, he's the partner builders and developers trust when projects demand precision, speed, and cost-smart engineering. Specializing in light gauge steel, ICF, lumber, hot rolled steel, and mixed structural systems, Sam has delivered projects across the US, Canada, the UK, and Dubai, combining advanced software expertise, international coordination, and dependable engineering leadership.",
+    shortDesc: "Technical Director with M.S. Structural & Ph.D. Candidate (CFS) with 17+ years leading structural design across 4 continents (US, Canada, UK, Dubai).",
+    fullDesc: `Sam holds a Master's degree in Structural Engineering and is currently pursuing his Ph.D. in Cold-Formed Steel Structure Construction — academic rigor backed by 17+ years delivering structural solutions across four continents. As Technical Director, he's the partner builders and developers trust when projects demand precision, speed, and cost-smart engineering.
+
+Specializing in light gauge steel, ICF, lumber, hot rolled steel, and mixed structural systems, Sam has led design teams through millions of square feet of residential and commercial developments across the United States, Canada, the UK, and Dubai — with hands-on international coordination that means fewer surprises and tighter timelines.
+
+An expert in FrameCAD, Scottsdale, Vertex, MWF, Tekla, and STAAD Pro, Sam also mentors the next generation of engineers, ensuring every project benefits from best-in-class practices. For developers seeking a technical partner who delivers, Sam brings the credentials, experience, and dependability to get it done right.`,
   },
   {
     name: 'Max',
@@ -44,12 +67,12 @@ const LEADERS = [
     role2: 'AEC Strategic Partnerships Lead',
     badge: 'CMO // 19+ YRS AEC GROWTH',
     email: 'max@faecom.com',
-    shortDesc: 'CMO with 19+ years driving AEC strategic growth, key account partnerships, and global ICF manufacturer relationships.',
-    fullDesc: 'Max Langley is the Chief Marketing Officer, bringing over 19 years of experience to FAECOM, driving strategic growth across the Architecture, Engineering, and Construction (AEC) industry. He leads brand strategy, business development, and key account partnerships with leading architects, engineers, fabricators, and global ICF manufacturers. By combining market intelligence with customer-focused strategies, Max strengthens industry relationships, expands market presence, and delivers sustainable business growth.',
+    shortDesc: 'Chief Marketing Officer with 19+ years driving AEC strategic growth, key account partnerships, and global ICF manufacturer relationships.',
+    fullDesc: `Max Langley is the Chief Marketing Officer, bringing over 19 years of experience to FAECOM driving strategic growth across the Architecture, Engineering, and Construction (AEC) industry. He leads brand strategy, business development, and key account partnerships with leading architects, engineers, fabricators, and global ICF manufacturers. By combining market intelligence with customer-focused strategies, Max strengthens industry relationships, expands market presence, and delivers sustainable business growth.`,
   }
 ];
 
-export default function MeetOurTeamSection() {
+export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeamSectionProps) {
   const [activeLeader, setActiveLeader] = useState<typeof LEADERS[0] | null>(null);
 
   return (
@@ -119,6 +142,25 @@ export default function MeetOurTeamSection() {
             </FadeUp>
           ))}
         </StaggerContainer>
+
+        {/* Optional About Us CTA */}
+        {showAboutCta && (
+          <FadeUp className={styles.aboutCtaRow}>
+            <Link
+              href="/about"
+              scroll={true}
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }
+              }}
+              className={styles.aboutCtaBtn}
+            >
+              <span>LEARN MORE ABOUT OUR COMPANY &amp; METHODOLOGY</span>
+              <ArrowRight size={18} strokeWidth={2.2} />
+            </Link>
+          </FadeUp>
+        )}
       </div>
 
       {/* Interactive Bio Modal Pop-Up */}

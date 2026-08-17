@@ -223,6 +223,38 @@
   transform: translateX(2px);
 }
 
+.aboutCtaRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.aboutCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #1A184D;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 16px 32px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(255, 107, 44, 0.4);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(26, 24, 77, 0.15);
+}
+
+.aboutCtaBtn:hover {
+  background: #FF6B2C;
+  border-color: #FF6B2C;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 107, 44, 0.35);
+}
+
 /* Modal Overlay — Scrollable Container for Mobile Touch Devices */
 .modalOverlay {
   position: fixed;

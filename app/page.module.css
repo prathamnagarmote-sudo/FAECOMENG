@@ -446,65 +446,121 @@
   margin-bottom: 0;
 }
 
-/* High-Contrast Crisp Sectors We Engineer Badge Bar */
-.sectorsBadgeStrip {
-  margin-top: 24px;
-  padding: 14px 20px;
-  background: #FFFFFF; /* Solid clean white background eliminates backdrop-blur text blurring */
-  border: 1.5px solid rgba(15, 18, 56, 0.16);
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(15, 18, 56, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 760px;
-}
-
-.sectorsLabel {
+/* Sleek Architectural Sectors Ticker Ribbon Bar (100% Vector-Crisp) */
+.sectorsTickerBar {
+  position: relative;
+  z-index: 12;
+  width: calc(100% - max(var(--gutter), clamp(28px, 5vw, 110px)) * 2);
+  max-width: clamp(520px, 60vw, 980px);
+  margin-top: -16px;
+  margin-left: max(var(--gutter), clamp(28px, 5vw, 110px));
+  margin-right: auto;
+  background: #0B0F19; /* Solid deep dark architectural navy */
+  border-top: 1.5px solid #FF6B2C; /* Orange accent line */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px 22px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transform: translateZ(0); /* Hardware accelerate, no 3D distortion */
+}
+
+.sectorsLabelFixed {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   font-family: var(--font-mono, monospace);
-  font-size: 11.5px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  color: #0F1238;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: #FF6B2C; /* Ultra-bold vibrant Faecom Orange */
+  text-shadow: 0 0 12px rgba(255, 107, 44, 0.45);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-right: 16px;
+  border-right: 1.5px solid rgba(255, 107, 44, 0.4);
+}
+
+.sectorsDotPulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FF6B2C;
+  box-shadow: 0 0 8px #FF6B2C;
+}
+
+.sectorsTrackContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.sectorsTrack {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  white-space: nowrap;
+  animation: scrollSectorMarquee 35s linear infinite;
+  will-change: transform;
+}
+
+.sectorsTickerBar:hover .sectorsTrack {
+  animation-play-state: paused;
+}
+
+@keyframes scrollSectorMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.sectorsItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sectorsDiamond {
+  font-size: 11px;
+  color: #FF6B2C;
+}
+
+.sectorsItemText {
+  font-family: var(--font-body, 'Manrope', sans-serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
   text-transform: uppercase;
 }
 
-.sectorsDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #FF6B2C;
-  box-shadow: 0 0 8px rgba(255, 107, 44, 0.8);
-}
+@media (max-width: 768px) {
+  .sectorsTickerBar {
+    width: calc(100% - 32px);
+    max-width: 100%;
+    margin: 12px 16px 0 16px;
+    padding: 10px 14px;
+    gap: 10px;
+  }
 
-.sectorsGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+  .sectorsLabelFixed {
+    font-size: 11px;
+    padding-right: 10px;
+    gap: 6px;
+  }
 
-.sectorPill {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 800;
-  color: #0F1238; /* Solid deep navy high contrast */
-  background: #F1F5F9; /* Solid light slate background */
-  border: 1px solid #CBD5E1; /* Solid crisp border */
-  padding: 6px 14px;
-  border-radius: 20px;
-  transition: all 0.25s ease;
-  cursor: default;
-}
+  .sectorsDotPulse {
+    width: 6px;
+    height: 6px;
+  }
 
-.sectorPill:hover {
-  background: #FF6B2C;
-  color: #FFFFFF;
-  border-color: #FF6B2C;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 107, 44, 0.3);
+  .sectorsItemText {
+    font-size: 11.5px;
+  }
 }
 
 .heroBtnPrimary {
