@@ -53,7 +53,7 @@ export default function PageHero({
             </>
           )}
         </h1>
-        {subtitle && <p className={styles.sub}>{subtitle}</p>}
+        {subtitle && <div className={styles.sub}>{subtitle}</div>}
       </div>
       {/* Architectural corner marks */}
       <div className={styles.cornerTL} />

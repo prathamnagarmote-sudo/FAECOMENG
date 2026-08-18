@@ -77,12 +77,34 @@ export default function LGSPage() {
         initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+        className={styles.lgsHeroWrapper}
       >
         <PageHero
           label="Engineering Services"
           title={<span style={{ fontWeight: 'bold' }}>Light Gauge Steel</span>}
           titleEm={<span style={{ fontWeight: 'bold' }}>(LGS) Solutions</span>}
-          subtitle={<span style={{ color: '#000000', fontWeight: 'bold' }}>Advanced structural systems designed for fast and efficient construction.</span>}
+          subtitle={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <h2 style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: '900', color: '#000000', margin: '8px 0 0 0', lineHeight: 1.2 }}>
+                About Our LGS Expertise
+              </h2>
+              <span style={{ color: '#000000', fontWeight: 'bold' }}>
+                Advanced structural systems designed for fast and efficient construction.
+              </span>
+              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0 }}>
+                FAECOM has extensive experience in Affordable Housing, Residential Apartments, Hotels, Mixed-Use Developments, Modular Construction, and Multifamily Units. We provide Architectural, Structural, and MEP services for Light Gauge Steel (LGS) construction.
+              </p>
+              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0 }}>
+                Our services are designed to help clients achieve their missions and visions with optimal financial returns through:
+              </p>
+              <ul style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, paddingLeft: '24px', margin: 0 }}>
+                <li style={{ color: '#000000' }}>High-quality and cost-effective services.</li>
+                <li style={{ color: '#000000' }}>Owner-focused solutions ensuring project success.</li>
+                <li style={{ color: '#000000' }}>World-class, client-oriented approaches that transform plans into successful stories.</li>
+                <li style={{ color: '#000000' }}>Advanced technology and engineering software integration.</li>
+              </ul>
+            </div>
+          }
           imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443295/1662696676169_edited_edited_edited.jpg"
         />
       </motion.div>
