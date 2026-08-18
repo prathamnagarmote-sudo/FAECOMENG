@@ -48,10 +48,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large' },
   },
   icons: {
-    icon: [
-      { url: '/images/logo.png', type: 'image/png' },
-      { url: '/favicon.ico' },
-    ],
+    icon: '/images/logo.png',
     shortcut: '/images/logo.png',
     apple: '/images/logo.png',
   },
