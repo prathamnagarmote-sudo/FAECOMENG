@@ -12,7 +12,6 @@ const NAV_LINKS = [
   { href: '/about',    label: 'About Us' },
   { href: '/services', label: 'Services', hasDropdown: true },
   { href: '/projects', label: 'Projects' },
-  { href: '/process',  label: 'Blog' },
   { href: '/contact',  label: 'Contact' },
 ];
 
