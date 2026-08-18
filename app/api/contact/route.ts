@@ -57,10 +57,7 @@ export async function POST(req: Request) {
                 <td style="padding: 10px 0; color: #64748B; font-weight: bold;">Required Service:</td>
                 <td style="padding: 10px 0; color: #1A184D; font-weight: bold;">${service || 'General Inquiry'}</td>
               </tr>
-              <tr>
-                <td style="padding: 10px 0; color: #64748B; font-weight: bold;">Est. Budget:</td>
-                <td style="padding: 10px 0; color: #0F172A;">${budget || 'N/A'}</td>
-              </tr>
+
             </table>
 
             <div style="margin-top: 20px; padding: 16px; background: #F8FAFC; border-radius: 8px; border-left: 4px solid #1A184D;">
