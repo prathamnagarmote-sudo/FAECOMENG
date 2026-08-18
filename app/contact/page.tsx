@@ -26,9 +26,9 @@ const CONTACT_INFO = [
     icon: <Mail className={styles.infoIcon} />,
     label: 'Email Us Directly',
     primary: 'info@faecom.com',
-    secondary: '',
+    secondary: 'max@faecom.com',
     primaryHref: 'mailto:info@faecom.com',
-    secondaryHref: '',
+    secondaryHref: 'mailto:max@faecom.com',
     badge: 'Response < 24 Hours',
   },
   {

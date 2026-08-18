@@ -56,6 +56,7 @@ export default function Footer() {
               <div className={styles.contactDetails}>
                 <span className={styles.contactCardLabel}>EMAIL ENQUIRIES</span>
                 <a href="mailto:info@faecom.com" className={styles.contactVal}>info@faecom.com</a>
+                <a href="mailto:max@faecom.com" className={styles.contactVal} style={{ marginTop: "2px" }}>max@faecom.com</a>
               </div>
             </div>
 
