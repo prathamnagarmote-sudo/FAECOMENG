@@ -93,8 +93,10 @@ export default function FaecomWorldMap() {
         zoom: 2.2,
         zoomControl: false,
         attributionControl: false,
-        scrollWheelZoom: true,
-        dragging: true,
+        scrollWheelZoom: false,
+        dragging: false,
+        doubleClickZoom: false,
+        touchZoom: false,
         minZoom: 1.8,
         maxZoom: 6,
         worldCopyJump: false,
@@ -104,8 +106,8 @@ export default function FaecomWorldMap() {
 
       mapInstanceRef.current = map;
 
-      /* Dark Minimalist Tile Layer — NO printed map text (ONLY our 5 country badges show) */
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+      /* Beautiful blue oceans with clear landmasses */
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
         subdomains: 'abcd',
         maxZoom: 19,
       }).addTo(map);
