@@ -16,10 +16,11 @@ const SERVICES = [
 ];
 
 const COMPANY = [
-  { label: 'About FAECOM', href: '/about' },
-  { label: 'Projects',     href: '/projects' },
-  { label: 'Our Process',  href: '/process' },
-  { label: 'Contact Us',   href: '/contact' },
+  { label: 'Home',     href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Contact',  href: '/contact' },
 ];
 
 export default function Footer() {
