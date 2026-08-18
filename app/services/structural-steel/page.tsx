@@ -93,6 +93,7 @@ export default function StructuralSteelPage() {
               </p>
             </div>
           }
+          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443972/structural_steel_solutions.png"
         />
       </motion.div>
 
