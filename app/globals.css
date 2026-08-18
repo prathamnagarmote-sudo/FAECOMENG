@@ -256,6 +256,10 @@ p, code, pre {
   border-color: var(--accent);
   color: var(--accent);
   background: var(--accent-light);
+  
+
+  
+
 }
 
 .btn-outline-w {

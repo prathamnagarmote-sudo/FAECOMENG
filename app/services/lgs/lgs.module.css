@@ -12,6 +12,19 @@
   margin: 0 auto;
 }
 
+.lgsSystemsStack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 64px);
+}
+
+.lgsSystemRow {
+  display: grid;
+  grid-template-columns: clamp(300px, 34vw, 420px) 1fr;
+  gap: clamp(32px, 5vw, 56px);
+  align-items: center;
+}
+
 .lgsOverviewGrid {
   display: grid;
   grid-template-columns: clamp(300px, 32vw, 420px) 1fr;
@@ -20,6 +33,7 @@
 }
 
 @media (max-width: 900px) {
+  .lgsSystemRow,
   .lgsOverviewGrid {
     grid-template-columns: 1fr;
   }
@@ -34,7 +48,7 @@
 .lgsImageCard {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 240px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -42,9 +56,15 @@
   background: #F8F9FD;
 }
 
-.lgsContentCol {
-  display: flex;
-  flex-direction: column;
+.lgsRowImageCard {
+  position: relative;
+  width: 100%;
+  height: clamp(240px, 28vw, 320px);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: #F8F9FD;
 }
 
 .lgsTopBullets {
