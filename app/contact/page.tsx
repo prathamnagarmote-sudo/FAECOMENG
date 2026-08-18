@@ -45,7 +45,7 @@ const CONTACT_INFO = [
     label: 'Headquarters',
     primary: '9407 NE Vancouver Mall Dr',
     secondary: 'Vancouver, WA 98662, United States',
-    primaryHref: 'https://maps.google.com/?q=9407+NE+Vancouver+Mall+Dr,+Vancouver,+WA+98662',
+    primaryHref: '',
     badge: 'USA Office',
   },
   {

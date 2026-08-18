@@ -73,12 +73,7 @@ export default function Footer() {
           </div>
 
           {/* High-Readability Address Box */}
-          <a
-            href="https://www.google.com/maps/search/?api=1&query=9407+NE+Vancouver+Mall+Dr,+Vancouver,+WA+98662"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.addressCard}
-          >
+          <div className={styles.addressCard}>
             <div className={styles.iconCircleOrange}>
               <MapPin size={19} />
             </div>
@@ -86,7 +81,7 @@ export default function Footer() {
               <span className={styles.addressCardLabel}>US HEADQUARTERS ADDRESS</span>
               <span className={styles.addressVal}>9407 NE Vancouver Mall Dr, Vancouver, WA 98662, United States</span>
             </div>
-          </a>
+          </div>
         </div>
 
         {/* Services Column */}
