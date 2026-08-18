@@ -82,6 +82,12 @@ export default function TimberPage() {
               <span style={{ color: '#FF6B2C', fontWeight: 'bold' }}>
                 High-performance timber, CLT, and glulam systems marrying natural aesthetics with structural excellence.
               </span>
+              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
+                FAECOM specializes in innovative wood engineering solutions designed to provide structural integrity, sustainability, and aesthetic excellence.
+              </p>
+              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
+                Our cost-effective and high-performance designs cater to a wide range of industries, ensuring compliance with global standards and seamless project execution.
+              </p>
             </div>
           }
           imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443980/wood_and_timber.png"
