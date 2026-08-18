@@ -24,7 +24,7 @@ export default function PEStampingSection() {
             </FadeUp>
             <FadeUp>
               <p className={styles.desc}>
-                FAECOM INC has licensed Professional Engineers (PE) across more than 25 US states, ensuring full building code compliance, structural integrity verification, and sealed engineering calculations for every jurisdiction.
+                FAECOM INC has licensed Professional Engineers (PE) across more than 24 US states, ensuring full building code compliance, structural integrity verification, and sealed engineering calculations for every jurisdiction.
               </p>
             </FadeUp>
             
@@ -47,7 +47,7 @@ export default function PEStampingSection() {
           {/* Right Interactive State Badges */}
           <StaggerContainer className={styles.right} delayOrder={1}>
             <FadeUp className={styles.statesHeader}>
-              <span className={styles.statesCount}>25+ STATES COVERED</span>
+              <span className={styles.statesCount}>24 STATES COVERED</span>
               <span className={styles.statesSub}>Click or inspect licensed jurisdictions</span>
             </FadeUp>
 

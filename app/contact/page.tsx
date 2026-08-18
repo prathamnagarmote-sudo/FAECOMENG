@@ -51,7 +51,7 @@ const CONTACT_INFO = [
   {
     icon: <FileCheck className={styles.infoIcon} />,
     label: 'PE Stamp Coverage',
-    primary: '24+ US States Licensed',
+    primary: '24 US States Licensed',
     secondary: 'PE Stamping & Structural Review',
     badge: 'Licensed Engineers',
   },
@@ -75,7 +75,7 @@ const DELIVERY_COMMITMENTS = [
   },
   {
     title: 'PE / SE STAMPED COMPLIANCE',
-    desc: 'Licensed Professional Engineering stamps and calculation packages across 25+ US states.'
+    desc: 'Licensed Professional Engineering stamps and calculation packages across 24 US states.'
   },
   {
     title: 'GLOBAL TURNKEY CAPACITY',
@@ -94,7 +94,7 @@ const FAQS = [
   },
   {
     q: 'Are FAECOM drawings and calculations PE stamped for US states?',
-    a: 'Yes. FAECOM holds active Professional Engineer (PE) licenses across 24+ US states. All calculation packages, structural drawings, and connection calculations are stamped by a licensed PE.'
+    a: 'Yes. FAECOM holds active Professional Engineer (PE) licenses across 24 US states. All calculation packages, structural drawings, and connection calculations are stamped by a licensed PE.'
   },
   {
     q: 'What BIM software formats do you deliver?',
@@ -227,7 +227,7 @@ export default function ContactPage() {
               </div>
               <div className={styles.metricDivider} />
               <div className={styles.metricItem}>
-                <span className={styles.metricValue}>24+ States</span>
+                <span className={styles.metricValue}>24 States</span>
                 <span className={styles.metricLabel}>PE Stamp Coverage</span>
               </div>
               <div className={styles.metricDivider} />

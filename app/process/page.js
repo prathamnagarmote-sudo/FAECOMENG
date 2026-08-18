@@ -11,7 +11,7 @@ const STEPS = [
   { n:"05", title:"Delivery",  desc:"Project handover, as-built documentation and post-completion engineering support." },
 ];
 const WHY = [
-  ["01","PE Stamped — 21 States","Licensed Professional Engineers across 21 US states. Your project meets every local code, every time."],
+  ["01","PE Stamped — 24 States","Licensed Professional Engineers across 21 US states. Your project meets every local code, every time."],
   ["02","100% Remote Capable","Fully digital cloud-based workflows enabling seamless collaboration with clients worldwide."],
   ["03","Multi-Discipline","Structural, BIM, MEP — all under one roof. Coordinated, collision-free models on schedule."],
   ["04","Cost-Optimised","Value engineering at every stage — reducing waste, construction cost, and timelines without compromise."],
@@ -58,7 +58,7 @@ export default function Process() {
         <div className={styles.detailGrid}>
           {[["PHASE 01","Blueprint & Brief","We start with a thorough review of your architectural drawings, site conditions, soil reports, and project brief. We identify structural system options, material choices, and establish the project timeline and deliverable schedule."],
             ["PHASE 02","3D BIM Concept","Our BIM team develops a full 3D model integrating structural, architectural, and MEP elements. Clash detection runs automatically across disciplines, and we iterate with your design team until the model is collision-free."],
-            ["PHASE 03","Structural Engineering","Comprehensive structural calculations, load analysis, connection design, and foundation engineering. All documents are reviewed, signed, and PE-stamped by our licensed engineers — valid in 21 US states."],
+            ["PHASE 03","Structural Engineering","Comprehensive structural calculations, load analysis, connection design, and foundation engineering. All documents are reviewed, signed, and PE-stamped by our licensed engineers — valid in 24 US states."],
             ["PHASE 04+05","Build & Delivery","Throughout construction, we provide RFI responses, shop drawing reviews, and site observation reports. At completion, we deliver as-built documentation and remain available for any post-completion queries."]].map(([ph,t,d])=>(
             <div key={ph} className={styles.detailCard}>
               <span className={styles.detailPh}>{ph}</span>
