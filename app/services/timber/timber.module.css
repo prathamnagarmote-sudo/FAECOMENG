@@ -5,6 +5,10 @@
   font-family: var(--font-body, 'Manrope', sans-serif);
 }
 
+.timberHeroWrapper h1 {
+  font-size: clamp(42px, 6vw, 84px) !important;
+}
+
 /* ── Section 1: Overview & Wood Services ── */
 .timberOverviewSection {
   padding: clamp(60px, 6vw, 90px) var(--gutter, 24px);

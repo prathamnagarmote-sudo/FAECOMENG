@@ -68,12 +68,22 @@ export default function TimberPage() {
         initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+        className={styles.timberHeroWrapper}
       >
         <PageHero
           label="Engineering Services"
           title={<span style={{ fontWeight: 'bold' }}>Wood</span>}
           titleEm={<span style={{ fontWeight: 'bold' }}>And Mass Timber Engineering</span>}
-          subtitle={<span style={{ color: '#000000', fontWeight: 'bold' }}>High-performance timber, CLT, and glulam systems marrying natural aesthetics with structural excellence.</span>}
+          subtitle={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <h2 style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: '900', color: '#FF6B2C', margin: '8px 0 0 0', lineHeight: 1.2 }}>
+                About Our Wood and Mass Timber Expertise
+              </h2>
+              <span style={{ color: '#FF6B2C', fontWeight: 'bold' }}>
+                High-performance timber, CLT, and glulam systems marrying natural aesthetics with structural excellence.
+              </span>
+            </div>
+          }
           imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443980/wood_and_timber.png"
         />
       </motion.div>
