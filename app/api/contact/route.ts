@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 // Multi-recipient configuration
 const RECIPIENT_EMAILS = process.env.ENQUIRY_RECIPIENT_EMAILS
   ? process.env.ENQUIRY_RECIPIENT_EMAILS.split(',').map((e) => e.trim())
-  : ['info@faecom.com', 'max@faecom.com'];
+  : ['info@faecom.com'];
 
 export async function POST(req: Request) {
   try {
