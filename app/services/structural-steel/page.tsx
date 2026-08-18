@@ -68,12 +68,22 @@ export default function StructuralSteelPage() {
         initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+        className={styles.steelHeroWrapper}
       >
         <PageHero
           label="Engineering Services"
           title={<span style={{ fontWeight: 'bold' }}>Structural</span>}
           titleEm={<span style={{ fontWeight: 'bold' }}>Steel Solutions</span>}
-          subtitle={<span style={{ color: '#000000', fontWeight: 'bold' }}>Heavy structural steel detailing, connection engineering, and fabrication documentation.</span>}
+          subtitle={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <h2 style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: '900', color: '#FF6B2C', margin: '8px 0 0 0', lineHeight: 1.2 }}>
+                About Our Structural Steel Solutions Expertise
+              </h2>
+              <span style={{ color: '#FF6B2C', fontWeight: 'bold' }}>
+                Heavy structural steel detailing, connection engineering, and fabrication documentation.
+              </span>
+            </div>
+          }
         />
       </motion.div>
 
