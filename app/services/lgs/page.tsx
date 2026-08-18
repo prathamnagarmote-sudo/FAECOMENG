@@ -91,13 +91,13 @@ export default function LGSPage() {
               <span style={{ color: '#000000', fontWeight: 'bold' }}>
                 Advanced structural systems designed for fast and efficient construction.
               </span>
-              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0 }}>
+              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
                 FAECOM has extensive experience in Affordable Housing, Residential Apartments, Hotels, Mixed-Use Developments, Modular Construction, and Multifamily Units. We provide Architectural, Structural, and MEP services for Light Gauge Steel (LGS) construction.
               </p>
-              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0 }}>
+              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
                 Our services are designed to help clients achieve their missions and visions with optimal financial returns through:
               </p>
-              <ul style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, paddingLeft: '24px', margin: 0 }}>
+              <ul style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, paddingLeft: '24px', margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
                 <li style={{ color: '#000000' }}>High-quality and cost-effective services.</li>
                 <li style={{ color: '#000000' }}>Owner-focused solutions ensuring project success.</li>
                 <li style={{ color: '#000000' }}>World-class, client-oriented approaches that transform plans into successful stories.</li>
