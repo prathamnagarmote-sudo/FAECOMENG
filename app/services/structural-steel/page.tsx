@@ -82,6 +82,15 @@ export default function StructuralSteelPage() {
               <span style={{ color: '#FF6B2C', fontWeight: 'bold' }}>
                 Heavy structural steel detailing, connection engineering, and fabrication documentation.
               </span>
+              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
+                FAECOM specializes in High-Quality Structural Steel Solutions, delivering Code-Compliant, Cost-Effective, and Optimized Designs across various industries.
+              </p>
+              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
+                Our expertise includes Structural Analysis, Detailed Modeling, Connection Design, and Fabrication-Ready Deliverables, all tailored for maximum Efficiency and Precision.
+              </p>
+              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
+                With years of hands-on industry experience, FAECOM offers Engineering-Backed Solutions that ensure Safety, Durability, and alignment with Global Standards. From High-Rise Buildings and Industrial Facilities to Bridges, Modular Structures, and more — we bring Innovative Structural Steel Engineering to every project.
+              </p>
             </div>
           }
         />
