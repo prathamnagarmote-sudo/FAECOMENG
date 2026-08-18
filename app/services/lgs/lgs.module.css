@@ -351,3 +351,58 @@
   border: 1px solid #21145F;
   background: rgba(33, 20, 95, 0.06);
 }
+
+
+/* ── Mobile Viewport Optimizations ── */
+@media (max-width: 768px) {
+  .lgsOverviewSection,
+  .rollMachineSection,
+  .deliverablesSection {
+    padding: 36px 16px !important;
+  }
+  .lgsSystemRow,
+  .lgsOverviewGrid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .lgsRowImageCard,
+  .lgsImageCard {
+    height: 200px !important;
+  }
+  .machinesGrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  .machineCard {
+    padding: 14px 8px !important;
+  }
+  .machineImgWrap {
+    height: 85px !important;
+  }
+  .machineName {
+    font-size: 12px !important;
+  }
+  .lgsSystemTitle {
+    font-size: 18px !important;
+  }
+  .lgsTopBulletItem,
+  .lgsSystemListItem {
+    font-size: 13.5px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .lgsOverviewSection,
+  .rollMachineSection,
+  .deliverablesSection {
+    padding: 28px 12px !important;
+  }
+  .lgsRowImageCard,
+  .lgsImageCard {
+    height: 170px !important;
+  }
+  .machinesGrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+}

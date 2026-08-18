@@ -1,0 +1,258 @@
+/* ── Executive Deliverables Slider Styling (5 Images Visible Simultaneously) ── */
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 10px 0;
+}
+
+.sectionCardPanel {
+  position: relative;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(26, 24, 77, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 16px;
+  border-left: 4px solid #FF6B2C;
+}
+
+.tagBadge {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FF6B2C;
+  background: rgba(255, 107, 44, 0.08);
+  border: 1px solid rgba(255, 107, 44, 0.2);
+  padding: 4px 14px;
+  border-radius: 4px;
+}
+
+.sectionTitle {
+  font-size: 23px;
+  font-weight: 800;
+  color: #1A184D;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.sectionSubtitle {
+  font-size: 14px;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 780px;
+}
+
+.marqueeWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #090B18;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 24px 0;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.marqueeWrapper:active {
+  cursor: grabbing;
+}
+
+/* Edge Fade Gradients */
+.marqueeWrapper::before,
+.marqueeWrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.marqueeWrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #090B18 0%, rgba(9, 11, 24, 0) 100%);
+}
+
+.marqueeWrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #090B18 0%, rgba(9, 11, 24, 0) 100%);
+}
+
+.track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Slower, calmer speed matched to linear pace */
+.animateDesign {
+  animation: marqueeRightToLeft 420s linear infinite;
+}
+
+.animateStructural {
+  animation: marqueeRightToLeft 75s linear infinite;
+}
+
+.marqueeWrapper:hover .track,
+.isDragging .track {
+  animation-play-state: paused !important;
+}
+
+@keyframes marqueeRightToLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Card Sizing: 230px x 155px ensuring at least 5 images fit across screen simultaneously */
+.sheetCard {
+  position: relative;
+  width: 230px;
+  height: 155px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #11142A;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.sheetCard:hover {
+  transform: translateY(-50px) scale(1.03);
+  border-color: #FF6B2C;
+  box-shadow: 0 14px 35px rgba(255, 107, 44, 0.3);
+}
+
+.sheetImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* Intelligent Divider between sections */
+.sectionDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 6px 0;
+}
+
+.dividerLine {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(to right, transparent, #CBD5E1 20%, #CBD5E1 80%, transparent);
+}
+
+.dividerBadge {
+  position: absolute;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #64748B;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Mobile Breakpoints (< 768px & < 480px) */
+@media (max-width: 1024px) {
+  .sheetCard {
+    width: 210px;
+    height: 142px;
+  }
+  .sectionCardPanel {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    gap: 28px;
+  }
+  .sectionCardPanel {
+    padding: 20px 14px;
+    border-radius: 16px;
+    gap: 16px;
+  }
+  .headerContainer {
+    padding-left: 12px;
+    border-left-width: 3px;
+  }
+  .sectionTitle {
+    font-size: 19px;
+  }
+  .sectionSubtitle {
+    font-size: 13px;
+  }
+  .sheetCard {
+    width: 180px;
+    height: 122px;
+  }
+  .marqueeWrapper {
+    padding: 16px 0;
+    border-radius: 10px;
+  }
+  .marqueeWrapper::before,
+  .marqueeWrapper::after {
+    width: 40px;
+  }
+  .track {
+    gap: 12px;
+  }
+  .dividerBadge {
+    font-size: 9.5px;
+    padding: 4px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionCardPanel {
+    padding: 16px 10px;
+  }
+  .sectionTitle {
+    font-size: 17.5px;
+  }
+  .tagBadge {
+    font-size: 9.5px;
+    padding: 3px 10px;
+  }
+  .sheetCard {
+    width: 150px;
+    height: 102px;
+    border-radius: 6px;
+  }
+  .marqueeWrapper::before,
+  .marqueeWrapper::after {
+    width: 25px;
+  }
+}

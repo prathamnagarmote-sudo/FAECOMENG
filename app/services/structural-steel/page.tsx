@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { X, Download, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import CtaSection from '@/components/CtaSection';
+import TwoDeliverablesSections from '@/components/HorizontalSheetSlider';
 import styles from './steel.module.css';
 
 
@@ -195,34 +196,9 @@ export default function StructuralSteelPage() {
         {/* ── SECTION 2: Deliverables ── */}
         
         {/* ── SECTION 3: Deliverables (Inline PDF Page Sliders) ── */}
+                {/* ── SECTION 3: Deliverables Horizontal Marquee Sliders ── */}
         <section className={styles.deliverablesSection}>
-          <div className={styles.deliverablesGrid}>
-            {/* Design Calculation Report */}
-            <div className={styles.deliverableCol}>
-              <h2 className={styles.deliverableTitle}>DESIGN CALCULATION REPORT</h2>
-              <p className={styles.deliverableSub}>
-                FAECOM provides comprehensive Design Calculation Reports to ensure structural stability, compliance, and efficiency.
-              </p>
-              <InlinePdfViewer
-                title="DESIGN CALCULATION REPORT"
-                pdfUrl="/docs/design-calculation-report.pdf"
-                totalPages={186}
-              />
-            </div>
-
-            {/* Structural Drawings Package */}
-            <div className={styles.deliverableCol}>
-              <h2 className={styles.deliverableTitle}>STRUCTURAL DRAWINGS PACKAGE</h2>
-              <p className={styles.deliverableSub}>
-                FAECOM provides detailed Structural Drawings Packages that include essential documentation for fabrication and construction.
-              </p>
-              <InlinePdfViewer
-                title="STRUCTURAL DRAWINGS PACKAGE"
-                pdfUrl="/docs/structural-drawings-package.pdf"
-                totalPages={150}
-              />
-            </div>
-          </div>
+          <TwoDeliverablesSections />
         </section>
 
       </div>
