@@ -85,10 +85,10 @@ export default function LGSPage() {
           titleEm={<span style={{ fontWeight: 'bold' }}>(LGS) Solutions</span>}
           subtitle={
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <h2 style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: '900', color: '#000000', margin: '8px 0 0 0', lineHeight: 1.2 }}>
+              <h2 style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: '900', color: '#FF6B2C', margin: '8px 0 0 0', lineHeight: 1.2 }}>
                 About Our LGS Expertise
               </h2>
-              <span style={{ color: '#000000', fontWeight: 'bold' }}>
+              <span style={{ color: '#FF6B2C', fontWeight: 'bold' }}>
                 Advanced structural systems designed for fast and efficient construction.
               </span>
               <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
