@@ -47,7 +47,7 @@ function InlinePdfViewer({ title, pdfUrl, totalPages = 186 }: { title: string; p
       </div>
 
       {/* Live Document Frame - Full Page Fit */}
-      <div style={{ width: '100%', height: '560px', background: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ width: '100%', height: '800px', background: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
         <iframe
           key={`${pdfUrl}-p${currentPage}`}
           src={`${pdfUrl}#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=Fit`}
@@ -94,6 +94,7 @@ export default function StructuralSteelPage() {
             </div>
           }
           imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443972/structural_steel_solutions.png"
+          imageScale="1.3, 0.9"
         />
       </motion.div>
 

@@ -47,7 +47,7 @@ function InlinePdfViewer({ title, pdfUrl, totalPages = 186 }: { title: string; p
       </div>
 
       {/* Live Document Frame - Full Page Fit */}
-      <div style={{ width: '100%', height: '560px', background: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ width: '100%', height: '800px', background: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
         <iframe
           key={`${pdfUrl}-p${currentPage}`}
           src={`${pdfUrl}#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=Fit`}
@@ -68,12 +68,28 @@ export default function BIMIntegratedSolutionsPage() {
         initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+        className={styles.lgsHeroWrapper}
       >
         <PageHero
           label="Engineering Services"
           title={<span style={{ fontWeight: 'bold' }}>BIM Integrated</span>}
           titleEm={<span style={{ fontWeight: 'bold' }}>Solutions 3D</span>}
-          subtitle={<span style={{ color: '#000000', fontWeight: 'bold' }}>Integrated BIM workflows across architecture, structure, and MEP disciplines for efficient project delivery.</span>}
+          subtitle={
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <h2 style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: '900', color: '#FF6B2C', margin: '8px 0 0 0', lineHeight: 1.2 }}>
+                About Our BIM Integrated Solutions 3D Expertise
+              </h2>
+              <span style={{ color: '#FF6B2C', fontWeight: 'bold' }}>
+                Integrated BIM workflows across architecture, structure, and MEP disciplines for efficient project delivery.
+              </span>
+              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
+                End-to-end 3D BIM integration for effective project management, accurate visualization, and seamless construction execution.
+              </p>
+              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
+                Delivering immersive, data-rich visual experiences that enhance design understanding, stakeholder engagement, and decision-making.
+              </p>
+            </div>
+          }
           imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443953/Bim_integrated_3d.jpg"
         />
       </motion.div>

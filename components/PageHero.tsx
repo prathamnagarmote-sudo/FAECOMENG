@@ -9,6 +9,7 @@ export interface PageHeroProps {
   subtitle?: React.ReactNode;
   imageSrc?: string;
   imageScale?: number | string;
+  imageWrapperStyle?: React.CSSProperties;
 }
 
 export default function PageHero({
@@ -18,11 +19,12 @@ export default function PageHero({
   subtitle,
   imageSrc,
   imageScale,
+  imageWrapperStyle,
 }: PageHeroProps) {
   return (
     <section className={styles.hero}>
       {imageSrc && (
-        <div className={styles.heroImageWrapper}>
+        <div className={styles.heroImageWrapper} style={imageWrapperStyle}>
           <div className={styles.heroImageFade} />
           <Image
             src={imageSrc}
