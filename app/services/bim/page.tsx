@@ -1,16 +1,15 @@
 'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, ArrowRight, ShieldCheck, Cpu, Zap, Layers, Settings, FileText, CheckSquare, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import PageHero from '@/components/PageHero';
 import CtaSection from '@/components/CtaSection';
-import SERVICES_IMAGES from '@/data/servicesImages.json';
+import styles from '../lgs/lgs.module.css';
 
-export default function ServiceDetail() {
+export default function ArchitecturalBIMPage() {
   return (
     <>
-      {/* Dynamic Header */}
       <motion.div
         initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -20,188 +19,165 @@ export default function ServiceDetail() {
           label="Engineering Services"
           title={<span style={{ fontWeight: 'bold' }}>Architectural</span>}
           titleEm={<span style={{ fontWeight: 'bold' }}>BIM Services</span>}
-          subtitle={<span style={{ color: '#000000', fontWeight: 'bold' }}>Intelligent, clash-coordinated 3D Revit models built for accurate lifecycle planning.</span>}
+          subtitle={<span style={{ color: '#000000', fontWeight: 'bold' }}>Intelligent 3D BIM models that improve planning, reduce design conflicts, and enhance project coordination.</span>}
+          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443962/architectural_bim_services.jpg"
         />
       </motion.div>
 
       <div className="divider" />
 
-      {/* Main Content Layout */}
-      <section style={{ padding: 'clamp(64px, 8vw, 120px) var(--gutter)', background: '#0E0F20' }}>
-        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '60px', alignItems: 'center' }}>
-          
-          {/* Left Column: Copy */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-            <Link href="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12px', fontWeight: '700', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--accent)', textDecoration: 'none' }}>
-              <ArrowLeft size={14} />
-              <span>Back to Services</span>
-            </Link>
-
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: '800', color: '#FFFFFF', letterSpacing: '-0.02em', lineHeight: '1.1' }}>
-              High-Precision <br />
-              <span style={{ color: 'var(--accent)' }}>Architectural BIM Services</span>
-            </h2>
-
-            <p style={{ fontSize: '18px', color: '#FFFFFF', lineHeight: '1.7' }}>
-              Our Architectural BIM services transform 2D planning drawings into multi-dimensional, intelligent databases. We align architectural design, structural framing, and MEP systems into a single, high-fidelity BIM model.
-            </p>
-
-            {/* Bullet List */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' }}>
-              
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
-                <CheckCircle2 size={20} color="var(--accent)" style={{ flexShrink: 0, marginTop: '4px' }} />
-                <span style={{ fontSize: '15px', color: '#FFFFFF', fontWeight: '500', lineHeight: '1.5' }}>
-                  LOD 300 to LOD 400 construction-ready architectural Revit modeling.
-                </span>
+      <div className={styles.lgsContainer}>
+        {/* ── SECTION 1: Architectural BIM Overview & Services ── */}
+        <section className={styles.lgsOverviewSection}>
+          <div className={styles.lgsOverviewGrid}>
+            {/* Left Column: 2 Building Renders */}
+            <div className={styles.lgsImagesStack}>
+              <div className={styles.lgsImageCard} style={{ height: '240px' }}>
+                <Image
+                  src="/images/project_khan_house.png"
+                  alt="Architectural Residential Home 3D Render"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
-                <CheckCircle2 size={20} color="var(--accent)" style={{ flexShrink: 0, marginTop: '4px' }} />
-                <span style={{ fontSize: '15px', color: '#FFFFFF', fontWeight: '500', lineHeight: '1.5' }}>
-                  Clash detection, interference reports, and coordination management.
-                </span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
-                <CheckCircle2 size={20} color="var(--accent)" style={{ flexShrink: 0, marginTop: '4px' }} />
-                <span style={{ fontSize: '15px', color: '#FFFFFF', fontWeight: '500', lineHeight: '1.5' }}>
-                  Quantity takeoff (QTO) extraction directly from coordinated 3D databases.
-                </span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
-                <CheckCircle2 size={20} color="var(--accent)" style={{ flexShrink: 0, marginTop: '4px' }} />
-                <span style={{ fontSize: '15px', color: '#FFFFFF', fontWeight: '500', lineHeight: '1.5' }}>
-                  Conversion of legacy CAD and PDF plans into parametric BIM databases.
-                </span>
+              <div className={styles.lgsImageCard} style={{ height: '240px', border: '2px solid #21145F' }}>
+                <Image
+                  src="/images/expertise_lgs.png"
+                  alt="Multistory Apartment Complex Architectural BIM Model"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
             </div>
 
-            <div style={{ marginTop: '24px' }}>
-              <Link href="/clients" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: '#FFFFFF', color: '#0F1238', padding: '16px 32px', borderRadius: '4px', textDecoration: 'none', fontWeight: '700', fontSize: '12px', letterSpacing: '0.06em' }}>
-                <span>REQUEST A PROPOSAL</span>
-                <ArrowRight size={14} />
-              </Link>
+            {/* Right Column: Architectural Services Breakdown */}
+            <div className={styles.lgsContentCol}>
+              {/* ARCHITECTURAL DRAWINGS */}
+              <div className={styles.lgsSystemBlock}>
+                <h2 className={styles.lgsSystemTitle}>ARCHITECTURAL DRAWINGS:</h2>
+                <ul className={styles.lgsSystemList}>
+                  {[
+                    { label: 'Floor Plans', desc: 'Accurate room layouts, openings (doors/windows), dimensions, and spatial arrangements.' },
+                    { label: 'Elevations', desc: 'Exterior facades, finishes, rooflines, and height details.' },
+                    { label: 'Sections', desc: 'Cross-sectional views illustrating structural elements, materials, and internal components.' },
+                    { label: 'Details', desc: 'High-precision detailing for stairs, railings, wall assemblies, and other architectural features.' },
+                  ].map((item, i) => (
+                    <li key={i} className={styles.lgsSystemListItem}>
+                      <span className={styles.lgsDot} />
+                      <span>
+                        <span style={{ fontWeight: 800, color: '#161347' }}>{item.label}</span> – {item.desc}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* ARCHITECTURAL MODELING */}
+              <div className={styles.lgsSystemBlock}>
+                <h2 className={styles.lgsSystemTitle}>ARCHITECTURAL MODELING:</h2>
+                <ul className={styles.lgsSystemList}>
+                  {[
+                    { label: '3D BIM Modeling', desc: 'Creation of detailed 3D architectural models including interiors and exteriors.' },
+                    { label: 'Renderings & Visualizations', desc: 'Photorealistic renderings for client presentations, approvals, and marketing.' },
+                  ].map((item, i) => (
+                    <li key={i} className={styles.lgsSystemListItem}>
+                      <span className={styles.lgsDot} />
+                      <span>
+                        <span style={{ fontWeight: 800, color: '#161347' }}>{item.label}</span> – {item.desc}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* PERMIT & CONSTRUCTION SET */}
+              <div className={styles.lgsSystemBlock}>
+                <h2 className={styles.lgsSystemTitle}>PERMIT & CONSTRUCTION SET:</h2>
+                <ul className={styles.lgsSystemList}>
+                  {[
+                    { label: 'Construction Documentation', desc: 'Full architectural, structural, and MEP drawings required for construction.' },
+                    { label: 'Code Compliance', desc: 'Documentation prepared in accordance with relevant building codes and local regulations.' },
+                    { label: 'Permit Assistance', desc: 'Support with drawing sets and coordination needed for permit submissions.' },
+                  ].map((item, i) => (
+                    <li key={i} className={styles.lgsSystemListItem}>
+                      <span className={styles.lgsDot} />
+                      <span>
+                        <span style={{ fontWeight: 800, color: '#161347' }}>{item.label}</span> – {item.desc}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* ADDITIONAL SERVICES */}
+              <div className={styles.lgsSystemBlock}>
+                <h2 className={styles.lgsSystemTitle}>ADDITIONAL SERVICES:</h2>
+                <ul className={styles.lgsSystemList}>
+                  {[
+                    { label: 'Zoning & Land-Use Analysis', desc: 'Regulatory compliance checks during the planning phase.' },
+                    { label: 'Site Planning', desc: 'Site layout, grading, drainage, and landscape coordination.' },
+                    { label: 'Sustainability & Energy Efficiency', desc: 'Integration of green design principles and energy-efficient strategies.' },
+                  ].map((item, i) => (
+                    <li key={i} className={styles.lgsSystemListItem}>
+                      <span className={styles.lgsDot} />
+                      <span>
+                        <span style={{ fontWeight: 800, color: '#161347' }}>{item.label}</span> – {item.desc}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-          
-          <div style={{ position: 'relative', height: '600px', borderRadius: '16px', overflow: 'hidden', border: '4px solid var(--accent)', boxShadow: '0 20px 40px rgba(0,0,0,0.4)' }}>
-            <Image src={SERVICES_IMAGES.bim.expertise} alt="Architectural BIM Expertise" fill style={{ objectFit: 'cover' }} />
-          </div>
+        </section>
 
-        </div>
-      </section>
-
-      {/* Systems Grid */}
-      <section style={{ padding: '80px var(--gutter)', background: '#FFFFFF', borderTop: '1px solid #E5E7EB', borderBottom: '1px solid #E5E7EB' }}>
-        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
-            
-            <div style={{ background: '#FFFFFF', padding: '40px', borderRadius: '16px', border: '1px solid #000000', boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(255, 107, 44, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', border: '1px solid var(--accent)' }}>
-                <Layers color="var(--accent)" size={24} />
-              </div>
-              <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#000000', marginBottom: '20px' }}>ARCHITECTURAL MODELING</h3>
-              <p style={{ fontSize: '14px', color: '#333333', lineHeight: 1.7, marginBottom: '20px' }}>Comprehensive 3D visualizations and spatial coordination models.</p>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {['Parametric families and dynamic components.', 'High-LOD interior and exterior detailing.', 'Accurate site-context modeling.', 'Cloud-based multi-disciplinary collaboration.'].map((item, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', marginTop: '8px', flexShrink: 0 }} />
-                    <span style={{ fontSize: '13px', color: '#333333', lineHeight: 1.6 }}>{item}</span>
-                  </li>
+        {/* ── SECTION 2: Deliverables ── */}
+        <section className={styles.deliverablesSection}>
+          <div className={styles.deliverablesGrid}>
+            {/* Design Calculation Report */}
+            <div className={styles.deliverableCol}>
+              <h2 className={styles.deliverableTitle}>DESIGN CALCULATION REPORT</h2>
+              <p className={styles.deliverableSub}>
+                FAECOM provides comprehensive Design Calculation Reports to ensure structural stability, compliance, and efficiency.
+              </p>
+              <div className={styles.docGrid}>
+                {Array.from({ length: 12 }).map((_, idx) => (
+                  <div key={idx} className={styles.docSheet}>
+                    <div className={styles.docSheetHeader} />
+                    <div className={styles.docSheetLine} />
+                    <div className={styles.docSheetLineShort} />
+                    <div className={styles.docSheetTable}>
+                      <div className={styles.docSheetRow} />
+                      <div className={styles.docSheetRow} />
+                      <div className={styles.docSheetRow} />
+                      <div className={styles.docSheetRow} />
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
-            <div style={{ background: '#FFFFFF', padding: '40px', borderRadius: '16px', border: '1px solid #000000', boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(255, 107, 44, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', border: '1px solid var(--accent)' }}>
-                <Zap color="var(--accent)" size={24} />
-              </div>
-              <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#000000', marginBottom: '20px' }}>CLASH DETECTION</h3>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {['Automated interference checks using Navisworks.', 'Hard clash and soft clearance conflict resolution.', 'MEP, Structural, and Architectural synchronization.', 'Reduction of costly on-site rework.', 'Constructability review reports.'].map((item, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', marginTop: '8px', flexShrink: 0 }} />
-                    <span style={{ fontSize: '13px', color: '#333333', lineHeight: 1.6 }}>{item}</span>
-                  </li>
+            {/* Structural Drawings Package */}
+            <div className={styles.deliverableCol}>
+              <h2 className={styles.deliverableTitle}>STRUCTURAL DRAWINGS PACKAGE</h2>
+              <p className={styles.deliverableSub}>
+                FAECOM provides detailed Structural Drawings Packages that include essential documentation for fabrication and construction.
+              </p>
+              <div className={styles.cadGrid}>
+                {Array.from({ length: 8 }).map((_, idx) => (
+                  <div key={idx} className={styles.cadSheet}>
+                    <div style={{ borderBottom: '1px solid #21145F', height: '12px', opacity: 0.6 }} />
+                    <div style={{ borderLeft: '1px solid #FF6B2C', width: '50%', height: '14px', margin: '2px 0' }} />
+                    <div className={styles.cadTitleBlock} />
+                  </div>
                 ))}
-              </ul>
-            </div>
-
-            <div style={{ background: '#FFFFFF', padding: '40px', borderRadius: '16px', border: '1px solid #000000', boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(255, 107, 44, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', border: '1px solid var(--accent)' }}>
-                <Settings color="var(--accent)" size={24} />
               </div>
-              <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#000000', marginBottom: '20px' }}>POINT CLOUD TO BIM</h3>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {['Laser scan to accurate 3D model conversion.', 'As-built documentation for renovation projects.', 'Heritage and historical preservation modeling.', 'Facility management and digital twin setup.', 'Precise spatial measurement processing.'].map((item, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', marginTop: '8px', flexShrink: 0 }} />
-                    <span style={{ fontSize: '13px', color: '#333333', lineHeight: 1.6 }}>{item}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
-
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      {/* BIM Lifecycle Process - New Style Idea */}
-      <section style={{ padding: '80px var(--gutter)', background: '#0E0F20' }}>
-        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '64px' }}>
-            <span style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--accent)' }}>Our Methodology</span>
-            <h2 style={{ fontSize: '32px', fontWeight: '800', color: '#FFFFFF', marginTop: '12px' }}>The Architectural BIM Lifecycle</h2>
-            <p style={{ fontSize: '16px', color: '#FFFFFF', maxWidth: '700px', margin: '16px auto 0', lineHeight: '1.7' }}>
-              We don't just build 3D models; we integrate data into every phase of the project lifecycle to ensure seamless collaboration and zero-clash execution.
-            </p>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '800px', margin: '0 auto' }}>
-            
-            {/* Step 1 */}
-            <div style={{ display: 'flex', background: '#FFFFFF', borderRadius: '16px', border: '1px solid #E5E7EB', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
-              <div style={{ width: '80px', background: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', fontSize: '24px', fontWeight: '800' }}>
-                01
-              </div>
-              <div style={{ padding: '32px', flex: 1 }}>
-                <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#0F1238', marginBottom: '12px' }}>Conceptual Design & Scanning</h3>
-                <p style={{ fontSize: '14px', color: '#4A4D6B', lineHeight: '1.7' }}>
-                  Starting with raw architectural concepts or point-cloud laser scans of existing conditions, we establish the highly accurate foundational geometry for the BIM environment.
-                </p>
-              </div>
-            </div>
-
-            {/* Step 2 */}
-            <div style={{ display: 'flex', background: '#FFFFFF', borderRadius: '16px', border: '1px solid #E5E7EB', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
-              <div style={{ width: '80px', background: '#0E0F20', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', fontSize: '24px', fontWeight: '800' }}>
-                02
-              </div>
-              <div style={{ padding: '32px', flex: 1 }}>
-                <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#0F1238', marginBottom: '12px' }}>Intelligent Modeling (LOD 300-400)</h3>
-                <p style={{ fontSize: '14px', color: '#4A4D6B', lineHeight: '1.7' }}>
-                  We develop the architecture in Revit, embedding rich meta-data into walls, doors, and finishes, ensuring the model serves as an accurate digital twin for cost estimation.
-                </p>
-              </div>
-            </div>
-
-            {/* Step 3 */}
-            <div style={{ display: 'flex', background: '#FFFFFF', borderRadius: '16px', border: '1px solid #E5E7EB', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
-              <div style={{ width: '80px', background: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', fontSize: '24px', fontWeight: '800' }}>
-                03
-              </div>
-              <div style={{ padding: '32px', flex: 1 }}>
-                <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#0F1238', marginBottom: '12px' }}>Multi-Disciplinary Coordination</h3>
-                <p style={{ fontSize: '14px', color: '#4A4D6B', lineHeight: '1.7' }}>
-                  Using Navisworks, the architectural model is federated with structural and MEP models. We run rigorous interference checks to resolve clashes before they reach the site.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-
+      <CtaSection />
     </>
   );
 }

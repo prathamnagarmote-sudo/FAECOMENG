@@ -1,11 +1,21 @@
 'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, CheckCircle2, Settings, FileText, CheckSquare, Layers, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import PageHero from '@/components/PageHero';
 import CtaSection from '@/components/CtaSection';
-import LGS_DATA from '@/data/lgs.json';
+import styles from './lgs.module.css';
+
+const ROLL_MACHINES = [
+  { name: 'FrameCad', image: '/images/machines/framecad.png' },
+  { name: 'Howick', image: '/images/machines/howick.png' },
+  { name: 'Knudson', image: '/images/machines/knudson.png' },
+  { name: 'Unbak', image: '/images/machines/unbak.png' },
+  { name: 'FrameMac', image: '/images/machines/framemac.png' },
+  { name: 'Scottsdale', image: '/images/machines/scottsdale.png' },
+];
+
 export default function LGSPage() {
   return (
     <>
@@ -25,156 +35,192 @@ export default function LGSPage() {
 
       <div className="divider" />
 
-      {/* About Our LGS Expertise */}
-      <section style={{ padding: 'clamp(60px, 8vw, 100px) var(--gutter)', background: '#0E0F20' }}>
-        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '60px', alignItems: 'center' }}>
-          <div>
-            <Link href="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12px', fontWeight: '700', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--accent)', textDecoration: 'none', marginBottom: '24px' }}>
-              <ArrowLeft size={14} />
-              <span>Back to Services</span>
-            </Link>
-            <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: '800', color: '#FFFFFF', marginBottom: '24px', lineHeight: 1.1 }}>
-              About Our <span style={{ color: 'var(--accent)' }}>LGS Expertise</span>
-            </h2>
-            <p style={{ fontSize: '18px', color: '#FFFFFF', lineHeight: '1.8', marginBottom: '24px' }}>
-              FAECOM has extensive experience in Affordable Housing, Residential Apartments, Hotels, Mixed-Use Developments, Modular Construction, and Multifamily Units. We provide Architectural, Structural, and MEP services for Light Gauge Steel (LGS) construction.
-            </p>
-            <p style={{ fontSize: '18px', color: '#FFFFFF', lineHeight: '1.8', marginBottom: '24px' }}>
-              Our services are designed to help clients achieve their missions and visions with optimal financial returns through:
-            </p>
-            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {[
-                'High-quality and cost-effective services.',
-                'Owner-focused solutions ensuring project success.',
-                'World-class, client-oriented approaches that transform plans into successful stories.',
-                'Advanced technology and engineering software integration.'
-              ].map((item, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                  <CheckCircle2 size={20} color="var(--accent)" style={{ flexShrink: 0, marginTop: '4px' }} />
-                  <span style={{ fontSize: '15px', color: '#FFFFFF', lineHeight: '1.6' }}>{item}</span>
+      <div className={styles.lgsContainer}>
+        {/* ── SECTION 1: LGS Systems & Overview ── */}
+        <section className={styles.lgsOverviewSection}>
+          <div className={styles.lgsOverviewGrid}>
+            {/* Left Column: Stack of 3 3D Building Render Illustrations */}
+            <div className={styles.lgsImagesStack}>
+              <div className={styles.lgsImageCard}>
+                <Image
+                  src="/images/hero_clear_disciplines.png"
+                  alt="LGS Multistory Steel Frame Structure Model"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+              <div className={styles.lgsImageCard}>
+                <Image
+                  src="/images/expertise_lgs.png"
+                  alt="LGS Multistory Residential Apartments Completed Render"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+              <div className={styles.lgsImageCard}>
+                <Image
+                  src="/images/luxury_house_3d_model.png"
+                  alt="LGS 3D Framing Structural Truss Model"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+            </div>
+
+            {/* Right Column: Bullets & Systems Breakdown */}
+            <div className={styles.lgsContentCol}>
+              <ul className={styles.lgsTopBullets}>
+                <li className={styles.lgsTopBulletItem}>
+                  <span className={styles.lgsDot} />
+                  <span>Owner-focused solutions ensuring project success.</span>
                 </li>
-              ))}
-            </ul>
-          </div>
-          <div style={{ position: 'relative', height: '600px', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 20px 40px rgba(0,0,0,0.4)' }}>
-            <Image src="/images/expertise_lgs.png" alt="LGS Expertise" fill style={{ objectFit: 'cover' }} />
-          </div>
-        </div>
-      </section>
-
-      {/* Systems Grid */}
-      <section style={{ padding: '80px var(--gutter)', background: '#FFFFFF', borderTop: '1px solid #E5E7EB', borderBottom: '1px solid #E5E7EB' }}>
-        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
-            
-            {/* LGS FRAMING SYSTEM */}
-            <div style={{ background: '#FFFFFF', padding: '40px', borderRadius: '16px', border: '1px solid #000000', boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(255, 107, 44, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', border: '1px solid var(--accent)' }}>
-                <Settings color="var(--accent)" size={24} />
-              </div>
-              <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#000000', marginBottom: '20px' }}>LGS FRAMING SYSTEM</h3>
-              <p style={{ fontSize: '14px', color: '#333333', lineHeight: 1.7, marginBottom: '20px' }}>Modern structural systems designed for fast and efficient construction of modern framed buildings.</p>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {[
-                  'Cost and weight reductions of 30-40% in CFS construction.',
-                  'Multiple CFS stud ranges for multistory Residential Apartments, Affordable Housing, Modular Construction, and Facade Solutions.',
-                  'Widely used in Load-Bearing structures, Modular Construction, and Infill Wall Systems.',
-                  'Panel and stick-build systems for fast Construction, Suitable for indigenous buildings and high-separation walls.',
-                  'Ideal bearing systems for low-rise homes where Construction speed is critical.'
-                ].map((item, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', marginTop: '8px', flexShrink: 0 }} />
-                    <span style={{ fontSize: '13px', color: '#333333', lineHeight: 1.6 }}>{item}</span>
-                  </li>
-                ))}
+                <li className={styles.lgsTopBulletItem}>
+                  <span className={styles.lgsDot} />
+                  <span>World-class, client-oriented approaches that transform plans into successful stories.</span>
+                </li>
+                <li className={styles.lgsTopBulletItem}>
+                  <span className={styles.lgsDot} />
+                  <span>Advanced technology and engineering software integration.</span>
+                </li>
               </ul>
-            </div>
 
-            {/* LOAD BEARING SYSTEM */}
-            <div style={{ background: '#FFFFFF', padding: '40px', borderRadius: '16px', border: '1px solid #000000', boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(255, 107, 44, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', border: '1px solid var(--accent)' }}>
-                <Layers color="var(--accent)" size={24} />
+              {/* LGS FRAMING SYSTEM */}
+              <div className={styles.lgsSystemBlock}>
+                <h2 className={styles.lgsSystemTitle}>LGS FRAMING SYSTEM</h2>
+                <ul className={styles.lgsSystemList}>
+                  {[
+                    'Modern structural systems designed for fast and efficient construction of modern framed buildings.',
+                    'Cost and weight reductions of 30-40% in CFS construction.',
+                    'Multiple CFS stud ranges for multistory Residential Apartments, Affordable Housing, Modular Construction, and Facade Solutions.',
+                    'Widely used in Load-Bearing structures, Modular Construction, and Infill Wall Systems.',
+                    'Panel and stick-build systems for fast Construction, Suitable for indigenous buildings and high-separation walls.',
+                    'Ideal bearing systems for low-rise homes where Construction speed is critical.',
+                  ].map((bullet, i) => (
+                    <li key={i} className={styles.lgsSystemListItem}>
+                      <span className={styles.lgsDot} />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#000000', marginBottom: '20px' }}>LOAD BEARING SYSTEM</h3>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {[
-                  'Feasibility analysis for structures like multistory apartments, modular structures, and affordable housing.',
-                  'Design and analysis of LGS for walls, floors, and trusses.',
-                  'Revit structural drawings and detailed documentation.',
-                  'Construction GA and shop drawings for walls, floors, and trusses.',
-                  'Machine file generation for Howick, FrameCAD, and other roll-formed machines.',
-                  'Utilization of REVIT, MWF STRUCT SOFT, Vertex-BD, Scottdale and FRAMECAD.'
-                ].map((item, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', marginTop: '8px', flexShrink: 0 }} />
-                    <span style={{ fontSize: '13px', color: '#333333', lineHeight: 1.6 }}>{item}</span>
-                  </li>
+
+              {/* LOAD BEARING SYSTEM */}
+              <div className={styles.lgsSystemBlock}>
+                <h2 className={styles.lgsSystemTitle}>LOAD BEARING SYSTEM</h2>
+                <ul className={styles.lgsSystemList}>
+                  {[
+                    'Feasibility analysis for structures like multistory apartments, modular structures, and affordable housing.',
+                    'Design and analysis of LGS for walls, floors, and trusses.',
+                    'Revit structural drawings and detailed documentation.',
+                    'Construction GA and shop drawings for walls, floors, and trusses.',
+                    'Machine file generation for Howick, FrameCAD, and other roll-formed machines.',
+                    'Utilization of REVIT, MWF STRUCT SOFT, Vertex-BD, Scottsdale and FRAMECAD.',
+                  ].map((bullet, i) => (
+                    <li key={i} className={styles.lgsSystemListItem}>
+                      <span className={styles.lgsDot} />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* INFILL SYSTEM */}
+              <div className={styles.lgsSystemBlock}>
+                <h2 className={styles.lgsSystemTitle}>INFILL SYSTEM</h2>
+                <ul className={styles.lgsSystemList}>
+                  {[
+                    'Design and analysis of LGS infill walls and façade supporting elements.',
+                    'Revit structural drawings with precise connection details.',
+                    'Construction GA and shop drawings for walls.',
+                    'Building elevation designs integrated with SFS framing.',
+                    'Material take-off for accurate project estimation.',
+                  ].map((bullet, i) => (
+                    <li key={i} className={styles.lgsSystemListItem}>
+                      <span className={styles.lgsDot} />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── SECTION 2: Roll Forming Machine ── */}
+        <section className={styles.rollMachineSection}>
+          <h2 className={styles.rollMachineTitle}>Roll Forming Machine</h2>
+          <p className={styles.rollMachineSub}>
+            FAECOM integrates advanced roll forming machine technology to enhance precision and efficiency in steel fabrication. We work with industry-leading machines, including:
+          </p>
+
+          <div className={styles.machinesGrid}>
+            {ROLL_MACHINES.map((m) => (
+              <div key={m.name} className={styles.machineCard}>
+                <div className={styles.machineImgWrap}>
+                  <Image
+                    src={m.image}
+                    alt={m.name}
+                    fill
+                    style={{ objectFit: 'contain' }}
+                  />
+                </div>
+                <div className={styles.machineName}>{m.name}</div>
+              </div>
+            ))}
+          </div>
+
+          <p className={styles.rollMachineFooterNote}>
+            FAECOM utilizes a wide range of roll forming machines available in the market, ensuring maximum flexibility and adaptability for diverse project requirements.
+          </p>
+        </section>
+
+        {/* ── SECTION 3: Deliverables ── */}
+        <section className={styles.deliverablesSection}>
+          <div className={styles.deliverablesGrid}>
+            {/* Design Calculation Report */}
+            <div className={styles.deliverableCol}>
+              <h2 className={styles.deliverableTitle}>DESIGN CALCULATION REPORT</h2>
+              <p className={styles.deliverableSub}>
+                FAECOM provides comprehensive Design Calculation Reports to ensure structural stability, compliance, and efficiency.
+              </p>
+              <div className={styles.docGrid}>
+                {Array.from({ length: 12 }).map((_, idx) => (
+                  <div key={idx} className={styles.docSheet}>
+                    <div className={styles.docSheetHeader} />
+                    <div className={styles.docSheetLine} />
+                    <div className={styles.docSheetLineShort} />
+                    <div className={styles.docSheetTable}>
+                      <div className={styles.docSheetRow} />
+                      <div className={styles.docSheetRow} />
+                      <div className={styles.docSheetRow} />
+                      <div className={styles.docSheetRow} />
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
-            {/* INFILL SYSTEM */}
-            <div style={{ background: '#FFFFFF', padding: '40px', borderRadius: '16px', border: '1px solid #000000', boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(255, 107, 44, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', border: '1px solid var(--accent)' }}>
-                <Zap color="var(--accent)" size={24} />
-              </div>
-              <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#000000', marginBottom: '20px' }}>INFILL SYSTEM</h3>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {[
-                  'Design and analysis of LGS infill walls and façade supporting elements.',
-                  'Revit structural drawings with precise connection details.',
-                  'Construction GA and shop drawings for walls.',
-                  'Building elevation designs integrated with SFS framing.',
-                  'Material take-off for accurate project estimation.'
-                ].map((item, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', marginTop: '8px', flexShrink: 0 }} />
-                    <span style={{ fontSize: '13px', color: '#333333', lineHeight: 1.6 }}>{item}</span>
-                  </li>
+            {/* Structural Drawings Package */}
+            <div className={styles.deliverableCol}>
+              <h2 className={styles.deliverableTitle}>STRUCTURAL DRAWINGS PACKAGE</h2>
+              <p className={styles.deliverableSub}>
+                FAECOM provides detailed Structural Drawings Packages that include essential documentation for fabrication and construction.
+              </p>
+              <div className={styles.cadGrid}>
+                {Array.from({ length: 8 }).map((_, idx) => (
+                  <div key={idx} className={styles.cadSheet}>
+                    <div style={{ borderBottom: '1px solid #21145F', height: '12px', opacity: 0.6 }} />
+                    <div style={{ borderLeft: '1px solid #FF6B2C', width: '50%', height: '14px', margin: '2px 0' }} />
+                    <div className={styles.cadTitleBlock} />
+                  </div>
                 ))}
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Deliverables */}
-      <section style={{ padding: '80px var(--gutter)', background: '#0E0F20' }}>
-        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '60px' }}>
-          
-          <div style={{ background: '#FFFFFF', padding: '40px', borderRadius: '16px', border: '1px solid #000000', boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(255, 107, 44, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--accent)' }}>
-                <FileText color="var(--accent)" size={24} />
               </div>
-              <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#000000' }}>STRUCTURAL DRAWINGS PACKAGE</h3>
-            </div>
-            <p style={{ fontSize: '15px', color: '#333333', lineHeight: '1.7', marginBottom: '32px' }}>
-              FAECOM provides detailed Structural Drawings Packages that include essential documentation for fabrication and construction.
-            </p>
-            <div style={{ position: 'relative', width: '100%', height: '300px', borderRadius: '12px', overflow: 'hidden', border: '1px solid #E5E7EB' }}>
-              <Image src={LGS_DATA.structuralDrawingsPackageImage} alt="Drawings Package" fill style={{ objectFit: 'cover' }} />
             </div>
           </div>
+        </section>
+      </div>
 
-          <div style={{ background: '#FFFFFF', padding: '40px', borderRadius: '16px', border: '1px solid #000000', boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: 'rgba(255, 107, 44, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--accent)' }}>
-                <CheckSquare color="var(--accent)" size={24} />
-              </div>
-              <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#000000' }}>DESIGN CALCULATION REPORT</h3>
-            </div>
-            <p style={{ fontSize: '15px', color: '#333333', lineHeight: '1.7', marginBottom: '32px' }}>
-              FAECOM provides comprehensive Design Calculation Reports to ensure structural stability, compliance, and efficiency.
-            </p>
-            <div style={{ position: 'relative', width: '100%', height: '300px', borderRadius: '12px', overflow: 'hidden', border: '1px solid #E5E7EB' }}>
-              <Image src="/images/featured_residential.png" alt="Calculation Report" fill style={{ objectFit: 'cover', objectPosition: 'center' }} />
-            </div>
-          </div>
-
-        </div>
-      </section>
+      <CtaSection />
     </>
   );
 }

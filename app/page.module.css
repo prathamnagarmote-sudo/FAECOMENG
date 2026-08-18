@@ -491,6 +491,70 @@
   box-shadow: 0 0 10px #FF6B2C, 0 0 20px rgba(255, 107, 44, 0.6);
 }
 
+/* ── Mobile Sector Icon Cards — hidden on all non-mobile screens ── */
+.mobileSectorIcons {
+  display: none;
+}
+
+/* Mobile-only Sectors We Engineer Component — hidden on desktop */
+.mobileSectorsSection {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  /* Hide desktop ticker strip on mobile — it causes layout overflow */
+  .sectorsTickerBar {
+    display: none !important;
+  }
+
+  /* ── Mobile Sector Icon Cards ── */
+  .mobileSectorIcons {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 16px;
+    margin-bottom: 4px;
+    padding: 0 4px;
+  }
+
+  .mobileSectorIconsTrack {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  .mobileSectorIconCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: #F5F5FA;
+    border: 1px solid rgba(33, 20, 95, 0.1);
+    border-radius: 10px;
+    padding: 10px 6px 8px 6px;
+    flex-shrink: 0;
+  }
+
+  .mobileSectorSvg {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .mobileSectorIconLabel {
+    font-family: var(--font-mono, monospace);
+    font-size: 7.5px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #21145F;
+    text-align: center;
+  }
+}
+
+
 .sectorsTrackContainer {
   position: relative;
   width: 100%;
@@ -3668,27 +3732,42 @@
     grid-template-columns: 1fr;
     min-height: auto;
     height: auto;
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     padding: 0;
     background: #FFFFFF;
     perspective: none;
+    box-sizing: border-box;
+    width: 100%;
   }
 
   /* ── Hero Text Content (Row 1) ── */
   .heroContent {
     grid-row: 1;
     grid-column: 1;
-    position: relative;
-    max-width: 100%;
-    width: 100%;
-    padding: clamp(90px, 12vh, 110px) 24px 28px 24px;
-    z-index: 10;
-    background: transparent;
-    margin: 0 auto;
+    /* Reset ALL desktop positional overrides */
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    /* Force 100% viewport width containment */
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    /* Explicitly override the desktop padding-left longhand */
+    padding-top: clamp(90px, 12vh, 110px) !important;
+    padding-right: 20px !important;
+    padding-bottom: 24px !important;
+    padding-left: 20px !important;
+    /* Layout */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    /* Disable desktop flex-shrink:0 so grid column governs width */
+    flex-shrink: 1 !important;
+    margin: 0 !important;
     transform: none !important;
     opacity: 1 !important;
   }
@@ -3701,6 +3780,7 @@
     justify-content: center;
     white-space: nowrap;
     line-height: 1.4;
+    width: 100%;
   }
 
   .heroTagLine {
@@ -3806,11 +3886,22 @@
   .heroBgInner {
     transform: none !important;
     transform-style: flat !important;
+    filter: none !important;
+    opacity: 1 !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
   }
 
   .heroImg {
     object-fit: contain !important;
     object-position: center center !important;
+    filter: none !important;
+    opacity: 1 !important;
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+    transform: translateZ(0) !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
   }
 
   .heroOverlay {

@@ -1,0 +1,265 @@
+/* ── Structural Steel Service Page Custom Styling ── */
+.steelContainer {
+  background: #FFFFFF;
+  color: #1A1A24;
+  font-family: var(--font-body, 'Manrope', sans-serif);
+}
+
+/* ── Section 1: Overview & Services & Codes ── */
+.steelOverviewSection {
+  padding: clamp(60px, 6vw, 90px) var(--gutter, 24px);
+  max-width: var(--max-w, 1280px);
+  margin: 0 auto;
+}
+
+.steelOverviewGrid {
+  display: grid;
+  grid-template-columns: clamp(300px, 32vw, 420px) 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .steelOverviewGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.steelImagesStack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.steelImageCard {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #21145F;
+  box-shadow: 0 6px 20px rgba(33, 20, 95, 0.08);
+  background: #FFFFFF;
+}
+
+.steelContentCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.servicesBlockTitle {
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #161347;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.steelServicesList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.steelServiceItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: #383848;
+  line-height: 1.6;
+}
+
+.squareDot {
+  width: 5px;
+  height: 5px;
+  background: #161347;
+  margin-top: 9px;
+  flex-shrink: 0;
+}
+
+.highlightLabel {
+  font-weight: 800;
+  color: #161347;
+}
+
+.codesTitle {
+  font-size: clamp(22px, 2.5vw, 26px);
+  font-weight: 900;
+  color: #161347;
+  margin-bottom: 10px;
+}
+
+.codesIntroText {
+  font-size: 14px;
+  color: #444454;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.codesIntroItalic {
+  font-size: 14px;
+  font-style: italic;
+  color: #444454;
+  margin-bottom: 16px;
+}
+
+.codesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.codeItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #383848;
+  line-height: 1.5;
+}
+
+
+/* ── Section 2: Deliverables (Report & Drawings Package) ── */
+.deliverablesSection {
+  padding: clamp(60px, 6vw, 90px) var(--gutter, 24px);
+  max-width: var(--max-w, 1280px);
+  margin: 0 auto;
+  border-top: 1px solid #ECECF2;
+}
+
+.deliverablesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(32px, 5vw, 56px);
+}
+
+@media (max-width: 850px) {
+  .deliverablesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.deliverableCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deliverableTitle {
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #161347;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.deliverableSub {
+  font-size: 13.5px;
+  color: #4A4A5A;
+  text-align: center;
+  max-width: 480px;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* Document Thumbnail Sheet Grid */
+.docGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  background: #F4F4F8;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #E2E2EA;
+}
+
+.docSheet {
+  background: #FFFFFF;
+  border: 1px solid #D8D8E2;
+  border-radius: 4px;
+  aspect-ratio: 1 / 1.35;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.docSheetHeader {
+  height: 8px;
+  background: #161347;
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+.docSheetLine {
+  height: 3px;
+  background: #E0E0EA;
+  border-radius: 1px;
+}
+
+.docSheetLineShort {
+  height: 3px;
+  width: 60%;
+  background: #FF6B2C;
+  border-radius: 1px;
+}
+
+.docSheetTable {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.docSheetRow {
+  height: 4px;
+  background: #EDEDF5;
+  border-radius: 1px;
+}
+
+/* CAD Drawing Sheet Thumbnail Grid */
+.cadGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  background: #F4F4F8;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #E2E2EA;
+}
+
+.cadSheet {
+  background: #FFFFFF;
+  border: 1.5px solid #21145F;
+  border-radius: 4px;
+  aspect-ratio: 1.4 / 1;
+  padding: 6px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.cadTitleBlock {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 32px;
+  height: 14px;
+  border: 1px solid #21145F;
+  background: rgba(33, 20, 95, 0.06);
+}

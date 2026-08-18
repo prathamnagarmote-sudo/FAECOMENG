@@ -1,0 +1,329 @@
+/* ── LGS Service Page Custom Styling ── */
+.lgsContainer {
+  background: #FFFFFF;
+  color: #1A1A24;
+  font-family: var(--font-body, 'Manrope', sans-serif);
+}
+
+/* ── Section 1: Overview & LGS Systems ── */
+.lgsOverviewSection {
+  padding: clamp(60px, 6vw, 90px) var(--gutter, 24px);
+  max-width: var(--max-w, 1280px);
+  margin: 0 auto;
+}
+
+.lgsOverviewGrid {
+  display: grid;
+  grid-template-columns: clamp(300px, 32vw, 420px) 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .lgsOverviewGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lgsImagesStack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lgsImageCard {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  background: #F8F9FD;
+}
+
+.lgsContentCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.lgsTopBullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lgsTopBulletItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #222230;
+  line-height: 1.6;
+}
+
+.lgsDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #161347;
+  margin-top: 9px;
+  flex-shrink: 0;
+}
+
+.lgsSystemBlock {
+  margin-bottom: 36px;
+}
+
+.lgsSystemTitle {
+  font-size: clamp(20px, 2.5vw, 24px);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #161347;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.lgsSystemList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lgsSystemListItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 450;
+  color: #383848;
+  line-height: 1.6;
+}
+
+
+/* ── Section 2: Roll Forming Machine ── */
+.rollMachineSection {
+  padding: clamp(60px, 6vw, 80px) var(--gutter, 24px);
+  max-width: var(--max-w, 1280px);
+  margin: 0 auto;
+  border-top: 1px solid #ECECF2;
+}
+
+.rollMachineTitle {
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 900;
+  color: #161347;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.rollMachineSub {
+  font-size: clamp(13.5px, 1.5vw, 15px);
+  color: #4A4A5A;
+  text-align: center;
+  max-width: 840px;
+  margin: 0 auto 36px auto;
+  line-height: 1.6;
+}
+
+.machinesGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .machinesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .machinesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.machineCard {
+  background: #F7F5F0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 20px 12px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.machineCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.machineImgWrap {
+  position: relative;
+  width: 100%;
+  height: 110px;
+}
+
+.machineName {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #161347;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.rollMachineFooterNote {
+  font-size: 13.5px;
+  font-style: italic;
+  color: #555568;
+  text-align: center;
+  margin-top: 32px;
+}
+
+
+/* ── Section 3: Deliverables (Report & Drawings Package) ── */
+.deliverablesSection {
+  padding: clamp(60px, 6vw, 90px) var(--gutter, 24px);
+  max-width: var(--max-w, 1280px);
+  margin: 0 auto;
+  border-top: 1px solid #ECECF2;
+}
+
+.deliverablesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(32px, 5vw, 56px);
+}
+
+@media (max-width: 850px) {
+  .deliverablesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.deliverableCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deliverableTitle {
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #161347;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.deliverableSub {
+  font-size: 13.5px;
+  color: #4A4A5A;
+  text-align: center;
+  max-width: 480px;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* Document Thumbnail Sheet Grid */
+.docGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  background: #F4F4F8;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #E2E2EA;
+}
+
+.docSheet {
+  background: #FFFFFF;
+  border: 1px solid #D8D8E2;
+  border-radius: 4px;
+  aspect-ratio: 1 / 1.35;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.docSheetHeader {
+  height: 8px;
+  background: #161347;
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+.docSheetLine {
+  height: 3px;
+  background: #E0E0EA;
+  border-radius: 1px;
+}
+
+.docSheetLineShort {
+  height: 3px;
+  width: 60%;
+  background: #FF6B2C;
+  border-radius: 1px;
+}
+
+.docSheetTable {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.docSheetRow {
+  height: 4px;
+  background: #EDEDF5;
+  border-radius: 1px;
+}
+
+/* CAD Drawing Sheet Thumbnail Grid */
+.cadGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  background: #F4F4F8;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #E2E2EA;
+}
+
+.cadSheet {
+  background: #FFFFFF;
+  border: 1.5px solid #21145F;
+  border-radius: 4px;
+  aspect-ratio: 1.4 / 1;
+  padding: 6px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.cadTitleBlock {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 32px;
+  height: 14px;
+  border: 1px solid #21145F;
+  background: rgba(33, 20, 95, 0.06);
+}

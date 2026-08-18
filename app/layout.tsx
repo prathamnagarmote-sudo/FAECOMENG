@@ -47,6 +47,14 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large' },
   },
+  icons: {
+    icon: [
+      { url: '/images/logo.png', type: 'image/png' },
+      { url: '/favicon.ico' },
+    ],
+    shortcut: '/images/logo.png',
+    apple: '/images/logo.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

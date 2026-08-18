@@ -721,7 +721,7 @@ export default function Home() {
     offset: ['start start', 'end start'],
   });
 
-  // Disable horizontal scroll slide on mobile devices so hero section stays contained
+  // Disable horizontal scroll slide and opacity fade on mobile devices so hero section stays 100% visible
   const disableSlide = reduced || isMobile;
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -15]);
@@ -731,47 +731,43 @@ export default function Home() {
   const leftAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : -60]);
   const rightAnnotX = useTransform(scrollYProgress, [0, 0.5], [0, disableSlide ? 0 : 60]);
 
+  /* Motion styles — completely disabled on mobile to prevent white screen / hidden elements */
+  const heroBgMotionStyle = disableSlide
+    ? {}
+    : {
+        opacity: heroOpacity,
+        scale: bgScale,
+        x: rightX,
+        rotateX: tiltX,
+        rotateY: tiltY,
+      };
+
+  const annotMotionStyle = disableSlide ? {} : { opacity: heroOpacity, x: annotDepthX };
+  const heroContentMotionStyle = disableSlide ? {} : { opacity: heroOpacity, y: heroY, x: leftX };
+
   // Sync 3D building phase with scroll (Optimized: prevents redundant React re-renders)
   useEffect(() => {
-    let currentPhase = -1;
-    const unsub = scrollYProgress.on('change', (v) => {
-      let newPhase = 0;
-      if (v < 0.08) newPhase = 0;
-      else if (v < 0.18) newPhase = 1;
-      else if (v < 0.30) newPhase = 2;
-      else if (v < 0.42) newPhase = 3;
-      else if (v < 0.55) newPhase = 4;
-      else newPhase = 5;
-
-      if (newPhase !== currentPhase) {
-        currentPhase = newPhase;
-        setPhase(newPhase);
-      }
+    if (reduced || isMobile) return;
+    const unsubscribe = scrollYProgress.on('change', (v) => {
+      const p = v < 0.15 ? 0 : v < 0.35 ? 1 : 2;
+      setPhase(p);
     });
-    return () => unsub();
-  }, [scrollYProgress]);
+    return () => unsubscribe();
+  }, [scrollYProgress, reduced, isMobile]);
 
   return (
     <>
-      {/* ══ 1. HERO ══════════════════════════════════════════════ */}
+      {/* ══ 1. HERO SECTION ═════════════════════════════════════════ */}
       <section
-        className={styles.hero}
         ref={heroRef}
+        className={styles.hero}
         aria-label="Hero"
         onMouseMove={handleHeroMouseMove}
       >
         {/* Full-width background photo with 3D Out-of-Screen Fly-In Landing & Scroll Parting (+x) */}
         <motion.div
           className={styles.heroBg}
-          style={{
-            opacity: heroOpacity,
-            scale: bgScale,
-            x: rightX,
-            rotateX: tiltX,
-            rotateY: tiltY,
-            backfaceVisibility: 'visible',
-            WebkitBackfaceVisibility: 'visible',
-          }}
+          style={heroBgMotionStyle}
         >
           <motion.div
             className={styles.heroBgInner}
@@ -809,7 +805,7 @@ export default function Home() {
         <div className={styles.heroOverlay} />
 
         {/* ── Engineering annotation callouts matching reference image ───── */}
-        <motion.div className={styles.annotations} style={{ opacity: heroOpacity, x: annotDepthX }}>
+        <motion.div className={styles.annotations} style={annotMotionStyle}>
           {/* 1. Structural Engineering (Top Left - Moves LEFT on scroll) */}
           <motion.div
             className={`${styles.annot} ${styles.annotStruct}`}
@@ -818,7 +814,7 @@ export default function Home() {
               filter: activeFilter === 'structure' ? 'drop-shadow(0 0 12px rgba(15,18,56,0.3))' : 'none',
               x: leftAnnotX
             }}
-            initial={{ opacity: 0, scale: 0.85, y: 20 }}
+            initial={disableSlide ? false : { opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -844,7 +840,7 @@ export default function Home() {
               filter: activeFilter === 'arch' ? 'drop-shadow(0 0 12px rgba(255,107,44,0.4))' : 'none',
               x: rightAnnotX
             }}
-            initial={{ opacity: 0, scale: 0.85, y: 20 }}
+            initial={disableSlide ? false : { opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -870,7 +866,7 @@ export default function Home() {
               filter: activeFilter === 'bim' ? 'drop-shadow(0 0 12px rgba(15,18,56,0.3))' : 'none',
               x: leftAnnotX
             }}
-            initial={{ opacity: 0, scale: 0.85, y: 20 }}
+            initial={disableSlide ? false : { opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -897,7 +893,7 @@ export default function Home() {
               filter: activeFilter === 'mep' ? 'drop-shadow(0 0 12px rgba(255,107,44,0.4))' : 'none',
               x: rightAnnotX
             }}
-            initial={{ opacity: 0, scale: 0.85, y: 20 }}
+            initial={disableSlide ? false : { opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -920,7 +916,7 @@ export default function Home() {
           <motion.div
             className={`${styles.annot} ${styles.annotCoord}`}
             style={{ opacity: activeFilter === 'all' || activeFilter === 'mep' || activeFilter === 'bim' ? 1 : 0.2 }}
-            initial={{ opacity: 0, scale: 0.85, y: 20 }}
+            initial={disableSlide ? false : { opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -940,11 +936,11 @@ export default function Home() {
         </motion.div>
 
         {/* ── Hero Left Content (Moves LEFT (-x) on scroll) ─────────────────── */}
-        <motion.div className={styles.heroContent} style={{ opacity: heroOpacity, y: heroY, x: leftX }}>
+        <motion.div className={styles.heroContent} style={heroContentMotionStyle}>
           {/* Tagline */}
           <motion.div
             className={styles.heroTag}
-            initial={{ opacity: 0, x: -20 }}
+            initial={disableSlide ? false : { opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.35, duration: 0.8 }}
           >
@@ -956,7 +952,7 @@ export default function Home() {
           <h1 className={styles.heroH1}>
             <motion.span
               className={styles.heroLineNavy}
-              initial={{ opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
+              initial={disableSlide ? false : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
               animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
               transition={{ delay: 0.25, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -964,7 +960,7 @@ export default function Home() {
             </motion.span>
             <motion.span
               className={styles.heroLineOrange}
-              initial={{ opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
+              initial={disableSlide ? false : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
               animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
               transition={{ delay: 0.40, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -972,7 +968,7 @@ export default function Home() {
             </motion.span>
             <motion.span
               className={styles.heroLineNavy}
-              initial={{ opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
+              initial={disableSlide ? false : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
               animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
               transition={{ delay: 0.55, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -980,7 +976,7 @@ export default function Home() {
             </motion.span>
             <motion.span
               className={styles.heroLineOrange}
-              initial={{ opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
+              initial={disableSlide ? false : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
               animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
               transition={{ delay: 0.70, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -991,7 +987,7 @@ export default function Home() {
           {/* Executive Subline */}
           <motion.div
             className={styles.heroSubWrap}
-            initial={{ opacity: 0, y: 20 }}
+            initial={disableSlide ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.8 }}
           >
@@ -1003,10 +999,117 @@ export default function Home() {
             </div>
           </motion.div>
 
+          {/* ── Mobile Sector Icon Cards (visible on mobile only, below tagline) ── */}
+          <div className={styles.mobileSectorIcons}>
+            <div className={styles.mobileSectorIconsTrack}>
+              {/* Retail Spaces */}
+              <div className={styles.mobileSectorIconCard}>
+                <svg viewBox="0 0 64 64" fill="none" stroke="#21145F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.mobileSectorSvg}>
+                  <rect x="8" y="28" width="48" height="28" rx="2"/>
+                  <path d="M4 28 L12 12 L52 12 L60 28"/>
+                  <path d="M8 28 Q16 22 24 28 Q32 34 40 28 Q48 22 56 28"/>
+                  <rect x="24" y="38" width="16" height="18"/>
+                  <rect x="12" y="36" width="10" height="10" rx="1"/>
+                  <rect x="42" y="36" width="10" height="10" rx="1"/>
+                  <path d="M24 12 L24 8 Q32 4 40 8 L40 12"/>
+                </svg>
+                <span className={styles.mobileSectorIconLabel}>RETAIL<br/>SPACES</span>
+              </div>
+              {/* Hotels */}
+              <div className={styles.mobileSectorIconCard}>
+                <svg viewBox="0 0 64 64" fill="none" stroke="#21145F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.mobileSectorSvg}>
+                  <rect x="12" y="20" width="40" height="36" rx="2"/>
+                  <path d="M12 20 L32 8 L52 20"/>
+                  <rect x="20" y="30" width="8" height="8" rx="1"/>
+                  <rect x="36" y="30" width="8" height="8" rx="1"/>
+                  <rect x="20" y="44" width="8" height="12"/>
+                  <rect x="36" y="44" width="8" height="12"/>
+                  <circle cx="24" cy="6" r="2" fill="#21145F"/>
+                  <circle cx="32" cy="4" r="2" fill="#21145F"/>
+                  <circle cx="40" cy="6" r="2" fill="#21145F"/>
+                </svg>
+                <span className={styles.mobileSectorIconLabel}>HOTELS</span>
+              </div>
+              {/* Mixed-Use */}
+              <div className={styles.mobileSectorIconCard}>
+                <svg viewBox="0 0 64 64" fill="none" stroke="#21145F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.mobileSectorSvg}>
+                  <rect x="4" y="30" width="20" height="26" rx="1"/>
+                  <rect x="22" y="18" width="20" height="38" rx="1"/>
+                  <rect x="40" y="24" width="20" height="32" rx="1"/>
+                  <rect x="8" y="36" width="5" height="6" rx="1"/>
+                  <rect x="15" y="36" width="5" height="6" rx="1"/>
+                  <rect x="26" y="24" width="5" height="6" rx="1"/>
+                  <rect x="33" y="24" width="5" height="6" rx="1"/>
+                  <rect x="26" y="36" width="5" height="6" rx="1"/>
+                  <rect x="33" y="36" width="5" height="6" rx="1"/>
+                  <rect x="44" y="30" width="5" height="6" rx="1"/>
+                  <rect x="51" y="30" width="5" height="6" rx="1"/>
+                  <rect x="29" y="46" width="8" height="10"/>
+                </svg>
+                <span className={styles.mobileSectorIconLabel}>MIXED-USE<br/>DEVELOP.</span>
+              </div>
+              {/* Multifamily */}
+              <div className={styles.mobileSectorIconCard}>
+                <svg viewBox="0 0 64 64" fill="none" stroke="#21145F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.mobileSectorSvg}>
+                  <rect x="10" y="16" width="44" height="40" rx="2"/>
+                  <path d="M10 16 L32 6 L54 16"/>
+                  <rect x="18" y="24" width="8" height="7" rx="1"/>
+                  <rect x="30" y="24" width="8" height="7" rx="1"/>
+                  <rect x="42" y="24" width="8" height="7" rx="1"/>
+                  <rect x="18" y="37" width="8" height="7" rx="1"/>
+                  <rect x="30" y="37" width="8" height="7" rx="1"/>
+                  <rect x="42" y="37" width="8" height="7" rx="1"/>
+                  <rect x="27" y="48" width="10" height="8"/>
+                  <line x1="32" y1="6" x2="32" y2="4"/>
+                </svg>
+                <span className={styles.mobileSectorIconLabel}>MULTI-<br/>FAMILY</span>
+              </div>
+              {/* Commercial Offices */}
+              <div className={styles.mobileSectorIconCard}>
+                <svg viewBox="0 0 64 64" fill="none" stroke="#21145F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.mobileSectorSvg}>
+                  <rect x="14" y="10" width="36" height="46" rx="2"/>
+                  <line x1="14" y1="18" x2="50" y2="18"/>
+                  <line x1="14" y1="26" x2="50" y2="26"/>
+                  <line x1="14" y1="34" x2="50" y2="34"/>
+                  <line x1="14" y1="42" x2="50" y2="42"/>
+                  <rect x="20" y="12" width="6" height="4" rx="1"/>
+                  <rect x="30" y="12" width="6" height="4" rx="1"/>
+                  <rect x="40" y="12" width="4" height="4" rx="1"/>
+                  <rect x="20" y="20" width="6" height="4" rx="1"/>
+                  <rect x="30" y="20" width="6" height="4" rx="1"/>
+                  <rect x="40" y="20" width="4" height="4" rx="1"/>
+                  <rect x="20" y="28" width="6" height="4" rx="1"/>
+                  <rect x="30" y="28" width="6" height="4" rx="1"/>
+                  <rect x="20" y="36" width="6" height="4" rx="1"/>
+                  <rect x="30" y="36" width="6" height="4" rx="1"/>
+                  <rect x="26" y="48" width="12" height="8"/>
+                </svg>
+                <span className={styles.mobileSectorIconLabel}>COMMERCIAL<br/>OFFICES</span>
+              </div>
+              {/* Industrial Projects */}
+              <div className={styles.mobileSectorIconCard}>
+                <svg viewBox="0 0 64 64" fill="none" stroke="#21145F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.mobileSectorSvg}>
+                  <rect x="4" y="34" width="56" height="22" rx="1"/>
+                  <rect x="8" y="26" width="16" height="30"/>
+                  <rect x="38" y="20" width="10" height="36"/>
+                  <rect x="50" y="28" width="8" height="28"/>
+                  <line x1="12" y1="26" x2="12" y2="16"/>
+                  <line x1="18" y1="26" x2="18" y2="20"/>
+                  <path d="M8 16 Q12 12 16 16 Q20 12 24 16"/>
+                  <rect x="12" y="38" width="8" height="8" rx="1"/>
+                  <rect x="28" y="38" width="6" height="6" rx="1"/>
+                  <rect x="42" y="30" width="3" height="4" rx="1"/>
+                  <rect x="47" y="30" width="3" height="4" rx="1"/>
+                </svg>
+                <span className={styles.mobileSectorIconLabel}>INDUSTRIAL<br/>PROJECTS</span>
+              </div>
+            </div>
+          </div>
+
           {/* Action Buttons matching reference image */}
           <motion.div
             className={styles.heroActions}
-            initial={{ opacity: 0, y: 20 }}
+            initial={disableSlide ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.25, duration: 0.8 }}
           >
@@ -1020,7 +1123,7 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          {/* Crisp Architectural Sectors Ticker Ribbon (Moves left with heroContent on scroll) */}
+          {/* Crisp Architectural Sectors Ticker Ribbon (Desktop / Laptop View only) */}
           <motion.div
             className={styles.sectorsTickerBar}
             initial={{ opacity: 0, y: 15 }}
