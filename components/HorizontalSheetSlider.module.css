@@ -1,4 +1,4 @@
-/* ── Executive Deliverables Slider Styling (5 Images Visible Simultaneously) ── */
+/* ── Executive Deliverables Slider Styling ── */
 .container {
   width: 100%;
   display: flex;
@@ -127,8 +127,8 @@
   }
 }
 
-/* Card Sizing: 230px x 155px ensuring at least 5 images fit across screen simultaneously */
-.sheetCard {
+/* Standard Landscape Blueprint Card (Structural Drawings) */
+.sheetCardLandscape {
   position: relative;
   width: 230px;
   height: 155px;
@@ -141,16 +141,46 @@
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-.sheetCard:hover {
-  transform: translateY(-50px) scale(1.03);
+.sheetCardLandscape:hover {
+  transform: translateY(-5px) scale(1.03);
   border-color: #FF6B2C;
   box-shadow: 0 14px 35px rgba(255, 107, 44, 0.3);
 }
 
-.sheetImg {
+.sheetImgLandscape {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* Portrait Vertical Calculation Sheet Card (Design Calculation Report) */
+.sheetCardPortrait {
+  position: relative;
+  width: 180px;
+  height: 245px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.sheetCardPortrait:hover {
+  transform: translateY(-5px) scale(1.03);
+  border-color: #FF6B2C;
+  box-shadow: 0 14px 35px rgba(255, 107, 44, 0.3);
+}
+
+.sheetImgPortrait {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+  background: #FFFFFF;
   display: block;
   pointer-events: none;
 }
@@ -186,9 +216,13 @@
 
 /* Mobile Breakpoints (< 768px & < 480px) */
 @media (max-width: 1024px) {
-  .sheetCard {
+  .sheetCardLandscape {
     width: 210px;
     height: 142px;
+  }
+  .sheetCardPortrait {
+    width: 160px;
+    height: 215px;
   }
   .sectionCardPanel {
     padding: 24px;
@@ -214,9 +248,13 @@
   .sectionSubtitle {
     font-size: 13px;
   }
-  .sheetCard {
+  .sheetCardLandscape {
     width: 180px;
     height: 122px;
+  }
+  .sheetCardPortrait {
+    width: 140px;
+    height: 190px;
   }
   .marqueeWrapper {
     padding: 16px 0;
@@ -246,9 +284,14 @@
     font-size: 9.5px;
     padding: 3px 10px;
   }
-  .sheetCard {
+  .sheetCardLandscape {
     width: 150px;
     height: 102px;
+    border-radius: 6px;
+  }
+  .sheetCardPortrait {
+    width: 120px;
+    height: 162px;
     border-radius: 6px;
   }
   .marqueeWrapper::before,

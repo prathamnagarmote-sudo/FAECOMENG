@@ -23,9 +23,17 @@ interface HorizontalSheetSliderProps {
   subtitle: string;
   images: { src: string; alt?: string }[];
   animationClass: string;
+  isPortrait?: boolean;
 }
 
-export function HorizontalSheetSlider({ badge, title, subtitle, images, animationClass }: HorizontalSheetSliderProps) {
+export function HorizontalSheetSlider({
+  badge,
+  title,
+  subtitle,
+  images,
+  animationClass,
+  isPortrait = false,
+}: HorizontalSheetSliderProps) {
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -53,11 +61,14 @@ export function HorizontalSheetSlider({ badge, title, subtitle, images, animatio
       >
         <div className={`${styles.track} ${animationClass}`}>
           {displayList.map((img, idx) => (
-            <div key={idx} className={styles.sheetCard}>
+            <div
+              key={idx}
+              className={isPortrait ? styles.sheetCardPortrait : styles.sheetCardLandscape}
+            >
               <img
                 src={img.src}
                 alt={img.alt || `Sheet ${(idx % images.length) + 1}`}
-                className={styles.sheetImg}
+                className={isPortrait ? styles.sheetImgPortrait : styles.sheetImgLandscape}
                 loading="lazy"
                 draggable={false}
               />
@@ -72,13 +83,14 @@ export function HorizontalSheetSlider({ badge, title, subtitle, images, animatio
 export function TwoDeliverablesSections() {
   return (
     <div className={styles.container}>
-      {/* Section 1: DESIGN CALCULATION REPORT */}
+      {/* Section 1: DESIGN CALCULATION REPORT (Portrait Format) */}
       <HorizontalSheetSlider
         badge="186 SEALED CALCULATION SHEETS"
         title="DESIGN CALCULATION REPORT"
         subtitle="FAECOM provides comprehensive Design Calculation Reports to ensure structural stability, code compliance, and engineering efficiency."
         images={DESIGN_REPORT_IMAGES}
         animationClass={styles.animateDesign}
+        isPortrait={true}
       />
 
       {/* Intelligent Architectural Section Divider */}
@@ -87,13 +99,14 @@ export function TwoDeliverablesSections() {
         <span className={styles.dividerBadge}>TECHNICAL DRAWINGS & CALCULATIONS</span>
       </div>
 
-      {/* Section 2: STRUCTURAL DRAWINGS PACKAGE */}
+      {/* Section 2: STRUCTURAL DRAWINGS PACKAGE (Landscape Format) */}
       <HorizontalSheetSlider
         badge="32 ERECTION & FABRICATION DRAWINGS"
         title="STRUCTURAL DRAWINGS PACKAGE"
         subtitle="FAECOM provides detailed Structural Drawings Packages that include essential documentation for shop fabrication and jobsite construction."
         images={STRUCTURAL_DRAWINGS_IMAGES}
         animationClass={styles.animateStructural}
+        isPortrait={false}
       />
     </div>
   );
