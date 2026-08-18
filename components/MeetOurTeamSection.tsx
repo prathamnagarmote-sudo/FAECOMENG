@@ -71,24 +71,15 @@ An expert in FrameCAD, Scottsdale, Vertex, MWF, Tekla, and STAAD Pro, Sam also m
 export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeamSectionProps) {
   const [activeLeader, setActiveLeader] = useState<typeof LEADERS[0] | null>(null);
 
-  // Prevent background page scrolling when bio modal is open
+  // Prevent background page scrolling when bio modal is open (without resetting scroll position)
   useEffect(() => {
     if (activeLeader) {
       document.body.style.overflow = 'hidden';
-      document.body.style.height = '100vh';
-      document.documentElement.style.overflow = 'hidden';
-      document.documentElement.style.height = '100vh';
     } else {
       document.body.style.overflow = '';
-      document.body.style.height = '';
-      document.documentElement.style.overflow = '';
-      document.documentElement.style.height = '';
     }
     return () => {
       document.body.style.overflow = '';
-      document.body.style.height = '';
-      document.documentElement.style.overflow = '';
-      document.documentElement.style.height = '';
     };
   }, [activeLeader]);
 
