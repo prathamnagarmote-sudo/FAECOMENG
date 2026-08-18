@@ -1,0 +1,40 @@
+:root { --orange: #FF6B2C; --dark: #0A0A0A; --card: #141414; --border: rgba(255,107,44,0.18); --text: #e0e0e0; --muted: #888; }
+
+.page { background: var(--dark); color: var(--text); min-height: 100vh; font-family: 'Inter', sans-serif; }
+
+.hero { position: relative; height: 320px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0d0d0d 0%, #1a1008 50%, #0a0a0a 100%); border-bottom: 1px solid var(--border); overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: url('/images/hero.png') center/cover no-repeat; opacity: 0.07; }
+.heroOverlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.5), rgba(10,10,10,0.85)); }
+.heroContent { position: relative; z-index: 2; text-align: center; padding: 0 24px; }
+.eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; color: var(--orange); text-transform: uppercase; margin-bottom: 16px; padding: 5px 14px; border: 1px solid rgba(255,107,44,0.35); border-radius: 2px; }
+.heroTitle { font-size: clamp(32px, 6vw, 64px); font-weight: 800; color: #fff; margin: 0 0 12px; letter-spacing: -0.02em; }
+.heroSub { font-size: 14px; color: var(--muted); letter-spacing: 0.04em; }
+
+.content { padding: 80px 0 120px; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+.intro { margin-bottom: 56px; }
+.intro p { font-size: 16px; line-height: 1.8; color: #bbb; margin-bottom: 16px; border-left: 3px solid var(--orange); padding-left: 20px; }
+
+.section { margin-bottom: 56px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.section:last-of-type { border-bottom: none; }
+.sectionTitle { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 14px; letter-spacing: -0.01em; }
+.numTag { display: inline-flex; align-items: center; justify-content: center; background: var(--orange); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 2px; flex-shrink: 0; }
+.subsectionTitle { font-size: 15px; font-weight: 600; color: #ccc; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+.section p { font-size: 15px; line-height: 1.8; color: #aaa; margin-bottom: 14px; }
+.list { list-style: none; padding: 0; margin: 0 0 16px; }
+.list li { font-size: 15px; line-height: 1.8; color: #aaa; padding: 8px 0 8px 24px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.list li:last-child { border-bottom: none; }
+.list li::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 8px; height: 2px; background: var(--orange); }
+.note { background: rgba(255,107,44,0.06); border: 1px solid rgba(255,107,44,0.2); border-radius: 6px; padding: 16px 20px; font-size: 14px; color: #bbb !important; margin-top: 16px !important; }
+.link { color: var(--orange); text-decoration: none; border-bottom: 1px solid rgba(255,107,44,0.3); transition: border-color 0.2s; }
+.link:hover { border-color: var(--orange); }
+
+.contactBox { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 40px; margin-top: 64px; }
+.contactBox h2 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+.contactDetails p { font-size: 15px; color: #aaa; margin-bottom: 8px; line-height: 1.7; }
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .hero { height: 260px; }
+  .contactBox { padding: 28px 20px; }
+}

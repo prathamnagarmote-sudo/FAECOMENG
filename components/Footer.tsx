@@ -143,11 +143,11 @@ export default function Footer() {
         <div className={styles.bottomInner}>
           <p>© {new Date().getFullYear()} FAECOM INC. All rights reserved.</p>
           <div className={styles.bottomLinks}>
-            <Link href="/contact">Privacy Policy</Link>
+            <Link href="/privacy-policy">Privacy Policy</Link>
             <span className={styles.dot}>•</span>
-            <Link href="/contact">Terms of Service</Link>
+            <Link href="/terms-of-service">Terms of Service</Link>
             <span className={styles.dot}>•</span>
-            <Link href="/contact">Code Compliance</Link>
+            <Link href="/code-compliance">Code Compliance</Link>
           </div>
         </div>
       </div>

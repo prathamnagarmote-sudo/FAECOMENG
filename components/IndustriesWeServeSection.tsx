@@ -1,9 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 import styles from './IndustriesWeServeSection.module.css';
 
 const INDUSTRIES = [
@@ -12,7 +10,6 @@ const INDUSTRIES = [
     title: 'Residential',
     sub: 'Homes • Villas • Apartments',
     img: '/images/industry_editorial_residential.png',
-    href: '/services/icf',
     isFeature: true,
   },
   {
@@ -20,7 +17,6 @@ const INDUSTRIES = [
     title: 'Commercial',
     sub: 'Offices • Retail • Commercial Buildings',
     img: '/images/industry_editorial_commercial.png',
-    href: '/services/structural-steel',
     isFeature: false,
   },
   {
@@ -28,7 +24,6 @@ const INDUSTRIES = [
     title: 'Mixed-Use',
     sub: 'Integrated Developments • Complex Buildings',
     img: '/images/industry_editorial_mixeduse.png',
-    href: '/services/bim',
     isFeature: false,
   },
   {
@@ -36,7 +31,6 @@ const INDUSTRIES = [
     title: 'Hospitality',
     sub: 'Hotels • Resorts • Hospitality Spaces',
     img: '/images/industry_editorial_hospitality.png',
-    href: '/services/mep',
     isFeature: false,
   },
   {
@@ -44,7 +38,6 @@ const INDUSTRIES = [
     title: 'Industrial',
     sub: 'Factories • Warehouses • Industrial Facilities',
     img: '/images/industry_editorial_industrial.png',
-    href: '/services/lgs',
     isFeature: true,
   },
   {
@@ -52,7 +45,6 @@ const INDUSTRIES = [
     title: 'Institutional',
     sub: 'Education • Healthcare • Public Buildings',
     img: '/images/industry_editorial_institutional.png',
-    href: '/services/third-party-review',
     isFeature: false,
   },
 ];
@@ -105,9 +97,8 @@ export default function IndustriesWeServeSection() {
           {/* Row 1: Residential (Feature 1.4x), Commercial (1x), Mixed-Use (1x) */}
           <div className={styles.gridRow1}>
             {row1.map((item) => (
-              <Link
+              <div
                 key={item.num}
-                href={item.href}
                 className={`${styles.tileCard} ${item.isFeature ? styles.tileFeature : styles.tileStandard}`}
               >
                 <div className={styles.tileImageWrapper}>
@@ -134,22 +125,17 @@ export default function IndustriesWeServeSection() {
                   <div className={styles.tileBottomMeta}>
                     <h3 className={styles.tileTitle}>{item.title}</h3>
                     <p className={styles.tileSub}>{item.sub}</p>
-
-                    <div className={styles.tileHoverArrow}>
-                      <ArrowRight size={18} strokeWidth={2.2} />
-                    </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
 
           {/* Row 2: Hospitality (1x), Industrial (Feature 1.4x), Institutional (1x) */}
           <div className={styles.gridRow2}>
             {row2.map((item) => (
-              <Link
+              <div
                 key={item.num}
-                href={item.href}
                 className={`${styles.tileCard} ${item.isFeature ? styles.tileFeature : styles.tileStandard}`}
               >
                 <div className={styles.tileImageWrapper}>
@@ -175,13 +161,9 @@ export default function IndustriesWeServeSection() {
                   <div className={styles.tileBottomMeta}>
                     <h3 className={styles.tileTitle}>{item.title}</h3>
                     <p className={styles.tileSub}>{item.sub}</p>
-
-                    <div className={styles.tileHoverArrow}>
-                      <ArrowRight size={18} strokeWidth={2.2} />
-                    </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
 
