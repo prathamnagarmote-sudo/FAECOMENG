@@ -1,221 +1,148 @@
 'use client';
-
-import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { X, Download, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import CtaSection from '@/components/CtaSection';
 import TwoDeliverablesSections from '@/components/HorizontalSheetSlider';
-import styles from '../lgs/lgs.module.css';
+import styles from '../service.module.css';
 
+const BADGES = ['Revit', 'AutoCAD', 'LOD 300/400', 'IFC', 'ISO 19650', 'AIA G202', 'NBIMS-US', 'COBie'];
 
-function InlinePdfViewer({ title, pdfUrl, totalPages = 186 }: { title: string; pdfUrl: string; totalPages?: number }) {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const prevPage = () => setCurrentPage((p) => Math.max(1, p - 1));
-  const nextPage = () => setCurrentPage((p) => Math.min(totalPages, p + 1));
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', background: '#FFFFFF', border: '1px solid #D8D8E2', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.06)' }}>
-      {/* Slider Header Bar */}
-      <div style={{ padding: '16px 20px', background: '#161347', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#FFFFFF', flexWrap: 'wrap', gap: '12px' }}>
-        <div>
-          <h3 style={{ fontSize: '15px', fontWeight: 800, margin: 0, color: '#FFFFFF', letterSpacing: '0.02em' }}>{title}</h3>
-          <span style={{ fontSize: '11px', color: '#FF6B2C', fontWeight: 700, letterSpacing: '0.06em' }}>PAGE {currentPage} OF {totalPages}</span>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <button
-            onClick={prevPage}
-            disabled={currentPage <= 1}
-            aria-label="Previous Page"
-            style={{ width: '36px', height: '36px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.1)', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: currentPage <= 1 ? 'not-allowed' : 'pointer', opacity: currentPage <= 1 ? 0.4 : 1 }}
-          >
-            <ChevronLeft size={20} />
-          </button>
-
-          <button
-            onClick={nextPage}
-            disabled={currentPage >= totalPages}
-            aria-label="Next Page"
-            style={{ width: '36px', height: '36px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: '#FF6B2C', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: currentPage >= totalPages ? 'not-allowed' : 'pointer', opacity: currentPage >= totalPages ? 0.4 : 1 }}
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
-      </div>
-
-      {/* Live Document Frame - Full Page Fit */}
-      <div style={{ width: '100%', height: '800px', background: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
-        <iframe
-          key={`${pdfUrl}-p${currentPage}`}
-          src={`${pdfUrl}#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=Fit`}
-          style={{ width: '100%', height: '100%', border: 'none', background: '#FFFFFF' }}
-          title={`${title} Page ${currentPage}`}
-        />
-      </div>
-    </div>
-  );
-}
-
+const SERVICES = [
+  {
+    title: 'Floor Plans',
+    desc: 'Accurate room layouts, door/window openings, dimensions, and spatial arrangements ready for permit submission.',
+  },
+  {
+    title: 'Elevations',
+    desc: 'Exterior facades, finishes, rooflines, and precise height details for design review and approvals.',
+  },
+  {
+    title: 'Sections & Details',
+    desc: 'Cross-sectional views with structural elements, material callouts, stairs, railings, and wall assembly details.',
+  },
+  {
+    title: '3D BIM Modeling',
+    desc: 'Detailed interior and exterior 3D architectural models with full LOD 300/400 compliance.',
+  },
+  {
+    title: 'Renderings & Visualizations',
+    desc: 'Photorealistic renderings for client presentations, stakeholder approvals, and marketing packages.',
+  },
+  {
+    title: 'Permit & Construction Sets',
+    desc: 'Full architectural, structural, and MEP drawing sets prepared to local building code and permit standards.',
+  },
+  {
+    title: 'Zoning & Land-Use Analysis',
+    desc: 'Regulatory compliance checks, setback analysis, and zoning verification during the planning phase.',
+  },
+  {
+    title: 'Sustainability Integration',
+    desc: 'Green design principles, LEED documentation support, and energy-efficient building strategies.',
+  },
+];
 
 export default function ArchitecturalBIMPage() {
-  const [activePdf, setActivePdf] = useState<{ title: string; url: string } | null>(null);
   return (
-    <>
-      <motion.div
-        initial={{ y: 60, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-        className={styles.lgsHeroWrapper}
-      >
+    <div className={styles.page}>
+      <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}>
         <PageHero
           label="Engineering Services"
-          title={<span style={{ fontWeight: 'bold' }}>Architectural</span>}
-          titleEm={<span style={{ fontWeight: 'bold' }}>BIM Services</span>}
-          subtitle={
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <h2 style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: '900', color: '#FF6B2C', margin: '8px 0 0 0', lineHeight: 1.2 }}>
-                About Our Architectural BIM Services Expertise
-              </h2>
-              <span style={{ color: '#FF6B2C', fontWeight: 'bold' }}>
-                Intelligent 3D BIM models that improve planning, reduce design conflicts, and enhance project coordination.
-              </span>
-              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
-                Comprehensive BIM-Integrated Architectural Models<br />
-                That streamline workflows, enhance design precision, and improve construction coordination.
-              </p>
-              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
-                We offer complete architectural BIM solutions tailored to meet design, documentation, and compliance needs across residential, commercial, and industrial projects.
-              </p>
-            </div>
-          }
+          title={<span>Architectural</span>}
+          titleEm={<span>BIM Services</span>}
+          subtitle={<span>Intelligent 3D BIM models that improve planning, eliminate design conflicts, and enhance multi-discipline project coordination from concept to construction.</span>}
           imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443962/architectural_bim_services.jpg"
           imageScale="1.15, 1"
         />
       </motion.div>
 
-      <div className="divider" />
-
-      <div className={styles.lgsContainer}>
-        {/* ── SECTION 1: Architectural BIM Overview & Services ── */}
-        <section className={styles.lgsOverviewSection}>
-          <div className={styles.lgsOverviewGrid}>
-            {/* Left Column: 2 Building Renders */}
-            <div className={styles.lgsImagesStack}>
-              <div className={styles.lgsImageCard} style={{ height: '240px' }}>
-                <Image
-                  src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786532615/CAMPBELL_RESIDENCE_WALTON_USA_ABIM.png"
-                  alt="Campbell Residence Walton USA Architectural BIM Render"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-              <div className={styles.lgsImageCard} style={{ height: '240px', border: '2px solid #21145F' }}>
-                <Image
-                  src="https://res.cloudinary.com/yqs3dtap/image/upload/v1787032485/1loadbearing.png"
-                  alt="Multistory Apartment Complex Architectural BIM Model"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
+      {/* Stats Strip */}
+      <div className={styles.statsStrip}>
+        <div className={styles.statsRow}>
+          {[
+            { num: 'LOD 400', label: 'Max Model Detail Level' },
+            { num: '500+', label: 'BIM Projects Completed' },
+            { num: '10+', label: 'Countries Served' },
+            { num: '24–48 hr', label: 'Typical Turnaround' },
+          ].map((s) => (
+            <div key={s.label} className={styles.statItem}>
+              <span className={styles.statNum}>{s.num}</span>
+              <span className={styles.statLabel}>{s.label}</span>
             </div>
-
-            {/* Right Column: Architectural Services Breakdown */}
-            <div className={styles.lgsContentCol}>
-              {/* ARCHITECTURAL DRAWINGS */}
-              <div className={styles.lgsSystemBlock}>
-                <h2 className={styles.lgsSystemTitle}>ARCHITECTURAL DRAWINGS:</h2>
-                <ul className={styles.lgsSystemList}>
-                  {[
-                    { label: 'Floor Plans', desc: 'Accurate room layouts, openings (doors/windows), dimensions, and spatial arrangements.' },
-                    { label: 'Elevations', desc: 'Exterior facades, finishes, rooflines, and height details.' },
-                    { label: 'Sections', desc: 'Cross-sectional views illustrating structural elements, materials, and internal components.' },
-                    { label: 'Details', desc: 'High-precision detailing for stairs, railings, wall assemblies, and other architectural features.' },
-                  ].map((item, i) => (
-                    <li key={i} className={styles.lgsSystemListItem}>
-                      <span className={styles.lgsDot} />
-                      <span>
-                        <span style={{ fontWeight: 800, color: '#161347' }}>{item.label}</span> – {item.desc}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* ARCHITECTURAL MODELING */}
-              <div className={styles.lgsSystemBlock}>
-                <h2 className={styles.lgsSystemTitle}>ARCHITECTURAL MODELING:</h2>
-                <ul className={styles.lgsSystemList}>
-                  {[
-                    { label: '3D BIM Modeling', desc: 'Creation of detailed 3D architectural models including interiors and exteriors.' },
-                    { label: 'Renderings & Visualizations', desc: 'Photorealistic renderings for client presentations, approvals, and marketing.' },
-                  ].map((item, i) => (
-                    <li key={i} className={styles.lgsSystemListItem}>
-                      <span className={styles.lgsDot} />
-                      <span>
-                        <span style={{ fontWeight: 800, color: '#161347' }}>{item.label}</span> – {item.desc}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* PERMIT & CONSTRUCTION SET */}
-              <div className={styles.lgsSystemBlock}>
-                <h2 className={styles.lgsSystemTitle}>PERMIT & CONSTRUCTION SET:</h2>
-                <ul className={styles.lgsSystemList}>
-                  {[
-                    { label: 'Construction Documentation', desc: 'Full architectural, structural, and MEP drawings required for construction.' },
-                    { label: 'Code Compliance', desc: 'Documentation prepared in accordance with relevant building codes and local regulations.' },
-                    { label: 'Permit Assistance', desc: 'Support with drawing sets and coordination needed for permit submissions.' },
-                  ].map((item, i) => (
-                    <li key={i} className={styles.lgsSystemListItem}>
-                      <span className={styles.lgsDot} />
-                      <span>
-                        <span style={{ fontWeight: 800, color: '#161347' }}>{item.label}</span> – {item.desc}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* ADDITIONAL SERVICES */}
-              <div className={styles.lgsSystemBlock}>
-                <h2 className={styles.lgsSystemTitle}>ADDITIONAL SERVICES:</h2>
-                <ul className={styles.lgsSystemList}>
-                  {[
-                    { label: 'Zoning & Land-Use Analysis', desc: 'Regulatory compliance checks during the planning phase.' },
-                    { label: 'Site Planning', desc: 'Site layout, grading, drainage, and landscape coordination.' },
-                    { label: 'Sustainability & Energy Efficiency', desc: 'Integration of green design principles and energy-efficient strategies.' },
-                  ].map((item, i) => (
-                    <li key={i} className={styles.lgsSystemListItem}>
-                      <span className={styles.lgsDot} />
-                      <span>
-                        <span style={{ fontWeight: 800, color: '#161347' }}>{item.label}</span> – {item.desc}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── SECTION 2: Deliverables ── */}
-        
-        {/* ── SECTION 3: Deliverables (Inline PDF Page Sliders) ── */}
-                {/* ── SECTION 3: Deliverables Horizontal Marquee Sliders ── */}
-        <section className={styles.deliverablesSection}>
-          <TwoDeliverablesSections />
-        </section>
-
+          ))}
+        </div>
       </div>
 
-      
+      {/* Section 1 — Overview */}
+      <section className={styles.section}>
+        <div className={styles.eyebrow}><span className={styles.eyebrowLine}/>Architectural BIM</div>
+        <h2 className={styles.sectionTitle}>BIM-Integrated Architectural Models That <em>Streamline Every Phase</em></h2>
+        <p className={styles.sectionDesc}>FAECOM offers complete architectural BIM solutions tailored to design, documentation, and compliance needs across residential, commercial, and industrial projects globally.</p>
+        <div className={styles.badgesWrap}>
+          {BADGES.map((b) => <span key={b} className={styles.badge}><span className={styles.badgeDot}/>{b}</span>)}
+        </div>
+        <div className={styles.twoCol}>
+          <div className={styles.imgStack}>
+            <div className={styles.imgCard}>
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786532615/CAMPBELL_RESIDENCE_WALTON_USA_ABIM.png" alt="Campbell Residence Walton USA — Architectural BIM" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div className={styles.imgCard}>
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1787032485/1loadbearing.png" alt="Multistory Apartment BIM Model" fill style={{ objectFit: 'cover' }} />
+            </div>
+          </div>
+          <div className={styles.contentCol}>
+            <div className={styles.block}>
+              <div className={styles.blockTitle}>Architectural Drawings</div>
+              <ul className={styles.blockList}>
+                {[
+                  { t: 'Floor Plans', d: 'Accurate room layouts, openings, dimensions, and spatial arrangements.' },
+                  { t: 'Elevations', d: 'Exterior facades, finishes, rooflines, and height details.' },
+                  { t: 'Sections', d: 'Cross-sectional views with structural elements, materials, and internal components.' },
+                  { t: 'Details', d: 'High-precision stairs, railings, wall assemblies, and architectural features.' },
+                ].map((item) => (
+                  <li key={item.t} className={styles.blockItem}><span className={styles.dot}/><span><strong>{item.t}</strong> — {item.d}</span></li>
+                ))}
+              </ul>
+            </div>
+            <div className={styles.block}>
+              <div className={styles.blockTitle}>Permit & Construction Set</div>
+              <ul className={styles.blockList}>
+                {[
+                  { t: 'Construction Documentation', d: 'Full architectural, structural, and MEP drawings for construction.' },
+                  { t: 'Code Compliance', d: 'Drawings prepared per building codes and local regulations.' },
+                  { t: 'Permit Assistance', d: 'Support with drawing sets and coordination for permit submissions.' },
+                ].map((item) => (
+                  <li key={item.t} className={styles.blockItem}><span className={styles.dot}/><span><strong>{item.t}</strong> — {item.d}</span></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 2 — Services Grid */}
+      <div className={styles.sectionAlt}>
+        <div className={styles.sectionAltInner}>
+          <div className={styles.eyebrow}><span className={styles.eyebrowLine}/>Full Service Suite</div>
+          <h2 className={styles.sectionTitle}>Everything You Need from <em>Design to Permit</em></h2>
+          <div className={styles.cardsGrid}>
+            {SERVICES.map((s) => (
+              <div key={s.title} className={styles.serviceCard}>
+                <div className={styles.cardTitle}>{s.title}</div>
+                <div className={styles.cardDesc}>{s.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Deliverables */}
+      <div className={styles.deliverables}>
+        <TwoDeliverablesSections />
+      </div>
+
       <CtaSection />
-    </>
+    </div>
   );
 }

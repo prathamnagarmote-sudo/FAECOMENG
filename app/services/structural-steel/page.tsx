@@ -1,210 +1,126 @@
 'use client';
-
-import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { X, Download, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import CtaSection from '@/components/CtaSection';
 import TwoDeliverablesSections from '@/components/HorizontalSheetSlider';
-import styles from './steel.module.css';
+import styles from '../service.module.css';
 
+const BADGES = ['AISC 360-21', 'AISC 341-16', 'ACI 318-19', 'ASTM A992', 'NBCC 2020', 'CSA S16', 'AWS D1.1', 'ETABS', 'SAP2000'];
 
-function InlinePdfViewer({ title, pdfUrl, totalPages = 186 }: { title: string; pdfUrl: string; totalPages?: number }) {
-  const [currentPage, setCurrentPage] = useState(1);
+const SERVICES = [
+  { title: 'Structural Steel Analysis & Design', desc: 'Ensuring stability, efficiency, and load-bearing capacity in all steel structures.' },
+  { title: 'Steel Modeling, Detailing & Shop Drawings', desc: 'Precision-driven 3D models and fabrication-ready drawings for seamless execution.' },
+  { title: 'Structural Engineering Reports', desc: 'Detailed documentation covering calculations, compliance, and approval requirements.' },
+  { title: 'Code-Compliant Engineering', desc: 'Designs strictly adhering to AISC, ASTM, ACI, and global structural codes.' },
+  { title: 'Value-Engineered Designs', desc: 'Optimized solutions to reduce material use while maximizing structural strength.' },
+  { title: 'BIM Integration for Steel', desc: 'Advanced 3D modeling and coordination to reduce errors and streamline workflows.' },
+  { title: 'PE Seal & Stamping', desc: 'Ensuring regulatory compliance with nationwide approvals across all US states.' },
+  { title: 'Custom Structural Solutions', desc: 'Unique and tailored designs for high-rise buildings, bridges, and modular structures.' },
+];
 
-  const prevPage = () => setCurrentPage((p) => Math.max(1, p - 1));
-  const nextPage = () => setCurrentPage((p) => Math.min(totalPages, p + 1));
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', background: '#FFFFFF', border: '1px solid #D8D8E2', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.06)' }}>
-      {/* Slider Header Bar */}
-      <div style={{ padding: '16px 20px', background: '#161347', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#FFFFFF', flexWrap: 'wrap', gap: '12px' }}>
-        <div>
-          <h3 style={{ fontSize: '15px', fontWeight: 800, margin: 0, color: '#FFFFFF', letterSpacing: '0.02em' }}>{title}</h3>
-          <span style={{ fontSize: '11px', color: '#FF6B2C', fontWeight: 700, letterSpacing: '0.06em' }}>PAGE {currentPage} OF {totalPages}</span>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <button
-            onClick={prevPage}
-            disabled={currentPage <= 1}
-            aria-label="Previous Page"
-            style={{ width: '36px', height: '36px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.1)', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: currentPage <= 1 ? 'not-allowed' : 'pointer', opacity: currentPage <= 1 ? 0.4 : 1 }}
-          >
-            <ChevronLeft size={20} />
-          </button>
-
-          <button
-            onClick={nextPage}
-            disabled={currentPage >= totalPages}
-            aria-label="Next Page"
-            style={{ width: '36px', height: '36px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.2)', background: '#FF6B2C', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: currentPage >= totalPages ? 'not-allowed' : 'pointer', opacity: currentPage >= totalPages ? 0.4 : 1 }}
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
-      </div>
-
-      {/* Live Document Frame - Full Page Fit */}
-      <div style={{ width: '100%', height: '800px', background: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
-        <iframe
-          key={`${pdfUrl}-p${currentPage}`}
-          src={`${pdfUrl}#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&view=Fit`}
-          style={{ width: '100%', height: '100%', border: 'none', background: '#FFFFFF' }}
-          title={`${title} Page ${currentPage}`}
-        />
-      </div>
-    </div>
-  );
-}
-
+const CODES = [
+  { t: 'AISC 360-21', d: 'Steel Building Standards' },
+  { t: 'AISC 341-16', d: 'Seismic Steel Design' },
+  { t: 'AISC 358-16', d: 'Prequalified Connections' },
+  { t: 'ACI 318-19', d: 'Concrete Design Standards' },
+  { t: 'ASTM A992/A572', d: 'Structural Steel Grades' },
+  { t: 'ASTM A36/A500', d: 'Carbon Steel Standards' },
+  { t: 'AISI S100-16', d: 'Cold-Formed Steel' },
+  { t: 'NBCC 2020', d: 'Canada Building Code' },
+  { t: 'CSA S136-16', d: 'Cold-Formed Steel Canada' },
+  { t: 'CSA S16-14', d: 'Steel Structure Design' },
+  { t: 'ANSI/AWS D1.1', d: 'Steel & Aluminum Welding' },
+  { t: 'RCSC 2020', d: 'High-Strength Bolt Joints' },
+  { t: 'SDI Manual', d: 'Steel Deck Standards' },
+  { t: 'OSHA 29 CFR 1926', d: 'Steel Erection Safety' },
+];
 
 export default function StructuralSteelPage() {
-  const [activePdf, setActivePdf] = useState<{ title: string; url: string } | null>(null);
   return (
-    <>
-      <motion.div
-        initial={{ y: 60, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-        className={styles.steelHeroWrapper}
-      >
+    <div className={styles.page}>
+      <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}>
         <PageHero
           label="Engineering Services"
-          title={<span style={{ fontWeight: 'bold' }}>Structural</span>}
-          titleEm={<span style={{ fontWeight: 'bold' }}>Steel Solutions</span>}
-          subtitle={
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <h2 style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: '900', color: '#FF6B2C', margin: '8px 0 0 0', lineHeight: 1.2 }}>
-                About Our Structural Steel Solutions Expertise
-              </h2>
-              <span style={{ color: '#FF6B2C', fontWeight: 'bold' }}>
-                Heavy structural steel detailing, connection engineering, and fabrication documentation.
-              </span>
-              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
-                FAECOM specializes in High-Quality Structural Steel Solutions, delivering Code-Compliant, Cost-Effective, and Optimized Designs across various industries.
-              </p>
-              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
-                Our expertise includes Structural Analysis, Detailed Modeling, Connection Design, and Fabrication-Ready Deliverables, all tailored for maximum Efficiency and Precision.
-              </p>
-              <p style={{ color: '#000000', fontSize: '16.5px', lineHeight: 1.6, margin: 0, fontWeight: 'bold', fontFamily: 'var(--font-body)' }}>
-                With years of hands-on industry experience, FAECOM offers Engineering-Backed Solutions that ensure Safety, Durability, and alignment with Global Standards. From High-Rise Buildings and Industrial Facilities to Bridges, Modular Structures, and more — we bring Innovative Structural Steel Engineering to every project.
-              </p>
-            </div>
-          }
+          title={<span>Structural</span>}
+          titleEm={<span>Steel Solutions</span>}
+          subtitle={<span>Heavy structural steel detailing, connection engineering, and fabrication-ready documentation — delivered with engineering precision from analysis to PE-stamped shop drawings.</span>}
           imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443972/structural_steel_solutions.png"
           imageScale="1.3, 0.9"
         />
       </motion.div>
 
-      <div className="divider" />
-
-      <div className={styles.steelContainer}>
-        {/* ── SECTION 1: Services & Codes Followed ── */}
-        <section className={styles.steelOverviewSection}>
-          <div className={styles.steelOverviewGrid}>
-            {/* Left Column: Stack of 3 Framed Cards */}
-            <div className={styles.steelImagesStack}>
-              <div className={styles.steelImageCard}>
-                <Image
-                  src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786521241/CHARTER_SCHOOL_BRONX_NY.png"
-                  alt="Charter School Bronx NY Structural Steel Model"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-              <div className={styles.steelImageCard}>
-                <Image
-                  src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786449074/EMMONS_BAY_HOTEL_2902_EMMONS_AVENUE_BROOKLYN_NY.png"
-                  alt="Emmons Bay Hotel Brooklyn NY Structural Steel Render"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-              <div className={styles.steelImageCard}>
-                <Image
-                  src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786521241/Glenmark_USA.png"
-                  alt="Glenmark USA Structural Steel Project"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
+      {/* Stats */}
+      <div className={styles.statsStrip}>
+        <div className={styles.statsRow}>
+          {[
+            { num: '14+', label: 'Design Codes Followed' },
+            { num: '300+', label: 'Steel Projects Delivered' },
+            { num: 'All US', label: 'States PE Stamping' },
+            { num: 'High-Rise', label: 'to Industrial Capability' },
+          ].map((s) => (
+            <div key={s.label} className={styles.statItem}>
+              <span className={styles.statNum}>{s.num}</span>
+              <span className={styles.statLabel}>{s.label}</span>
             </div>
-
-            {/* Right Column: Services & Codes List */}
-            <div className={styles.steelContentCol}>
-              <h2 className={styles.servicesBlockTitle}>OUR STRUCTURAL STEEL SERVICES INCLUDE:</h2>
-              <ul className={styles.steelServicesList}>
-                {[
-                  { label: 'Structural Steel Analysis & Design', desc: 'Ensuring stability, efficiency, and load-bearing capacity in all structures.' },
-                  { label: 'Steel Modeling, Detailing & Shop Drawings', desc: 'Precision-driven 3D models and fabrication-ready drawings for seamless execution.' },
-                  { label: 'Structural Engineering Reports', desc: 'Detailed documentation covering calculations, compliance, and approval requirements.' },
-                  { label: 'Code-Compliant Engineering Solutions', desc: 'Designs strictly adhering to AISC, ASTM, ACI, and other global structural codes.' },
-                  { label: 'Optimized & Cost-Effective Designs', desc: 'Value-engineered solutions to reduce material use while maximizing strength.' },
-                  { label: 'Custom Structural Solutions', desc: 'Unique and tailored designs for specific project requirements.' },
-                  { label: 'BIM Integration for Steel Structures', desc: 'Advanced 3D modeling and coordination to reduce errors and streamline workflows.' },
-                  { label: 'PE Seal & Stamping for All US States', desc: 'Ensuring regulatory compliance with nationwide approvals.' },
-                ].map((item, i) => (
-                  <li key={i} className={styles.steelServiceItem}>
-                    <span className={styles.squareDot} />
-                    <span>
-                      <span className={styles.highlightLabel}>{item.label}</span> – {item.desc}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <h2 className={styles.codesTitle}>Codes & Standards Followed</h2>
-              <p className={styles.codesIntroText}>
-                FAECOM ensures all structural steel designs meet the highest industry standards, following globally recognized codes for safety, reliability, and compliance.
-              </p>
-              <p className={styles.codesIntroItalic}>
-                We ensure all our steel designs comply with industry regulations, including:
-              </p>
-
-              <ul className={styles.codesList}>
-                {[
-                  { label: 'AISC 360-21', desc: 'Steel Building Standards' },
-                  { label: 'AISC 341-16', desc: 'Seismic Steel Design' },
-                  { label: 'AISC 358-16', desc: 'Prequalified Steel Connections' },
-                  { label: 'ACI 318-19', desc: 'Concrete Design Standards' },
-                  { label: 'ASTM A992/A572', desc: 'Structural Steel Grades' },
-                  { label: 'ASTM A36/A500', desc: 'Carbon Steel Standards' },
-                  { label: 'AISI S100-16', desc: 'Cold-Formed Steel' },
-                  { label: 'NBCC 2020', desc: 'Canada Building Code' },
-                  { label: 'CSA S136-16', desc: 'Cold-Formed Steel (Canada)' },
-                  { label: 'CSA S16-14', desc: 'Steel Structure Design' },
-                  { label: 'ANSI/AWS D1.1/D1.2', desc: 'Steel & Aluminum Welding' },
-                  { label: 'RCSC 2020', desc: 'High-Strength Bolt Joints' },
-                  { label: 'OSHA 29 CFR 1926', desc: 'Steel Erection Safety' },
-                  { label: 'SDI Manual', desc: 'Steel Deck Standards' },
-                ].map((code, i) => (
-                  <li key={i} className={styles.codeItem}>
-                    <span className={styles.squareDot} />
-                    <span>
-                      <span className={styles.highlightLabel}>{code.label}</span> – {code.desc}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* ── SECTION 2: Deliverables ── */}
-        
-        {/* ── SECTION 3: Deliverables (Inline PDF Page Sliders) ── */}
-                {/* ── SECTION 3: Deliverables Horizontal Marquee Sliders ── */}
-        <section className={styles.deliverablesSection}>
-          <TwoDeliverablesSections />
-        </section>
-
+          ))}
+        </div>
       </div>
 
-      
+      {/* Section 1 */}
+      <section className={styles.section}>
+        <div className={styles.eyebrow}><span className={styles.eyebrowLine}/>Structural Steel</div>
+        <h2 className={styles.sectionTitle}>High-Quality Steel Engineering for <em>Every Structure Type</em></h2>
+        <p className={styles.sectionDesc}>FAECOM specializes in code-compliant, cost-effective, and optimized structural steel solutions across high-rise buildings, industrial facilities, bridges, and modular structures.</p>
+        <div className={styles.badgesWrap}>
+          {BADGES.map((b) => <span key={b} className={styles.badge}><span className={styles.badgeDot}/>{b}</span>)}
+        </div>
+        <div className={styles.twoCol}>
+          <div className={styles.imgStack}>
+            <div className={styles.imgCard}>
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786521241/CHARTER_SCHOOL_BRONX_NY.png" alt="Charter School Bronx NY — Structural Steel" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div className={styles.imgCard}>
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786449074/EMMONS_BAY_HOTEL_2902_EMMONS_AVENUE_BROOKLYN_NY.png" alt="Emmons Bay Hotel Brooklyn NY" fill style={{ objectFit: 'cover' }} />
+            </div>
+            <div className={styles.imgCard}>
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786521241/Glenmark_USA.png" alt="Glenmark USA Structural Steel Project" fill style={{ objectFit: 'cover' }} />
+            </div>
+          </div>
+          <div className={styles.contentCol}>
+            {SERVICES.map((s) => (
+              <div key={s.title} className={styles.block} style={{ gap: '6px' }}>
+                <div className={styles.blockTitle}>{s.title}</div>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: 0 }}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Codes Section */}
+      <div className={styles.sectionAlt}>
+        <div className={styles.sectionAltInner}>
+          <div className={styles.eyebrow}><span className={styles.eyebrowLine}/>Code Compliance</div>
+          <h2 className={styles.sectionTitle}>Codes & Standards <em>We Follow</em></h2>
+          <p className={styles.sectionDesc}>All FAECOM structural steel designs comply with globally recognized codes for safety, reliability, and regulatory approval.</p>
+          <div className={styles.codesGrid}>
+            {CODES.map((c) => (
+              <div key={c.t} className={styles.codeTag}>
+                <span className={styles.codeTagTitle}>{c.t}</span>
+                <span className={styles.codeTagDesc}>{c.d}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Deliverables */}
+      <div className={styles.deliverables}>
+        <TwoDeliverablesSections />
+      </div>
+
       <CtaSection />
-    </>
+    </div>
   );
 }
