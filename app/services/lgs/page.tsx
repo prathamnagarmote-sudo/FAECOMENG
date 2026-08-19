@@ -11,7 +11,45 @@ const BADGES = ['AISI S100','AISC 360','ASCE 7','IBC 2021','REVIT','MWF StructSo
 const LB_ITEMS = ['Feasibility analysis for multistory apartments, modular structures & affordable housing.','Design & analysis of LGS walls, floors, and trusses.','Revit structural drawings and detailed construction documentation.','Construction GA and shop drawings for walls, floors, and trusses.','Machine file generation for Howick, FrameCAD & roll-formed machines.','REVIT, MWF StructSoft, Vertex-BD, Scottsdale and FRAMECAD utilization.'];
 const INF_ITEMS = ['Design & analysis of LGS infill walls and façade supporting elements.','Revit structural drawings with precise connection details.','Construction GA and shop drawings for walls.','Building elevation designs integrated with SFS framing.','Material take-off for accurate project estimation.'];
 const WHY_ITEMS = ['30–40% reduction in CFS construction cost and weight vs. traditional framing.','Versatile for load-bearing structures, modular construction, and infill wall systems.','Fast construction suitable for indigenous buildings and high-separation walls.','Multistorey apartments, affordable housing, modular construction, and facade solutions.','Compatible with all major roll-forming machine platforms — direct file output.'];
-const ROLL_MACHINES = [{name:'FrameCad',image:'/images/machines/framecad.png'},{name:'Howick',image:'/images/machines/howick.png'},{name:'Knudson',image:'/images/machines/knudson.png'},{name:'Unbak',image:'/images/machines/unbak.png'},{name:'FrameMac',image:'/images/machines/framemac.png'},{name:'Scottsdale',image:'/images/machines/scottsdale.png'}];
+
+const ROLL_MACHINES = [
+  {
+    name: 'FrameCad',
+    sub: 'Direct CNC File Output',
+    desc: 'Automated roll-forming integration for studs, tracks & trusses',
+    image: '/images/machines/framecad.png'
+  },
+  {
+    name: 'Howick',
+    sub: 'Precision Framing Technology',
+    desc: 'End-bearing studs, punched service holes & telescopic framing',
+    image: '/images/machines/howick.png'
+  },
+  {
+    name: 'Knudson',
+    sub: 'Variable Web Framing',
+    desc: 'Multi-gauge framing outputs for residential & commercial panels',
+    image: '/images/machines/knudson.png'
+  },
+  {
+    name: 'Unbak',
+    sub: 'High-Speed CFS Manufacturing',
+    desc: 'Optimized CNC machine files for rapid zero-waste fabrication',
+    image: '/images/machines/unbak.png'
+  },
+  {
+    name: 'FrameMac',
+    sub: 'Multi-Profile Steel Framing',
+    desc: 'Seamless CAD-to-machine file export for advanced framing lines',
+    image: '/images/machines/framemac.png'
+  },
+  {
+    name: 'Scottsdale',
+    sub: 'Truss & Panel Automation',
+    desc: 'Automated steel framing & truss production with precision files',
+    image: '/images/machines/scottsdale.png'
+  }
+];
 
 export default function LGSPage() {
   return (
@@ -110,9 +148,28 @@ export default function LGSPage() {
           </motion.div>
           <div className={styles.machinesGrid}>
             {ROLL_MACHINES.map((m,i)=>(
-              <motion.div key={m.name} className={styles.machineCard} initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay:i*0.07, duration:0.4 }}>
-                <div className={styles.machineImgWrap}><Image src={m.image} alt={m.name} fill style={{ objectFit:'contain' }} /></div>
-                <div className={styles.machineName}>{m.name}</div>
+              <motion.div
+                key={m.name}
+                className={styles.machineCard}
+                initial={{ opacity:0, y:24 }}
+                whileInView={{ opacity:1, y:0 }}
+                viewport={{ once:true }}
+                transition={{ delay:i*0.08, duration:0.45 }}
+              >
+                <div className={styles.machineImgWrap}>
+                  <Image
+                    src={m.image}
+                    alt={m.name}
+                    fill
+                    style={{ objectFit:'contain', padding:'10px' }}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                <div className={styles.machineInfo}>
+                  <div className={styles.machineName}>{m.name}</div>
+                  <div className={styles.machineSub}>{m.sub}</div>
+                  <div className={styles.machineBadge}>{m.desc}</div>
+                </div>
               </motion.div>
             ))}
           </div>
