@@ -51,7 +51,10 @@ const MEP_SYSTEMS = [
   },
 ];
 
-const INDUSTRIES = ['Commercial Buildings', 'Residential Complexes', 'Healthcare Facilities', 'Educational Institutions', 'Industrial & Manufacturing Units', 'Hotels & Hospitality', 'Data Centers'];
+const INDUSTRIES = [
+  'Commercial Buildings', 'Residential Complexes', 'Healthcare Facilities',
+  'Educational Institutions', 'Industrial & Manufacturing Units', 'Hotels & Hospitality', 'Data Centers',
+];
 
 export default function MEPPage() {
   return (
@@ -83,54 +86,61 @@ export default function MEPPage() {
         </div>
       </div>
 
-      {/* Section 1 */}
+      {/* Section 1 — Intro */}
       <section className={styles.section}>
         <div className={styles.eyebrow}><span className={styles.eyebrowLine}/>MEP Engineering</div>
         <h2 className={styles.sectionTitle}>Comprehensive MEP Solutions, <em>BIM-Coordinated</em></h2>
-        <p className={styles.sectionDesc}>FAECOM delivers innovative, sustainable MEP engineering with BIM-driven coordination for optimized execution, regulatory compliance, and seamless multi-discipline integration.</p>
+        <p className={styles.sectionDesc}>FAECOM delivers innovative, sustainable MEP engineering with BIM-driven coordination for optimised execution, regulatory compliance, and seamless multi-discipline integration.</p>
         <div className={styles.badgesWrap}>
           {BADGES.map((b) => <span key={b} className={styles.badge}><span className={styles.badgeDot}/>{b}</span>)}
         </div>
-      </section>
 
-      {/* MEP Systems — alternating rows */}
-      {MEP_SYSTEMS.map((sys, i) => (
-        <div key={sys.title} className={i % 2 === 0 ? '' : styles.sectionAlt} style={{ padding: '0' }}>
-          <div style={{ maxWidth: '1320px', margin: '0 auto', padding: 'clamp(48px,6vw,80px) var(--gutter, 32px)' }}>
-            <div className={i % 2 === 0 ? styles.twoCol : styles.twoCol} style={{ direction: i % 2 === 0 ? 'ltr' : 'rtl' }}>
-              <div style={{ direction: 'ltr' }}>
-                <div className={styles.imgCardLarge}>
-                  <Image src={sys.img} alt={sys.title} fill style={{ objectFit: 'cover' }} />
-                </div>
+        {/* 4-System image cards + bullet lists */}
+        <div className={styles.cardsGrid} style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+          {MEP_SYSTEMS.map((sys) => (
+            <div key={sys.title} className={styles.serviceCard} style={{ gap: '0', padding: '0', overflow: 'hidden' }}>
+              <div style={{ position: 'relative', width: '100%', height: '180px', flexShrink: 0 }}>
+                <Image src={sys.img} alt={sys.title} fill style={{ objectFit: 'cover' }} />
               </div>
-              <div style={{ direction: 'ltr' }} className={styles.contentCol}>
-                <div className={styles.block}>
-                  <div className={styles.blockTitle}>{sys.title}</div>
-                  <ul className={styles.blockList}>
-                    {sys.items.map((item) => (
-                      <li key={item} className={styles.blockItem}><span className={styles.dot}/><span>{item}</span></li>
-                    ))}
-                  </ul>
-                </div>
+              <div style={{ padding: '20px 20px 22px' }}>
+                <div className={styles.cardTitle} style={{ marginBottom: '12px' }}>{sys.title}</div>
+                <ul className={styles.blockList}>
+                  {sys.items.map((item) => (
+                    <li key={item} className={styles.blockItem}><span className={styles.dot}/><span>{item}</span></li>
+                  ))}
+                </ul>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
+      </section>
 
-      {/* BIM Integration + Industries */}
+      {/* BIM + Industries */}
       <div className={styles.sectionAlt}>
         <div className={styles.sectionAltInner}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px' }}>
+          <div className={styles.twoCol}>
             <div>
               <div className={styles.eyebrow}><span className={styles.eyebrowLine}/>BIM-Integrated MEP</div>
-              <h3 className={styles.sectionTitle} style={{ fontSize: 'clamp(20px,3vw,28px)' }}>Clash-Free <em>BIM Coordination</em></h3>
+              <h3 className={styles.sectionTitle}>Clash-Free <em>BIM Coordination</em></h3>
               <div className={styles.block}>
                 <ul className={styles.blockList}>
                   {[
-                    '3D modeling and clash detection for seamless coordination.',
-                    'Revit-based MEP modeling for precise design execution.',
-                    'Real-time project collaboration and system optimization.',
+                    '3D modeling and clash detection for seamless multi-discipline coordination.',
+                    'Revit-based MEP modeling for precise design execution and documentation.',
+                    'Real-time project collaboration and system optimization across teams.',
+                  ].map((b) => (
+                    <li key={b} className={styles.blockItem}><span className={styles.dot}/><span>{b}</span></li>
+                  ))}
+                </ul>
+              </div>
+              <div className={styles.whyBox} style={{ marginTop: '24px' }}>
+                <div className={styles.whyBoxTitle}>Why MEP BIM Integration?</div>
+                <ul className={styles.blockList}>
+                  {[
+                    'Eliminates clashes between MEP systems before construction starts.',
+                    'Reduces costly site rework and change orders significantly.',
+                    'Produces accurate material takeoffs directly from the model.',
+                    'Enables energy performance simulation in the design phase.',
                   ].map((b) => (
                     <li key={b} className={styles.blockItem}><span className={styles.dot}/><span>{b}</span></li>
                   ))}
@@ -138,12 +148,13 @@ export default function MEPPage() {
               </div>
             </div>
             <div>
-              <div className={styles.eyebrow}><span className={styles.eyebrowLine}/>Industries</div>
-              <h3 className={styles.sectionTitle} style={{ fontSize: 'clamp(20px,3vw,28px)' }}>Industries We <em>Serve</em></h3>
+              <div className={styles.eyebrow}><span className={styles.eyebrowLine}/>Industries We Serve</div>
+              <h3 className={styles.sectionTitle}>MEP for Every <em>Building Type</em></h3>
               <div className={styles.cardsGrid} style={{ gridTemplateColumns: '1fr' }}>
                 {INDUSTRIES.map((ind) => (
-                  <div key={ind} className={styles.serviceCard} style={{ padding: '16px 20px' }}>
-                    <div className={styles.cardTitle}>{ind}</div>
+                  <div key={ind} className={styles.serviceCard} style={{ padding: '14px 18px', flexDirection: 'row', alignItems: 'center', gap: '12px' }}>
+                    <span className={styles.dot} style={{ marginTop: 0, flexShrink: 0 }}/>
+                    <div className={styles.cardTitle} style={{ fontWeight: 600, fontSize: '14px' }}>{ind}</div>
                   </div>
                 ))}
               </div>
@@ -152,7 +163,6 @@ export default function MEPPage() {
         </div>
       </div>
 
-      {/* Deliverables */}
       <div className={styles.deliverables}>
         <TwoDeliverablesSections />
       </div>
