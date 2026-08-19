@@ -1,5 +1,5 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -53,6 +53,15 @@ export const metadata: Metadata = {
     apple: '/images/logo.png',
   },
 };
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#21145F',
+};
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
