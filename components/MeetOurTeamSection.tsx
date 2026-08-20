@@ -46,10 +46,10 @@ Driven by a commitment to engineering excellence and efficiency, I specialize in
     image: '/images/pravin_new.png',
     imagePosition: 'center 85%',
     role: 'Director, Head of Engineering',
-    role2: 'M.S. Structural, Ph.D. Candidate (CFS)',
+    role2: 'M.S. Structural, Pursuing Ph.D. in CFS',
     badge: 'TECHNICAL DIRECTOR // 17+ YRS',
     email: 'sam@faecom.com',
-    shortDesc: "Technical Director with M.S. Structural & Ph.D. Candidate (CFS) with 17+ years leading structural design across 4 continents (US, Canada, UK, Dubai).",
+    shortDesc: "Technical Director with M.S. Structural, Pursuing Ph.D. in CFS with 17+ years leading structural design across 4 continents (US, Canada, UK, Dubai).",
     fullDesc: `Sam holds a Master's degree in Structural Engineering and is currently pursuing his Ph.D. in Cold-Formed Steel Structure Construction — academic rigor backed by 17+ years delivering structural solutions across four continents. As Technical Director, he's the partner builders and developers trust when projects demand precision, speed, and cost-smart engineering.
 
 Specializing in light gauge steel, ICF, lumber, hot rolled steel, and mixed structural systems, Sam has led design teams through millions of square feet of residential and commercial developments across the United States, Canada, the UK, and Dubai — with hands-on international coordination that means fewer surprises and tighter timelines.
