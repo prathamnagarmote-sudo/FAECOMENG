@@ -30,7 +30,7 @@ With a strong commitment to engineering excellence, quality, and client satisfac
     name: 'Pratik',
     image: '/images/pratik_new.png',
     role: 'Chief Operational Officer',
-    role2: 'Structural & BIM Systems Lead',
+    role2: 'M.S. Structural & BIM Systems Lead',
     email: 'pratik@faecom.com',
     shortDesc: 'Director of Structural Engineering delivering code-compliant solutions across high-seismic/wind regions, post-tensioned slabs, CFS/LGS detailing, & Revit BIM workflows.',
     fullDesc: `As Director of Structural Engineering, I bring extensive experience in delivering innovative, practical, and code-compliant structural solutions across a wide range of residential, commercial, industrial, and institutional projects. My expertise spans reinforced concrete, post-tensioned concrete, structural steel, timber, insulated concrete form (ICF), cold-formed steel (CFS), composite, and light-gauge steel construction systems.
