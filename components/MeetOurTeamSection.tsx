@@ -16,7 +16,6 @@ const LEADERS = [
     image: '/images/harvey_new.jpg',
     role: 'Chief Executive Officer',
     role2: 'Principal Structural Engineer, Ph.D., P.E.',
-    badge: '20+ YRS EXP // Ph.D. P.E.',
     email: 'harvey@faecom.com',
     shortDesc: 'Structural Engineer with Ph.D. & P.E. licenses across multiple U.S. states with 20+ years experience in structural design, ICF, steel, concrete, podium, and timber systems.',
     fullDesc: `Harvey is a highly accomplished Structural Engineer with a Ph.D. in Structural Engineering and over 20 years of professional experience in the design, analysis, and execution of structural systems across a wide range of construction projects. He is a registered Professional Engineer (P.E.) in multiple states across the United States, demonstrating his commitment to the highest standards of engineering practice and professional excellence.
@@ -30,9 +29,8 @@ With a strong commitment to engineering excellence, quality, and client satisfac
   {
     name: 'Pratik',
     image: '/images/pratik_new.png',
-    role: 'Chief Production Officer',
+    role: 'Chief Operational Officer',
     role2: 'Structural & BIM Systems Lead',
-    badge: 'CPO // ETABS, SAFE & REVIT LEAD',
     email: 'pratik@faecom.com',
     shortDesc: 'Director of Structural Engineering delivering code-compliant solutions across high-seismic/wind regions, post-tensioned slabs, CFS/LGS detailing, & Revit BIM workflows.',
     fullDesc: `As Director of Structural Engineering, I bring extensive experience in delivering innovative, practical, and code-compliant structural solutions across a wide range of residential, commercial, industrial, and institutional projects. My expertise spans reinforced concrete, post-tensioned concrete, structural steel, timber, insulated concrete form (ICF), cold-formed steel (CFS), composite, and light-gauge steel construction systems.
@@ -47,7 +45,6 @@ Driven by a commitment to engineering excellence and efficiency, I specialize in
     imagePosition: 'center 85%',
     role: 'Director, Head of Engineering',
     role2: 'M.S. Structural, Pursuing Ph.D. in CFS',
-    badge: 'TECHNICAL DIRECTOR // 17+ YRS',
     email: 'sam@faecom.com',
     shortDesc: "Technical Director with M.S. Structural, Pursuing Ph.D. in CFS with 17+ years leading structural design across 4 continents (US, Canada, UK, Dubai).",
     fullDesc: `Sam holds a Master's degree in Structural Engineering and is currently pursuing his Ph.D. in Cold-Formed Steel Structure Construction — academic rigor backed by 17+ years delivering structural solutions across four continents. As Technical Director, he's the partner builders and developers trust when projects demand precision, speed, and cost-smart engineering.
@@ -61,7 +58,6 @@ An expert in FrameCAD, Scottsdale, Vertex, MWF, Tekla, and STAAD Pro, Sam also m
     image: '/images/max_new.jpg',
     role: 'Chief Marketing Officer',
     role2: 'AEC Strategic Partnerships Lead',
-    badge: 'CMO // 19+ YRS AEC GROWTH',
     email: 'max@faecom.com',
     shortDesc: 'Chief Marketing Officer with 19+ years driving AEC strategic growth, key account partnerships, and global ICF manufacturer relationships.',
     fullDesc: `Max Langley is the Chief Marketing Officer, bringing over 19 years of experience to FAECOM driving strategic growth across the Architecture, Engineering, and Construction (AEC) industry. He leads brand strategy, business development, and key account partnerships with leading architects, engineers, fabricators, and global ICF manufacturers. By combining market intelligence with customer-focused strategies, Max strengthens industry relationships, expands market presence, and delivers sustainable business growth.`,
@@ -118,7 +114,6 @@ export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeam
                   style={leader.imagePosition ? { objectPosition: leader.imagePosition } : {}}
                 />
                 <div className={styles.portraitOverlay} />
-                <span className={styles.badgeTag}>{leader.badge}</span>
               </div>
 
               {/* Card Meta Content */}
@@ -197,7 +192,6 @@ export default function MeetOurTeamSection({ showAboutCta = false }: MeetOurTeam
                   />
                 </div>
                 <div className={styles.modalHeaderMeta}>
-                  <span className={styles.modalBadge}>{activeLeader.badge}</span>
                   <h3 className={styles.modalName}>{activeLeader.name}</h3>
                   <p className={styles.modalRole}>{activeLeader.role}</p>
                   {activeLeader.role2 && <p className={styles.modalRole2}>{activeLeader.role2}</p>}
