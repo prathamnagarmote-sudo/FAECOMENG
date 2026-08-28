@@ -1,218 +1,25 @@
-/* ── FAECOM World Map Container ─────────────────────────────── */
+/* ── FAECOM Global Map Image Container ─────────────────────────────── */
 .mapContainer {
+  position: relative;
   width: 100%;
   height: 100%;
-  min-height: 520px;
-  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
   overflow: hidden;
-  background: #f8f9fa;
+  background: #060E26;
 }
 
-/* ── Override Leaflet tile pane ────────── */
-:global(.leaflet-container) {
-  background: #f8f9fa !important;
-}
-
-:global(.leaflet-tile-pane) {
-  opacity: 1;
-}
-
-/* ── Leaflet zoom controls ────────────────────────────────────── */
-:global(.leaflet-control-zoom) {
-  border: 1px solid rgba(255, 107, 44, 0.45) !important;
-  border-radius: 12px !important;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
-}
-
-:global(.leaflet-control-zoom a) {
-  background: rgba(10, 15, 40, 0.92) !important;
-  color: #FFFFFF !important;
-  border-bottom: 1px solid rgba(255, 107, 44, 0.25) !important;
-  font-size: 16px !important;
-  width: 32px !important;
-  height: 32px !important;
-  line-height: 32px !important;
-}
-
-:global(.leaflet-control-zoom a:hover) {
-  background: rgba(255, 107, 44, 0.35) !important;
-  color: #FF6B2C !important;
-}
-
-/* ── Animated Flight Arc Lines ─────────────────────────────── */
-:global(.faecom-animated-flight-line) {
-  stroke-dasharray: 6 8;
-  animation: faecomFlightDash 18s linear infinite;
-}
-
-@keyframes faecomFlightDash {
-  to {
-    stroke-dashoffset: -100;
-  }
-}
-
-:global(.faecom-div-icon) {
-  background: transparent !important;
-  border: none !important;
-}
-
-/* ── Custom FAECOM marker styles ────────────────────────────── */
-:global(.faecom-marker) {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-}
-
-:global(.faecom-marker--badge-above) {
-  flex-direction: column-reverse !important;
-}
-
-:global(.faecom-marker--badge-below) {
-  flex-direction: column !important;
-}
-
-:global(.faecom-marker__pulse) {
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 107, 44, 0.65);
-  animation: faecomRingPulse 2.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
-  pointer-events: none;
-}
-
-:global(.faecom-marker--hq .faecom-marker__pulse) {
-  width: 36px;
-  height: 36px;
-  border-color: rgba(255, 107, 44, 0.9);
-}
-
-@keyframes faecomRingPulse {
-  0%   { transform: translateX(-50%) scale(0.6); opacity: 1; }
-  100% { transform: translateX(-50%) scale(2.4); opacity: 0; }
-}
-
-:global(.faecom-marker__dot) {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #FF6B2C;
-  box-shadow: 0 0 12px #FF6B2C, 0 0 24px rgba(255, 107, 44, 0.6);
-  flex-shrink: 0;
-  z-index: 2;
-  margin-top: 1px;
-}
-
-:global(.faecom-marker--hq .faecom-marker__dot) {
-  width: 12px;
-  height: 12px;
-  background: #FF6B2C;
-  box-shadow: 0 0 16px #FF6B2C, 0 0 30px rgba(255, 107, 44, 0.8);
-}
-
-:global(.faecom-marker__badge) {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(255, 107, 44, 0.55);
-  border-radius: 20px;
-  padding: 3px 9px;
-  white-space: nowrap;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-:global(.faecom-marker:hover .faecom-marker__badge) {
-  transform: translateY(-2px) scale(1.05);
-  border-color: #FF6B2C;
-}
-
-:global(.faecom-marker__flag) {
-  font-size: 13px;
-  line-height: 1;
-}
-
-:global(.faecom-marker__label) {
-  font-family: ui-monospace, 'Courier New', monospace;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  color: #060E26;
-  text-transform: uppercase;
-}
-
-:global(.faecom-marker__star) {
-  font-size: 10px;
-  color: #FF6B2C;
-  margin-left: 1px;
-}
-
-/* ── Popup styles ─────────────────────────────────────────────── */
-:global(.faecom-leaflet-popup .leaflet-popup-content-wrapper) {
-  background: rgba(8, 14, 40, 0.96) !important;
-  border: 1.5px solid rgba(255, 107, 44, 0.6) !important;
-  border-radius: 14px !important;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65) !important;
-  padding: 0 !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-:global(.faecom-leaflet-popup .leaflet-popup-content) {
-  margin: 0 !important;
-  padding: 10px 14px !important;
-}
-
-:global(.faecom-leaflet-popup .leaflet-popup-tip-container) {
-  display: none !important;
-}
-
-:global(.faecom-popup) {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-:global(.faecom-popup__flag) {
-  font-size: 22px;
-  flex-shrink: 0;
-}
-
-:global(.faecom-popup__text) {
-  display: flex;
-  flex-direction: column;
-}
-
-:global(.faecom-popup__name) {
+.mapImage {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
   display: block;
-  font-family: ui-monospace, 'Courier New', monospace;
-  font-size: 11.5px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #FFFFFF;
-  text-transform: uppercase;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-:global(.faecom-popup__tag) {
-  display: block;
-  font-size: 9.5px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-top: 1px;
-}
-
-:global(.faecom-popup__tag--hq) {
-  color: #FF6B2C;
+.mapContainer:hover .mapImage {
+  transform: scale(1.015);
 }
