@@ -503,12 +503,12 @@
 
 @keyframes mobileHeroLineEntry {
   0% {
-    opacity: 0;
-    transform: translate3d(-36px, 18px, 0);
+    opacity: 0 !important;
+    transform: translate3d(0, 32px, 0) !important;
   }
   100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
   }
 }
 
@@ -519,21 +519,21 @@
   }
 
   .heroH1 {
-    perspective: none;
-    transform-style: flat;
+    perspective: none !important;
+    transform-style: flat !important;
   }
 
   .heroLine1 {
-    animation: mobileHeroLineEntry 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.10s both;
+    animation: mobileHeroLineEntry 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both !important;
   }
   .heroLine2 {
-    animation: mobileHeroLineEntry 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+    animation: mobileHeroLineEntry 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both !important;
   }
   .heroLine3 {
-    animation: mobileHeroLineEntry 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.34s both;
+    animation: mobileHeroLineEntry 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both !important;
   }
   .heroLine4 {
-    animation: mobileHeroLineEntry 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.46s both;
+    animation: mobileHeroLineEntry 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.44s both !important;
   }
 
   /* ── Mobile Hero Subtitle Spacing ── */
