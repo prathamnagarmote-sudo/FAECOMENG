@@ -967,7 +967,7 @@ export default function Home() {
           {/* 4-Line Editorial Heading — 3D Fly-In on PC & Dynamic Slide-in Landing on Mobile */}
           <h1 className={styles.heroH1}>
             <motion.span
-              className={styles.heroLineNavy}
+              className={`${styles.heroLineNavy} ${styles.heroLine1}`}
               initial={isMobile ? { opacity: 0, x: -30, y: 15 } : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
               animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, x: 0, y: 0 }}
               transition={isMobile ? { delay: 0.10, duration: 0.65, ease: [0.16, 1, 0.3, 1] } : { delay: 0.25, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
@@ -975,7 +975,7 @@ export default function Home() {
               DESIGNING
             </motion.span>
             <motion.span
-              className={styles.heroLineOrange}
+              className={`${styles.heroLineOrange} ${styles.heroLine2}`}
               initial={isMobile ? { opacity: 0, x: -30, y: 15 } : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
               animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, x: 0, y: 0 }}
               transition={isMobile ? { delay: 0.22, duration: 0.65, ease: [0.16, 1, 0.3, 1] } : { delay: 0.40, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
@@ -983,7 +983,7 @@ export default function Home() {
               TOMORROW.
             </motion.span>
             <motion.span
-              className={styles.heroLineNavy}
+              className={`${styles.heroLineNavy} ${styles.heroLine3}`}
               initial={isMobile ? { opacity: 0, x: -30, y: 15 } : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
               animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, x: 0, y: 0 }}
               transition={isMobile ? { delay: 0.34, duration: 0.65, ease: [0.16, 1, 0.3, 1] } : { delay: 0.55, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
@@ -991,7 +991,7 @@ export default function Home() {
               DELIVERING
             </motion.span>
             <motion.span
-              className={styles.heroLineOrange}
+              className={`${styles.heroLineOrange} ${styles.heroLine4}`}
               initial={isMobile ? { opacity: 0, x: -30, y: 15 } : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
               animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, x: 0, y: 0 }}
               transition={isMobile ? { delay: 0.46, duration: 0.65, ease: [0.16, 1, 0.3, 1] } : { delay: 0.70, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
