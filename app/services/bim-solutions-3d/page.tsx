@@ -39,7 +39,7 @@ export default function BIMIntegratedSolutionsPage() {
       <motion.div initial={{ opacity:0, y:40 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, ease:[0.16,1,0.3,1] }}>
         <PageHero label="Engineering Services" title={<span>BIM Integrated</span>} titleEm={<span>Solutions 3D</span>}
           subtitle={<span>End-to-end 3D BIM integration — photorealistic renders, VR walkthroughs, clash detection, and intelligent project data for AEC projects worldwide.</span>}
-          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443953/Bim_integrated_3d.jpg" />
+          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443953/Bim_integrated_3d.jpg" />
       </motion.div>
 
       <motion.div className={styles.statsStrip} initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.4, duration:0.6 }}>
@@ -70,7 +70,7 @@ export default function BIMIntegratedSolutionsPage() {
           </motion.div>
           <motion.div className={styles.featureRow} variants={FV} initial="hidden" whileInView="show" viewport={{ once:true }} transition={{ duration:0.7, delay:0.1 }}>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1787034262/Loom_Screenshot_2026-08-18_at_11.54.11.png" alt="3D Building Render" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1787034262/Loom_Screenshot_2026-08-18_at_11.54.11.png" alt="3D Building Render" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>Photorealistic 3D Render</div>
             </div>
             <div className={styles.featureContent}>
@@ -104,7 +104,7 @@ export default function BIMIntegratedSolutionsPage() {
               </div>
             </div>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1787034358/Loom_Screenshot_2026-08-18_at_11.55.15.png" alt="Full Elevation 3D Render" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1787034358/Loom_Screenshot_2026-08-18_at_11.55.15.png" alt="Full Elevation 3D Render" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>Architectural Elevation Render</div>
             </div>
           </motion.div>

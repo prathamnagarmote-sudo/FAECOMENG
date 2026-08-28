@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import styles from "./HorizontalSheetSlider.module.css";
 
 export const STRUCTURAL_DRAWINGS_IMAGES = Array.from({ length: 32 }, (_, i) => ({
-  src: `https://res.cloudinary.com/yqs3dtap/image/upload/v1787055364/RESIDENCE_INN_STRUCTURAL_SET_5_Page_${String(i + 1).padStart(3, "0")}.jpg`,
+  src: `https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1787055364/RESIDENCE_INN_STRUCTURAL_SET_5_Page_${String(i + 1).padStart(3, "0")}.jpg`,
   alt: `Structural Drawing Sheet ${i + 1}`,
 }));
 
@@ -12,7 +12,7 @@ export const DESIGN_REPORT_IMAGES = Array.from({ length: 186 }, (_, i) => {
   const pageNum = String(i + 1).padStart(3, "0");
   const ext = i === 0 ? "png" : "jpg";
   return {
-    src: `https://res.cloudinary.com/yqs3dtap/image/upload/LA_MARINA__Design_Report_220925_Page_${pageNum}.${ext}`,
+    src: `https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/LA_MARINA__Design_Report_220925_Page_${pageNum}.${ext}`,
     alt: `Design Calculation Sheet ${i + 1}`,
   };
 });

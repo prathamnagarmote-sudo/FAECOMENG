@@ -320,55 +320,55 @@ const SERVICES = [
   {
     n: '01', href: '/services/lgs',
     title: 'LGSF Solutions',
-    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443295/1662696676169_edited_edited_edited.jpg',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443295/1662696676169_edited_edited_edited.jpg',
     bullets: ['Light Gauge Steel Design', 'Structural Detailing', 'Shop Drawings', 'BOQ & Estimation'],
   },
   {
     n: '02', href: '/services/structural-steel',
     title: 'Structural Engineering',
-    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443972/structural_steel_solutions.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443972/structural_steel_solutions.png',
     bullets: ['Structural Analysis', 'Steel & Concrete Design', 'Connection Design', 'Foundation Engineering'],
   },
   {
     n: '03', href: '/services/bim',
     title: 'BIM Modeling',
-    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443962/architectural_bim_services.jpg',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443962/architectural_bim_services.jpg',
     bullets: ['3D BIM Modeling', 'Clash Detection', '4D Construction', '5D Estimation'],
   },
   {
     n: '04', href: '/services/mep',
     title: 'MEP Systems',
-    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443927/mep.jpg',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443927/mep.jpg',
     bullets: ['HVAC Design', 'Electrical Systems', 'Plumbing Systems', 'Fire Protection'],
   },
   {
     n: '05', href: '/services/bim-solutions-3d',
     title: 'BIM-integrated Solutions 3D',
-    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443953/Bim_integrated_3d.jpg',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443953/Bim_integrated_3d.jpg',
     bullets: ['Multi-Discipline Coordination', 'BIM to Field', 'Quantity Take-Off', 'Construction Planning'],
   },
   {
     n: '06', href: '/services/icf',
     title: 'ICF Solutions',
-    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443935/ICF.jpg',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443935/ICF.jpg',
     bullets: ['ICF Structural Design', 'Energy Efficient Buildings', 'Wall & Foundation Systems', 'Shop Drawings'],
   },
   {
     n: '07', href: '/services/timber',
     title: 'Timber Engineering',
-    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443980/wood_and_timber.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443980/wood_and_timber.png',
     bullets: ['Timber Structure Design', 'Glulam & CLT Solutions', 'Connection Design', 'Sustainable Structures'],
   },
   {
     n: '08', href: '/services/rebar-concrete',
     title: 'Rebar & Concrete',
-    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443919/concrete_and_rebar_solutions.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443919/concrete_and_rebar_solutions.png',
     bullets: ['Precast Concrete Design', 'Rebar Detailing', 'Placing Drawings', 'Shop Drawings'],
   },
   {
     n: '09', href: '/services/third-party-review',
     title: 'Third Party Review',
-    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786444120/tekla_structures.png',
+    img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786444120/tekla_structures.png',
     bullets: ['Peer Review', 'Value Engineering', 'Code Compliance Check', 'Structural Optimization'],
   },
 ];
@@ -484,8 +484,8 @@ const SOFTWARE_CATEGORIES = [
       { name: 'RISA', img: '/images/software/risa.png' },
       { name: 'STAAD.Pro', img: '/images/software/staad_pro.png', scale: 1.10 },
       { name: 'SAP2000', img: '/images/software/sap2000_hq.png', scale: 1.10 },
-      { name: 'ETABS', img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1787048584/Ultimate_Advanced_Etabs.png', scale: 2.0 },
-      { name: 'ADAPT', img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1787049440/adapt.png', scale: 1.4 },
+      { name: 'ETABS', img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1787048584/Ultimate_Advanced_Etabs.png', scale: 2.0 },
+      { name: 'ADAPT', img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1787049440/adapt.png', scale: 1.4 },
       { name: 'IES', img: '/images/software/ies.png' },
       { name: 'SkyCiv', img: '/images/software/skyciv.png', scale: 1.12 },
       { name: 'StructurePoint', img: '/images/software/newstructurepointlogo.png', scale: 1.10 },
@@ -1205,12 +1205,12 @@ export default function Home() {
             <div key={st.label} className={styles.statCell}>
               <motion.div
                 className={styles.statTextWrap}
-                initial={{ opacity: 0, scale: 1.65, rotateX: 25, rotateY: -18, y: 40 }}
-                animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 1.4,
+                  duration: 0.45,
                   ease: [0.16, 1, 0.3, 1],
-                  delay: 0.6 + i * 0.12,
+                  delay: 0.52 + i * 0.04,
                 }}
               >
                 <div className={`${styles.statVal} ${st.val.length > 8 ? styles.statValLong : ''}`}>

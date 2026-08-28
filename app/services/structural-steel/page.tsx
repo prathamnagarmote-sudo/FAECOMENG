@@ -32,7 +32,7 @@ export default function StructuralSteelPage() {
       <motion.div initial={{ opacity:0, y:40 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, ease:[0.16,1,0.3,1] }}>
         <PageHero label="Engineering Services" title={<span>Structural</span>} titleEm={<span>Steel Solutions</span>}
           subtitle={<span>Heavy structural steel detailing, connection engineering, and fabrication-ready documentation — delivered with precision from analysis to PE-stamped shop drawings.</span>}
-          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443972/structural_steel_solutions.png" imageScale="1.3, 0.9" />
+          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443972/structural_steel_solutions.png" imageScale="1.3, 0.9" />
       </motion.div>
 
       <motion.div className={styles.statsStrip} initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.4, duration:0.6 }}>
@@ -63,7 +63,7 @@ export default function StructuralSteelPage() {
           </motion.div>
           <motion.div className={styles.featureRow} variants={FV} initial="hidden" whileInView="show" viewport={{ once:true }} transition={{ duration:0.7, delay:0.1 }}>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786521241/CHARTER_SCHOOL_BRONX_NY.png" alt="Charter School Bronx NY Steel" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786521241/CHARTER_SCHOOL_BRONX_NY.png" alt="Charter School Bronx NY Steel" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>Charter School, Bronx NY</div>
             </div>
             <div className={styles.featureContent}>
@@ -102,7 +102,7 @@ export default function StructuralSteelPage() {
               </div>
             </div>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786449074/EMMONS_BAY_HOTEL_2902_EMMONS_AVENUE_BROOKLYN_NY.png" alt="Emmons Bay Hotel Brooklyn NY" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786449074/EMMONS_BAY_HOTEL_2902_EMMONS_AVENUE_BROOKLYN_NY.png" alt="Emmons Bay Hotel Brooklyn NY" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>Emmons Bay Hotel, Brooklyn NY</div>
             </div>
           </motion.div>

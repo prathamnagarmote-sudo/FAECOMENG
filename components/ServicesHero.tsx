@@ -50,7 +50,7 @@ export default function ServicesHero() {
             style={{ width: '100%', height: '100%', position: 'relative' }}
           >
             <Image 
-              src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786950526/hero_page_service.png"
+              src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786950526/hero_page_service.png"
               alt="Engineering Services" 
               fill 
               style={{ 

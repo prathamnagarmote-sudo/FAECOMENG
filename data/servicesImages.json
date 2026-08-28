@@ -1,27 +1,27 @@
 {
   "timber": {
-    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/v1786443980/wood_and_timber.png"
+    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443980/wood_and_timber.png"
   },
   "structural-steel": {
-    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/v1786443972/structural_steel_solutions.png"
+    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443972/structural_steel_solutions.png"
   },
   "bim": {
-    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/v1786443962/architectural_bim_services.jpg"
+    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443962/architectural_bim_services.jpg"
   },
   "bim-solutions-3d": {
-    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/v1786443953/Bim_integrated_3d.jpg"
+    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443953/Bim_integrated_3d.jpg"
   },
   "icf": {
-    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/v1786443935/ICF.jpg"
+    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443935/ICF.jpg"
   },
   "mep": {
-    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/v1786443927/mep.jpg"
+    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443927/mep.jpg"
   },
   "third-party-review": {
-    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/v1786444120/tekla_structures.png"
+    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786444120/tekla_structures.png"
   },
   "rebar-concrete": {
-    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/v1786443919/concrete_and_rebar_solutions.png"
+    "expertise": "https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443919/concrete_and_rebar_solutions.png"
   },
   "common": {
     "drawings": "/images/project_commercial.png",

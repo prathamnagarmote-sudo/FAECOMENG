@@ -33,7 +33,7 @@ export default function ICFPage() {
       <motion.div initial={{ opacity:0, y:40 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, ease:[0.16,1,0.3,1] }}>
         <PageHero label="Engineering Services" title={<span>ICF (Insulated</span>} titleEm={<span>Concrete Form) Solutions</span>}
           subtitle={<span>Energy-efficient concrete construction systems offering superior insulation, structural strength, and significantly faster installation — engineered for resilience.</span>}
-          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443935/ICF.jpg" imageScale="0.8" />
+          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443935/ICF.jpg" imageScale="0.8" />
       </motion.div>
 
       <motion.div className={styles.statsStrip} initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.4, duration:0.6 }}>
@@ -60,7 +60,7 @@ export default function ICFPage() {
         <div className={styles.contentInner}>
           <motion.div className={styles.featureRow} variants={FV} initial="hidden" whileInView="show" viewport={{ once:true }} transition={{ duration:0.7 }}>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1787045994/icf_what_include.png" alt="ICF Wall Construction Site" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1787045994/icf_what_include.png" alt="ICF Wall Construction Site" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>ICF Wall System Construction</div>
             </div>
             <div className={styles.featureContent}>

@@ -6,7 +6,7 @@ export default function FaecomWorldMap() {
   return (
     <div className={styles.mapContainer}>
       <Image
-        src="https://res.cloudinary.com/dwk1cnlw2/image/upload/v1786096623/GLOBAL_MAP_z63kgv.png"
+        src="https://res.cloudinary.com/dwk1cnlw2/image/upload/f_auto,q_auto/v1786096623/GLOBAL_MAP_z63kgv.png"
         alt="FAECOM Global Engineering Reach & Impact Map"
         width={1647}
         height={955}

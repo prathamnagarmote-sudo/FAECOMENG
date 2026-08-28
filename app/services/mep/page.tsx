@@ -9,10 +9,10 @@ import styles from '../service.module.css';
 const FV = { hidden:{ opacity:0, y:32 }, show:{ opacity:1, y:0 } };
 const BADGES = ['Revit MEP','ASHRAE 90.1','ASHRAE 62.1','NFPA 70','NFPA 13','IPC','IMC','IBC 2021'];
 const SYSTEMS = [
-  { title:'HVAC Engineering', img:'https://res.cloudinary.com/yqs3dtap/image/upload/v1786522341/MELSON_CARE_UNIT_USA_MEP.png', tag:'Nelson Care Unit, USA', items:['Load calculations and full system design.','Ductwork layout and airflow optimization.','Energy-efficient heating, cooling, and ventilation solutions.','Permit drawings and compliance documentation.'] },
-  { title:'Electrical Engineering', img:'https://res.cloudinary.com/yqs3dtap/image/upload/v1786522340/MATTHEW-_CAMPBELL_RESIDENC_MEP.png', tag:'Matthew Campbell Residence', items:['Power distribution and electrical system design.','Lighting layouts, photometric analysis, and energy-efficient solutions.','Fire alarm and emergency power systems.','Electrical permit drawings and PE seal approvals.'] },
-  { title:'Plumbing Engineering', img:'https://res.cloudinary.com/yqs3dtap/image/upload/v1786522340/DRESCHER-DRESCHER_RESIDENCE_MEP.png', tag:'Drescher Residence', items:['Water supply and drainage system design.','Stormwater and wastewater management solutions.','Fire suppression and sprinkler system design.','Permit-ready plumbing drawings with regulatory compliance.'] },
-  { title:'Fire Protection Engineering', img:'https://res.cloudinary.com/yqs3dtap/image/upload/v1786522340/FELLOWSHIP_CHURCH_USA_Mep.png', tag:'Fellowship Church, USA', items:['Fire suppression system design and layout.','NFPA-compliant sprinkler and smoke control systems.','Fire alarm integration with building management systems.','Emergency egress and fire safety compliance reports.'] },
+  { title:'HVAC Engineering', img:'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786522341/MELSON_CARE_UNIT_USA_MEP.png', tag:'Nelson Care Unit, USA', items:['Load calculations and full system design.','Ductwork layout and airflow optimization.','Energy-efficient heating, cooling, and ventilation solutions.','Permit drawings and compliance documentation.'] },
+  { title:'Electrical Engineering', img:'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786522340/MATTHEW-_CAMPBELL_RESIDENC_MEP.png', tag:'Matthew Campbell Residence', items:['Power distribution and electrical system design.','Lighting layouts, photometric analysis, and energy-efficient solutions.','Fire alarm and emergency power systems.','Electrical permit drawings and PE seal approvals.'] },
+  { title:'Plumbing Engineering', img:'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786522340/DRESCHER-DRESCHER_RESIDENCE_MEP.png', tag:'Drescher Residence', items:['Water supply and drainage system design.','Stormwater and wastewater management solutions.','Fire suppression and sprinkler system design.','Permit-ready plumbing drawings with regulatory compliance.'] },
+  { title:'Fire Protection Engineering', img:'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786522340/FELLOWSHIP_CHURCH_USA_Mep.png', tag:'Fellowship Church, USA', items:['Fire suppression system design and layout.','NFPA-compliant sprinkler and smoke control systems.','Fire alarm integration with building management systems.','Emergency egress and fire safety compliance reports.'] },
 ];
 const INDUSTRIES = ['Commercial Buildings','Residential Complexes','Healthcare Facilities','Educational Institutions','Industrial & Manufacturing Units','Hotels & Hospitality','Data Centers'];
 
@@ -22,7 +22,7 @@ export default function MEPPage() {
       <motion.div initial={{ opacity:0, y:40 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, ease:[0.16,1,0.3,1] }}>
         <PageHero label="Engineering Services" title={<span>MEP</span>} titleEm={<span>Engineering</span>}
           subtitle={<span>Mechanical, Electrical, and Plumbing engineering for safety, efficiency, and long-term performance — BIM-coordinated across all building disciplines.</span>}
-          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443927/mep.jpg" />
+          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443927/mep.jpg" />
       </motion.div>
 
       <motion.div className={styles.statsStrip} initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.4, duration:0.6 }}>

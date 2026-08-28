@@ -40,7 +40,7 @@ export default function RebarConcretePage() {
       <motion.div initial={{ opacity:0, y:40 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, ease:[0.16,1,0.3,1] }}>
         <PageHero label="Engineering Services" title={<span>Rebar Detailing &</span>} titleEm={<span>Concrete Solutions</span>}
           subtitle={<span>Precise placing drawings, bar bending schedules, and comprehensive concrete reinforcement detailing — from 2D to 3D BIM integration, all PE-stamped for US compliance.</span>}
-          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443919/concrete_and_rebar_solutions.png" imageScale="0.9, 1" />
+          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443919/concrete_and_rebar_solutions.png" imageScale="0.9, 1" />
       </motion.div>
 
       <motion.div className={styles.statsStrip} initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.4, duration:0.6 }}>
@@ -71,7 +71,7 @@ export default function RebarConcretePage() {
           </motion.div>
           <motion.div className={styles.featureRow} variants={FV} initial="hidden" whileInView="show" viewport={{ once:true }} transition={{ duration:0.7, delay:0.1 }}>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786534150/225TH_STREET_CSS.png" alt="225th Street Structural Concrete" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786534150/225TH_STREET_CSS.png" alt="225th Street Structural Concrete" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>225th Street, New York</div>
             </div>
             <div className={styles.featureContent}>
@@ -111,7 +111,7 @@ export default function RebarConcretePage() {
               </div>
             </div>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786534151/5TH_AVENUE_New_York_NY_10011_CSS.png" alt="5th Avenue New York Rebar" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786534151/5TH_AVENUE_New_York_NY_10011_CSS.png" alt="5th Avenue New York Rebar" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>5th Avenue, New York</div>
             </div>
           </motion.div>

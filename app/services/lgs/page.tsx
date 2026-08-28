@@ -57,7 +57,7 @@ export default function LGSPage() {
       <motion.div initial={{ opacity:0, y:40 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, ease:[0.16,1,0.3,1] }}>
         <PageHero label="Engineering Services" title={<span>Light Gauge Steel</span>} titleEm={<span>(LGS) Solutions</span>}
           subtitle={<span>Advanced cold-formed steel structural systems for residential, modular, and commercial construction — precision-engineered for speed, efficiency, and code compliance.</span>}
-          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443295/1662696676169_edited_edited_edited.jpg" />
+          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443295/1662696676169_edited_edited_edited.jpg" />
       </motion.div>
 
       <motion.div className={styles.statsStrip} initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.4, duration:0.6 }}>
@@ -91,7 +91,7 @@ export default function LGSPage() {
           </motion.div>
           <motion.div className={styles.featureRow} variants={FV} initial="hidden" whileInView="show" viewport={{ once:true }} transition={{ duration:0.7, delay:0.1 }}>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786446264/NELSON_USA.png" alt="LGS Load Bearing — Nelson USA" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786446264/NELSON_USA.png" alt="LGS Load Bearing — Nelson USA" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>Nelson, USA — LGS Load Bearing</div>
             </div>
             <div className={styles.featureContent}>
@@ -131,7 +131,7 @@ export default function LGSPage() {
               </div>
             </div>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786446440/KHAN_HOUSE_CANADA.png" alt="Khan House Canada — LGS Infill System" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786446440/KHAN_HOUSE_CANADA.png" alt="Khan House Canada — LGS Infill System" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>Khan House, Canada — Infill System</div>
             </div>
           </motion.div>

@@ -25,7 +25,7 @@ export default function ArchitecturalBIMPage() {
       <motion.div initial={{ opacity:0, y:40 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, ease:[0.16,1,0.3,1] }}>
         <PageHero label="Engineering Services" title={<span>Architectural</span>} titleEm={<span>BIM Services</span>}
           subtitle={<span>Intelligent 3D BIM models that improve planning, eliminate design conflicts, and enhance multi-discipline project coordination from concept to construction.</span>}
-          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443962/architectural_bim_services.jpg" imageScale="1.15, 1" />
+          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443962/architectural_bim_services.jpg" imageScale="1.15, 1" />
       </motion.div>
 
       <motion.div className={styles.statsStrip} initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.4, duration:0.6 }}>
@@ -52,7 +52,7 @@ export default function ArchitecturalBIMPage() {
         <div className={styles.contentInner}>
           <motion.div className={styles.featureRow} variants={FV} initial="hidden" whileInView="show" viewport={{ once:true }} transition={{ duration:0.7 }}>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786532615/CAMPBELL_RESIDENCE_WALTON_USA_ABIM.png" alt="Campbell Residence Walton USA BIM" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786532615/CAMPBELL_RESIDENCE_WALTON_USA_ABIM.png" alt="Campbell Residence Walton USA BIM" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>Campbell Residence, Walton USA</div>
             </div>
             <div className={styles.featureContent}>

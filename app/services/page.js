@@ -27,55 +27,55 @@ export default function Services() {
                 slug: 'lgs',
                 title: 'LGS (Light Gauge Steel)',
                 desc: 'Lightweight steel framing solutions for residential, commercial, and industrial buildings with faster construction and durability.',
-                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443295/1662696676169_edited_edited_edited.jpg'
+                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443295/1662696676169_edited_edited_edited.jpg'
               },
               {
                 slug: 'timber',
                 title: 'Wood & Mass Timber',
                 desc: 'Sustainable timber engineering solutions that combine strength, aesthetics, and environmental responsibility.',
-                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443980/wood_and_timber.png'
+                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443980/wood_and_timber.png'
               },
               {
                 slug: 'structural-steel',
                 title: 'Structural Steel Solutions',
                 desc: 'Comprehensive structural steel design and detailing for industrial plants, commercial buildings, and infrastructure projects.',
-                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443972/structural_steel_solutions.png'
+                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443972/structural_steel_solutions.png'
               },
               {
                 slug: 'bim',
                 title: 'Architectural BIM Services',
                 desc: 'Intelligent 3D BIM models that improve planning, reduce design conflicts, and enhance project coordination.',
-                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443962/architectural_bim_services.jpg'
+                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443962/architectural_bim_services.jpg'
               },
               {
                 slug: 'bim-solutions-3d',
                 title: 'BIM Integrated Solutions 3D',
                 desc: 'Integrated BIM workflows across architecture, structure, and MEP disciplines for efficient project delivery.',
-                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443953/Bim_integrated_3d.jpg'
+                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443953/Bim_integrated_3d.jpg'
               },
               {
                 slug: 'icf',
                 title: 'ICF (Insulated Concrete Form)',
                 desc: 'Energy-efficient concrete construction systems offering superior insulation, strength, and faster installation.',
-                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443935/ICF.jpg'
+                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443935/ICF.jpg'
               },
               {
                 slug: 'mep',
                 title: 'MEP Engineering',
                 desc: 'Mechanical, Electrical, and Plumbing engineering designed for safety, efficiency, and long-term performance.',
-                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443927/mep.jpg'
+                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443927/mep.jpg'
               },
               {
                 slug: 'third-party-review',
                 title: 'Third Party Review & Value Engineering',
                 desc: 'Independent design reviews and cost optimization strategies to improve project quality and reduce unnecessary expenses.',
-                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786444120/tekla_structures.png'
+                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786444120/tekla_structures.png'
               },
               {
                 slug: 'rebar-concrete',
                 title: 'Concrete and Rebar Solutions',
                 desc: 'Innovative concrete and rebar engineering solutions ensuring robust infrastructure design and site development.',
-                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/v1786443919/concrete_and_rebar_solutions.png'
+                img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443919/concrete_and_rebar_solutions.png'
               },
             ].map((s) => (
               <Link key={s.slug} href={`/services/${s.slug}`} className={styles.dynamicCard}>

@@ -34,7 +34,7 @@ export default function TimberPage() {
       <motion.div initial={{ opacity:0, y:40 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, ease:[0.16,1,0.3,1] }}>
         <PageHero label="Engineering Services" title={<span>Wood & Mass</span>} titleEm={<span>Timber Engineering</span>}
           subtitle={<span>High-performance timber, CLT, and glulam systems — engineered for sustainability, seismic resistance, and aesthetic excellence.</span>}
-          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/v1786443980/wood_and_timber.png" />
+          imageSrc="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443980/wood_and_timber.png" />
       </motion.div>
 
       {/* Stats */}
@@ -69,7 +69,7 @@ export default function TimberPage() {
         <div className={styles.contentInner}>
           <motion.div className={styles.featureRow} variants={FV} initial="hidden" whileInView="show" viewport={{ once:true }} transition={{ duration:0.7 }}>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786447633/MANCHESTER_NEW_HAMPSHIREE.png" alt="Manchester New Hampshire Timber" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786447633/MANCHESTER_NEW_HAMPSHIREE.png" alt="Manchester New Hampshire Timber" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>Manchester, New Hampshire</div>
             </div>
             <div className={styles.featureContent}>
@@ -109,7 +109,7 @@ export default function TimberPage() {
               </div>
             </div>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786448864/M_M_RESIDENCE_NORTH_CAROLINA.png" alt="M&M Residence North Carolina" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786448864/M_M_RESIDENCE_NORTH_CAROLINA.png" alt="M&M Residence North Carolina" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>M&M Residence, North Carolina</div>
             </div>
           </motion.div>
@@ -121,7 +121,7 @@ export default function TimberPage() {
         <div className={styles.contentInner}>
           <motion.div className={styles.featureRow} variants={FV} initial="hidden" whileInView="show" viewport={{ once:true }} transition={{ duration:0.7 }}>
             <div className={styles.featureImg}>
-              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/v1786448140/TIPSY_MOOSE_USA.png" alt="Tipsy Moose USA Timber Framing" fill style={{ objectFit:'cover' }} />
+              <Image src="https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786448140/TIPSY_MOOSE_USA.png" alt="Tipsy Moose USA Timber Framing" fill style={{ objectFit:'cover' }} />
               <div className={styles.featureImgTag}>Tipsy Moose, USA</div>
             </div>
             <div className={styles.featureContent}>
