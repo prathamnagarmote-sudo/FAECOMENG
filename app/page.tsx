@@ -780,7 +780,7 @@ export default function Home() {
         aria-label="Hero"
         onMouseMove={handleHeroMouseMove}
       >
-        {/* Full-width background photo with smooth crisp landing & Scroll Parting (+x) */}
+        {/* Full-width background photo with 3D Out-of-Screen Fly-In Landing & Scroll Parting (+x) */}
         <motion.div
           className={styles.heroBg}
           style={heroBgMotionStyle}
@@ -795,9 +795,9 @@ export default function Home() {
               backfaceVisibility: 'visible',
               WebkitBackfaceVisibility: 'visible',
             }}
-            initial={{ opacity: 0, scale: 1.04, y: 12 }}
-            animate={{ opacity: 1, scale: 1.0, y: 0 }}
-            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            initial={isMobile ? { opacity: 0, scale: 1.04, y: 10 } : { opacity: 0, scale: 1.85, rotateX: 28, rotateY: -22, y: 110 }}
+            animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, y: 0 }}
+            transition={isMobile ? { duration: 0.65, ease: [0.16, 1, 0.3, 1] } : { duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           >
             <Image
               src="/images/hero_clear_disciplines.png"
@@ -830,9 +830,9 @@ export default function Home() {
               filter: activeFilter === 'structure' ? 'drop-shadow(0 0 12px rgba(15,18,56,0.3))' : 'none',
               x: leftAnnotX
             }}
-            initial={{ opacity: 0, scale: 0.92, y: 12 }}
+            initial={isMobile ? { opacity: 0, y: 12 } : { opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.32, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: isMobile ? 0.25 : 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className={styles.annotIconBox}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" width="20" height="20">
@@ -856,9 +856,9 @@ export default function Home() {
               filter: activeFilter === 'arch' ? 'drop-shadow(0 0 12px rgba(255,107,44,0.4))' : 'none',
               x: rightAnnotX
             }}
-            initial={{ opacity: 0, scale: 0.92, y: 12 }}
+            initial={isMobile ? { opacity: 0, y: 12 } : { opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.38, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: isMobile ? 0.30 : 0.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className={styles.annotIconBox}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" width="20" height="20">
@@ -882,9 +882,9 @@ export default function Home() {
               filter: activeFilter === 'bim' ? 'drop-shadow(0 0 12px rgba(15,18,56,0.3))' : 'none',
               x: leftAnnotX
             }}
-            initial={{ opacity: 0, scale: 0.92, y: 12 }}
+            initial={isMobile ? { opacity: 0, y: 12 } : { opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.44, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: isMobile ? 0.35 : 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className={styles.annotIconBox}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" width="20" height="20">
@@ -909,9 +909,9 @@ export default function Home() {
               filter: activeFilter === 'mep' ? 'drop-shadow(0 0 12px rgba(255,107,44,0.4))' : 'none',
               x: rightAnnotX
             }}
-            initial={{ opacity: 0, scale: 0.92, y: 12 }}
+            initial={isMobile ? { opacity: 0, y: 12 } : { opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.40, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: isMobile ? 0.32 : 1.0, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className={styles.pointerLineOrangeRight}>
               <div className={styles.radarPulseOrange} />
@@ -932,9 +932,9 @@ export default function Home() {
           <motion.div
             className={`${styles.annot} ${styles.annotCoord}`}
             style={{ opacity: activeFilter === 'all' || activeFilter === 'mep' || activeFilter === 'bim' ? 1 : 0.2 }}
-            initial={{ opacity: 0, scale: 0.92, y: 12 }}
+            initial={isMobile ? { opacity: 0, y: 12 } : { opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.50, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: isMobile ? 0.40 : 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className={styles.pointerLineDarkRight}>
               <div className={styles.radarPulse} />
@@ -956,45 +956,45 @@ export default function Home() {
           {/* Tagline */}
           <motion.div
             className={styles.heroTag}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.04, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            initial={isMobile ? { opacity: 0, y: 10 } : { opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ delay: isMobile ? 0.05 : 0.35, duration: 0.8 }}
           >
             <span className={styles.heroTagLine} />
             <span>ENGINEERING THE FUTURE. BUILDING EXCELLENCE.</span>
           </motion.div>
 
-          {/* 4-Line Editorial Heading */}
+          {/* 4-Line Editorial Heading — 3D Fly-In on PC & Dynamic Slide-in Landing on Mobile */}
           <h1 className={styles.heroH1}>
             <motion.span
               className={styles.heroLineNavy}
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={isMobile ? { opacity: 0, x: -30, y: 15 } : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
+              animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, x: 0, y: 0 }}
+              transition={isMobile ? { delay: 0.10, duration: 0.65, ease: [0.16, 1, 0.3, 1] } : { delay: 0.25, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             >
               DESIGNING
             </motion.span>
             <motion.span
               className={styles.heroLineOrange}
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={isMobile ? { opacity: 0, x: -30, y: 15 } : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
+              animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, x: 0, y: 0 }}
+              transition={isMobile ? { delay: 0.22, duration: 0.65, ease: [0.16, 1, 0.3, 1] } : { delay: 0.40, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             >
               TOMORROW.
             </motion.span>
             <motion.span
               className={styles.heroLineNavy}
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.22, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={isMobile ? { opacity: 0, x: -30, y: 15 } : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
+              animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, x: 0, y: 0 }}
+              transition={isMobile ? { delay: 0.34, duration: 0.65, ease: [0.16, 1, 0.3, 1] } : { delay: 0.55, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             >
               DELIVERING
             </motion.span>
             <motion.span
               className={styles.heroLineOrange}
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.29, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={isMobile ? { opacity: 0, x: -30, y: 15 } : { opacity: 0, scale: 1.7, rotateX: 25, rotateY: -18, y: 80 }}
+              animate={{ opacity: 1, scale: 1.0, rotateX: 0, rotateY: 0, x: 0, y: 0 }}
+              transition={isMobile ? { delay: 0.46, duration: 0.65, ease: [0.16, 1, 0.3, 1] } : { delay: 0.70, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             >
               EXCELLENCE.
             </motion.span>
@@ -1003,9 +1003,9 @@ export default function Home() {
           {/* Executive Subline */}
           <motion.div
             className={styles.heroSubWrap}
-            initial={{ opacity: 0, y: 12 }}
+            initial={isMobile ? { opacity: 0, y: 12 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: isMobile ? 0.54 : 1.1, duration: 0.8 }}
           >
             <p className={styles.heroSubText}>
               From Architectural BIM, Structural Steel, LGSF, ICF (Insulated Concrete Form), Timber, MEP, and Industrial Buildings —
