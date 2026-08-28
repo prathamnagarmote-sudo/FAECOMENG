@@ -1012,7 +1012,7 @@ export default function Home() {
             transition={{ delay: 1.1, duration: 0.8 }}
           >
             <p className={styles.heroSubText}>
-              From Architectural BIM, LGSF, ICF (Insulated Concrete Form), Timber, MEP, and Industrial Buildings —
+              From Architectural BIM, Structural Steel, LGSF, ICF (Insulated Concrete Form), Timber, MEP, and Industrial Buildings —
             </p>
             <div className={styles.heroSubTagline}>
               We Design with <span className={styles.heroSubOrange}>Precision and Purpose.</span>

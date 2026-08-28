@@ -184,6 +184,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* ── FILTER BAR ── */}
+      <div id="projects-top-anchor" style={{ position: 'absolute', marginTop: '-64px' }} />
       <section id="filter-bar" className={styles.filterSection}>
         <div className={styles.filterInner}>
           <div className={styles.filterLabel}>Filter by Discipline</div>
@@ -194,11 +195,14 @@ export default function ProjectsPage() {
                 className={`${styles.filterBtn} ${activeCategory === cat ? styles.filterActive : ''}`}
                 onClick={() => {
                   setActiveCategory(cat);
-                  const filterBar = document.getElementById('filter-bar');
-                  if (filterBar) {
-                    const y = filterBar.getBoundingClientRect().top + window.scrollY - 70;
-                    window.scrollTo({ top: y, behavior: 'smooth' });
-                  }
+                  // Use setTimeout to allow the DOM to update the grid before calculating height/scroll
+                  setTimeout(() => {
+                    const anchor = document.getElementById('projects-top-anchor');
+                    if (anchor) {
+                      const y = anchor.getBoundingClientRect().top + window.scrollY;
+                      window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
+                  }, 50);
                 }}
                 style={activeCategory === cat && cat !== 'All Projects'
                   ? { borderColor: CAT_COLORS[cat], color: CAT_COLORS[cat], background: `${CAT_COLORS[cat]}15` }

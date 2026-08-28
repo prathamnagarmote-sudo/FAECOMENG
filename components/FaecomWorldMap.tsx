@@ -88,19 +88,22 @@ export default function FaecomWorldMap() {
       const northEast = L.latLng(85, 180);
       const worldBounds = L.latLngBounds(southWest, northEast);
 
+      const isMobile = window.innerWidth < 768;
+
       const map = L.map(mapRef.current, {
         center: [22, 10],
-        zoom: 2.2,
+        zoom: isMobile ? 0.3 : 2.2, // Zoom out more for mobile
         zoomControl: false,
         attributionControl: false,
         scrollWheelZoom: false,
-        dragging: false,
+        dragging: isMobile, // Allow dragging on mobile
         doubleClickZoom: false,
-        touchZoom: false,
-        minZoom: 1.8,
+        touchZoom: isMobile, // Allow touch zoom on mobile
+        zoomSnap: 0.1,
+        minZoom: 0.1, // Lower min zoom
         maxZoom: 6,
         worldCopyJump: false,
-        maxBounds: worldBounds,
+        maxBounds: isMobile ? undefined : worldBounds, // Remove max bounds on mobile so it doesn't force a crop
         maxBoundsViscosity: 1.0,
       });
 
