@@ -69,12 +69,14 @@ function ProjectCard({ project, index }: { project: typeof ALL_PROJECTS[0]; inde
       transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: (index % 4) * 0.08 }}
     >
       <div className={styles.dynamicCardImgWrapper}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={project.image}
           alt={project.name}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className={styles.dynamicCardImg}
-          loading="lazy"
+          loading={index < 4 ? 'eager' : 'lazy'}
+          priority={index < 2}
         />
       </div>
       <div className={styles.dynamicCardContent}>

@@ -77,11 +77,18 @@ export default function Services() {
                 desc: 'Innovative concrete and rebar engineering solutions ensuring robust infrastructure design and site development.',
                 img: 'https://res.cloudinary.com/yqs3dtap/image/upload/f_auto,q_auto/v1786443919/concrete_and_rebar_solutions.png'
               },
-            ].map((s) => (
+            ].map((s, idx) => (
               <Link key={s.slug} href={`/services/${s.slug}`} className={styles.dynamicCard}>
                 <div className={styles.dynamicCardImgWrapper}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={s.img} alt={s.title} className={styles.dynamicCardImg} loading="lazy" />
+                  <Image
+                    src={s.img}
+                    alt={s.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className={styles.dynamicCardImg}
+                    priority={idx < 2}
+                    loading={idx < 4 ? 'eager' : 'lazy'}
+                  />
                 </div>
                 <div className={styles.dynamicCardContent}>
                   <h4 className={styles.dynamicCardTitle}>{s.title}</h4>
