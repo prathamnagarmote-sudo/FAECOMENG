@@ -77,7 +77,7 @@ export default function Nav() {
               />
               <div className={styles.logoTextGroup}>
                 <span className={styles.logoTitle}>FAECOM INC</span>
-                <span className={styles.logoSubline}>We bring success stories for your future!</span>
+                <span className={styles.logoSubline}>We build success stories for your future!</span>
               </div>
             </Link>
           </motion.div>
