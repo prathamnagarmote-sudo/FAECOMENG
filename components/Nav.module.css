@@ -23,12 +23,12 @@
 .inner {
   max-width: 100%;
   margin: 0 auto;
-  padding: 0 clamp(16px, 2.5vw, 40px);
-  height: clamp(86px, 5.8vw, 100px);
+  padding: 0 clamp(12px, 3vw, 80px);
+  height: clamp(64px, 6vw, 120px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(16px, 2vw, 36px);
+  gap: clamp(10px, 2vw, 60px);
   perspective: 800px;
   transform-style: preserve-3d;
 }
@@ -39,7 +39,7 @@
   display: flex;
   align-items: center;
   align-self: center;
-  gap: clamp(14px, 1.4vw, 18px);
+  gap: clamp(8px, 1.2vw, 24px);
   text-decoration: none;
 }
 
@@ -47,6 +47,8 @@
   flex-shrink: 0;
   display: block;
   align-self: center;
+  width: clamp(36px, 4vw, 80px) !important;
+  height: clamp(36px, 4vw, 80px) !important;
 }
 
 .logoTextGroup {
@@ -59,7 +61,7 @@
 
 .logoTitle {
   font-family: var(--font-body);
-  font-size: clamp(21px, 1.7vw, 25px);
+  font-size: clamp(14px, 1.8vw, 40px);
   font-weight: 900;
   color: #0F1238;
   letter-spacing: 0.035em;
@@ -69,7 +71,7 @@
 
 .logoSubline {
   font-family: var(--font-body);
-  font-size: clamp(12px, 0.95vw, 14px);
+  font-size: clamp(8px, 0.95vw, 20px);
   font-weight: 600;
   color: #4B5563;
   letter-spacing: 0.015em;
@@ -83,7 +85,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(16px, 1.6vw, 32px);
+  gap: clamp(10px, 1.6vw, 40px);
   height: 100%;
   list-style: none;
   margin: 0;
@@ -100,7 +102,7 @@
 
 .link {
   font-family: var(--font-body);
-  font-size: clamp(13px, 0.95vw, 15px);
+  font-size: clamp(10px, 1vw, 20px);
   font-weight: 700;
   color: #4A4D6B;
   text-decoration: none;
@@ -110,7 +112,7 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 8px 12px;
+  padding: clamp(4px, 0.5vw, 12px) clamp(6px, 0.8vw, 16px);
   border-radius: 4px;
   position: relative;
 }
@@ -249,11 +251,11 @@
   background: var(--primary);
   color: #FFF;
   font-family: var(--font-body);
-  font-size: clamp(12.5px, 0.9vw, 14.5px);
+  font-size: clamp(10px, 1vw, 20px);
   font-weight: 750;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 13px clamp(14px, 1.4vw, 26px);
+  padding: clamp(10px, 1.2vw, 20px) clamp(12px, 1.5vw, 32px);
   border-radius: 6px;
   white-space: nowrap;
   transition: background 0.3s, box-shadow 0.3s;
@@ -390,11 +392,8 @@
 }
 .overlayContact a:hover { color: var(--accent); }
 
-@media (max-width: 1550px) {
-  .logoSubline { display: none; }
-}
 
-@media (max-width: 1380px) {
+@media (max-width: 850px) {
   .links { display: none; }
   .cta   { display: none; }
   .burger { display: flex; }
@@ -417,7 +416,12 @@
   }
 
   .logoTitle {
-    font-size: 19px;
+    font-size: clamp(14px, 4vw, 19px);
+  }
+
+  .logoSubline {
+    font-size: clamp(7px, 2.5vw, 11px);
+    white-space: normal;
   }
 
   .burger {
